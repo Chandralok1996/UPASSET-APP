@@ -1,0 +1,225 @@
+/* .card {
+
+  transition: 0.5s;
+  border-radius: 10px;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+ */
+
+
+
+
+
+ .pro-card{
+  background-color: #fff;
+  padding: 0 3px 8px -2px;
+  width: 82%; 
+  height: auto;
+  transition: 0.5s;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.5s;
+  bottom: 2px;
+  top: none;
+  z-index: -1;
+  box-shadow: 0 5px 8px 2px #565353d4;
+
+} 
+.vl{
+  border-left: 8px solid yellow;
+}
+
+.card-heading{
+  font-size: 20px;
+  font-weight: 600;
+  color: #2A2B2D;
+  padding: 0px 10px 10px 10px;
+ 
+}
+
+.card-heading-down{
+  font-size: 14px;
+  font-weight: 400;
+  color: #2A2B2D;
+  padding: 0px 10px 10px 10px;
+  
+
+}
+
+
+
+
+/* .active {
+  box-shadow: 0 0px 11px -2px #565353d4;
+  text-decoration: none;
+  transition: 0.5s;
+} */
+
+.not-active {
+  cursor: pointer;
+}
+
+.clear-all{
+  margin-top: -30px;
+  font-size: 12px;
+  }
+
+/* .font-sans {
+  font-family: TKReg;
+} */
+
+
+.cust-create-btn {
+  width: 215px;
+ height: 45px;
+ font-size: 16px;
+ position: relative;
+ left: -10%;
+ color: #fff;
+ border-radius: 10px;
+ background-color: #bebebe;
+ outline: none;
+ border: none;
+ font-weight: 600;
+ padding: 10px 15px 10px 15px;
+}
+.cust-create-btn:enabled {
+ width: 215px;
+ height: 45px;
+ font-size: 16px;
+ position: relative;
+ left: 10%;
+ color: #fff;
+ border-radius: 10px;
+ background-color: rgb(62, 144, 249);
+ outline: none;
+ border: none;
+ font-weight: 600;
+ padding: 10px 15px 10px 15px;
+}
+
+.create-new {
+  background-color: #fff;
+  color: rgb(117, 116, 116);
+  width: 100px;
+  outline: none;
+  border-color: #8d8b8b;
+ margin-top: -120px;
+  border-radius: 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+.profile-name{
+  font-size: 25px;
+  font-weight: 600;
+  color: #8c8c8c;
+  margin-top: 30px;
+}
+
+
+#user{
+
+  width: 70px;
+  height: 70px;
+ 
+  box-sizing: border-box;
+  border-radius: 50%;
+  background-color: #C4C4C4;
+  }
+  #Choose{
+    font-family: TKReg;
+    font-style: italic;
+    font-weight: normal;
+    margin-left: 5px;
+    font-size: 13px;
+    text-decoration-line: underline;
+   
+    }
+    hr {
+      border: 1px solid #c0bfbf;
+      margin-top: 0px !important;
+    }
+
+    div.scroll {
+      height: 400px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      }
+
+
+
+.autocomplete-container .input-container input {
+  font-size: 12px;
+  box-sizing: border-box;
+  border: none;
+  box-shadow: none;
+  outline: 0;
+  background-color: #fff;
+  color: rgba(0,0,0,.87);
+  width: 100%;
+  padding: 0 15px;
+  /* line-height: 40px; */
+  /* height: 20px; */
+}
+
+.mat.dialog.container {
+  overflow-y:hidden !important ;
+  padding: 0px;
+
+ }
+
+#create{
+  font-family: TKReg;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 21px;
+color: #2A2B2D;
+
+}
+
+label{
+  font-family: TKReg;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+line-height: 16px;
+color: #2A2B2D;
+}
+
+  
+  .close-button{  
+    float: right;
+    top:-24px;
+    right:-24px;
+  }
+  
+  .close-icon:hover {
+    transform: rotate(180deg);
+  }
+  
+  ::ng-deep .icon-outside .close-button{
+    float: right;
+    top:-52px;
+    right:-52px;
+  }
+  
+  ::ng-deep .icon-outside .mat-dialog-container {
+   overflow: unset
+  }
+ 
+
+
+  .required-asterisk{
+    color: red;
+   
+  }
+
+  input.ng-touched.ng-invalid {
+    border-color: red;
+  }
+  
+  select.ng-touched.ng-invalid {
+    border-color: red;
+  }

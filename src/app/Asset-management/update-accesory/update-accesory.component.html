@@ -1,0 +1,444 @@
+<div class="container-fluid" style="    margin: 30px 0 0 0;padding: 0;">
+  <div class="row">
+    <div class="col-md-12 ">
+
+      <div class="row">
+        <div class="col-md-2">
+          <img id="user" src="assets/img/Trial 2.png" /><br>
+
+          <a href="" id="Choose"> Add photo </a>
+        </div>
+
+
+        <div class="row">
+
+          <div class="profile-name">UPDATE ASSET | Accessories</div>
+
+        </div>
+      </div>
+
+
+
+      <ng-template #content let-modal>
+        <div class="container" style="width:300px; height:150px;">
+          <div>
+            <p style="text-align:center; padding:15px; margin-top:10px;">Are you sure you
+              want to cancel the current operation?
+            <p>
+          </div>
+
+          <div class="clear-fix" style="text-align:center; padding-bottom:15px;">
+            <button type="button"
+              style="margin-right:25px; border-radius:5px; background-color:#bebebe; height:30px; width:110px; font-size:12px; border: none; outline: none;"
+              (click)="modal.close('Close click');close()">Cancel</button>
+            <button type="button"
+              style=" background-color:rgb(62,144,249); border-radius:5px;height:30px; width:110px; font-size: 12px; border: none; outline: none; color:white"
+              (click)="modal.close('Close click')">Keep editing</button>
+          </div>
+        </div>
+      </ng-template>
+      <button type="button" class="create-new float-right" (click)="openVerticallyCentered(content)">Cancel</button>
+    </div>
+  </div>
+  <hr class="hr">
+
+  <div class="scroll" (scroll)="divScroll($event)">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" #ff="ngForm">
+
+
+      <div class="col-md-11 card" *ngIf="div1" [ngClass]="statusClass" (click)="setActiveClass1()">
+        <div class="">
+          <h1 class="font-sans f-20">Asset Information</h1>
+          <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+            (click)="ff.resetForm()"><u>X
+              Clear all</u></a>
+        </div><br>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> User Name <span class="required-asterisk">*</span></label>
+              <!-- <select formControlName="name" class="form-control" (click)="userdet($event.target.value)" 
+             [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+             <option></option>
+             <option *ngFor="let name of username">{{name.username}}</option>
+              </select> -->
+
+              <ng-autocomplete formControlName="name" [data]="username" [searchKeyword]="keyword1"
+                (change)='userdet($event.target.value)' (selected)='userdet($event)'
+                (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+              </ng-autocomplete>
+              <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.username"></a>
+              </ng-template>
+              <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+              </ng-template>
+
+              <div *ngIf="submitted && f.name.errors || f.name.invalid && (f.name.dirty || f.name.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.name.errors.required">User Name is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Asset No. <span class="required-asterisk">*</span></label>
+              <input type="text" class="form-control f-10" formControlName="assetno" readonly>
+
+
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Department</label>
+              <select class="form-control f-10" formControlName="deptname" readonly>
+                <option *ngFor="let dept of uname" [disabled]="true">{{dept.deptname}}</option>
+              </select>
+
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Employee ID</label>
+              <select class="form-control f-10" formControlName="eightid" readonly>
+                <option *ngFor="let eight of uname" [disabled]="true">{{eight.eightid}}</option>
+
+              </select>
+
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Branch</label>
+              <select class="form-control f-10" formControlName="branch" readonly>
+                <option *ngFor="let br of uname" [disabled]="true">{{br.branch}}</option>
+
+              </select>
+
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Building</label>
+              <select class="form-control f-10" formControlName="building" (click)="getFloor($event.target.value)" readonly>
+                <option *ngFor="let bld of uname" [disabled]="true">{{bld.building}}</option>
+              </select>
+
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Floor</label>
+              <select class="form-control f-10" formControlName="floor" readonly>
+                <option *ngFor="let flr of uname" [disabled]="true">{{flr.floor}}</option>
+              </select>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Status <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="status"
+                [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                <option></option>
+                <option *ngFor="let statusData of status">{{statusData.status}}</option>
+
+              </select>
+              <div *ngIf="submitted && f.status.errors || f.status.invalid && (f.status.dirty || f.status.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.status.errors.required">Status is required</div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1">Group <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="astg_group" readonly>
+
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Category <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="category" readonly>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Asset Type <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10 " formControlName="asset_type" readonly>
+
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1">Purchase Date </label>
+              <input type="date" class="form-control f-10" formControlName="purchase">
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Assigned Date </label>
+              <input type="date" class="form-control f-10" formControlName="assigned">
+              <div *ngIf="form.controls['purchase'].value !==null && form.controls['assigned'].value === null "
+              style="color: red; font-size: 12px;">
+              <p>Assigned Date is required</p>
+            </div>
+
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Expiry Date </label>
+              <input type="date" class="form-control f-10" formControlName="expiry">
+              <div *ngIf="form.controls['purchase'].value !== null && form.controls['expiry'].value === null "
+              style="color: red; font-size: 12px;">
+              <p>Expiry Date is required</p>
+            </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <br>
+
+      <div class="col-md-11 card" *ngIf="div2" [ngClass]="statusClasses" (click)="setActiveClass2()">
+        <div class="">
+          <h1 class="font-sans f-20">System Information</h1>
+          <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+            (click)="ff.resetForm()"><u>X
+              Clear all</u></a>
+        </div><br>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> Sr.No <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="serialno" readonly>
+
+
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> Accessories <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="accessory" readonly>
+
+
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> Make <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="make" readonly>
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+              <label id="label1"> Description <span class="required-asterisk">*</span></label>
+              <textarea type="text" rows="4" class="form-control f-10" formControlName="description" readonly></textarea>
+              <!-- [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+              <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required">description is required</div>
+              </div> -->
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- 
+
+<div class="form-group" >
+   <div class="row">
+      
+       
+       <div class="col-md-12 col-sm-12">
+        <label id="label1" > Upload an image (Optional)</label><br>
+        <input id="cin" name="cin" type="file" formControlName="file"  (change)="fileChangeEvent($event)"
+         placeholder="Upload a file..." multiple  />
+    </div>
+
+   </div>
+</div> -->
+      </div>
+      <br>
+
+
+      <div class="col-md-11 card" *ngIf="div3" [ngClass]="statusClassess" (click)="setActiveClass3()">
+        <div class="">
+          <h1 class="font-sans f-20">Financial Summary</h1>
+          <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+            (click)="ff.resetForm()"><u>X
+              Clear all</u></a>
+        </div><br>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> PO_Number (Optional)</label>
+              <input type="text" class="form-control f-10" formControlName="pon" readonly>
+
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Warranty <span class="required-asterisk">*</span></label><br>
+              <input type="radio" [(ngModel)]="type" [value]="'valid'" formControlName="warranty"
+                [ngClass]="{ 'is-invalid': submitted && f.warranty.errors }">&nbsp;&nbsp;&nbsp;Valid
+              <input type="radio" [(ngModel)]="type" [value]="'expired'" formControlName="warranty" class="ml-5"
+                [ngClass]="{ 'is-invalid': submitted && f.warranty.errors }">&nbsp;&nbsp;&nbsp;Expired
+
+              <div
+                *ngIf="submitted && f.warranty.errors || f.warranty.invalid && (f.warranty.dirty || f.warranty.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.warranty.errors.required">Warranty is required</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="type == 'valid'">
+          <div class="row">
+            <div class="col-md-6">
+              <label id="label1"> Start Date <span class="required-asterisk">*</span></label><br>
+              <input type="date" formControlName="wsdate" class="form-control f-10">
+              <div *ngIf="form.controls['warranty'].value ==='valid' && form.controls['wsdate'].value === null "
+              style="color: red; font-size: 12px;">
+              <p>Start Date is required</p>
+            </div>
+            </div>
+            <div class="col-md-6">
+              <label id="label1"> End Date <span class="required-asterisk">*</span></label><br>
+              <input type="date" formControlName="wedate" class="form-control f-10">
+              <div *ngIf="form.controls['warranty'].value ==='valid' && form.controls['wedate'].value === null  "
+              style="color: red; font-size: 12px;">
+              <p>End Date is required</p>
+            </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Vendor <span class="required-asterisk">*</span></label>
+              <input id="input1" class="form-control f-10" formControlName="vendor" readonly>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Vendor_Location <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="vloc" readonly>
+
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> AMC Authority (Optional)</label>
+              <input type="text" class="form-control f-10" formControlName="mauth">
+              <!-- <div *ngIf="submitted && f.mauth.errors" class="invalid-feedback">  [ngClass]="{ 'is-invalid': submitted && f.mauth.errors }" 
+        <div *ngIf="f.mauth.errors.required">Authority is required</div>
+      </div> -->
+
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> AMC Expiry </label>
+              <input type="date" class="form-control f-10" formControlName="mexp">
+              <!-- <div *ngIf="submitted && f.mexp.errors" class="invalid-feedback">  [ngClass]="{ 'is-invalid': submitted && f.mexp.errors }"
+           <div *ngIf="f.mexp.errors.required">Maintainance_Expiry is required</div>
+         </div> -->
+
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1">Finance Asset Number </label>
+              <input type="text" class="form-control f-10" formControlName="fastno">
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <br>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <button [disabled]="form.invalid" class="cust-create-btn">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Save and Update</button>
+
+          </div>
+        </div>
+      </div>
+      <br><br>
+    </form>
+  </div>
+</div>

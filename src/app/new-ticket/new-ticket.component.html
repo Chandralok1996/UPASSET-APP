@@ -1,0 +1,232 @@
+<div class="container-fluid" style="margin: 30px 0 0 0;padding: 0;">
+    <!-- <div style="margin-left:0px;font-family: Raleway;margin-right:0px"> -->
+
+    <!-- <div class="row">
+            <div class="col-sm-8 col-md-8">
+                <p id="create">NEW TICKET</p>
+            </div>
+            <div class="col-sm-4 col-md-4">
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-12 ">
+    
+    
+    
+                <div class="card vl pro-card col-md-10">
+                    <div class="card-body">
+                        <div class="row">
+    
+                            <div class="card-heading">
+                                {{short}}
+                            </div>
+    
+                        </div>
+                        <div class="row">
+                            <div class="card-heading-down">
+                                Created by : {{userName}}
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                </div>
+    
+    
+                <ng-template #content let-modal>
+                    <div class="container" style="width:300px; height:150px;">
+                        <div>
+                            <p style="text-align:center; padding:15px; margin-top:10px;">Are you sure you
+                                want to cancel the current operation?
+                            <p>
+                        </div>
+    
+                        <div class="clear-fix" style="text-align:center; padding-bottom:15px;">
+                            <button type="button"
+                                style="margin-right:25px; border-radius:5px; background-color:#bebebe; height:30px; width:110px; font-size:12px; border: none; outline: none;"
+                                (click)="modal.close('Close click');close()">Cancel</button>
+                            <button type="button"
+                                style=" background-color:rgb(62,144,249); border-radius:5px;height:30px; width:110px; font-size: 12px; border: none; outline: none; color:white"
+                                (click)="modal.close('Close click')">Keep editing</button>
+                        </div>
+                    </div>
+                </ng-template>
+                <button type="button" class="create-new float-right"
+                    (click)="openVerticallyCentered(content)">Cancel</button>
+            </div>
+        </div>
+
+    
+    <!-- <hr class="hr"> -->
+    <br>
+    <div class="scroll" (scroll)="divScroll($event)">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="col-md-11 card" *ngIf="div1" [ngClass]="statusClass" (click)="setActiveClass1()">
+                <div class="row ">
+                    <div class="col-md-12">
+                        <label>Call Type <span class="required-asterisk">*</span></label>
+                        <select type="text" formControlName="intp" class="form-control" placeholder="Short Description"
+                            [ngClass]="{ 'is-invalid': submitted && f.intp.errors }"
+                            (change)="inctype($event.target.value)">
+                            <option></option>
+                            <option *ngFor="let type of incidenttype">{{type.category}}</option>
+
+                        </select>
+                        <div *ngIf="submitted && f.intp.errors || f.intp.invalid && (f.intp.dirty || f.intp.touched)"
+                            style="color: red; font-size: 12px;">
+                            <div *ngIf="f.intp.errors.required">INC Type is required</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row ">
+                    <div class="col-md-12">
+                <label>Call Mode <span class="required-asterisk">*</span></label>
+                <input type="text" formControlName="callmode" class="form-control" placeholder="Short Description"
+                    [ngClass]="{ 'is-invalid': submitted && f.callmode.errors }"
+                    (change)="inctype($event.target.value)" readonly>
+                   
+                <div *ngIf="submitted && f.callmode.errors || f.callmode.invalid && (f.callmode.dirty || f.callmode.touched)"
+                    style="color: red; font-size: 12px;">
+                    <div *ngIf="f.callmode.errors.required">Call Mode is required</div>
+                </div>
+                </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-12">
+                        <label>Issue Description <span class="required-asterisk">*</span></label>
+                        <select type="text" formControlName="issue_desc" class="form-control"
+                            placeholder="Short Description" [(ngModel)]="short"
+                            [ngClass]="{ 'is-invalid': submitted && f.issue_desc.errors }">
+                            <option></option>
+                            <option *ngFor="let desc of shortdec">{{desc.issue_des}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.issue_desc.errors || f.issue_desc.invalid && (f.issue_desc.dirty || f.issue_desc.touched)"
+                            style="color: red; font-size: 12px;">
+                            <div *ngIf="f.issue_desc.errors.required">Issue Description is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Employee Name/ID <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="userName"
+                            [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+
+                <!-- <div class="row mt-3">
+            <div class="col-md-12">
+                <label id="ctf" >Creating ticket for</label><br>
+                <input name="type"  [(ngModel)]="type" type="radio" [value]="1" [checked]="options" [ngModelOptions]="{standalone: true}" />&nbsp;&nbsp;<b> Myself</b> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input name="type"  [(ngModel)]="type" type="radio" [value]="0" [checked]="!options" [ngModelOptions]="{standalone: true}" />&nbsp;&nbsp;<b> Others</b>
+           
+            </div>
+        </div>
+
+        <div class="row mt-3"  *ngIf="type == 0">
+            <div class="col-md-6">
+                <label  >User Name</label>
+                <input type="text" class="form-control" formControlName="username" >
+            </div>
+            <div class="col-md-6">
+                <label  >Contact Number</label>
+                <input type="text" class="form-control" formControlName="contact">
+            </div>
+        </div> -->
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Affected Product</label>
+                        <select class="form-control" formControlName="affectedpro"
+                            [ngClass]="{ 'is-invalid': submitted && f.affectedpro.errors }" required>
+                            <option></option>
+                            <option *ngFor="let product of aproduct">{{product.assetno}}</option>
+                            <option *ngIf="prlength === 0">No Rows Available</option>
+                        </select>
+                        <div *ngIf="submitted && f.affectedpro.errors || f.affectedpro.invalid && (f.affectedpro.dirty || f.affectedpro.touched)"
+                            style="color: red; font-size: 12px;">
+                            <div *ngIf="f.affectedpro.errors.required">Affected product is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Priority <span class="required-asterisk">*</span></label>
+                        <input class="form-control" formControlName="priority" readonly>
+                        <div *ngIf="submitted && f.priority.errors" class="invalid-feedback"> [ngClass]="{ 'is-invalid': submitted && f.priority.errors }" 
+                    <div *ngIf="f.priority.errors.required">Priority is required</div>
+                </div>
+                    </div>
+                </div> -->
+
+
+
+
+                <div class="row mt-3">
+
+                    <div class="col-md-6">
+                        <label>Opened By <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="userName"
+                            [ngModelOptions]="{standalone: true}" readonly>
+                    </div>
+
+                    <!-- <div class="col-md-6">
+                <label>Status</label>
+              <select class="form-control" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }" >
+                  <option></option>
+                    <option *ngFor="let sta of status">{{sta.status}}</option>
+              </select>
+              <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                <div *ngIf="f.status.errors.required">status is required</div>
+              </div>
+            </div> -->
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Notify Others (Optional)</label>
+                        <input type="text" class="form-control" formControlName="email">
+
+                    </div>
+                </div>
+
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Detail Description <span class="required-asterisk">*</span></label>
+                        <textarea type="text" rows="4" class="form-control" formControlName="detaildesc"
+                            [ngClass]="{ 'is-invalid': submitted && f.detaildesc.errors }"></textarea>
+                        <div *ngIf="submitted && f.detaildesc.errors || f.detaildesc.invalid && (f.detaildesc.dirty || f.detaildesc.touched)"
+                            style="color: red; font-size: 12px;">
+                            <div *ngIf="f.detaildesc.errors.required">Detail Description is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label id="label1"> Upload an image (Optional)</label><br>
+                        <input id="cin" name="cin" type="file" formControlName="file" (change)="fileChangeEvent($event)"
+                            placeholder="Upload a file..." multiple />
+                    </div>
+                </div>
+
+
+
+                <div class="row mt-3">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4"></div>
+                    <button type="submit" class="btn btn-primary" style="background: #00B4EB;">SUBMIT</button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>

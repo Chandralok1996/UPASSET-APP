@@ -1,0 +1,32 @@
+    <div class="text-center">
+       
+           
+          <mat-card-title>{{ dialogData.data }}</mat-card-title>
+      
+
+
+        <div class="align-items-center mt-3">
+           
+            <button
+           
+              color="accent"
+              style="margin-right: 20px;background: #999999;
+              border-radius: 3px;outline: none;width: 23%;"
+              [mat-dialog-close]="true"
+            >
+              Yes
+            </button>
+
+            <button
+             
+            
+            style="margin-right: 20px;background: #00B4EB;
+            border-radius: 3px;outline: none;width: 23%;"
+            (click)="close()"
+            cdkFocusInitial
+          >
+            No
+          </button>
+
+        </div>
+</div>

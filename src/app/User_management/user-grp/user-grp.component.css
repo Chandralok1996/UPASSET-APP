@@ -1,0 +1,144 @@
+
+table{
+    width:100%;
+    box-shadow: none;
+    }
+    .mat-column-select {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 28% !important;
+        width: 3% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        
+        .mat-column-usug_id {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 28% !important;
+        width: 10% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        
+        .mat-column-ugname {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 28% !important;
+        width: 10% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        
+        .mat-column-description {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 28% !important;
+        width: 9% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        
+        .mat-column-phone {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 28% !important;
+        width: 8% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        
+        
+        .mat-header-cell
+        {
+          background-color: #C4C4C4;
+          color: #292626;
+          font-family: "Open Sans", sans-serif;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 15px;
+          line-height: 16px;
+        }
+        #action1 {
+                 width: 300px;
+                height: 35px;
+                padding: 17px;
+                font-family: "Open Sans", sans-serif;
+                border: 1px solid #C4C4C4;
+                box-sizing: border-box;
+                border-radius: 5px;
+        }
+
+          /* #newt{
+          
+            background-color:#007AFF ;
+            width: 150px;
+            height: 28px;
+            border: #007AFF;
+            font-family: Raleway;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 21px;
+            border-radius: 3px;
+            color: white;
+            outline: none;
+            text-align: center;
+            
+          } */
+          #headp{
+            float: left;
+           
+            font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+
+/* identical to box height */
+
+text-decoration-line: underline;
+
+color: #2A2B2D;
+          }
+
+          .mat-elevation-z8 {
+            box-shadow: none !important;
+        }
+       
+        

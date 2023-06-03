@@ -1,0 +1,231 @@
+<div class="row container mt-1" style="background-color: white;margin-left: 0px;padding: 15px;">
+  <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-8">
+
+     <button routerLink="/home/users/dashboardstatus" class="btn btn-primary btn-sm" style="float: left;"><i class="fa fa-backward" aria-hidden="true"></i> Back</button> 
+      <h3 style="text-align: center;">DataList:&nbsp;{{catname}}<span>-({{datacount}})</span></h3>
+      <!-- <input type="search"  (keyup)="applyFilter($event.target.value)" placeholder="Search Items" [(ngModel)]="term"> -->
+    </div>
+    <div class="col-md-4   text-right">
+   
+      <button (click)="download()" class="btn btn-primary"><i class="fa fa-file-excel-o"
+        aria-hidden="true"></i> ExportTOExcel</button>
+    </div>
+  </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tbl-data" *ngIf="showittable"> 
+        <table class="table"  id="excel-table">
+          <thead class="thead-dark">
+            <tr>
+              <th>AssetName</th>
+              <th>Make</th>
+              <th>serialNo</th>
+              <th>hostname </th>
+              <th>AssetId</th>
+              <th>Class</th>
+              <th>Custodian</th>
+              <th>Asset_owner</th>
+              <th>location</th>
+             <th>Quantity</th>
+             <th>confidentiality</th>
+             <th>integrity</th>
+              <th>availability</th>
+              <th>Warranty_start_date</th>
+              <th>Warranty_end_date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tabledata">
+             <td>{{data.name}}</td>
+             <td>{{data.make}}</td>
+             <td>{{data.serialno}}</td>       
+             <td>{{data.hostname}}</td>
+             <td>{{data.assetid}}</td>
+             <td>{{data.class}}</td>
+             <td>{{data.custodian}}</td>
+             <td>{{data.assetowner}}</td>
+             <td>{{data.location}}</td>
+           <td>{{data.quantity}}</td>
+           <td>{{data.confidentiality}}</td>
+           <td>{{data.integrity}}</td>
+             <td>{{data.availability}}</td>
+             <td>{{data.wsdate|date}}</td>
+
+             <td>{{data.wedate|date}}</td>
+             <td>{{data.status}}</td>
+
+            </tr>
+           
+           
+          </tbody>
+        </table>
+      </div>
+     
+
+
+      <div class="tbl-data" *ngIf="showdesktable"> 
+        <table class="table"  id="excel-table">
+          <thead class="thead-dark">
+            <tr>
+              <th>AssetName</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>serialNo</th>
+              <th>hostname </th>
+              <th>AssetId</th>
+              <th>Class</th>
+              <th>Custodian</th>
+              <th>Asset_owner</th>
+              <th>location</th>
+             <th>Quantity</th>
+             <th>confidentiality</th>
+             <th>integrity</th>
+              <th>availability</th>
+              <th>Warranty_start_date</th>
+              <th>Warranty_end_date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tabledata">
+              <td>{{data.name}}</td>
+              <td>{{data.make}}</td>
+              <td>{{data.model}}</td>
+              <td>{{data.serialno}}</td>       
+              <td>{{data.hostname}}</td>
+              <td>{{data.assetid}}</td>
+              <td>{{data.class}}</td>
+              <td>{{data.custodian}}</td>
+              <td>{{data.assetowner}}</td>
+              <td>{{data.location}}</td>
+            <td>{{data.quantity}}</td>
+            <td>{{data.confidentiality}}</td>
+            <td>{{data.integrity}}</td>
+              <td>{{data.availability}}</td>
+              <td>{{data.wsdate|date}}</td>
+
+              <td>{{data.wedate|date}}</td>
+              <td>{{data.status}}</td>
+            </tr>
+           
+           
+          </tbody>
+        </table>
+      </div>
+     
+      
+
+      
+
+      <div class="tbl-data" *ngIf="electable"> 
+        <table class="table"  id="excel-table">
+          <thead class="thead-dark">
+            <tr>
+              <th>AssetName</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>serialNo</th>
+              <th>AssetId</th>
+              <th>Class</th>
+              <th>Custodian</th>
+              <th>Asset_owner</th>
+              <th>location</th>
+             <th>Quantity</th>
+             <th>confidentiality</th>
+             <th>integrity</th>
+              <th>availability</th>
+              <th>Warranty_start_date</th>
+              <th>Warranty_end_date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tabledata">
+              <td>{{data.name}}</td>
+              <td>{{data.make}}</td>
+              <td>{{data.model}}</td>
+              <td>{{data.serialno}}</td>       
+              <td>{{data.assetid}}</td>
+              <td>{{data.class}}</td>
+              <td>{{data.custodian}}</td>
+              <td>{{data.assetowner}}</td>
+              <td>{{data.location}}</td>
+            <td>{{data.quantity}}</td>
+            <td>{{data.confidentiality}}</td>
+            <td>{{data.integrity}}</td>
+              <td>{{data.availability}}</td>
+              <td>{{data.wsdate|date}}</td>
+
+              <td>{{data.wedate|date}}</td>
+              <td>{{data.status}}</td>
+
+            </tr>
+           
+           
+          </tbody>
+        </table>
+      </div>
+     
+     
+      <div class="tbl-data" *ngIf="bmstable"> 
+        <table class="table"  id="excel-table">
+          <thead class="thead-dark">
+            <tr>
+              <th>AssetName</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>serialNo</th>
+              <th>AssetId</th>
+              <th>Class</th>
+              <th>Custodian</th>
+              <th>Asset_owner</th>
+              <th>location</th>
+             <th>Quantity</th>
+             <th>confidentiality</th>
+             <th>integrity</th>
+              <th>availability</th>
+              <th>Warranty_start_date</th>
+              <th>Warranty_end_date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tabledata">
+              <td>{{data.name}}</td>
+              <td>{{data.make}}</td>
+              <td>{{data.model}}</td>
+              <td>{{data.serialno}}</td>       
+              <td>{{data.assetid}}</td>
+              <td>{{data.class}}</td>
+              <td>{{data.custodian}}</td>
+              <td>{{data.assetowner}}</td>
+              <td>{{data.location}}</td>
+            <td>{{data.quantity}}</td>
+            <td>{{data.confidentiality}}</td>
+            <td>{{data.integrity}}</td>
+              <td>{{data.availability}}</td>
+              <td>{{data.wsdate|date}}</td>
+
+              <td>{{data.wedate|date}}</td>
+              <td>{{data.status}}</td>
+
+            </tr>
+           
+           
+          </tbody>
+        </table>
+      </div>
+     
+
+
+    </div>
+  </div>
+</div>
+
+
+

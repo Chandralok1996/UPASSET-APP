@@ -1,0 +1,81 @@
+table {
+    width: 100%;
+    box-shadow: none;
+  }
+  .mat-header-cell {
+    background-color: #c4c4c4;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+  
+    color: #2a2b2d;
+  }
+  
+  #newt1{
+    background-color:#C03F46 ;
+    width: 90px;
+    height: 28px;
+    margin-top: 20px;
+    border: #e9e7e7;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    border-radius: 3px;
+    color: white;
+    outline: none;
+    text-align: center;
+  
+   
+  }
+  #action1 {
+    width: 250px;
+    font-family: Raleway;
+    border: 1px solid #c4c4c4;
+    box-sizing: border-box;
+    border-radius: 3px;
+  }
+  
+  #newt {
+    background-color: #007AFF;
+    width: 190px;
+    height: 28px;
+    /* margin-left: 10%; */
+  
+    border: #007AFF;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    border-radius: 3px;
+    color: white;
+    outline: none;
+    text-align: center;
+  }
+  #headp {
+    /* float: right; */
+   
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+   
+    /* identical to box height */
+  
+    text-decoration-line: underline;
+  
+    color: #2a2b2d;
+  }
+  .mat-elevation-z8 {
+    box-shadow: none !important;
+  }
+  
+  /* .btn{
+    width: auto;
+    height: 26px;
+  } */

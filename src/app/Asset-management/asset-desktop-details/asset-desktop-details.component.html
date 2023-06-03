@@ -1,0 +1,95 @@
+<div>
+    <div class="row">
+
+        <div class="col-md-3">
+            <p id="headp" routerLink="/home/users/assetlaptop">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+              </svg>
+            &nbsp;Back</p>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 "
+        style="background-color:white;margin-top:0px;border-radius: 3px;">
+
+        <br>
+
+        <div class="row ml-3" *ngFor="let detail of details">
+            <div class="col-md-12">
+                <h3 id="id">MAKE : {{detail.make}}</h3>
+            </div>
+            <!-- <div class="col-md-4" style="text-align: end;">
+                <button class="btn btn-success" (click)="openAttachment(detail.astd_id)">Genarate Reciept</button>
+            </div> -->
+        </div>
+
+
+
+        <div class="row ml-3">
+            <div class="col-sm-12">
+                <hr id="hr">
+            </div>
+        </div>
+
+        <!-- <div class="scroll" (scroll)="divScroll($event)"> -->
+            <div class="col-md-12 row ml-3 " *ngFor="let detail of details">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="class">Model :</p>
+                            <p class="class">Asset Owner :</p>
+                            <p class="class">Serial No. :</p>
+                            <p class="class">Asset Type :</p>
+                            <p class="class">Status :</p>
+                            <p class="class">Custodian :</p>
+
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{detail.model == null || detail.model == ' ' ? ("null") : (detail.model)}}</p>
+                            <p style="color: rgb(52, 52, 247); font-weight: 600;"> {{detail.assetowner == null || detail.assetowner == ' ' ? ("null") : (detail.assetowner)}}</p>
+                            <p>{{detail.serialno == null || detail.serialno == ' ' ? ("null") : (detail.serialno)}}</p>
+                            <p>{{detail.type == null || detail.type == ' ' ? ("null") : (detail.type)}}</p>
+                            <p>{{detail.status == null || detail.status == ' ' ? ("null") : (detail.status)}}</p>
+                            <p>{{detail.custodian == null || detail.custodian == ' ' ? ("null") : (detail.custodian)}}</p>
+                        </div>
+                    </div>
+
+                    <!-- <img class="my-4 img-logo" src="assets/img/c.jpg" style="width: 300px; height: 350px;border-radius: 10px;"> -->
+                </div>
+                <div class="col-md-6">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="class">Category :</p>
+                            <p class="class">Asset Group :</p>
+                            <p class="class">Host Name :</p>
+                            <p class="class">Location :</p>
+                            <p class="class">Warranty Start Date :</p>
+                            <p class="class">Warranty End Date :</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{detail.category == null || detail.category == ' ' ? ("null") : (detail.category)}}</p>
+                            <p>{{detail.astg_group == null || detail.model == ' ' ? ("null") : (detail.model)}}</p>
+                            <p>{{detail.hostname == null || detail.hostname == ' ' ? ("null") : (detail.hostname)}}</p>
+                            <p>{{detail.location == null || detail.location == ' ' ? ("null") : (detail.location)}}</p>
+                            <p>{{detail.wedate == null || detail.wedate == ' ' ? ("null") : (detail.wedate)}}</p>
+                            <p>{{detail.wsdate == null || detail.wsdate == ' ' ? ("null") : (detail.wsdate)}}</p>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+        <!-- </div> -->
+
+
+
+    </div>
+
+</div>
+

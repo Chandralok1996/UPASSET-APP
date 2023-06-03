@@ -1,0 +1,420 @@
+<div class="container-fluid">
+    <!-- ADMINISTRATOR/SYSTEM-ADMIN-ROLE -->
+    <div style="margin-top: 2.4rem;" *ngIf="accountService.isLoggedIn && accountService.user.rolename === 'Systemadmin'">
+      <div id="sidebar">
+        <div style="text-align:center">
+          <img type="button" style="outline: none;" [routerLink]="['/home/users/userprofile',accountService.user.userid]"
+            id="imguser" src=" assets/img/Trial 2.png">
+        </div>
+
+        <div style="text-align:center">
+          <p type="button" style="outline: none;" [routerLink]="['/home/users/userprofile',accountService.user.userid]"
+            id="p1">{{accountService.user.username}}</p>
+          <p class="color-show"></p>
+          <p id="online">Online</p>
+        </div>
+
+
+        <br>
+        <!-- <div class="scroll mt-3 ab" (scroll)="divScroll($event)"> -->
+
+          <ul class="nav flex-column flex-nowrap overflow-hidden">
+
+            <li class="nav-item">
+              <a class="nav-link text-truncate buttonb" [routerLink]="['/home/users/dashboardstatus']">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-grid mr-3"
+                  id="dashic" viewBox="0 0 16 16">
+                  <path
+                    d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+                </svg>
+
+                <span class="d-none d-md-inline">DASHBOARD</span></a>
+
+            </li>
+
+
+
+
+            <li class="nav-item">
+              <a class="nav-link text-truncate buttonb" [routerLink]="['/home/users/assetlaptop']"
+                (click)="itemMang();toggle()" style="cursor: pointer;">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-tv mr-3"
+                  id="dashic" viewBox="0 0 16 16">
+                  <path
+                    d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zM13.991 3l.024.001a1.46 1.46 0 0 1 .538.143.757.757 0 0 1 .302.254c.067.1.145.277.145.602v5.991l-.001.024a1.464 1.464 0 0 1-.143.538.758.758 0 0 1-.254.302c-.1.067-.277.145-.602.145H2.009l-.024-.001a1.464 1.464 0 0 1-.538-.143.758.758 0 0 1-.302-.254C1.078 10.502 1 10.325 1 10V4.009l.001-.024a1.46 1.46 0 0 1 .143-.538.758.758 0 0 1 .254-.302C1.498 3.078 1.675 3 2 3h11.991zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2z" />
+                </svg>
+
+
+                <span class="d-none d-md-inline">ASSET MANAGEMENT
+                  <img *ngIf="!itemManagement" style="width: 20px;height: 20px; margin-left: 25px;"
+                    src="assets/img/right.png">
+                  <img *ngIf="itemManagement" style="width: 20px;height: 15px; margin-left: 25px;"
+                    src="assets/img/down.png">
+                </span>
+              </a>
+
+              <ng-container *ngIf="show">
+                <div>
+                  <ul style="background-color: #4A4A4B;" class="flex-column  nav">
+
+                    <li class="nav-item ">
+                      <a [routerLink]="['/home/users/itlist']" class="nav-link text-truncate buttonb "
+                        (click)="openArr()" href="#submenu2" data-toggle="collapse" data-target="#submenu2"> <span
+                          class="d-none d-md-inline " style="margin-left: 62px;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
+                            <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+                          </svg> &nbsp;
+                          IT
+
+                          <img *ngIf="!op" style="width: 20px;height: 20px;" class="float-right"
+                            src="assets/img/right.png">
+                          <img *ngIf="op" style="width: 20px;height: 15px;" class="float-right" src="assets/img/down.png">
+
+                        </span></a>
+
+                      <div class="collapse" id="submenu2" aria-expanded="false">
+                        <ul style="background-color: #1717187c;" class="flex-column  nav">
+                          <li class="nav-item ">
+                            <a [routerLink]="['/home/users/assetserver']" class="nav-link text-truncate buttonb "> <span
+                                class=" " style="margin-left: 100px;">IT RACKS</span></a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a [routerLink]="['/home/users/assetmonitor']" class="nav-link text-truncate  buttonb "> <span
+                                class="" style="margin-left: 100px;">DEVICES</span></a>
+                          </li>
+
+                        </ul>
+                      </div>
+
+                    </li>
+
+                    <li class="nav-item">
+                      <a [routerLink]="['/home/users/assetdekstop']" class="nav-link text-truncate  buttonb"
+                        (click)="openArrow()" data-target="#submenu1" data-toggle="collapse" href="#submenu1"> <span
+                          class="d-none d-md-inline" style="margin-left: 62px;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-droplet" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+                            <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
+                          </svg>&nbsp;
+                          NON IT
+
+                          <img *ngIf="!open" style="width: 20px;height: 20px;" class="float-right"
+                            src="assets/img/right.png">
+                          <img *ngIf="open" style="width: 20px;height: 15px;" class="float-right"
+                            src="assets/img/down.png">
+
+                        </span></a>
+
+                      <div class="collapse" id="submenu1" aria-expanded="false">
+                        <ul style="background-color: #1717187c;" class="flex-column  nav">
+                          <li class="nav-item ">
+                            <a [routerLink]="['/home/users/assetaccessories']" class="nav-link text-truncate buttonb ">
+                              <span class=" " style="margin-left: 100px;">ELECTRICAL</span></a>
+                          </li>
+
+                          <li class="nav-item">
+                            <a [routerLink]="['/home/users/inventory']" class="nav-link text-truncate  buttonb "> <span
+                                class="" style="margin-left: 100px;">BMS</span></a>
+                          </li>
+
+                        </ul>
+                      </div>
+
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a [routerLink]="['/home/users/mailsend']" class="nav-link text-truncate buttonb "  style="cursor: pointer;">
+
+                          <span class="d-none d-md-inline" style="margin-left: 62px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-envelope-slash" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
+                              <path d="M14.975 10.025a3.5 3.5 0 1 0-4.95 4.95 3.5 3.5 0 0 0 4.95-4.95Zm-4.243.707a2.501 2.501 0 0 1 3.147-.318l-3.465 3.465a2.501 2.501 0 0 1 .318-3.147Zm.39 3.854 3.464-3.465a2.501 2.501 0 0 1-3.465 3.465Z"/>
+                            </svg> &nbsp;
+                            ALERT MAIL
+                    </span>
+                  </a>
+            </li>
+
+                  </ul>
+                </div>
+              </ng-container>
+
+
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link text-truncate buttonb" (click)="openArrow();toggle1()" style="cursor: pointer;">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                  class="bi bi-people mr-3" id="dashic" viewBox="0 0 16 16">
+                  <path
+                    d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+                </svg>
+
+
+                <span class="d-none d-md-inline">USER MANAGEMENT
+                  <img *ngIf="!open" style="width: 20px;height: 20px; margin-left: 28px; " src="assets/img/right.png">
+                  <img *ngIf="open" style="width: 20px;height: 15px; margin-left: 28px;" src="assets/img/down.png">
+                </span></a>
+
+              <ng-container *ngIf="show1">
+                <div>
+                  <ul style="background-color: #4A4A4B;" class="flex-column  nav">
+
+
+                    <li class="nav-item ">
+                      <a [routerLink]="['/home/users/userlist']" class="nav-link text-truncate buttonb "> <span
+                          class="d-none d-md-inline " style="margin-left: 62px;">USER</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a [routerLink]="['/home/users/userrole']" class="nav-link text-truncate  buttonb "> <span
+                          class="d-none d-md-inline" style="margin-left: 62px;">USER ROLE</span></a>
+                    </li>
+
+                    <!-- <li class="nav-item">
+                    <a [routerLink]="['/home/users/usergrp']" class="nav-link text-truncate buttonb "> <span
+                        class="d-none d-md-inline" style="margin-left: 62px;">USER GROUP</span></a>
+                  </li>
+
+                  <li class="nav-item ">
+                    <a [routerLink]="['/home/users/leftemplist']" class="nav-link text-truncate buttonb "> <span
+                        class="d-none d-md-inline " style="margin-left: 62px;">LEFT EMPLOYEE</span></a>
+                  </li> -->
+
+                  </ul>
+                </div>
+              </ng-container>
+            </li>
+
+            <li class="nav-item" >
+            <a class="nav-link text-truncate buttonb " [routerLink]="['/home/users/update']">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-lock mr-3"
+                id="dashic" viewBox="0 0 16 16">
+                <path
+                  d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+              </svg>
+
+              <span class="d-none d-md-inline">RESET PASSWORD</span></a>
+          </li>
+
+          </ul>
+
+        <!-- </div> -->
+
+      </div>
+    </div>
+
+  <!-- ASSET-MANAGER-ROLE -->
+    <div style="margin-top: 2.4rem;" *ngIf="accountService.isLoggedIn && accountService.user.rolename === 'Asset Manager'">
+      <div id="sidebar">
+        <!-- User-profile-image -->
+        <div style="text-align:center">
+          <!-- <div class="image-responsive">
+            <img type="button" class="img-profile" [routerLink]="['/home/users/userprofile',accountService.user.userid]"
+              [src]="file1" />
+          </div> -->
+
+          <img type="button" style="outline: none;" [routerLink]="['/home/users/userprofile',accountService.user.userid]"
+            id="imguser" src=" assets/img/Trial 2.png">
+        </div>
+
+
+        <div style="text-align:center">
+          <p type="button" id="p1" [routerLink]="['/home/users/userprofile',accountService.user.userid]">
+            {{accountService.user.username}}</p>
+          <p class="color-show"></p>
+          <p id="online">Online</p>
+          <!-- user-profile-end -->
+          <br>
+          <div class="scroll mt-3 ab" (scroll)="divScroll($event)">
+
+            <ul class="nav flex-column flex-nowrap overflow-hidden">
+
+              <li class="nav-item">
+                <a class="nav-link text-truncate buttonb" [routerLink]="['/home/users/dashboardstatus']">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                    class="bi bi-grid mr-3" id="dashic" viewBox="0 0 16 16">
+                    <path
+                      d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+                  </svg>
+
+                  <span class="d-none d-md-inline">DASHBOARD
+
+                  </span></a>
+
+              </li>
+
+
+
+              <li class="nav-item">
+                <a class="nav-link text-truncate buttonb" [routerLink]="['/home/users/assetlaptop']"
+                  (click)="itemMang();toggle()" style="cursor: pointer;">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-tv mr-3"
+                    id="dashic" viewBox="0 0 16 16">
+                    <path
+                      d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zM13.991 3l.024.001a1.46 1.46 0 0 1 .538.143.757.757 0 0 1 .302.254c.067.1.145.277.145.602v5.991l-.001.024a1.464 1.464 0 0 1-.143.538.758.758 0 0 1-.254.302c-.1.067-.277.145-.602.145H2.009l-.024-.001a1.464 1.464 0 0 1-.538-.143.758.758 0 0 1-.302-.254C1.078 10.502 1 10.325 1 10V4.009l.001-.024a1.46 1.46 0 0 1 .143-.538.758.758 0 0 1 .254-.302C1.498 3.078 1.675 3 2 3h11.991zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2z" />
+                  </svg>
+
+
+                  <span class="d-none d-md-inline">ASSET MANAGEMENT
+                    <img *ngIf="!itemManagement" style="width: 20px;height: 20px; margin-left: 25px;"
+                      src="assets/img/right.png">
+                    <img *ngIf="itemManagement" style="width: 20px;height: 15px; margin-left: 25px;"
+                      src="assets/img/down.png">
+                  </span>
+                </a>
+
+                <ng-container *ngIf="show">
+                  <div>
+                    <ul style="background-color: #4A4A4B;" class="flex-column  nav">
+
+                      <li class="nav-item ">
+                        <a [routerLink]="['/home/users/itlist']" class="nav-link text-truncate buttonb "
+                          (click)="openArr()" href="#submenu2" data-toggle="collapse" data-target="#submenu2"> <span
+                            class="d-none d-md-inline " style="margin-left: 62px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
+                              <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+                            </svg> &nbsp;
+                            IT
+
+                            <img *ngIf="!op" style="width: 20px;height: 20px;" class="float-right"
+                              src="assets/img/right.png">
+                            <img *ngIf="op" style="width: 20px;height: 15px;" class="float-right" src="assets/img/down.png">
+
+                          </span></a>
+
+                        <div class="collapse" id="submenu2" aria-expanded="false">
+                          <ul style="background-color: #1717187c;" class="flex-column  nav">
+                            <li class="nav-item ">
+                              <a [routerLink]="['/home/users/assetserver']" class="nav-link text-truncate buttonb "> <span
+                                  class=" " style="margin-left: 100px;">IT RACKS</span></a>
+                            </li>
+
+                            <li class="nav-item">
+                              <a [routerLink]="['/home/users/assetmonitor']" class="nav-link text-truncate  buttonb "> <span
+                                  class="" style="margin-left: 100px;">DEVICES</span></a>
+                            </li>
+
+                          </ul>
+                        </div>
+
+                      </li>
+
+                      <li class="nav-item">
+                        <a [routerLink]="['/home/users/assetdekstop']" class="nav-link text-truncate  buttonb"
+                          (click)="openArrow()" data-target="#submenu1" data-toggle="collapse" href="#submenu1"> <span
+                            class="d-none d-md-inline" style="margin-left: 62px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-droplet" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+                              <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
+                            </svg>&nbsp;
+                            NON IT
+
+                            <img *ngIf="!open" style="width: 20px;height: 20px;" class="float-right"
+                              src="assets/img/right.png">
+                            <img *ngIf="open" style="width: 20px;height: 15px;" class="float-right"
+                              src="assets/img/down.png">
+
+                          </span></a>
+
+                        <div class="collapse" id="submenu1" aria-expanded="false">
+                          <ul style="background-color: #1717187c;" class="flex-column  nav">
+                            <li class="nav-item ">
+                              <a [routerLink]="['/home/users/assetaccessories']" class="nav-link text-truncate buttonb ">
+                                <span class=" " style="margin-left: 100px;">ELECTRICAL</span></a>
+                            </li>
+
+                            <li class="nav-item">
+                              <a [routerLink]="['/home/users/inventory']" class="nav-link text-truncate  buttonb "> <span
+                                  class="" style="margin-left: 100px;">BMS</span></a>
+                            </li>
+
+                          </ul>
+                        </div>
+
+                      </li>
+
+
+                      <li class="nav-item">
+                          <a [routerLink]="['/home/users/mailsend']" class="nav-link text-truncate buttonb "  style="cursor: pointer;">
+
+                            <span class="d-none d-md-inline" style="margin-left: 62px;">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-envelope-slash" viewBox="0 0 16 16">
+                                <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
+                                <path d="M14.975 10.025a3.5 3.5 0 1 0-4.95 4.95 3.5 3.5 0 0 0 4.95-4.95Zm-4.243.707a2.501 2.501 0 0 1 3.147-.318l-3.465 3.465a2.501 2.501 0 0 1 .318-3.147Zm.39 3.854 3.464-3.465a2.501 2.501 0 0 1-3.465 3.465Z"/>
+                              </svg> &nbsp;
+                              ALERT MAIL
+                      </span>
+                    </a>
+              </li>
+
+                    </ul>
+                  </div>
+                </ng-container>
+
+
+              </li>
+
+
+            </ul>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  <!-- VIEWER-ROLE -->
+    <div style="margin-top: 2.4rem;" *ngIf="accountService.isLoggedIn && accountService.user.rolename === 'Viewer'">
+      <div id="sidebar">
+        <div style="text-align:center">
+          <img id="imguser" [routerLink]="['/home/users/userprofile',accountService.user.userid]"
+            src=" assets/img/Trial 2.png">
+        </div>
+
+        <div style="text-align:center">
+          <p type="button" style="outline: none;" [routerLink]="['/home/users/userprofile',accountService.user.userid]"
+            id="p1">{{accountService.user.username}}</p>
+          <p class="color-show"></p>
+          <p type="button" style="outline: none;" [routerLink]="['/home/users/userprofile',accountService.user.userid]"
+            id="online">Online</p>
+        </div>
+
+        <br>
+        <ul class="nav flex-column flex-nowrap overflow-hidden">
+
+          <li class="nav-item">
+            <a class="nav-link text-truncate buttonb" [routerLink]="['/home/users/dashboardstatus']">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-grid mr-3"
+                id="dashic" viewBox="0 0 16 16">
+                <path
+                  d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+              </svg>
+
+              <span class="d-none d-md-inline">DASHBOARD
+
+              </span></a>
+
+          </li>
+
+
+        </ul>
+
+
+
+
+      </div>
+    </div>
+
+</div>

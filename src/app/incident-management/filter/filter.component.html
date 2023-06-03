@@ -1,0 +1,164 @@
+<i class="material-icons close"   (click)="onNoClick()">close</i>
+
+
+
+<div class="row">
+    <div class="col-md-8  col-sm-8 col-lg-8 col-xl-8">
+      <p id="p1"><b>FILTER</b></p>
+    </div>
+     <div class="col-md-4 col-sm-4 col-lg-4 col-xl-4">
+   <p  id="clear" (click)="clearAll()"><u>X CLEAR ALL</u></p>
+   </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-7 col-sm-7 col-lg-7 col-xl-7">
+      <p  ><b>STATUS, PICK DATE</b></p>
+    </div>
+     <div class="col-md-4 col-sm-4 col-lg-4 col-xl-4">
+      
+       <input  (change)="handleChange()" name="st"  [(ngModel)]="st" type="radio" [value]="0" [checked]="!options"/>
+
+    </div>
+
+</div>
+
+<div class="form-group" *ngIf="st == 0" >
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+      
+       <label id="p2" >Status</label><br>
+                        <input id="priority_ip" type="text" class="form-control">
+                         <!-- <ng-multiselect-dropdown
+  [placeholder]="'Select Option'" 
+  [data]="dropdownList"
+  [(ngModel)]="enduser.status"
+  [settings]="dropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)" >
+</ng-multiselect-dropdown> -->
+
+    </div>
+     <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+       <label id="p2" >Pick Date</label><br>
+
+        <!-- <input [owlDateTimeTrigger]="dt10" [owlDateTime]="dt10"  class="form-control"
+         [selectMode]="'range'" placeholder="Date Time" [(ngModel)]="enduser.date1" (ngModelChange)="onChange($event)" style="color: black;">
+  <owl-date-time #dt10></owl-date-time> -->
+     
+
+    </div>
+
+</div>
+</div><br>
+
+<div class="row">
+    <div  class="col-md-7 col-sm-7 col-lg-7 col-xl-7">
+      <p  ><b>PRIORITY, PICK DATE</b></p>
+    </div>
+     <div class="col-md-4 col-sm-4 col-lg-4 col-xl-4">
+       
+       <input  (change)="handleChange()" name="st"  [(ngModel)]="st" type="radio" [value]="1" [checked]="!options"/>
+
+    </div>
+
+</div>
+<div class="form-group" *ngIf="st == 1" >
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+      
+       <label id="p2" >Priority</label><br>
+                        <input id="priority_ip" type="text" class="form-control">
+                       <!-- <ng-multiselect-dropdown
+  [placeholder]="'Select Option'" 
+  [data]="priorityDropdownList"
+  [(ngModel)]="enduser.priority"
+  [settings]="priorityDropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)" >
+</ng-multiselect-dropdown> -->
+
+    </div>
+     <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+	     <label id="p2" >Pick Date</label><br>
+       <!-- <input [owlDateTimeTrigger]="dt10" [owlDateTime]="dt10"  class="form-control" required
+         [selectMode]="'range'" placeholder="Date Time" [(ngModel)]="enduser.date1" (ngModelChange)="onChange($event)" style="color: black;">
+  <owl-date-time #dt10></owl-date-time> -->
+
+    </div>
+
+</div>
+</div><br>
+
+
+
+<div class="row">
+    <div  class="col-md-7 col-sm-7 col-lg-7 col-xl-7">
+      <p  ><b>STATUS, PRIORITY, PICK DATE</b></p>
+    </div>
+     <div class="col-md-4 col-sm-4 col-lg-4 col-xl-4">
+      
+       <input name="st" (change)="handleChange()"  [(ngModel)]="st" type="radio" [value]="2" [checked]="!options"/>
+
+    </div>
+
+</div>
+
+<div class="form-group" *ngIf="st == 2" >
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+      
+       <label id="p2" >Status</label><br>
+                        <input id="priority_ip" type="text" class="form-control">
+                      <!-- <ng-multiselect-dropdown
+  [placeholder]="'Select Option'" 
+  [data]="dropdownList"
+  [(ngModel)]="enduser.status"
+  [settings]="dropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)" >
+</ng-multiselect-dropdown> -->
+
+    </div>
+     <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+      <label id="p2" >Priority</label><br>
+                        <input id="priority_ip" type="text" class="form-control">
+                      <!-- <ng-multiselect-dropdown
+  [placeholder]="'Select Option'" 
+  [data]="priorityDropdownList"
+  [(ngModel)]="enduser.priority"
+  [settings]="priorityDropdownSettings"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)" >
+</ng-multiselect-dropdown> -->
+      
+
+    </div>
+
+</div><br>
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+       <label id="p2" >Pick Date</label><br>
+       <!-- <input [owlDateTimeTrigger]="dt10" [owlDateTime]="dt10"  class="form-control" required
+         [selectMode]="'range'" placeholder="Date Time" [(ngModel)]="enduser.date1" (ngModelChange)="onChange($event)" style="color: black;">
+  <owl-date-time #dt10></owl-date-time> -->
+      
+
+    </div>
+    </div>
+</div>
+<br>
+
+
+<div  class="row">
+         <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3">
+         </div>
+          <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+          <button id="apply" ><b>APPLY</b></button>
+          </div>
+           <div class="col-md-3 col-sm-3 col-lg-3 col-xl-3">
+         </div>
+
+</div>
+<br>
+

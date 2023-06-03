@@ -1,0 +1,161 @@
+
+<i class="material-icons close"  style="cursor:pointer;" (click)="onNoClick()">close</i>
+
+<div *ngIf="dialogData.data === 'department'"  style="text-align: center;">
+    <form [formGroup]="formDepartment" (ngSubmit)="onSubmitDepartment()">
+
+        <div class="row">
+            <div class="col-md-12" >
+                <label>Department</label>
+                <input class="form-control" formControlName="deptname"
+                [ngClass]="{ 'is-invalid': submitted && fOS.deptname.errors }" >
+                <div *ngIf="submitted && fOS.deptname.errors" class="invalid-feedback">
+                    <div *ngIf="fOS.deptname.errors.required">Department is required</div>
+                  </div>
+            </div>  
+        </div>
+
+        <div class="row mt-3" style="text-align: end;" >
+            <div class="col-md-12">
+                <button type="button" class="btn btn-warning "  (click)="onNoClick()">Cancel</button>
+                <button class="btn btn-primary ml-2">Create</button>
+            </div>
+         </div>
+
+     </form>
+</div>
+
+
+
+
+ 
+<div *ngIf="dialogData.data === 'Designation' " style="text-align: center;">
+   <form [formGroup]="formDesignation" (ngSubmit)="onSubmitDesignation()">
+
+      <div class="row">
+          <div class="col-md-12" >
+              <label>Designation</label>
+              <input class="form-control" formControlName="desgname" [ngClass]="{ 'is-invalid': submitted && f.desgname.errors }" >
+              <div *ngIf="submitted && f.desgname.errors" class="invalid-feedback">
+                <div *ngIf="f.desgname.errors.required">Designation is required</div>
+              </div>
+            </div>
+        <br>
+
+        
+      </div>
+
+      <div class="row mt-3" style="text-align: end;" >
+        <div class="col-md-12">
+            <button  type="button" class="btn btn-warning "  (click)="onNoClick()">Cancel</button>
+            <button class="btn btn-primary ml-2">Create</button>
+        </div>
+     </div>
+
+   </form>
+ </div>
+
+
+
+ 
+<div *ngIf="dialogData.data === 'Branch'">
+    <form [formGroup]="formBranch" (ngSubmit)="onSubmitBranch()">
+ 
+       <div class="row">
+           <div class="col-md-12" >
+               <label>Branch</label>
+               <input class="form-control" formControlName="branch" [ngClass]="{ 'is-invalid': submitted && formP.branch.errors }" >
+               <div *ngIf="submitted && formP.branch.errors" class="invalid-feedback">
+                 <div *ngIf="formP.branch.errors.required">Branch is required</div>
+               </div>
+             </div>
+         <br>  
+       </div>
+
+       <div class="row mt-3" style="text-align: end;" >
+        <div class="col-md-12">
+            <button  type="button" class="btn btn-warning "  (click)="onNoClick()">Cancel</button>
+            <button class="btn btn-primary ml-2">Create</button>
+        </div>
+     </div>
+    </form>
+  </div>
+
+
+
+  
+<div *ngIf="dialogData.data === 'Section Code' ">
+    <form [formGroup]="formSectioncode" (ngSubmit)="onSubmitScode()">
+ 
+       <div class="row">
+           <div class="col-md-12" >
+               <label>Section Code</label>
+               <input class="form-control" formControlName="seccode" [ngClass]="{ 'is-invalid': submitted && formG.seccode.errors }" >
+               <div *ngIf="submitted && formG.seccode.errors" class="invalid-feedback">
+                 <div *ngIf="formG.seccode.errors.required">Section Code is required</div>
+               </div>
+             </div>   
+         <br>  
+       </div>
+
+       <div class="row mt-3" style="text-align: end;" >
+        <div class="col-md-12">
+            <button  type="button" class="btn btn-warning "  (click)="onNoClick()">Cancel</button>
+            <button class="btn btn-primary ml-2">Create</button>
+        </div>
+     </div>
+    </form>
+  </div>
+
+
+
+    
+<div *ngIf="dialogData.data === 'Building' || dialogData.data === 'Floor'">
+    <form [formGroup]="formBuilding" (ngSubmit)="onSubmitBuilding()">
+ 
+       <div class="row">
+           <div class="col-md-6" *ngIf="dialogData.data === 'Building' ">
+               <label>Building</label>
+               <input class="form-control" formControlName="building" [ngClass]="{ 'is-invalid': submitted && formR.building.errors }" >
+               <div *ngIf="submitted && formR.building.errors" class="invalid-feedback">
+                 <div *ngIf="formR.building.errors.required">Building is required</div>
+               </div>
+             </div>
+ 
+             <div class="col-md-6" *ngIf="dialogData.data === 'Floor' ">
+                 <label>Building</label>
+                 <select class="form-control" formControlName="building" [ngClass]="{ 'is-invalid': submitted && formR.building.errors }" >
+                 <option></option>    
+                 <option   *ngFor="let com3 of products9">{{com3.building}} </option>
+                 </select>
+                 <div *ngIf="submitted && formR.building.errors" class="invalid-feedback">
+                   <div *ngIf="formR.building.errors.required">Building is required</div>
+                 </div>
+               </div>
+ 
+           <div class="col-md-6">
+             <label>Floor</label>
+             <input type="text" class="form-control" formControlName="floor" [ngClass]="{ 'is-invalid': submitted && formR.floor.errors }" >
+             <div *ngIf="submitted && formR.floor.errors" class="invalid-feedback">
+                 <div *ngIf="formR.floor.errors.required">Floor is required</div>
+               </div>
+         </div>
+
+        
+ 
+         <br>  
+       </div>
+
+       <div class="row mt-3" style="text-align: end;" >
+        <div class="col-md-12">
+            <button  type="button" class="btn btn-warning "  (click)="onNoClick()">Cancel</button>
+            <button class="btn btn-primary ml-2">Create</button>
+        </div>
+     </div>
+    </form>
+  </div>
+
+
+
+
+ 

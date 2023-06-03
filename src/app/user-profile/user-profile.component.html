@@ -1,0 +1,103 @@
+<div class="row">
+       
+    <div class="col-md-6">
+        <p type="button" id="headp" (click)="routerPage()" class="button"><u><span>></span>&nbsp;&nbsp;Back </u></p>
+    </div>
+</div>
+
+
+<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 "
+     style="background-color:white;margin-top: 0rem;border-radius: 3px;" *ngFor="let data of details">
+
+         
+
+<!-- <div id="form"> -->
+            
+    <div class="row">
+        <div class="col-md-2 col-sm-2">
+        </div>
+         <div class="col-md-3 col-sm-3">
+         <p id="myprofile">MY PROFILE</p>
+        </div>
+    </div>
+
+
+     <div class="row">
+        <div class="col-md-2 col-sm-2">
+         <div class="image-responsive">
+            <img style='height:150px;width:145px;max-width: 100%;max-height: 100%;border-radius: 50%;object-fit: contain;border: solid 2px black' 
+            [src]="file1" />
+          </div>
+
+
+        <!-- <img id="imguser1" src=" assets/img/Trial 2.png"> -->
+
+        </div>
+         <div class="col-md-4 col-sm-4">
+         <p id="myprofile1">{{data.firstname}} {{data.lastname}}</p>
+           <p id="id">{{data.eightid}}<p>
+        </div>
+    </div>
+
+      <div class="row">
+        <div class="col-md-3 col-sm-3" style="margin-top:10px">
+           <label id="designation" > <img id="bcase1"src="assets/img/Briefcase.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Designation</b></label>
+           <p  id="designation1" >{{data.designation}}</p>
+            <label id="designation" > <img id="bcase1" src="assets/img/Email Grey.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> Email ID</b></label>
+           <p  id="designation1" >{{data.email}}</p>
+            <label id="designation"> <img id="bcase2"src="assets/img/Telephone.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Contact No</b></label>
+           <p  id="designation1" >+91 -{{data.mobile}}</p>
+            <!-- <p  id="designation1" >+91 -{{data.landline}}</p> -->
+            
+              <!-- <label id="designation"> <img style="width:12px; height:16px;"src="assets/img/Location Pin.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Location</b></label>
+           <p  id="designation1" >{{data.location}}</p> -->
+
+        </div>
+        <div class="col-md-1 col-sm-1">
+<div class="vl"></div>
+</div>
+
+         
+         <div class="col-md-2 col-sm-2" style="margin-top:10px">
+         <p id="list">Department</p>
+          <p id="list">User Role</p>
+           <p id="list">Reporting To</p>
+            <!-- <p id="list">Employee Group</p> -->
+         <p id="list">User Type</p>
+          <!-- <p id="list">Support Group</p> -->
+           <p id="list">Description</p>
+           <p id="list">Local ID</p>
+           <p id="list">Employee ID</p>
+           <p id="list"> VIP Status</p>
+
+       
+        </div>
+         <div class="col-md-3 col-sm-3" style="margin-top:10px">
+          <p id="list1">{{data.department}}</p>
+          <p id="list1">{{data.role}}</p>
+           <p id="list1">{{data.reportingto}}</p>
+            <!-- <p id="list">{{data.ugname}}</p> -->
+         <p id="list1">{{data.usertype}}</p> 
+          <!-- <p id="list">{{data.sgname}}</p> -->
+           <p id="list1">{{data.description}}</p>
+           <p id="list1">{{data.empid}}</p>
+           <p id="list1">{{data.eightid}}</p>
+           <p id="list1">{{data.vipstatus}}</p>
+
+       
+        </div>
+         <div class="col-md-2 col-sm-2" style="margin-top:175px">
+            <button id="edit" (click)="OpenUpdate()" >  EDIT</button>
+          
+         </div>
+        
+    </div>
+
+    <br>
+
+<!-- 
+
+</div> -->
+
+
+    </div>

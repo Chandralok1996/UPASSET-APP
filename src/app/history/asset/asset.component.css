@@ -1,0 +1,85 @@
+
+  div.scroll {
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    }
+  
+  
+  
+    h3{
+      color: blue;
+  }
+  .card{
+      background-color: rgb(216, 212, 212);
+      margin-bottom: 2rem;
+  }
+  
+  .btn-light{
+      border: black solid 1px;
+  
+      width: 90px;
+  }
+
+  .table td, .table th {
+    min-width: 100px;
+  padding: .5rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.scroll {
+    height: 340px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    }
+/* 
+tr,td{
+     height: 5px;
+}
+ */
+
+ 
+.nav-tabs .nav-link{
+         
+    border-top-left-radius: 1rem;
+  }
+
+
+  
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+   
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 5px solid #00B4EB;
+    color: rgb(0, 0, 0);
+    /* width: 12%; */
+    text-align: center;
+ }
+ .nav-link {
+     color: gray;
+     border-top: none;
+     border-left: none;
+     border-right: none;
+     border-bottom: none;
+     padding: .2rem 5rem;
+     /* width: 12%; */
+ }
+ .nav-no{
+     width:auto;
+     height:20px;
+     border-radius: 3px;
+     background-color: #007aff;
+     font-family: Raleway;
+     font-weight: 300;
+     font-size: 18px;
+     line-height: 21px;
+     color: white;
+     text-align: center;
+     padding: 0px 7px;
+ }
+
+ .nav-tabs, li {
+    width: 40%;
+}

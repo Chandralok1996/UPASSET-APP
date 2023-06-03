@@ -1,0 +1,603 @@
+
+    <!-- <div class="row">
+ 
+  <div class="col-md-3">
+    <p id="headp" (click)="routeLink()">Back &nbsp;<span>></span>&nbsp; </p>
+  </div>
+</div> -->
+
+
+<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 mt-4"
+style="background-color:white;border-radius: 3px;">
+
+<div style="padding: 7px;">
+<h3>Report History</h3>
+</div>
+
+    <!-- <ul ngbNav #nav="ngbNav" class="nav-tabs nav-justified" style="border-radius: 3px;">
+        <li [ngbNavItem]="1" class="mt-2">
+          <a ngbNavLink><span><b> Asset 
+              </b></span></a>
+    
+          <ng-template ngbNavContent> -->
+
+            
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+               
+            <input type="radio" name="type"  [(ngModel)]="type"  [value]="1" [checked]="options"  class="ml-2 mt-3">&nbsp;&nbsp;Asset &nbsp;&nbsp;
+           <input type="radio" name="type"  [(ngModel)]="type"  [value]="0" [checked]="!options" class="ml-2 mt-3">&nbsp;&nbsp;User 
+        </div>
+        </div>
+         
+           <div *ngIf="type === 1">
+               <div class="row mt-3">
+                   <div class="col-md-4">
+                    <label>Asset ID</label>
+                    <input type="text" class="form-control" [(ngModel)]="asset_name" placeholder="Enter Asset ID">
+                 
+                   </div>
+                   <div class="col-md-3 mt-4">
+                    <button class="btn btn-primary" style="margin-top: 8px;" (click)="asset()">GO > </button>
+                </div>
+               </div>
+            </div>
+
+           <div *ngIf="type === 0">
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <label>EMP ID</label>
+                    <input type="text" class="form-control" [(ngModel)]="empid" placeholder="Enter EMP ID">
+                </div>
+        
+                <div class="col-md-3 mt-4">
+                    <button class="btn btn-primary" style="margin-top: 8px;" (click)="user()">GO > </button>
+                </div>
+        
+            </div>
+        </div>
+
+
+           
+          
+     
+    
+     <br>
+    
+
+<div class="scroll" (scroll)="divScroll($event)">
+
+<div *ngIf="userDetails">
+<h5>Current Asset for <u>{{empid}}</u></h5>
+<div class="table-responsive text-nowrap">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" >ASSET TYPE</th>
+        <th scope="col" >HISTORY DATE</th>
+        <th scope="col" >EMP_ID</th>
+       
+        <th scope="col">SECTION_CODE</th>
+        <th scope="col">DEPARTMENT</th>
+        <th scope="col">BRANCH</th>
+        <th scope="col">ORGANISATION</th>
+        <th scope="col">ASSET_ID</th>
+        <th scope="col">ASSET_STATUS</th>
+        <th scope="col">BUILDING</th>
+        <th scope="col">FLOOR</th>
+        <th scope="col">OPERATING_SYSTEM</th>
+        <th scope="col">BIT</th>
+        <th scope="col">SERVICE_PACK</th>
+        <th scope="col">MAKE</th>
+        <th scope="col">MODEL</th>
+        <th scope="col">SERIAL_NO</th>
+        <th scope="col">PROCESSOR</th>
+        <th scope="col">SPEED</th>
+        <th scope="col">MONITOR_MAKE</th>
+        <th scope="col">SCREEN_TYPE</th>
+        <th scope="col">MONITOR_SIZE</th>
+        <th scope="col">MONITOR_COUNT</th>
+        <th scope="col">RAM_TYPE</th>
+        <th scope="col">RAM_CAPACITY</th>
+        <th scope="col">UOM</th>
+        <th scope="col">SLOT</th>
+        <th scope="col">HARDDISK_TYPE</th>
+        <th scope="col">HARDDISK_CAPACITY</th>
+        <th scope="col">UOM1</th>
+        <th scope="col">OPTICAL_DRIVE</th>
+        <th scope="col">GRAPHICS_MAK</th>
+        <th scope="col">GRAPHICS_CAPACITY</th>
+        <th scope="col">UOM2</th>
+        <th scope="col">ASSIGNED_DATE</th>
+        <th scope="col">FINANCE_ASSET_ID</th>
+        <th scope="col">ACCESSORIES</th>
+        <th scope="col">HARDWARE CLASS</th>
+        <th scope="col">NIC</th>
+        <th scope="col">SERVER OPERATING_SYSTEM</th>
+        <th scope="col">SERVER SERVICE PACK</th>
+        <th scope="col">SERVER PROCESSOR</th>
+        <th scope="col">SERVER SPEED</th>
+        <th scope="col">SERVER RAM SIZE</th>
+        <th scope="col">SERVER RAM TYPE</th>
+        <th scope="col">SERVER RAM UNIT</th>
+        <th scope="col">SERVER Rack NO</th>
+        <th scope="col">SERVER RAM SLOT</th>
+        <th scope="col">SERVER STRORAGE TYPE</th>
+        <th scope="col">SERVER SERVER TYPE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let asset of userDetails">
+        <td>{{asset.astg_group}}</td>
+        <td>{{asset.created_on}}</td>
+       <td>{{asset.empid}}</td>
+      
+       <td>{{asset.scode}}</td>
+        <td>{{asset.deptname}}</td>
+        <td>{{asset.branch}}</td>
+        <td>{{asset.org}}</td>             
+        <td><a style="cursor: pointer;" (click)="user1(asset.asset_name)"><u>{{asset.asset_name}}</u></a></td>
+  
+        <td>{{asset.status}}</td>
+        <td>{{asset.building}}</td>
+       <td>{{asset.floor}}</td>
+        <td>{{asset.os}}</td>
+        <td>{{asset.bit}}</td>
+        <td>{{asset.sp}}</td>
+        <td>make</td>
+        <td>model</td>
+        <td>{{asset.serialno}}</td>
+        <td>{{asset.processor}}</td>
+        <td>{{asset.speed}}</td>
+        <td>Monitor Make</td>
+        <td>Screen Type</td>
+        <td>Monitor Size</td>
+        <td>{{asset.mcount}}</td>
+        <td>{{asset.rtype}}</td>
+        <td>{{asset.rsize}}</td>
+        <td>{{asset.ruom}}</td>
+        <td>{{asset.rslot}}</td>               
+        <td>{{asset.hddtype}}</td>
+        <td>{{asset.hddsize}}</td>
+        <td>{{asset.hdduom}}</td>
+        <td>{{asset.optdrive}}</td>
+        <td>Graphic Make</td>
+        <td>{{asset.gpusize}}</td>
+        <td>{{asset.gpuuom}}</td> 
+        <td>{{asset.created}}</td>
+        <td>finace asset id</td>
+       
+        <td>{{asset.accessories}}</td>
+        <td>{{asset.astserhc_hwclass}}</td>
+        <td>{{asset.astsernic_nic}}</td>
+        <td>{{asset.astseros_os}}</td>
+        <td>{{asset.astseros_sp}}</td>
+        <td>{{asset.astserpro_processor}}</td>
+        <td>{{asset.astserpro_speed}}</td>
+        <td>{{asset.astserram_rsize}}</td>
+        <td>{{asset.astserram_rtype}}</td>
+        <td>{{asset.astserram_ruom}}</td>
+        <td>{{asset.astserrn_rackno}}</td>
+        <td>{{asset.astserrs_ramslot}}</td>
+        <td>{{asset.astserst_storagetype}}</td>
+        <td>{{asset.astsert_sertype}}</td>               
+      </tr>
+     
+     
+    </tbody>
+  </table>
+
+
+  </div>
+<br>
+
+</div>
+
+
+   
+<div *ngIf="userpastDetails" class="mt-3">
+<h5>Past Asset for <u>{{empid}}</u></h5>
+<div  >
+<div class="table-responsive text-nowrap" >
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" >Asset Type</th>
+            <th scope="col" >HISTORY DATE</th>
+            <th scope="col" >EMP_ID</th>
+          
+            <th scope="col">SECTION_CODE</th>
+            <th scope="col">DEPARTMENT</th>
+            <th scope="col">BRANCH</th>
+            <th scope="col">ORGANISATION</th>
+            <th scope="col">ASSET_ID</th>
+            <th scope="col">ASSET_STATUS</th>
+            <th scope="col">BUILDING</th>
+            <th scope="col">FLOOR</th>
+            <th scope="col">OPERATING_SYSTEM</th>
+            <th scope="col">BIT</th>
+            <th scope="col">SERVICE_PACK</th>
+            <th scope="col">MAKE</th>
+            <th scope="col">MODEL</th>
+            <th scope="col">SERIAL_NO</th>
+            <th scope="col">PROCESSOR</th>
+            <th scope="col">SPEED</th>
+            <th scope="col">MONITOR_MAKE</th>
+            <th scope="col">SCREEN_TYPE</th>
+            <th scope="col">MONITOR_SIZE</th>
+            <th scope="col">MONITOR_COUNT</th>
+            <th scope="col">RAM_TYPE</th>
+            <th scope="col">RAM_CAPACITY</th>
+            <th scope="col">UOM</th>
+            <th scope="col">SLOT</th>
+            <th scope="col">HARDDISK_TYPE</th>
+            <th scope="col">HARDDISK_CAPACITY</th>
+            <th scope="col">UOM1</th>
+            <th scope="col">OPTICAL_DRIVE</th>
+            <th scope="col">GRAPHICS_MAK</th>
+            <th scope="col">GRAPHICS_CAPACITY</th>
+            <th scope="col">UOM2</th>
+            <th scope="col">ASSIGNED_DATE</th>
+            <th scope="col">FINANCE_ASSET_ID</th>
+            <th scope="col">ACCESSORIES</th>
+            <th scope="col">HARDWARE CLASS</th>
+            <th scope="col">NIC</th>
+            <th scope="col">SERVER OPERATING_SYSTEM</th>
+            <th scope="col">SERVER SERVICE PACK</th>
+            <th scope="col">SERVER PROCESSOR</th>
+            <th scope="col">SERVER SPEED</th>
+            <th scope="col">SERVER RAM SIZE</th>
+            <th scope="col">SERVER RAM TYPE</th>
+            <th scope="col">SERVER RAM UNIT</th>
+            <th scope="col">SERVER Rack NO</th>
+            <th scope="col">SERVER RAM SLOT</th>
+            <th scope="col">SERVER STRORAGE TYPE</th>
+            <th scope="col">SERVER SERVER TYPE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asset of userpastDetails">
+            <td>{{asset.astg_group}}</td>
+            <td>{{asset.created_on}}</td>
+            <td>{{asset.empid}}</td>
+           
+            <td>{{asset.scode}}</td>
+            <td>{{asset.deptname}}</td>
+            <td>{{asset.branch}}</td>
+            <td>{{asset.org}}</td>            
+            <td><a style="cursor: pointer;" (click)="user1(asset.asset_name)"><u>{{asset.asset_name}}</u></a></td>
+            <td>{{asset.status}}</td>
+            <td>{{asset.building}}</td>
+            <td>{{asset.floor}}</td>
+            <td>{{asset.os}}</td>
+            <td>{{asset.bit}}</td>
+            <td>{{asset.sp}}</td>
+            <td>make</td>
+            <td>model</td>
+            <td>{{asset.serialno}}</td>
+            <td>{{asset.processor}}</td>
+            <td>{{asset.speed}}</td>
+            <td>Monitor Make</td>
+            <td>Screen Type</td>
+            <td>Monitor Size</td>
+            <td>{{asset.mcount}}</td>
+            <td>{{asset.rtype}}</td>
+            <td>{{asset.rsize}}</td>
+            <td>{{asset.ruom}}</td>
+            <td>{{asset.rslot}}</td>               
+            <td>{{asset.hddtype}}</td>
+            <td>{{asset.hddsize}}</td>
+            <td>{{asset.hdduom}}</td>
+            <td>{{asset.optdrive}}</td>
+            <td>Graphic Make</td>
+            <td>{{asset.gpusize}}</td>
+            <td>{{asset.gpuuom}}</td> 
+            <td>{{asset.created}}</td>
+            <td>finace asset id</td>
+           
+            <td>{{asset.accessories}}</td>
+            <td>{{asset.astserhc_hwclass}}</td>
+            <td>{{asset.astsernic_nic}}</td>
+            <td>{{asset.astseros_os}}</td>
+            <td>{{asset.astseros_sp}}</td>
+            <td>{{asset.astserpro_processor}}</td>
+            <td>{{asset.astserpro_speed}}</td>
+            <td>{{asset.astserram_rsize}}</td>
+            <td>{{asset.astserram_rtype}}</td>
+            <td>{{asset.astserram_ruom}}</td>
+            <td>{{asset.astserrn_rackno}}</td>
+            <td>{{asset.astserrs_ramslot}}</td>
+            <td>{{asset.astserst_storagetype}}</td>
+            <td>{{asset.astsert_sertype}}</td>               
+          </tr>
+         
+         
+        </tbody>
+      </table>
+
+  </div>
+</div>
+</div>
+
+
+   
+<div *ngIf="assetDetails" class="mt-3">
+<h5>Asset History for <u>{{asset_name}}</u></h5>
+<div  >
+<div class="table-responsive text-nowrap" >
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" >ASSET TYPE</th>
+            <th scope="col" >HISTORY DATE</th>
+            <th scope="col" >EMP_ID</th>
+           
+            <th scope="col">SECTION_CODE</th>
+            <th scope="col">DEPARTMENT</th>
+            <th scope="col">BRANCH</th>
+            <th scope="col">ORGANISATION</th>
+            <th scope="col">ASSET_ID</th>
+            <th scope="col">ASSET_STATUS</th>
+            <th scope="col">BUILDING</th>
+            <th scope="col">FLOOR</th>
+            <th scope="col">OPERATING_SYSTEM</th>
+            <th scope="col">BIT</th>
+            <th scope="col">SERVICE_PACK</th>
+            <th scope="col">MAKE</th>
+            <th scope="col">MODEL</th>
+            <th scope="col">SERIAL_NO</th>
+            <th scope="col">PROCESSOR</th>
+            <th scope="col">SPEED</th>
+            <th scope="col">MONITOR_MAKE</th>
+            <th scope="col">SCREEN_TYPE</th>
+            <th scope="col">MONITOR_SIZE</th>
+            <th scope="col">MONITOR_COUNT</th>
+            <th scope="col">RAM_TYPE</th>
+            <th scope="col">RAM_CAPACITY</th>
+            <th scope="col">UOM</th>
+            <th scope="col">SLOT</th>
+            <th scope="col">HARDDISK_TYPE</th>
+            <th scope="col">HARDDISK_CAPACITY</th>
+            <th scope="col">UOM1</th>
+            <th scope="col">OPTICAL_DRIVE</th>
+            <th scope="col">GRAPHICS_MAK</th>
+            <th scope="col">GRAPHICS_CAPACITY</th>
+            <th scope="col">UOM2</th>
+            <th scope="col">ASSIGNED_DATE</th>
+            <th scope="col">FINANCE_ASSET_ID</th>
+            <th scope="col">ACCESSORIES</th>
+            <th scope="col">HARDWARE CLASS</th>
+            <th scope="col">NIC</th>
+            <th scope="col">SERVER OPERATING_SYSTEM</th>
+            <th scope="col">SERVER SERVICE PACK</th>
+            <th scope="col">SERVER PROCESSOR</th>
+            <th scope="col">SERVER SPEED</th>
+            <th scope="col">SERVER RAM SIZE</th>
+            <th scope="col">SERVER RAM TYPE</th>
+            <th scope="col">SERVER RAM UNIT</th>
+            <th scope="col">SERVER Rack NO</th>
+            <th scope="col">SERVER RAM SLOT</th>
+            <th scope="col">SERVER STRORAGE TYPE</th>
+            <th scope="col">SERVER SERVER TYPE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asset of assetDetails">
+            <td>{{asset.astg_group}}</td>
+            <td>{{asset.created_on}}</td>
+            <td><a style="cursor: pointer;" (click)="user2(asset.empid)"><u>{{asset.empid}}</u></a></td>
+           
+            <td>{{asset.scode}}</td>
+            <td>{{asset.deptname}}</td>
+            <td>{{asset.branch}}</td>
+            <td>{{asset.org}}</td>              
+            <td>{{asset.asset_name}}</td>
+            <td>{{asset.status}}</td>
+            <td>{{asset.building}}</td>
+            <td>{{asset.floor}}</td>
+            <td>{{asset.os}}</td>
+            <td>{{asset.bit}}</td>
+            <td>{{asset.sp}}</td>
+            <td>make</td>
+            <td>model</td>
+            <td>{{asset.serialno}}</td>
+            <td>{{asset.processor}}</td>
+            <td>{{asset.speed}}</td>
+            <td>Monitor Make</td>
+            <td>Screen Type</td>
+            <td>Monitor Size</td>
+            <td>{{asset.mcount}}</td>
+            <td>{{asset.rtype}}</td>
+            <td>{{asset.rsize}}</td>
+            <td>{{asset.ruom}}</td>
+            <td>{{asset.rslot}}</td>               
+            <td>{{asset.hddtype}}</td>
+            <td>{{asset.hddsize}}</td>
+            <td>{{asset.hdduom}}</td>
+            <td>{{asset.optdrive}}</td>
+            <td>Graphic Make</td>
+            <td>{{asset.gpusize}}</td>
+            <td>{{asset.gpuuom}}</td> 
+            <td>{{asset.created}}</td>
+            <td>finace asset id</td>
+           
+            <td>{{asset.accessories}}</td>
+            <td>{{asset.astserhc_hwclass}}</td>
+            <td>{{asset.astsernic_nic}}</td>
+            <td>{{asset.astseros_os}}</td>
+            <td>{{asset.astseros_sp}}</td>
+            <td>{{asset.astserpro_processor}}</td>
+            <td>{{asset.astserpro_speed}}</td>
+            <td>{{asset.astserram_rsize}}</td>
+            <td>{{asset.astserram_rtype}}</td>
+            <td>{{asset.astserram_ruom}}</td>
+            <td>{{asset.astserrn_rackno}}</td>
+            <td>{{asset.astserrs_ramslot}}</td>
+            <td>{{asset.astserst_storagetype}}</td>
+            <td>{{asset.astsert_sertype}}</td>               
+          </tr>
+         
+         
+        </tbody>
+      </table>
+
+  </div>
+</div>
+</div>
+
+
+
+      
+<div *ngIf="assetPastDetails" class="mt-3">
+<h5>Past Asset History for <u>{{asset_name}}</u></h5>
+<div  >
+<div class="table-responsive text-nowrap" >
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" >ASSET TYPE</th>
+          <th scope="col" >HISTORY DATE</th>
+          <th scope="col" >EMP_ID</th>
+         
+          <th scope="col">SECTION_CODE</th>
+          <th scope="col">DEPARTMENT</th>
+          <th scope="col">BRANCH</th>
+          <th scope="col">ORGANISATION</th>
+          <th scope="col">ASSET_ID</th>
+          <th scope="col">ASSET_STATUS</th>
+          <th scope="col">BUILDING</th>
+          <th scope="col">FLOOR</th>
+          <th scope="col">OPERATING_SYSTEM</th>
+          <th scope="col">BIT</th>
+          <th scope="col">SERVICE_PACK</th>
+          <th scope="col">MAKE</th>
+          <th scope="col">MODEL</th>
+          <th scope="col">SERIAL_NO</th>
+          <th scope="col">PROCESSOR</th>
+          <th scope="col">SPEED</th>
+          <th scope="col">MONITOR_MAKE</th>
+          <th scope="col">SCREEN_TYPE</th>
+          <th scope="col">MONITOR_SIZE</th>
+          <th scope="col">MONITOR_COUNT</th>
+          <th scope="col">RAM_TYPE</th>
+          <th scope="col">RAM_CAPACITY</th>
+          <th scope="col">UOM</th>
+          <th scope="col">SLOT</th>
+          <th scope="col">HARDDISK_TYPE</th>
+          <th scope="col">HARDDISK_CAPACITY</th>
+          <th scope="col">UOM1</th>
+          <th scope="col">OPTICAL_DRIVE</th>
+          <th scope="col">GRAPHICS_MAK</th>
+          <th scope="col">GRAPHICS_CAPACITY</th>
+          <th scope="col">UOM2</th>
+          <th scope="col">ASSIGNED_DATE</th>
+          <th scope="col">FINANCE_ASSET_ID</th>
+          <th scope="col">ACCESSORIES</th>
+          <th scope="col">HARDWARE CLASS</th>
+          <th scope="col">NIC</th>
+          <th scope="col">SERVER OPERATING_SYSTEM</th>
+          <th scope="col">SERVER SERVICE PACK</th>
+          <th scope="col">SERVER PROCESSOR</th>
+          <th scope="col">SERVER SPEED</th>
+          <th scope="col">SERVER RAM SIZE</th>
+          <th scope="col">SERVER RAM TYPE</th>
+          <th scope="col">SERVER RAM UNIT</th>
+          <th scope="col">SERVER Rack NO</th>
+          <th scope="col">SERVER RAM SLOT</th>
+          <th scope="col">SERVER STRORAGE TYPE</th>
+          <th scope="col">SERVER SERVER TYPE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asset of assetPastDetails">
+          <td>{{asset.astg_group}}</td>
+          <td>{{asset.created_on}}</td>
+          <td><a style="cursor: pointer;" (click)="user2(asset.empid)"><u>{{asset.empid}}</u></a></td>
+         
+          <td>{{asset.scode}}</td>
+          <td>{{asset.deptname}}</td>
+          <td>{{asset.branch}}</td>
+          <td>{{asset.org}}</td>              
+          <td>{{asset.asset_name}}</td>
+          <td>{{asset.status}}</td>
+          <td>{{asset.building}}</td>
+          <td>{{asset.floor}}</td>
+          <td>{{asset.os}}</td>
+          <td>{{asset.bit}}</td>
+          <td>{{asset.sp}}</td>
+          <td>make</td>
+          <td>model</td>
+          <td>{{asset.serialno}}</td>
+          <td>{{asset.processor}}</td>
+          <td>{{asset.speed}}</td>
+          <td>Monitor Make</td>
+          <td>Screen Type</td>
+          <td>Monitor Size</td>
+          <td>{{asset.mcount}}</td>
+          <td>{{asset.rtype}}</td>
+          <td>{{asset.rsize}}</td>
+          <td>{{asset.ruom}}</td>
+          <td>{{asset.rslot}}</td>               
+          <td>{{asset.hddtype}}</td>
+          <td>{{asset.hddsize}}</td>
+          <td>{{asset.hdduom}}</td>
+          <td>{{asset.optdrive}}</td>
+          <td>Graphic Make</td>
+          <td>{{asset.gpusize}}</td>
+          <td>{{asset.gpuuom}}</td> 
+          <td>{{asset.created}}</td>
+          <td>finace asset id</td>
+         
+          <td>{{asset.accessories}}</td>
+          <td>{{asset.astserhc_hwclass}}</td>
+          <td>{{asset.astsernic_nic}}</td>
+          <td>{{asset.astseros_os}}</td>
+          <td>{{asset.astseros_sp}}</td>
+          <td>{{asset.astserpro_processor}}</td>
+          <td>{{asset.astserpro_speed}}</td>
+          <td>{{asset.astserram_rsize}}</td>
+          <td>{{asset.astserram_rtype}}</td>
+          <td>{{asset.astserram_ruom}}</td>
+          <td>{{asset.astserrn_rackno}}</td>
+          <td>{{asset.astserrs_ramslot}}</td>
+          <td>{{asset.astserst_storagetype}}</td>
+          <td>{{asset.astsert_sertype}}</td>               
+        </tr>
+       
+       
+      </tbody>
+    </table>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+</div>
+             
+<!-- 
+
+</ng-template>
+</li>
+
+<li [ngbNavItem]="2" class="mt-2">
+<a ngbNavLink><span><b> User
+  </b></span> </a>
+<ng-template ngbNavContent> -->
+
+
+  <!-- </ng-template>
+  </li>
+
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div> -->
+
+</div>
+
+
+

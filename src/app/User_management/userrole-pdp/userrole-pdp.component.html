@@ -1,0 +1,187 @@
+<div>
+        <div class="row">
+     
+      <div class="col-md-3">
+        <p id="headp">User Management &nbsp;<span>></span>&nbsp;User Role</p>
+      </div>
+    </div>
+   
+      <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 mt-1" style="background-color:white;margin-top: 0rem;border-radius: 3px;">
+
+<br>
+
+<!-- <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <button type="button"id="edit">EDIT &nbsp;<i class="fa fa-edit" ></i> </button>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col-md-3">
+      <button type="button"id="edit">EDIT &nbsp;<i class="fa fa-edit" ></i> </button><br><br><br>
+        <div style="text-align: center;">
+        <img  id="user"src="assets/img/Trial 2.png"/> <br>
+        <label id="username"><b>  Role 1</b></label><br>
+        <div style="border: 1px solid gray;text-align: left;padding: 5px;border-radius: 3px;border: 1px solid #C4C4C4;box-sizing: border-box;">
+            <label id="desc">Description</label>
+            <p>A common task for a web server can be to open a file on the server and return the content to the client.
+
+            </p>
+        </div>
+       
+
+       
+       
+    </div>
+    </div> 
+
+      <div class="vl"></div>
+
+    <div class="col-md-8" >
+      <ul ngbNav #nav="ngbNav"  class="nav-tabs" style="border-radius: 3px;" >
+        <li [ngbNavItem]="1" class="mt-0">
+          <a ngbNavLink><span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PERMISSIONS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </b></span> 
+        </a>
+
+        <ng-template ngbNavContent >  
+            <div class="ml-0" style="border:1px solid #C4C4C4;box-sizing: border-box;border-radius: 3px;">
+             
+                <!-- <div class="row" >
+                <div class="col-md-12" style="background-color: gray;">
+                  <p>Access  View  Add  Edit  Delete</p><br>
+                </div>
+              </div> -->
+              <div class="row mt-1">
+
+              <div class="col-md-3 ml-3">
+                  <p class="hed1"><br></p>
+                  <p>Request</p>
+                  <p>Problems</p>
+                  <p>Changes</p>
+                  <p>Assets</p>
+                  <p>Purchase Order</p>
+                  <p>Purchase request</p>
+                  <p>Contact</p>
+                  <p>Solutions</p>
+                  <p>Reports</p>
+              </div>
+
+              <div class="col-md-1">
+                  <p class="hed">Access</p>
+                  <input class="ml-3"  type="checkbox"><br>
+                  <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                  <input class="ml-3"  style="margin-top: 1.4rem;" type="checkbox"><br>
+                  <input  class="ml-3"style="margin-top: 1.4rem;"  type="checkbox"><br>
+                  <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                  <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                  <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                  <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                  <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+              </div>
+
+              <div class="col-md-1 ml-5 ">
+                <p class="hed">View</p>
+                <input class="ml-3"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3"  style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+            </div>
+
+            <div class="col-md-1 ml-5">
+                <p class="hed">Add</p>
+                <input class="ml-3"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3"  style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3"  style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+            </div>
+
+            <div class="col-md-1 ml-5">
+                <p class="hed">Edit</p>
+                <input class="ml-3"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+            </div>
+
+            <div class="col-md-1 ml-5">
+                <p class="hed">Delete</p>
+                <input class="ml-3"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;"  type="checkbox"><br>
+                <input class="ml-3" style="margin-top: 1.4rem;" type="checkbox"><br>
+            </div>
+
+
+            </div>
+            </div>
+
+       
+ 
+
+</ng-template>
+</li>
+
+       
+<li [ngbNavItem]="2" class="mt-0">
+  <a ngbNavLink><span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REQUEST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </b></span> 
+</a><br>
+  <ng-template ngbNavContent>
+    <br>
+    <p>nirosha</p>
+ </ng-template>
+</li>
+
+<li [ngbNavItem]="3" class="mt-0">
+  <a ngbNavLink><span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INVENTORY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </b></span> 
+</a><br>
+  <ng-template ngbNavContent>
+    <br>
+    <p>nirosha</p>
+ </ng-template>
+</li>
+
+<li [ngbNavItem]="4" class="mt-0">
+    <a ngbNavLink><span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PURCHASE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </b></span> 
+  </a><br>
+    <ng-template ngbNavContent>
+      <br>
+      <p>nirosha</p>
+   </ng-template>
+  </li>
+
+
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    
+
+    </div>
+</div>
+
+<br>
+
+</div>

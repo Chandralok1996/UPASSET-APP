@@ -1,0 +1,831 @@
+<div class="container-fluid" style="    margin: 30px 0 0 0;padding: 0;">
+  <div class="row">
+    <div class="col-md-12 ">
+
+      <div class="row">
+        <div class="col-md-2">
+          <img id="user" src="assets/img/Trial 2.png" /><br>
+
+          <a href="" id="Choose"> Add photo </a>
+        </div>
+
+
+        <div class="row">
+
+          <div class="profile-name">NEW ASSET | Laptop</div>
+
+        </div>
+      </div>
+
+
+
+      <ng-template #content let-modal>
+        <div class="container" style="width:300px; height:150px;">
+          <div>
+            <p style="text-align:center; padding:15px; margin-top:10px;">Are you sure you
+              want to cancel the current operation?
+            <p>
+          </div>
+
+          <div class="clear-fix" style="text-align:center; padding-bottom:15px;">
+            <button type="button"
+              style="margin-right:25px; border-radius:5px; background-color:#bebebe; height:30px; width:110px; font-size:12px; border: none; outline: none;"
+              (click)="modal.close('Close click');close()">Cancel</button>
+            <button type="button"
+              style=" background-color:rgb(62,144,249); border-radius:5px;height:30px; width:110px; font-size: 12px; border: none; outline: none; color:white"
+              (click)="modal.close('Close click')">Keep editing</button>
+          </div>
+        </div>
+      </ng-template>
+      <button type="button" class="create-new float-right" (click)="openVerticallyCentered(content)">Cancel</button>
+    </div>
+  </div>
+  <hr class="hr">
+
+  <div class="scroll" (scroll)="divScroll($event)">
+
+
+
+    
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" #ff="ngForm">
+
+      <!-- first-div-card-start -->
+      <div class="col-md-11 card" *ngIf="div1" [ngClass]="statusClass" (click)="setActiveClass1()">
+
+        <div class="">
+          <h1 class="font-sans f-20">Asset Information</h1>
+          <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+            (click)="ff.resetForm()"><u>X
+              Clear all</u></a>
+        </div><br>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> User Name <span class="required-asterisk">*</span></label>
+              <!-- <select formControlName="name" class="form-control" (click)="userdet()" 
+             [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+             <option></option>
+             <option *ngFor="let name of username">{{name.username}}</option>
+              </select> -->
+
+              <ng-autocomplete formControlName="name" [data]="username" [searchKeyword]="keyword1"
+                (selected)='userdet($event)' (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)'
+                [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+              </ng-autocomplete>
+              <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.username"></a>
+              </ng-template>
+              <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+              </ng-template>
+
+              <div *ngIf="submitted && f.name.errors || f.name.invalid && (f.name.dirty || f.name.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.name.errors.required">User Name is required</div>
+              </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Asset No. <span class="required-asterisk">*</span></label>
+              <input type="text" class="form-control f-10" formControlName="assetno" (ngModelChange)="onPercentChange($event)"
+               placeholder="Enter asset number"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+
+              <div *ngIf="submitted && f.assetno.errors || f.assetno.invalid && (f.assetno.dirty || f.assetno.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.assetno.errors.required">Asset No. is required</div>
+              </div>
+              <div *ngIf="assetResult"  style="color: red; font-size: 12px;">
+                <p>{{assetResult}}</p>
+            </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Department</label>
+              <select class="form-control f-10" formControlName="deptname" readonly>
+
+                <option *ngFor="let dept of uname" [disabled]="true">{{dept.deptname}}</option>
+              </select>
+
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Employee ID</label>
+              <select class="form-control f-10" formControlName="eightid" readonly>
+
+                <option *ngFor="let eight of uname" [disabled]="true">{{eight.eightid}}</option>
+                <!-- <option *ngFor="let eight of eightid" >{{eight.eightid}}</option> -->
+              </select>
+              <!-- <div *ngIf="submitted && f.eightid.errors || f.name.invalid && (f.name.dirty || f.name.touched)"
+            style="color: red; font-size: 12px;" >
+                <div *ngIf="f.name.errors.required">8 ID is required</div>
+              </div> -->
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Branch</label>
+              <select class="form-control f-10" formControlName="branch" readonly>
+
+                <option *ngFor="let br of uname" [disabled]="true">{{br.branch}}</option>
+                <!-- <option   *ngFor="let com3 of branch">{{com3.branch}} </option> -->
+              </select>
+
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Building</label>
+              <select class="form-control f-10" formControlName="building" (click)="getFloor()" readonly>
+
+                <option *ngFor="let bld of uname" [disabled]="true">{{bld.building}}</option>
+                <!-- <option   *ngFor="let com3 of building">{{com3.building}} </option> -->
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Floor</label>
+              <select class="form-control f-10" formControlName="floor" readonly>
+
+                <option *ngFor="let flr of uname" [disabled]="true">{{flr.floor}}</option>
+                <!-- <option   *ngFor="let com3 of floor">{{com3.floor}} </option> -->
+              </select>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Status <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="status"
+                [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                <option hidden>Select Status</option>
+                <option *ngFor="let statusData of status">{{statusData.status}}</option>
+
+              </select>
+              <div *ngIf="submitted && f.status.errors || f.status.invalid && (f.status.dirty || f.status.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.status.errors.required">Status is required</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1">Group <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="astg_group"
+                [ngClass]="{ 'is-invalid': submitted && f.astg_group.errors }">
+              <!-- <select  class="form-control" formControlName="astg_group" 
+        [ngClass]="{ 'is-invalid': submitted && f.astg_group.errors }" >
+            <option></option>
+            <option>LAPTOP</option>
+                 </select> -->
+              <div
+                *ngIf="submitted && f.astg_group.errors || f.astg_group.invalid && (f.astg_group.dirty || f.astg_group.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.astg_group.errors.required">Group is required</div>
+              </div>
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Category <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="category"
+                [ngClass]="{ 'is-invalid': submitted && f.category.errors }" readonly>
+                <!-- <option hidden>Select Category</option>
+                <option *ngFor="let categoryData of category">{{categoryData.category}}</option>
+
+              </select> -->
+              <div
+                *ngIf="submitted && f.category.errors || f.category.invalid && (f.category.dirty || f.category.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.category.errors.required">Category is required</div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Asset Type <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="asset_type"
+                [ngClass]="{ 'is-invalid': submitted && f.asset_type.errors }">
+                <option hidden>Select Asset Type</option>
+                <option *ngFor="let assetData of assetType">{{assetData.type}}</option>
+              </select>
+              <div
+                *ngIf="submitted && f.asset_type.errors || f.asset_type.invalid && (f.asset_type.dirty || f.asset_type.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.asset_type.errors.required">Asset Type is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1">Purchase Date </label>
+              <input type="date" class="form-control f-10" formControlName="purchase">
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Assigned Date </label>
+              <input type="date" class="form-control f-10" formControlName="assigned">
+              <div *ngIf="form.controls['purchase'].value !=='' && form.controls['assigned'].value === '' "
+                style="color: red; font-size: 12px;">
+                <p>Assigned Date is required</p>
+              </div>
+
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Expiry Date </label>
+              <input type="date" class="form-control f-10" formControlName="expiry">
+              <div *ngIf="form.controls['purchase'].value !=='' && form.controls['expiry'].value === '' "
+                style="color: red; font-size: 12px;">
+                <p>Expiry Date is required</p>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- first-div-card-end -->
+      <br>
+
+      <!-- second-div-card-start-->
+      <div class="col-md-11 card" *ngIf="div2" [ngClass]="statusClasses" (click)="setActiveClass2()">
+        <div class="">
+          <h1 class="font-sans f-20">System Information</h1>
+          <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+            (click)="ff.resetForm()"><u>X
+              Clear all</u></a>
+        </div><br>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Sr.No <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="serialno" (ngModelChange)="onSerialnum($event)"
+              placeholder="Enter serial number"
+                [ngClass]="{ 'is-invalid': submitted && f.serialno.errors }">
+              <div
+                *ngIf="submitted && f.serialno.errors || f.serialno.invalid && (f.serialno.dirty || f.serialno.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.serialno.errors.required">Sr.No is required</div>
+              </div>
+              <div *ngIf="assetResultSerial" style="color: red; font-size: 12px;">
+                <p>{{assetResultSerial}}</p>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Operating System <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="os"
+                (change)="osystem($event.target.value);servicp($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.os.errors }">
+                <option hidden>Select Operating System</option>
+                <option *ngFor="let os of operartingSystem">{{os.osname}}</option>
+                <option>
+                  <button type="button" id="exampleModal" mat-raised-button (click)="addField('os')">ADD NEW OS</button>
+                </option>
+              </select>
+
+              <div *ngIf="submitted && f.os.errors || f.os.invalid && (f.os.dirty || f.os.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.os.errors.required">Operating System is required</div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1">Service Pack <span class="required-asterisk">*</span></label>
+
+              <select class="form-control f-10" formControlName="sp" (change)="osystem($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                <option hidden>Select Service Pack</option>
+                <option *ngFor="let sp of servicePack">{{sp.sp}}</option>
+                <option>
+                  <button type="button" id="exampleModal1" mat-raised-button (click)="addField('sp')">ADD NEW
+                    SP</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.sp.errors || f.sp.invalid && (f.sp.dirty || f.sp.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.sp.errors.required">Service Pack is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Manufacturer <span class="required-asterisk">*</span></label>
+              <select formControlName="make" class="form-control f-10"
+                (change)="osystem($event.target.value);model($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.make.errors }">
+                <option hidden>Select Manufacturer</option>
+                <option *ngFor="let mfg of manufacture">{{mfg.manufacturer}}</option>
+                <option>
+                  <button type="button" id="exampleModal4" mat-raised-button (click)="addField('make')">ADD NEW
+                    Make</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.make.errors || f.make.invalid && (f.make.dirty || f.make.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.make.errors.required">Manufacturer is required</div>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Model No. <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="modelno" (change)="osystem($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.modelno.errors }">
+                <option hidden>Select Model Number</option>
+                <option *ngFor="let mfg of make">{{mfg.manufacturermodel}}</option>
+                <option>
+                  <button type="button" id="exampleModal5" mat-raised-button (click)="addField('model')">ADD NEW
+                    Model</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.modelno.errors || f.modelno.invalid && (f.modelno.dirty || f.modelno.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.modelno.errors.required">Model No is required</div>
+              </div>
+
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Processor <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="processor"
+                (change)="osystem($event.target.value);getSpeed($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                <option hidden>Select Processor</option>
+                <option *ngFor="let prc of processor">{{prc.processor}}</option>
+                <option>
+                  <button type="button" id="exampleModal6" mat-raised-button (click)="addField('processor')">ADD NEW
+                    Processor</button>
+                </option>
+              </select>
+              <div
+                *ngIf="submitted && f.processor.errors || f.processor.invalid && (f.processor.dirty || f.processor.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.processor.errors.required">Processor is required</div>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <div class="row">
+
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Speed <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="speed" (change)="osystem($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.speed.errors }">
+                <option hidden>Select Speed</option>
+                <option *ngFor="let sd of speed">{{sd.speed}}</option>
+                <option>
+                  <button type="button" id="exampleModal7" mat-raised-button (click)="addField('speed')">ADD NEW
+                    Speed</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.speed.errors || f.speed.invalid && (f.speed.dirty || f.speed.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.speed.errors.required">Speed is required</div>
+              </div>
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Monitor Count <span class="required-asterisk">*</span></label>
+              <input type="text" class="form-control f-10" formControlName="mcount" placeholder="Enter monitor count"
+                [ngClass]="{ 'is-invalid': submitted && f.mcount.errors }">
+              <div *ngIf="submitted && f.mcount.errors || f.mcount.invalid && (f.mcount.dirty || f.mcount.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.mcount.errors.required">Monitor Count is required</div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> RAM Type <span class="required-asterisk">*</span></label>
+              <select formControlName="rtype" class="form-control f-10"
+                (change)="osystem($event.target.value);ramtype($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                <option hidden>Select Ram Type</option>
+                <option *ngFor="let ram of ramType">{{ram.rtype}}</option>
+                <option>
+                  <button type="button" id="exampleModal8" mat-raised-button (click)="addField('rtype')">ADD NEW Ram
+                    Type</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.rtype.errors || f.rtype.invalid && (f.rtype.dirty || f.rtype.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.rtype.errors.required">RAM Type is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> RAM Size <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="rsize" (change)="osystem($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.rsize.errors }">
+                <option hidden>Select Ram Size</option>
+                <option *ngFor="let rs of ramSize">{{rs.concat}}</option>
+                <option>
+                  <button type="button" id="exampleModal9" mat-raised-button (click)="addField('rsize')">ADD NEW Ram
+                    Size</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.rsize.errors || f.rsize.invalid && (f.rsize.dirty || f.rsize.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.rsize.errors.required">RAM Size is required</div>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <div class="row">
+
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> RAM Slots <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="rslot" placeholder="Enter Ram slots"
+                [ngClass]="{ 'is-invalid': submitted && f.rslot.errors }">
+              <div *ngIf="submitted && f.rslot.errors || f.rslot.invalid && (f.rslot.dirty || f.rslot.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.rslot.errors.required"> RAM Slots is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Hard disk Type <span class="required-asterisk">*</span></label>
+              <select formControlName="hddtype" class="form-control f-10"
+                (change)="osystem($event.target.value);hardDisk($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                <option hidden>Select HDD Type</option>
+                <option *ngFor="let ht of hardType">{{ht.hddtype}}</option>
+                <option>
+                  <button type="button" id="exampleModal10" mat-raised-button (click)="addField('hddtype')">ADD NEW HDD
+                    Type</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.hddtype.errors || f.hddtype.invalid && (f.hddtype.dirty || f.hddtype.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.hddtype.errors.required">Hard disk Type is required</div>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Capacity <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="hddsize" (change)="osystem($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.hddsize.errors }">
+                <option hidden>Select Capacity</option>
+                <option *ngFor="let cap of capacity">{{cap.concat}}</option>
+                <option>
+                  <button type="button" id="exampleModal11" mat-raised-button (click)="addField('hddsize')">ADD NEW
+                    Capacity</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.hddsize.errors || f.hddsize.invalid && (f.hddsize.dirty || f.hddsize.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.hddsize.errors.required">Capacity is required</div>
+              </div>
+
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> GPU Card <span class="required-asterisk">*</span></label>
+              <select formControlName="gpucard" class="form-control f-10"
+                (change)="osystem($event.target.value);gpu($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                <option hidden>Select GPU Card</option>
+                <option *ngFor="let gpu of gpuRam">{{gpu.gpucard}}</option>
+                <option>
+                  <button type="button" id="exampleModal12" mat-raised-button (click)="addField('gpucard')">ADD NEW GPU
+                    Card</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.gpucard.errors || f.gpucard.invalid && (f.gpucard.dirty || f.gpucard.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.gpucard.errors.required">GPU Card is required</div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Graphic RAM <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="gpusize" (change)="osystem($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.gpusize.errors }">
+                <option hidden>Select Graphic Ram</option>
+                <option *ngFor="let cap of card">{{cap.gpuram}}</option>
+                <option>
+                  <button type="button" id="exampleModal13" mat-raised-button (click)="addField('gpusize')">ADD NEW
+                    Graphic
+                    RAM</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.gpusize.errors || f.gpusize.invalid && (f.gpusize.dirty || f.gpusize.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.gpusize.errors.required">Graphic RAM is required</div>
+              </div>
+
+            </div>
+
+
+
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Optical Drive <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="optdrive"
+                [ngClass]="{ 'is-invalid': submitted && f.optdrive.errors }">
+                <option hidden>Select Optical Drive</option>
+                <option *ngFor="let opt of optical">{{opt.optdrive}}</option>
+              </select>
+              <div
+                *ngIf="submitted && f.optdrive.errors || f.optdrive.invalid && (f.optdrive.dirty || f.optdrive.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.optdrive.errors.required">Optical Drive is required</div>
+              </div>
+
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+        <hr>
+
+        <div class="form-group">
+
+          <div class="col-md-6 col-sm-6">
+            <label id="label1"> Upload an image (Optional)</label>
+            <input id="cin" name="cin" type="file" formControlName="file" (change)="fileChangeEvent($event)"
+              placeholder="Upload a file..." multiple />
+            <!-- <div *ngIf="submitted && f.file.errors" class="invalid-feedback"> [ngClass]="{ 'is-invalid': submitted && f.file.errors }"
+          <div *ngIf="f.file.errors.required">File is required</div>
+        </div> -->
+
+
+          </div>
+        </div>
+      </div>
+      <!-- Second-div-card-end -->
+
+      <br>
+
+      <!-- third-div-card-form-start -->
+
+      <div class="col-md-11 card" *ngIf="div3" [ngClass]="statusClassess" (click)="setActiveClass3()">
+
+        <div class="">
+          <h1 class="font-sans f-20">Financial Summery</h1>
+          <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+            (click)="ff.resetForm()"><u>X
+              Clear all</u></a>
+        </div><br>
+
+
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> PO_Number </label>
+              <input type="text" class="form-control f-10" formControlName="pon" placeholder="ENter PO number">
+
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Warranty <span class="required-asterisk">*</span></label><br>
+              <input type="radio" [(ngModel)]="type" [value]="'valid'" formControlName="warranty"
+                [ngClass]="{ 'is-invalid': submitted && f.warranty.errors }">&nbsp;&nbsp;&nbsp;Valid
+              <input type="radio" [(ngModel)]="type" [value]="'expired'" formControlName="warranty" class="ml-5"
+                [ngClass]="{ 'is-invalid': submitted && f.warranty.errors }">&nbsp;&nbsp;&nbsp;Expired
+
+              <div
+                *ngIf="submitted && f.warranty.errors || f.warranty.invalid && (f.warranty.dirty || f.warranty.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.warranty.errors.required">Warranty is required</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="type == 'valid'">
+          <div class="row">
+            <div class="col-md-6">
+              <label id="label1"> Start Date <span class="required-asterisk">*</span></label><br>
+              <input type="date" formControlName="wsdate" class="form-control f-10">
+
+              <div *ngIf="form.controls['warranty'].value ==='valid' && form.controls['wsdate'].value === '' "
+              style="color: red; font-size: 12px;">
+              <p>Start Date is required</p>
+            </div>
+            </div>
+            <div class="col-md-6">
+              <label id="label1"> End Date <span class="required-asterisk">*</span></label><br>
+              <input type="date" formControlName="wedate" class="form-control f-10">
+              <div *ngIf="form.controls['warranty'].value ==='valid' && form.controls['wedate'].value === ''  "
+              style="color: red; font-size: 12px;">
+              <p>End Date is required</p>
+            </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Vendor <span class="required-asterisk">*</span></label>
+              <select id="input1" class="form-control f-10" formControlName="vendor"
+                [ngClass]="{ 'is-invalid': submitted && f.vendor.errors }"
+                (change)="vendorname($event.target.value);osystem($event.target.value)">
+                <option hidden>Select Vendor</option>
+                <option *ngFor="let ven of vendor">{{ven.vendor_name}}</option>
+                <option>
+                  <button type="button" id="exampleModal2" mat-raised-button (click)="addField('vendor')">ADD NEW
+                    Vendor</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.vendor.errors || f.vendor.invalid && (f.vendor.dirty || f.vendor.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.vendor.errors.required">Vendor is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Vendor_Location <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="vloc" (change)="osystem($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.vloc.errors }">
+                <option hidden>Select Vendor Location</option>
+                <option *ngFor="let ven of vendorlocation">{{ven.vendor_location}}</option>
+                <option>
+                  <button type="button" id="exampleModal3" mat-raised-button (click)="addField('vendorl')">ADD NEW
+                    Location</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.vloc.errors || f.vloc.invalid && (f.vloc.dirty || f.vloc.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.vloc.errors.required">Vendor_Location is required</div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> AMC Authority <span class="required-asterisk">*</span></label>
+              <input type="text" class="form-control f-10" formControlName="mauth" placeholder="Enter AMC authority"
+                [ngClass]="{ 'is-invalid': submitted && f.mauth.errors }">
+              <div *ngIf="submitted && f.mauth.errors || f.mauth.invalid && (f.mauth.dirty || f.mauth.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.mauth.errors.required">Authority is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> AMC Expiry </label>
+              <input type="date" class="form-control f-10" formControlName="mexp" placeholder="Enter AMC expiry">
+
+            </div>
+
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1">Finance Asset Number </label>
+              <input type="text" class="form-control f-10" formControlName="fastno"
+                placeholder="Enter finance asset number">
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <!-- third-div-card-form-end -->
+
+
+
+      <br>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <!-- <button [disabled]="loading" id="savenupdate">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Save and Update</button> -->
+
+
+            <button [disabled]="form.invalid" style="cursor: pointer;" class="cust-create-btn">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1 "></span>
+              Save and Update</button>
+
+          </div>
+        </div>
+      </div>
+      <br><br>
+    </form>
+  </div>
+</div>

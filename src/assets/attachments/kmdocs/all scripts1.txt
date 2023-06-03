@@ -1,0 +1,413 @@
+***Backup the data*****
+
+####backup.log#######
+select now();
+
+
+
+##########backup.sql#############
+select now();
+\c mydb1
+select count(*) from emp;
+SELECT pg_start_backup('label');
+select pg_switch_wal();
+
+
+
+##########backup.sh#############
+psql -f backup.sql
+tar -cvf data.tar ~/data/.
+psql -f stopbackup.sql
+
+
+
+########stopbackup.sql############
+select pg_stop_backup();
+
+
+##########archive#############
+log_statement = 'all'
+log_directory = 'log'
+log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'
+logging_collector = on
+log_min_error_statement = error
+archive_mode = on
+archive_command = 'test ! -f /var/lib/postgresql/pg_log_archive/%f && cp %p /var/lib/postgresql/pg_log_archive/%f'
+
+
+
+****Script for backup and acrvhive******
+
+#/bin/sh
+
+main()
+$1
+{
+if  [ "$1" == "backup" ];
+then
+{
+backup()
+{psql -f backup.sql
+tar -cvf data.tar ~/data/.
+psql -f stopbackup.sql
+
+}
+backup
+}
+elif  [ "$1" == 'archive' ];
+then
+{
+archive()
+{
+tar -cvf data.tar ~/data/.
+}
+}
+fi
+fi
+
+}
+main
+
+
+========save and execute the scripts========
+chmod +x hello.sh
+./hello.sh
+
+
+
+===================================size==================
+SELECT pg_size_pretty( pg_database_size('dbname') );
+
+SELECT pg_size_pretty( pg_total_relation_size('tablename') );
+
+
+
+***this scripts for check the proces is running or not****
+
+scripts=/scripts
+backup_flag=backup.processing
+if [ `find $scripts/. -name $backup_flag | wc -l` != 0 ]
+then
+              echo "backup is already running" 1>&2
+              exit 1;
+              else 
+              touch $scripts/$backup_flag
+              date >> $scripts/$backup_flag
+              echo "Creating backup flag $backup_flag"
+	      sh ./backup.processing
+	      sh ./pg.sh
+	      '
+              echo "backup started"
+fi;
+
+
+
+***if you run this script first you should delete backup.processing, otherwise it can shows process is already running***
+
+
+
+Master Scripts
+============scripts.sh==============================
+scripts=/var/lib/postgresql/scripts
+while [ $# -gt 0 ]; do
+         case $1 in
+                 -o)
+                         if [ "$2" == "backup" ]; then
+                                sh back.sh
+                                exit 1
+                       elif [ "$2" == "fullbackup" ]; then
+                              sh back.sh 
+                              sh archive.sh
+                              exit 1
+
+                       elif [ "$2" == "archive" ]; then
+                              sh archive.sh
+                              exit 1
+			elif [ "$2" == "pgdump" ]; then
+                              sh pgdump.sh
+                              exit 1
+			elif [ "$2" == "catalog" ]; then
+                              sh catl.sh
+                              exit 1			
+			
+                       elif [ "$2" == "analyze" ]; then
+                                 sh analyze.sh
+                                 exit 1
+			elif [ "$2" == "schema" ]; then
+                              sh schema.sh
+                              exit 1
+			elif [ "$2" == "metadata" ]; then
+                              sh metadata.sh
+                              exit 1
+                                 else
+                                 ${ECHO} "Unknown option \"$2\"" 1>&2
+                                 exit 1
+                         fi
+                         ;;
+                 *)
+                         ${ECHO} "Unknown Option \"$1\"" 1>&2
+                         exit 2
+                         ;;
+         esac
+done
+
+=========================================================================================
+
+---------these are the script file for checking process is running or not---------
+archive.sh
+analyze.sh
+pgdump.sh
+back.sh
+catl.sh
+fullbackup.sh
+-----------------------------------------------------------------------------------
+
+
+
+=========================back.sh=============================
+
+scripts=/var/lib/postgresql/scripts
+backup_flag=$scripts/backup.processing
+if [ `find $scripts/. -name backup.processing | wc -l` != 0 ]
+then
+        echo "backup is already running" 1>&2
+        else
+        touch $backup_flag
+        date >> $backup_flag
+        echo "Creating backup flag $backup_flag"
+        echo "backup started"
+	sh ./databackup.sh
+        sleep 20
+        rm $backup_flag
+	echo "completed"
+        exit 1;
+fi;
+
+===============================================================
+
+
+==============databackup.sh=================
+
+psql -f backup.sql
+tar -cvf data.tar ~/data/.
+psql -f stopbackup.sql
+
+============================================
+
+
+##########backup.sql#############
+select now();
+\c mydb1
+select count(*) from emp;
+SELECT pg_start_backup('label');
+select pg_switch_wal();
+#################################
+
+----------completed a script----------
+
+==============archive.sh==================
+
+scripts=/var/lib/postgresql/scripts
+archive_flag=$scripts/archive.processing
+if [ `find $scripts/. -name archive.processing | wc -l` != 0 ]
+then
+        echo "archive is already running" 1>&2
+        else
+        touch $archive_flag
+        date >> $archive_flag
+        echo "Creating archive flag $archive_flag"
+        echo "archive  started"
+        sleep 10
+        rm $archive_flag
+        exit 1;
+fi;
+
+================================================
+
+
+
+=========analyze.sh==================
+
+scripts=/var/lib/postgresql/scripts
+analyze_flag=$scripts/analyze.processing
+if [ `find $scripts/. -name analyze.processing | wc -l` != 0 ]
+then
+        echo "analyze is already running" 1>&2
+        else
+        touch $analyze_flag
+        date >> $analyze_flag
+        echo "Creating analyze flag $analyze_flag"
+        echo "analyze started"
+	 sh ./vacumm.sh
+        sleep 20
+	echo "analyze completed"
+        rm $analyze_flag
+        exit 1;
+fi;
+
+=====================================================
+
+
+=================vacumm.sh============================
+psql  -f vacumm.sql
+
+=======================================================
+
+
+==================vacumm.sql==========================
+
+\c mydb1
+SELECT pg_size_pretty(pg_total_relation_size('emp'));
+delete from emp where id =101;
+SELECT pg_size_pretty(pg_total_relation_size('emp'));
+vacuum full emp;
+SELECT pg_size_pretty(pg_total_relation_size('emp'));
+
+======================================================
+
+
+=======================pgdump.sh==============
+
+scripts=/var/lib/postgresql/scripts
+pgdump_flag=$scripts/pgdump.processing
+if [ `find $scripts/. -name pgdump.processing | wc -l` != 0 ]
+then
+        echo "backup is already running" 1>&2
+        else
+        touch $pgdump_flag
+        date >> $pgdump_flag
+        echo "Creating pgdump flag $pgdump_flag"
+        echo "pgdump started"
+        sh ./dumpfile.sh
+        echo "dump file is creating"
+        sleep 10
+        rm $pgdump_flag
+        echo "Now our dump file is created"
+
+        exit 1;
+fi;
+
+
+==================================================
+
+
+=================dumpfile.sh====================
+
+pg_dump mydb2 > mydb2_dumpfile.sql
+
+===============================================
+
+
+
+====================catl.sh==============
+
+scripts=/var/lib/postgresql/scripts
+catalog_flag=$scripts/catalog.processing
+if [ `find $scripts/. -name catalog.processing | wc -l` != 0 ]
+then
+        echo "catalog is already running" 1>&2
+        else
+        touch $catalog_flag
+        date >> $catalog_flag
+        echo "Creating catalog flag $catalog_flag"
+        echo "catalog started"
+        sleep 20
+        rm $catalog_flag
+        exit 1;
+fi;
+
+===================================================
+
+
+
+===============fullbackup.sh===================
+
+scripts=/var/lib/postgresql/scripts
+fullbackup_flag=$scripts/fullbackup.processing
+if [ `find $scripts/. -name fullbackup.processing | wc -l` != 0 ]
+then
+        echo "fullbackup is already running" 1>&2
+        else
+        touch $fullbackup_flag
+        date >> $fullbackup_flag
+        echo "Creating fullbackup flag $fullbackup_flag"
+        echo "fullbackup started"
+        sleep 20
+        rm $fullbackup_flag
+        exit 1;
+fi;
+
+=======================================================
+
+
+
+===============schema.sh===================
+
+scripts=/var/lib/postgresql/scripts
+schema_flag=$scripts/schema.processing
+if [ `find $scripts/. -name schema.processing | wc -l` != 0 ]
+then
+        echo "schema is already running" 1>&2
+        else
+        touch $schema_flag
+        date >> $schema_flag
+        echo "Creating fullbackup flag $schema_flag"
+        echo "schema started"
+         sh ./schemas.sh
+        sleep 20
+        rm $schema_flag
+        echo "schema backup completed"
+
+        exit 1;
+fi;
+
+=======================================================
+
+
+====================schemas.sh==========================
+
+pg_dump  --schema=myschema mydb3 > myschema_backup_file.sql
+
+========================================================
+
+
+===============metadata.sh===================
+
+scripts=/var/lib/postgresql/scripts
+metadata_flag=$scripts/metadata.processing
+if [ `find $scripts/. -name metadata.processing | wc -l` != 0 ]
+then
+        echo "metadata is already running" 1>&2
+        else
+        touch $metadata_flag
+        date >> $metadata_flag
+        echo "Creating metadata flag $metadata_flag"
+        echo "metadata backup  started"
+	 sh ./metadata_backup.sh
+        sleep 20
+        rm $metadata_flag
+        echo "metadata backup completed"
+
+        exit 1;
+fi;
+
+=======================================================
+
+
+
+=======================metadata_backup.sh===============
+
+pg_dump --schema-only mydb3 > metadata_backupfile.sql
+
+========================================================
+
+
+
+
+***This is way of run the file and give user input***********
+./scripts.sh -o backup
+
+
+
+
+

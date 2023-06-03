@@ -1,0 +1,515 @@
+<div class="container-fluid" style="    margin: 30px 0 0 0;padding: 0;">
+    <div class="row">
+        <div class="col-md-12 ">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <img id="user" src="assets/img/Trial 2.png" /><br>
+
+                    <a href="" id="Choose"> Add photo </a>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="profile-name">REJOIN USER</div>
+
+                </div>
+            </div>
+
+
+
+            <ng-template #content let-modal>
+                <div class="container" style="width:300px; height:150px;">
+                    <div>
+                        <p style="text-align:center; padding:15px; margin-top:10px;">Are you sure you
+                            want to cancel the current operation?
+                        <p>
+                    </div>
+
+                    <div class="clear-fix" style="text-align:center; padding-bottom:15px;">
+                        <button type="button"
+                            style="margin-right:25px; border-radius:5px; background-color:#bebebe; height:30px; width:110px; font-size:12px; border: none; outline: none;"
+                            (click)="modal.close('Close click');close()">Cancel</button>
+                        <button type="button"
+                            style=" background-color:rgb(62,144,249); border-radius:5px;height:30px; width:110px; font-size: 12px; border: none; outline: none; color:white"
+                            (click)="modal.close('Close click')">Keep editing</button>
+                    </div>
+                </div>
+            </ng-template>
+            <button type="button" class="create-new float-right"
+                (click)="openVerticallyCentered(content)">Cancel</button>
+        </div>
+    </div>
+
+
+    <hr class="hr">
+
+    <div class="scroll" (scroll)="divScroll($event)">
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" #ff="ngForm">
+
+            <!-- first-div-card-start -->
+
+            <div class="col-md-11 card" *ngIf="div1" [ngClass]="statusClass" (click)="setActiveClass1()">
+                <div class="">
+                    <h1 class="font-sans f-20">System Information</h1>
+                    <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+                        (click)="ff.resetForm()"><u>X
+                            Clear all</u></a>
+                </div><br>
+
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-6">
+                            <label>Employee Name <span class="required-asterisk">*</span></label><br>
+                            <select class="form-control" formControlName="title"
+                                [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                                <option></option>
+                                <option *ngFor="let com3 of products7" [value]="com3.title">{{com3.title}} </option>
+                            </select>
+                            <div *ngIf="submitted && f.title.errors || f.title.invalid && (f.title.dirty || f.title.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.title.errors.required">Title is required</div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <label><span><br></span></label><br>
+                            <input type="text" formControlName="firstname" class="form-control" placeholder="First Name"
+                                [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
+                            <div *ngIf="submitted && f.firstname.errors || f.firstname.invalid && (f.firstname.dirty || f.firstname.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.firstname.errors.required">First Name is required</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <input type="text" formControlName="middlename" class="form-control"
+                                placeholder="Middle Name"
+                                [ngClass]="{ 'is-invalid': submitted && f.middlename.errors }">
+                            <div *ngIf="submitted && f.middlename.errors || f.middlename.invalid && (f.middlename.dirty || f.middlename.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.middlename.errors.required">Middle Name is required</div>
+                            </div><br>
+
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <input type="text" formControlName="lastname" class="form-control" placeholder="Last Name"
+                                [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+                            <div *ngIf="submitted && f.lastname.errors || f.lastname.invalid && (f.lastname.dirty || f.lastname.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Login Name <span class="required-asterisk">*</span></label><br>
+                            <input type="text" class="form-control" formControlName="loginname" readonly>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label>Password <span class="required-asterisk">*</span></label><br>
+                            <input type="password" class="form-control" formControlName="password" readonly>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <label>New Emp ID <span class="required-asterisk">*</span></label>
+                            <input class="form-control" formControlName="newempid"
+                                [ngClass]="{ 'is-invalid': submitted && f.newempid.errors }"
+                                pattern="[a-z0-9A-Z\s]{2,10}" minlength="2" maxlength="10">
+                            <div *ngIf="submitted && f.newempid.errors || f.newempid.invalid && (f.newempid.dirty || f.newempid.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.newempid.errors.required">New Emp ID is required</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label>Rejoining Date <span class="required-asterisk">*</span></label>
+                            <input type="date" class="form-control" formControlName="rejoindt"
+                                [ngClass]="{ 'is-invalid': submitted && f.rejoindt.errors }">
+                            <div *ngIf="submitted && f.rejoindt.errors || f.rejoindt.invalid && (f.rejoindt.dirty || f.rejoindt.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.rejoindt.errors.required">Rejoining Date is required</div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <label>User Type <span class="required-asterisk">*</span></label><br>
+                            <input class="form-control" formControlName="usertype"
+                                [ngClass]="{ 'is-invalid': submitted && f.usertype.errors }" readonly>
+                               
+                            <div *ngIf="submitted && f.usertype.errors || f.usertype.invalid && (f.usertype.dirty || f.usertype.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.usertype.errors.required">User Type is required</div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label>LocalID/Emp ID <span class="required-asterisk">*</span></label><br>
+                            <input type="text" class="form-control" formControlName="empid"
+                                [ngClass]="{ 'is-invalid': submitted && f.empid.errors }" pattern="[a-z0-9A-Z\s]{2,10}"
+                                minlength="2" maxlength="10">
+                            <div *ngIf="submitted && f.eightid.errors || f.eightid.invalid && (f.eightid.dirty || f.eightid.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.eightid.errors.required">Local ID is required</div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-6">
+                            <label>8ID <span class="required-asterisk">*</span></label><br>
+                            <input type="text" class="form-control" formControlName="eightid"
+                                [ngClass]="{ 'is-invalid': submitted && f.eightid.errors }"
+                                pattern="[a-z0-9A-Z\s]{2,10}" minlength="2" maxlength="10">
+                            <div *ngIf="submitted && f.eightid.errors || f.eightid.invalid && (f.eightid.dirty || f.eightid.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.eightid.errors.required">8ID is required</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label>Reporting To <span class="required-asterisk">*</span></label><br>
+                            <select class="form-control" formControlName="reportingto"
+                                [ngClass]="{ 'is-invalid': submitted && f.reportingto.errors }">
+                                <option></option>
+                                <option *ngFor="let report of reportingtoo">{{report.username}}/{{report.empid}}
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f.reportingto.errors || f.reportingto.invalid && (f.reportingto.dirty || f.reportingto.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.reportingto.errors.required">Reportingto is required</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <label>Department <span class="required-asterisk">*</span></label><br>
+                            <select class="form-control" formControlName="department"
+                                [ngClass]="{ 'is-invalid': submitted && f.department.errors }"
+                                (change)="osystem($event.target.value)">
+                                <option></option>
+                                <option *ngFor="let dept of department" [value]="dept.deptname">{{dept.deptname}}
+                                </option>
+                                <option>
+                                    <button type="button" id="exampleModal1" mat-raised-button
+                                        (click)="addField('department')">ADD NEW Department</button>
+                                </option>
+
+                            </select>
+                            <div *ngIf="submitted && f.department.errors || f.department.invalid && (f.department.dirty || f.department.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.department.errors.required">Department is required</div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label>User Role <span class="required-asterisk">*</span></label><br>
+                            <select class="form-control" formControlName="role"
+                                [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
+                                <option></option>
+                                <option *ngFor="let com3 of role" [value]="com3.name">{{com3.name}} </option>
+                            </select>
+                            <div *ngIf="submitted && f.role.errors || f.role.invalid && (f.role.dirty || f.role.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.role.errors.required">User Role is required</div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <label>Support Group </label><br>
+                            <select class="form-control" formControlName="supgrp">
+                                <option></option>
+                                <option *ngFor="let com3 of usergrp" [value]="com3.sgname">{{com3.sgname}} </option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label>Designation <span class="required-asterisk">*</span></label><br>
+                            <select class="form-control" formControlName="designation"
+                                [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"
+                                (change)="osystem($event.target.value)">
+                                <option></option>
+                                <option *ngFor="let com3 of designation" [value]="com3.designationname">
+                                    {{com3.designationname}} </option>
+                                <option>
+                                    <button type="button" id="exampleModal2" mat-raised-button
+                                        (click)="addField('Designation')">ADD NEW Designation</button>
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f.designation.errors || f.designation.invalid && (f.designation.dirty || f.designation.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.designation.errors.required">Designation is required</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <label>VIP Status <span class="required-asterisk">*</span></label><br>
+                            <select class="form-control" formControlName="vipstatus"
+                                [ngClass]="{ 'is-invalid': submitted && f.vipstatus.errors }">
+                                <option></option>
+                                <option>General </option>
+                                <option>VIP </option>
+                            </select>
+                            <div *ngIf="submitted && f.vipstatus.errors || f.vipstatus.invalid && (f.vipstatus.dirty || f.vipstatus.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.vipstatus.errors.required">VIP STATUS is required</div>
+                            </div>
+                        </div>
+                      
+
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <label>Description </label><br>
+                            <textarea type="text" class="form-control" formControlName="description"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <!-- </div> -->
+            </div>
+
+            <!-- first-div-card-end -->
+            <br>
+
+            <!-- second-div-card-start -->
+            <div class="col-md-11 card" *ngIf="div2" [ngClass]="statusClasses" (click)="setActiveClass2()">
+                <div class="">
+                    <h1 class="font-sans f-20">Add Details</h1>
+                    <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+                        (click)="ff.resetForm()"><u>X
+                            Clear all</u></a>
+                </div><br>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Contact Number</label>
+                            <input type="text" class="form-control" formControlName="mobile" pattern="[0-9]{10}"
+                                minlength="10" maxlength="10">
+                            <div *ngIf="f.mobile.errors" style="color: red; font-size: 12px;">
+                                <span *ngIf="f.mobile.errors?.pattern"> Invalid Contact Number</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Secondary Contact No </label>
+                            <input type="text" class="form-control" formControlName="landline"
+                            pattern="[0-9]{10,11}" minlength="10" maxlength="11">
+                            <div *ngIf="f.landline.errors" style="color: red; font-size: 12px;">
+                                <span *ngIf="f.landline.errors?.pattern"> Invalid Contact Number</span>
+                              </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Desk Number</label>
+                            <input type="text" class="form-control" formControlName="deskno">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <label>Building <span class="required-asterisk">*</span></label>
+                            <select class="form-control" formControlName="building"
+                                (change)="osystem($event.target.value);getFloor($event.target.value)"
+                                [ngClass]="{ 'is-invalid': submitted && f.building.errors }">
+                                <option></option>
+                                <option *ngFor="let com3 of products9" [value]="com3.building">{{com3.building}}
+                                </option>
+                                <option>
+                                    <button type="button" id="exampleModal3" mat-raised-button
+                                        (click)="addField('Building')">ADD NEW Building</button>
+                                </option>
+
+                            </select>
+                            <div *ngIf="submitted && f.building.errors || f.building.invalid && (f.building.dirty || f.building.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.building.errors.required">Building is required</div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label>Email-ID <span class="required-asterisk">*</span></label>
+                            <input type="email" class="form-control" formControlName="email"
+                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                                pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+
+                            <div *ngIf="submitted && f.email.errors || f.email.invalid && (f.email.dirty || f.email.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                            </div>
+                            <div *ngIf="f.email.errors" style="color: red; font-size: 12px;">
+                                <span *ngIf="f.email.errors?.pattern"> Invalid Email ID</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label>Section Code <span class="required-asterisk">*</span></label>
+                            <select class="form-control" formControlName="scode" (change)="osystem($event.target.value)"
+                                [ngClass]="{ 'is-invalid': submitted && f.scode.errors }">
+                                <option></option>
+                                <option *ngFor="let com3 of products11" [value]="com3.scode">{{com3.scode}} </option>
+                                <option>
+                                    <button type="button" id="exampleModal4" mat-raised-button
+                                        (click)="addField('Section Code')">ADD NEW Section Code</button>
+                                </option>
+
+                            </select>
+                            <div *ngIf="submitted && f.scode.errors || f.scode.invalid && (f.scode.dirty || f.scode.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.scode.errors.required">Sec-code is required</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Floor <span class="required-asterisk">*</span></label>
+                            <select class="form-control" formControlName="floor" (change)="osystem($event.target.value)"
+                                [ngClass]="{ 'is-invalid': submitted && f.floor.errors }">
+                                <option></option>
+                                <option *ngFor="let com3 of floor" [value]="com3.floor">{{com3.floor}} </option>
+                                <option>
+                                    <button type="button" id="exampleModal5" mat-raised-button
+                                        (click)="addField('Floor')">ADD NEW Floor</button>
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f.floor.errors || f.floor.invalid && (f.floor.dirty || f.floor.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.floor.errors.required">Floor is required</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <label>Organization <span class="required-asterisk">*</span></label>
+                            <select class="form-control" formControlName="org"
+                                [ngClass]="{ 'is-invalid': submitted && f.org.errors }">
+                                <option></option>
+                                <option *ngFor="let com3 of products8" [value]="com3.org">{{com3.org}} </option>
+                            </select>
+                            <div *ngIf="submitted && f.org.errors || f.org.invalid && (f.org.dirty || f.org.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.org.errors.required">Organization is required</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Branch <span class="required-asterisk">*</span></label>
+                            <select class="form-control" formControlName="branch"
+                                (change)="osystem($event.target.value)"
+                                [ngClass]="{ 'is-invalid': submitted && f.branch.errors }">
+                                <option></option>
+                                <option *ngFor="let com3 of products10" [value]="com3.branch">{{com3.branch}} </option>
+                                <option>
+                                    <button type="button" id="exampleModal6" mat-raised-button
+                                        (click)="addField('Branch')">ADD NEW Branch</button>
+                                </option>
+                            </select>
+                            <div *ngIf="submitted && f.branch.errors || f.branch.invalid && (f.branch.dirty || f.branch.touched)"
+                                style="color: red; font-size: 12px;">
+                                <div *ngIf="f.branch.errors.required">Branch is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row mt-2">
+                    <div class="col-md-4 col-sm-4">
+
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <!-- <button [disabled]="loading" id="savenupdate" >
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save and Update</button> -->
+
+                        <button [disabled]="form.invalid" style="cursor: pointer;" class="cust-create-btn">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1 "></span>
+                            Save and Update</button>
+
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+        </form>
+    </div>
+</div>

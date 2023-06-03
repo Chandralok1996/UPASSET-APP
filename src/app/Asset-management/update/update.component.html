@@ -1,0 +1,108 @@
+<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-fhd-12 bg-img" style="
+   
+ background: url('assets/img/5.png')  ;
+/* background-color: #fff; */
+background-repeat:no repeat;
+background-size: 100% 100%;
+
+  ">
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-4 col-lg-2 mx-auto">
+        <div class="card card-signin">
+          <div class="card-body" style="text-align: center;">
+            <div class="card-title text-center mb-3">
+              <br><br><br>
+              <!-- <img src="assets/img/thyssen.png" style="width: 130px;height: 100px;"> -->
+            </div>
+
+
+          
+
+            <form class="form-signin  ml-5 mr-5" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+              <h3 class="login-text">Reset Password !</h3><br>
+              <div class="form-label-group" style="text-align: left;">
+                <label for="inputEmail">Login Name</label>
+                <input autofocus="true" type="text" id="userid" class="form-control f-10" placeholder="Enter Login name"
+                  formControlName="userid" [ngClass]="{ 'is-invalid': submitted && f.userid.errors }" required
+                  autofocus>
+                <div *ngIf="submitted && f.userid.errors" class="invalid-feedback">
+                  <div *ngIf="f.userid.errors.required">Loginname is required</div>
+                </div>
+              </div>
+              <br>
+              <div class="form-label-group" style="text-align: left;">
+                <label for="inputPassword">New Password</label>
+                <input autofocus="true" type="password" id="password" class="form-control f-10"
+                  placeholder="Enter new password" formControlName="password"
+                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" required>
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.hasError('required')">Password is required</div>
+                </div>
+              </div>
+              <br>
+
+              <div class="form-label-group" style="text-align: left;">
+                <label for="inputPassword">Re type Password</label>
+                <input autofocus="true" type="password" id="conpassword" class="form-control f-10"
+                  placeholder="Confirm your password" formControlName="conpassword"
+                  [ngClass]="{ 'is-invalid': submitted && f.conpassword.errors }" required>
+                <div *ngIf="submitted && f.conpassword.errors" class="invalid-feedback">
+                  <div *ngIf="f.conpassword.hasError('required')">Confirm your password</div>
+                </div>
+              </div>
+
+
+              <!-- <mat-form-field >
+        <input matInput  placeholder="New password" [type]="hide ? 'password' 
+          : 'text'" [formControl]="passFormControl" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 
+          'visibility_off'}}</mat-icon>
+        <mat-error *ngIf="passFormControl.hasError('required')">
+            Please enter your newpassword
+         </mat-error>
+      </mat-form-field>
+      <mat-form-field >
+         <input matInput  placeholder="Confirm password" [type]="hide ? 
+              'password' : 'text'" [formControl]="confirmFormControl" 
+                    required>
+         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 
+                'visibility_off'}}</mat-icon>
+         <mat-error *ngIf="confirmFormControl.hasError('required')">
+          Confirm your password
+          </mat-error>
+      </mat-form-field> -->
+
+
+
+              <div class="col-md-12">
+                <button class="signin-btn mt-5 col-md-5" [disabled]="form.invalid">Reset</button>&nbsp;
+                <button class="can-btn mt-2 col-md-5" [routerLink]="['/home/users/userlist']">Cancel</button>
+              </div>
+            </form>
+
+
+
+
+
+            <br>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-3 col-xs-3 col-lg-3">
+        <img id="logo" class="my-4" src="assets/img/9.gif">
+      
+        <img id="logo" class="my-4" src="assets/img/10.gif">
+        <p id="at">UPASSET</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+

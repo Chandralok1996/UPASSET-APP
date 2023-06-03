@@ -1,0 +1,16 @@
+.alert {
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    z-index: 105;
+    bottom: 20;
+    position: absolute;
+    /* top: 0; */
+    left: 20;
+    right: 0;
+    width: fit-content;
+}
+.mt-4, .my-4 {
+    margin-top: 3.5rem!important;
+}

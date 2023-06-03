@@ -1,0 +1,205 @@
+<div style="background-color: white;">
+<!-- <div class="row mt-4">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+
+        <div class="input-group mb-2 ml-5 mt-3">
+
+            <button type="button" id="newt" style="cursor:pointer; " data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <i class=" fa fa-plus"></i>&nbsp;&nbsp;NEW</button>
+            <div class="dropdown-menu">
+
+                <button style="border: transparent;width: -webkit-fill-available; cursor:pointer;"
+                    [routerLink]="['/home/users/new-article']" class="dropdown-item">Article</button>
+                <button style="border: transparent;width: -webkit-fill-available; cursor:pointer;"
+                    class="dropdown-item">Knowledge Base</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="row mt-4">
+    <div class="col-md-8">       
+                <div class="row ml-3">   
+                  <div class="profile-name">NEW Article</div>
+                </div>
+
+                  <ng-template #content let-modal>
+                <div class="container" style="width:300px; height:150px;">
+                  <div>
+                    <p style="text-align:center; padding:15px; margin-top:10px;">Are you sure you
+                      want to cancel the current operation?
+                    <p>
+                  </div>
+        
+                  <div class="clear-fix" style="text-align:center; padding-bottom:15px;">
+                    <button type="button"
+                      style="margin-right:25px; border-radius:5px; background-color:#bebebe; height:30px; width:110px; font-size:12px; border: none; outline: none;"
+                      (click)="modal.close('Close click');close()">Cancel</button>
+                    <button type="button"
+                      style=" background-color:rgb(62,144,249); border-radius:5px;height:30px; width:110px; font-size: 12px; border: none; outline: none; color:white"
+                      (click)="modal.close('Close click')">Keep editing</button>
+                  </div>
+                </div>
+              </ng-template>
+              <button type="button" class="create-new float-right" (click)="openVerticallyCentered(content)">Cancel</button>
+        
+          
+          <hr class="hr">
+
+    </div>
+</div>
+
+<div class="scroll" (scroll)="divScroll($event)">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" style="padding: 10px;">
+  
+    <div class="row">
+       
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <!-- <label id="label1"> User Name <span class="required-asterisk">*</span></label> -->
+      
+                    <ng-autocomplete style="box-shadow: none;border-radius: 3px;"
+                    placeholder="Select Author Name"
+                     [data]="username"
+                      [searchKeyword]="keyword1"
+                       class="f-10"
+                      (selected)='selectEvent($event)'
+                       (inputChanged)='onChangeSearch($event)'
+                        (inputFocused)='onFocused($event)'
+                      [itemTemplate]="itemTemplate"
+                       [notFoundTemplate]="notFoundTemplate"
+                      [ngClass]="{ 'is-invalid': submitted && f.userid.errors }">
+                    </ng-autocomplete>
+                    <ng-template #itemTemplate let-item>
+                      <a [innerHTML]="item.username"></a>
+                    </ng-template>
+                    <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                    </ng-template>
+      
+                    <div *ngIf="submitted && f.userid.errors || f.userid.invalid && (f.userid.dirty || f.userid.touched)"
+                      style="color: red; font-size: 12px;">
+                      <div *ngIf="f.userid.errors.required">User Name is required</div>
+                    </div>
+      
+                  </div>
+                <div class="col-md-6">
+                    <select class="form-control" formControlName="kmctid">
+                        <option hidden>Select Category</option>
+                        <option *ngFor="let cat of category">{{cat.category_name}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.kmctid.errors || f.kmctid.invalid && (f.kmctid.dirty || f.kmctid.touched)"
+                      style="color: red; font-size: 12px;">
+                      <div *ngIf="f.kmctid.errors.required">Category is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" formControlName="docname" placeholder="Please provide the title of the file">  
+                    <div *ngIf="submitted && f.docname.errors || f.docname.invalid && (f.docname.dirty || f.docname.touched)"
+                      style="color: red; font-size: 12px;">
+                      <div *ngIf="f.docname.errors.required">Document Name is required</div>
+                    </div>                    
+                </div>              
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-12" >             
+                 <div class="fileUploadWrapper"  style="border: 1px solid rgb(202, 201, 201);">
+               
+                    <div class="row">
+                        <!-- Progress Bar -->
+                        <div class="col-md-12" *ngIf="progress">
+                            <div class="progress form-group">
+                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                    [style.width.%]="progress">
+                                   
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-md-12">
+                            <div class="fileupload" appDragDropFileUpload (click)="fileField.click()"
+                                (fileDropped)="upload($event)">
+                                <span class="ddinfo">Choose a file or drag here</span>
+                                <input type="file"  name="avatars"  #fileField (change)="upload($event.target.files)" hidden multiple required>
+                               
+                            </div>
+                        </div>
+            
+                        <div class="col-md-12">
+                            <div class="image-list" *ngFor="let file of fileArr; let i = index">
+                                <div class="profile">
+                                    <img [src]="sanitize(file['url'])" alt="">
+                                </div>
+                                <p>{{file.item.name}} 
+                                    <button  type="button" (click)="remove(i)" style="text-align:right;padding: .375rem 12.75rem;border: none;background-color: #C2DFFC;" class="close-btn">
+                                        <i class="fa fa-close"></i>
+                                    </button>
+                                </p>
+                            </div>
+                            <p class="message">{{msg}}</p>
+                        </div>
+                    </div>
+            </div>
+           <!-- <input class="form-control mt-3"> -->
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <textarea class="form-control" rows="3" formControlName="file_abstract" placeholder="Please provide abstract of the document" required></textarea>
+            <div *ngIf="submitted && f.file_abstract.errors || f.file_abstract.invalid && (f.file_abstract.dirty || f.file_abstract.touched)"
+            style="color: red; font-size: 12px;">
+            <div *ngIf="f.file_abstract.errors.required">Abstract is required</div>
+          </div>
+        </div>
+    </div>
+    
+<div class="row mt-2">
+    <div class="col-md-12">
+        <input class="form-control" formControlName="keyword" placeholder="Add keyword here">
+        <div *ngIf="submitted && f.keyword.errors || f.keyword.invalid && (f.keyword.dirty || f.keyword.touched)"
+                      style="color: red; font-size: 12px;">
+                      <div *ngIf="f.keyword.errors.required">Keyword is required</div>
+                    </div>
+    </div>
+</div>
+
+<div class="row mt-2" *ngIf="result">
+    <div class="col-md-12">
+
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Warning!</strong> {{result}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    </div>
+  </div> 
+</div>
+
+</div>
+
+ 
+         
+
+    <div class="row mt-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+            <button [disabled]="form.invalid"  style="cursor: pointer;" class="cust-create-btn ml-2">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1 "></span>
+                CREATE</button>
+  
+        </div>
+    </div>
+
+</form>
+</div>
+
+</div>

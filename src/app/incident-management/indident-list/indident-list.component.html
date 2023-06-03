@@ -1,0 +1,230 @@
+<br>
+
+<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 "
+  style="background-color:white;margin-top: 0.8rem;border-radius: 3px;">
+
+
+  <ul ngbNav #nav="ngbNav" class="nav-tabs" style="border-radius: 3px;">
+    <li [ngbNavItem]="1" class="mt-2">
+      <a ngbNavLink><span><b>My Tickets
+          </b></span> <b class="ml-5 nav-no">{{myTicketCount}}</b></a>
+
+      <ng-template ngbNavContent>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <input type="text" class="button3 buttonb" id="action3" placeholder="ex:550001 "
+              (keyup)="applyFilterMyTicket($event.target.value)">
+
+          </div>
+          <div class="col-sm-4">
+            <select class="button3 buttonb" id="action4" (change)="sortMyTicket($event.target.value)">
+              <option [value]="0" [disabled]="true" selected>Select one category </option>
+              <option>
+
+              </option>
+            </select>
+          </div>
+
+
+          <div class="col-sm-5 col-md-5 col-xs-5 col-lg-5 col-xl-5" style="text-align:end; margin-left: -20px;">
+            <button type="button" id="newt1" (click)="openFilter()" class="mr-1 ">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel"
+                viewBox="0 0 16 16">
+                <path
+                  d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
+              </svg>&nbsp;&nbsp;
+
+              FILTER</button>&nbsp;
+            <button type="button" style="margin-right: 11px;" id="newt" (click)="openDialog()"><i
+                class=" fa fa-plus"></i>NEW TICKET</button>
+          </div>
+        </div>
+
+        <div class="scroll" (scroll)="divScroll($event)">
+
+          <div class="row mt-4" *ngIf="myTicketCount === 0 " style="text-align: center;">
+            <div class="col-md-12">
+              <!-- <div class="card"  style="background-color: #E5E5E5;" >
+              <div class="card-body" > -->
+              <p>No Tickets</p>
+              <!-- </div>
+                </div> -->
+            </div>
+          </div>
+
+          <div class="row" *ngFor="let ticket of myTicket ">
+            <div class="col-md-12">
+              <div class="card vl">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <p type="button" style="cursor: pointer;" [routerLink]="['/home/users/incpdp',ticket.inid_id]"
+                        id="description">{{ticket.short_desc}}</p>
+                      <div class="row">
+                        <div class="col-md-7 col-sm-7">
+                          <a style="text-align: left;"> <span id="incid" class="la la-trash">
+                              {{ticket.inid_id}}</span></a>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                          <p id="group">Assigned Group: {{ticket.sgname}} </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-7 col-sm-7">
+                          <p id="from">From: {{ticket.openedby}}/{{ticket.openedbyempid}}</p>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                          <p id="created">Created :{{ticket.created}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                      <div class="vl"></div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                      <p id="assignedto">Assigned To</p>
+                      <p id="status">Status:</p>
+                      <p id="priority">Priority:</p>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                      <p id="assignedto1">{{ticket.assignedto}}</p>
+                      <p id="status1">{{ticket.status}}</p>
+                      <p id="priority1">{{ticket.priority}}</p>
+
+                    </div>
+
+
+                  </div>
+
+
+                </div>
+
+
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2" class="mt-2">
+      <a ngbNavLink><span><b>All Tickets
+          </b></span> <b class="ml-5 nav-no">{{allTicketCount}}</b></a>
+      <ng-template ngbNavContent>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <input type="text" class="button3 buttonb" id="action3" placeholder="Search Tickets "
+              (keyup)="applyFilter($event.target.value)">
+
+          </div>
+          <div class="col-sm-4">
+            <select class="button3 buttonb" id="action4" (change)="sortAllTicket($event.target.value)">
+              <option [value]="0" [disabled]="true" selected>Select Priority</option>
+              <option *ngFor="let priority of selected">
+                {{ priority}}
+              </option>
+            </select>
+          </div>
+          <!-- <div class="col-md-3 col-sm-3 col-xs-2 col-lg-3 col-xl-3"></div>
+          <div class="col-sm-2 col-md-2">
+            <button type="button" id="newt1" (click)="openFilter()"  >FILTER</button>
+          
+           </div> -->
+          <div class="col-sm-5 col-md-5 col-xs-5 col-lg-5 col-xl-5" style="text-align:end; margin-left: -20px;">
+            <button type="button" id="newt1" (click)="openFilter()" class="mr-1 ">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel"
+                viewBox="0 0 16 16">
+                <path
+                  d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
+              </svg>&nbsp;&nbsp;
+
+              FILTER</button>&nbsp;
+            <button type="button" style="margin-right: 11px;" id="newt" (click)="openDialog()"><i
+                class=" fa fa-plus"></i>NEW TICKET</button>
+          </div>
+
+        </div>
+
+        <div class="scroll" (scroll)="divScroll($event)">
+
+          <div class="row mt-4" *ngIf="allTicketCount === 0 " style="text-align: center;">
+            <div class="col-md-12">
+              <!-- <div class="card"  style="background-color: #E5E5E5;">
+            <div class="card-body" > -->
+              <p>No Tickets</p>
+              <!-- </div>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="row" *ngFor="let ticket of allTicket">
+            <div class="col-md-12">
+              <div class="card vl">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <p type="button" style="cursor: pointer;" [routerLink]="['/home/users/incpdp',ticket.inid_id]"
+                        id="description">{{ticket.short_desc}}</p>
+                      <div class="row">
+                        <div class="col-md-7 col-sm-7">
+                          <a style="text-align: left;"> <span id="incid" class="la la-trash">
+                              {{ticket.inid_id}}</span></a>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                          <p id="group">Assigned Group: {{ticket.sgname}} </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-7 col-sm-7">
+                          <p id="from">From: {{ticket.openedby}}/{{ticket.openedbyempid}}</p>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                          <p id="created">Created :{{ticket.created}}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                      <div class="vl"></div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                      <p id="assignedto">Assigned To</p>
+                      <p id="status">Status:</p>
+                      <p id="priority">Priority:</p>
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                      <p id="assignedto1">{{ticket.assignedto}}</p>
+                      <p id="status1">{{ticket.status}}</p>
+                      <p id="priority1">{{ticket.priority}}</p>
+
+                    </div>
+
+
+                  </div>
+
+
+                </div>
+
+
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+    </li>
+
+
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

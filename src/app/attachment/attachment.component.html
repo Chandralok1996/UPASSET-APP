@@ -1,0 +1,23 @@
+<!-- <i class="material-icons"  style="cursor:pointer;position:absolute;top:75px;left:930px" (click)="onNoClick()">close</i> -->
+
+<i class="material-icons close"  style="cursor:pointer;" (click)="onNoClick()">close</i>
+
+
+<div class="form-group" >
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <p id="p1">NEW ASSET </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+<input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>
+<br>
+<button type="button" class="btn btn-success btn-s mt-3" (click)="upload()">
+    <i class="glyphicon glyphicon-open-file"></i>&nbsp;Upload
+</button>
+
+    </div>
+</div>

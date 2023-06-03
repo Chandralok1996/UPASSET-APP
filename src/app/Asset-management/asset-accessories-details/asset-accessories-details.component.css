@@ -1,0 +1,25 @@
+#id{
+    font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+color: #2A2B2D;
+}
+
+#headp{
+    float: left;
+    font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-decoration-line: underline;
+  color: #2A2B2D;
+  margin-left: 0px;
+  cursor: pointer;
+  }
+  #hr{
+    position: relative;
+    border: 1px solid #c0bdbd;
+  }

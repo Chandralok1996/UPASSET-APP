@@ -1,0 +1,90 @@
+<div>
+    <div class="row">
+ 
+  <div class="col-md-3">
+    <p id="headp" (click)="routeLink()">Back &nbsp;<span>></span>&nbsp; </p>
+  </div>
+</div>
+<div class="row" *ngFor="let detail of details">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 ml-3" style="background-color: white;border-radius: 3px;">
+<br>
+<div class="row ml-3">
+    <div class="col-md-9">
+        <p id="id">{{detail.astd_id}}</p>
+    </div>
+</div>
+
+
+<div class="row ml-3">
+    <div class="col-sm-9">
+    <hr id="hr">
+    </div>
+</div>
+
+<div class="row ml-3">
+    <div class="col-md-2">
+        <p>User Name</p>
+        <p>Department</p>
+        <p>Asset Number</p>
+        <p>Status</p>
+        <p>Group</p>
+        <p>Category</p>
+        <p>Asset Type</p>
+        <p>Purchase Date</p>
+        <p>Assigned Date</p>
+        <p>Expiry Date</p>
+        <p>Serial Number</p>
+        <p>Finance Asset Number</p>
+      
+       
+    </div>
+    <div class="col-md-3">
+        <p>{{detail.name == null || detail.name == ' ' ? ("null") : (detail.name)}}</p>
+        <p>{{detail.deptname  == null || detail.deptname == ' ' ? ("null") : (detail.deptname)}}</p>
+        <p>{{detail.assetno == null || detail.assetno == ' ' ? ("null") : (detail.assetno)}}</p>
+        <p>{{detail.status == null || detail.status == ' ' ? ("null") : (detail.status)}}</p>
+        <p>{{detail.astg_group == null || detail.astg_group == ' ' ? ("null") : (detail.astg_group)}}</p>
+        <p>{{detail.category == null || detail.category == ' ' ? ("null") : (detail.category)}}</p>
+        <p>{{detail.asset_type == null || detail.asset_type == ' ' ? ("null") : (detail.asset_type)}}</p>
+        <p>{{detail.purchase == null || detail.purchase == ' ' ? ("null") : (detail.purchase)}}</p>
+        <p>{{detail.assigned == null || detail.assigned == ' ' ? ("null") : (detail.assigned)}}</p>
+        <p>{{detail.expiry == null || detail.expiry == ' ' ? ("null") : (detail.expiry)}}</p>
+        <p>{{detail.serialno == null || detail.serialno == ' ' ? ("null") : (detail.serialno)}}</p>
+        <p>{{detail.fastno  == null || detail.fastno == ' ' ? ("null") : (detail.fastno)}}</p>
+       
+
+      
+
+    </div>
+    <div class="col-md-3">
+        <p>Monitor</p>
+        <p>Description</p>
+        <p>PO Number</p>
+        <p>Warranty</p>
+        <p>Vendor</p>
+        <p>Vendor Location</p>
+        <p>Maintainance Authority</p>
+        <p>Maintainance Expiry</p>
+        <p>Warrent Start Date</p>
+        <p>Warrent End Date</p>
+       
+    </div>
+    <div class="col-md-3">
+        <p>{{detail.monitor == null || detail.monitor == ' ' ? ("null") : (detail.monitor)}}</p>
+        <p>{{detail.description == null || detail.description == ' ' ? ("null") : (detail.description)}}</p>
+        <p>{{detail.pon == null || detail.pon == ' ' ? ("null") : (detail.pon)}}</p>
+        <p>{{detail.warranty == null || detail.warranty == ' ' ? ("null") : (detail.warranty)}}</p>
+        <p>{{detail.vendor == null || detail.vendor == ' ' ? ("null") : (detail.vendor)}}</p>
+        <p>{{detail.vloc == null || detail.vloc == ' ' ? ("null") : (detail.vloc)}}</p>
+        <p>{{detail.mauth == null || detail.mauth == ' ' ? ("null") : (detail.mauth)}}</p>
+        <p>{{detail.mexp == null || detail.mexp == ' ' ? ("null") : (detail.mexp)}}</p>
+        <p>{{detail.wsdate == null || detail.wsdate == ' ' ? ("null") : (detail.wsdate)}}</p>
+        <p>{{detail.wedate == null || detail.wedate == ' ' ? ("null") : (detail.wedate)}}</p>
+       
+    </div>
+
+</div>
+
+</div>
+</div>
+</div>

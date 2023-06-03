@@ -1,0 +1,131 @@
+<div>
+    <div class="row">
+ 
+  <div class="col-md-3">
+    <p id="headp">Asset Management &nbsp;<span>></span>&nbsp;Asset </p>
+  </div>
+</div>
+<div class="row" *ngFor="let detail of details">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 ml-3" style="background-color: white;border-radius: 3px;">
+<br>
+<div class="row ml-3">
+    <div class="col-md-9">
+        <p id="id">{{detail.astd_id}}</p>
+    </div>
+</div>
+
+
+<div class="row ml-3">
+    <div class="col-sm-9">
+    <hr id="hr">
+    </div>
+</div>
+
+<div class="row ml-3">
+    <div class="col-md-2">
+        <p>User Name</p>
+        <p>Department</p>
+        <p>Asset Number</p>
+        <p>Status</p>
+        <p>Group</p>
+        <p>Category</p>
+        <p>Asset Type</p>
+        <p>Purchase Date</p>
+        <p>Assigned Date</p>
+        <p>Expiry Date</p>
+        <p>Serial Number</p>
+        <p> bladeslot</p>
+        <p>disksize</p>
+        <p>hostname</p>
+        <p>hwclass</p>
+        <p>ip</p>
+        <p>mac</p>
+        <p>make</p>
+        <p>managementip</p>
+        <p>model</p>
+        <p>totalstorage</p>
+       
+    </div>
+    <div class="col-md-3">
+        <p>{{detail.first_name == null || detail.first_name == ' ' ? ("null") : (detail.first_name)}}</p>
+        <p>{{detail.deptname  == null || detail.deptname == ' ' ? ("null") : (detail.deptname)}}</p>
+        <p>{{detail.assetno == null || detail.assetno == ' ' ? ("null") : (detail.assetno)}}</p>
+        <p>{{detail.status == null || detail.status == ' ' ? ("null") : (detail.status)}}</p>
+        <p>{{detail.astg_group == null || detail.astg_group == ' ' ? ("null") : (detail.astg_group)}}</p>
+        <p>{{detail.category == null || detail.category == ' ' ? ("null") : (detail.category)}}</p>
+        <p>{{detail.asset_type == null || detail.asset_type == ' ' ? ("null") : (detail.asset_type)}}</p>
+        <p>{{detail.purchase == null || detail.purchase == ' ' ? ("null") : (detail.purchase)}}</p>
+        <p>{{detail.assigned == null || detail.assigned == ' ' ? ("null") : (detail.assigned)}}</p>
+        <p>{{detail.expiry == null || detail.expiry == ' ' ? ("null") : (detail.expiry)}}</p>
+        <p>{{detail.serialno == null || detail.serialno == ' ' ? ("null") : (detail.serialno)}}</p>
+        <p>{{detail.bladeslot == null || detail.bladeslot == ' ' ? ("null") : (detail.bladeslot)}}</p>
+        <p>{{detail.disksize == null || detail.disksize == ' ' ? ("null") : (detail.disksize)}}</p>
+        <p>{{detail.hostname == null || detail.hostname == ' ' ? ("null") : (detail.hostname)}}</p>
+        <p>{{detail.hwclass == null || detail.hwclass == ' ' ? ("null") : (detail.hwclass)}}</p>
+        <p>{{detail.ip == null || detail.ip == ' ' ? ("null") : (detail.ip)}}</p>
+        <p>{{detail.mac == null || detail.mac == ' ' ? ("null") : (detail.mac)}}</p>
+        <p>{{detail.make == null || detail.make == ' ' ? ("null") : (detail.make)}}</p>
+        <p>{{detail.managementip == null || detail.managementip == ' ' ? ("null") : (detail.managementip)}}</p>
+        <p>{{detail.model == null || detail.model == ' ' ? ("null") : (detail.model)}}</p>
+        <p>{{detail.totalstorage == null || detail.totalstorage == ' ' ? ("null") : (detail.totalstorage)}}</p>
+        
+    </div>
+    <div class="col-md-3">
+        <p>totcore</p>
+        <p>ncorecard</p>
+        <p>ncorepercard</p>
+        <p>nic</p>
+        <p>os</p>
+        <p>rackno</p>
+        <p>ramslot</p>
+        <p>rsize</p>
+        <p>rtype</p>
+        <p>sertype</p>
+        <p>sp</p>
+        <p>speed</p>
+        <p>storagetype</p>
+        <p>PO Number</p>
+        <p>Warranty</p>
+        <p>Vendor</p>
+        <p>Vendor Location</p>
+        <p>Maintainance Authority</p>
+        <p>Maintainance Expiry</p>
+        <p>Warrent Start Date</p>
+        <p>Warrent End Date</p>
+        <p>Finance Asset Number</p>
+       
+    </div>
+    <div class="col-md-3">
+        <p>{{detail.totcore == null || detail.totcore == ' ' ? ("null") : (detail.totcore)}}</p>
+       
+        <p>{{detail.ncorecard == null || detail.ncorecard == ' ' ? ("null") : (detail.ncorecard)}}</p>
+        <p>{{detail.ncorepercard == null || detail.ncorepercard == ' ' ? ("null") : (detail.ncorepercard)}}</p>
+        <p>{{detail.nic == null || detail.nic == ' ' ? ("null") : (detail.nic)}}</p>
+        <p>{{detail.os == null || detail.os == ' ' ? ("null") : (detail.os)}}</p>
+        <p>{{detail.rackno == null || detail.rackno == ' ' ? ("null") : (detail.rackno)}}</p>
+        <p>{{detail.ramslot == null || detail.ramslot == ' ' ? ("null") : (detail.ramslot)}}</p>
+        <p>{{detail.rsize == null || detail.rsize == ' ' ? ("null") : (detail.rsize)}}</p>
+        <p>{{detail.rtype == null || detail.rtype == ' ' ? ("null") : (detail.rtype)}}</p>
+        <p>{{detail.sertype == null || detail.sertype == ' ' ? ("null") : (detail.sertype)}}</p>
+        <p>{{detail.sp == null || detail.sp == ' ' ? ("null") : (detail.sp)}}</p>
+        <p>{{detail.speed == null || detail.speed == ' ' ? ("null") : (detail.speed)}}</p>
+        <p>{{detail.storagetype == null || detail.storagetype == ' ' ? ("null") : (detail.storagetype)}}</p>
+        <p>{{detail.pon == null || detail.pon == ' ' ? ("null") : (detail.pon)}}</p>
+        <p>{{detail.warranty == null || detail.warranty == ' ' ? ("null") : (detail.warranty)}}</p>
+        <p>{{detail.vendor == null || detail.vendor == ' ' ? ("null") : (detail.vendor)}}</p>
+        <p>{{detail.vloc == null || detail.vloc == ' ' ? ("null") : (detail.vloc)}}</p>
+        <p>{{detail.mauth == null || detail.mauth == ' ' ? ("null") : (detail.mauth)}}</p>
+        <p>{{detail.mexp == null || detail.mexp == ' ' ? ("null") : (detail.mexp)}}</p>
+        <p>{{detail.wedate == null || detail.wedate == ' ' ? ("null") : (detail.wedate)}}</p>
+        <p>{{detail.wsdate == null || detail.wsdate == ' ' ? ("null") : (detail.wsdate)}}</p>
+        <p>{{detail.fastno  == null || detail.fastno == ' ' ? ("null") : (detail.fastno)}}</p>
+       
+
+
+    </div>
+
+</div>
+
+</div>
+</div>
+</div>

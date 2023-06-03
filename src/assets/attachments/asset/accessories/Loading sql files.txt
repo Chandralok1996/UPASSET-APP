@@ -1,0 +1,6 @@
+in
+ D:\PostgreSQL\11\bin
+.\psql.exe -U postgres -d tkii -f D:\files\tkii10dec.sql
+
+
+password:tkiipsqladmin

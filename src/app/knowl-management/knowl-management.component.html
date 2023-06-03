@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 col-fhd-12" style="
+   
+                    background: url('assets/img/bg-search.png')  ;
+                    background-repeat:no repeat;
+                    background-size: 100% 100%;
+                    overflow-x: hidden  ;
+                    height: 55vh; margin-top: 30px;">
+                </div>
+
+                <div class="search-head">
+                    <div class="search-text">
+                        How can i help you ?
+                    </div>
+
+
+                    <div class="se">
+   
+                        <form [formGroup]="form" (ngSubmit)="searchAPI()">
+                        <div class="search-box">
+                            <input type="text" class="search-box-input" formControlName="data" placeholder="What are you looking for ?">
+                            <button type="submit" class="search-box-btn" >
+                                <i class="search-box-icon material-icons">search</i>
+                            </button>
+                        </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+<br>
+            <div class="row">
+               <div class="" style="margin-left: 30%;">
+                    <div class="lab-name"></div>
+                    <p class="name-p">KB Name</p>
+                   
+                </div>
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="">
+                    <div class="lab-name"></div>
+                    <p class="name-p">KB Name</p>
+                   
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="">
+                    <div class="lab-name"></div>
+                    <p class="name-p">KB Name</p>
+                   
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="">
+                    <div   style="cursor: pointer;">
+                        <button (click)="dotShow()" class="plus">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                      </svg>
+                    </button>
+                    </div>
+                    <p class="name-p">Add New</p>
+
+                    <div class="" [hidden]="!isShow" style="background-color: white;margin-top: -100px;margin-left: 100px;">
+
+                        <button style="border: transparent;width: -webkit-fill-available; cursor:pointer;"
+                            [routerLink]="['/home/users/new-article']" class="dropdown-item">Article</button>
+                        <button style="border: transparent;width: -webkit-fill-available; cursor:pointer;"
+                            class="dropdown-item">Knowledge Base</button>
+                    </div>
+                   
+                </div>
+                
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

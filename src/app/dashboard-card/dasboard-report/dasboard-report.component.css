@@ -1,0 +1,63 @@
+table {
+
+    width: 100%;
+
+    box-shadow: none;
+
+  }
+
+  .mat-header-cell
+
+  {
+
+    background-color: #C4C4C4;
+
+    color: #292626;
+
+  font-family: TKReg;
+
+    font-style: normal;
+
+    font-weight: bold;
+
+    font-size: 15px;
+
+    line-height: 16px;
+
+  }
+ .tbl-data
+ {
+   width:1020px;
+   height:500px;
+   overflow-x: scroll;
+   text-transform: capitalize;
+
+ }
+ table th,td{
+   width:auto !important;
+ }
+ 
+ table th{
+   width:250px !important;
+ }
+  #action1{
+
+           
+
+    width: 300px;
+
+    height: 35px;
+
+    padding: 17px;
+
+    font-family: TKReg;
+
+    border: 1px solid #C4C4C4;
+
+    box-sizing: border-box;
+
+    border-radius: 5px;
+
+ 
+
+  }

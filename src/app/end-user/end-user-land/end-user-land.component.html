@@ -1,0 +1,288 @@
+
+<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 mt-1"
+style="background-color:white;margin-top: 35px;border-radius: 7px;">
+
+
+<!-- 
+  <form > -->
+<div class="row mt-3">
+  <div class="col-sm-2 mt-2" >
+    <p id="p2"><b>My Tickets</b></p>
+  </div>
+  <div class="col-sm-3 mt-2">
+    <p id="p3"><b>{{myTicketCount}}</b></p>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
+    <select  class="button3 buttonb form-control" id="action5" (change)="getmyTicket($event.target.value)">
+      <option>Last 24 hours</option>
+      <option>Last 7 days</option>
+      <option>Last 30 days</option>
+      <option>Select date</option>
+    </select>
+  </div>
+
+  <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
+    <input type="text" class="button3 buttonb form-control" id="action3" (keyup)="applyFilterMyticket($event.target.value)"
+      placeholder="Search Tickets">
+  </div>
+  <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
+    <select id="action4" class="button3 buttonb form-control" style="color: #646464;" (change)="onCitySelect($event.target.value)">
+      <option [value]="0" [disabled]="true" selected>
+        <p style="color: #646464;border-color: white;">Select Priority </p>
+      </option>
+
+      <option *ngFor="let city of selected1" style="color:black;border-left: none;">
+        {{ city}}
+      </option>
+    </select>
+  </div>
+
+  <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3" style="text-align: end;">
+    <!-- <button type="button" style="cursor: pointer;" id="newt" (click)="openDialog()"><img
+        style="height:20px;width:20px;text-align:left;border:1px solid #007aff"
+        src="assets/img/Add New Icon.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NEW TICKET</button> -->
+
+        <button type="button" id="newt" (click)="openDialog()"><i
+          class=" fa fa-plus"></i>NEW TICKET</button>
+   
+
+  </div>
+</div>
+
+
+<div  *ngIf="myticketData === 'Select date' ">      
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+         <div class="row ml-2">
+            <div class="col-md-4 ">
+              <label>Start Date</label>
+              <input type="date"  class="form-control" formControlName="startDate">
+              <div *ngIf="submitted && f.startDate.errors || f.startDate.invalid && (f.startDate.dirty || f.startDate.touched)"
+              style="color: red; font-size: 12px;">
+              <div *ngIf="f.startDate.errors.required">Start Date is required</div>
+            </div>
+          </div>
+  
+          <div class="col-md-4 ">
+              <label>End Date</label>
+              <input type="date" class="form-control" formControlName="endDate">
+              <div *ngIf="submitted && f.endDate.errors || f.endDate.invalid && (f.endDate.dirty || f.endDate.touched)"
+              style="color: red; font-size: 12px;">
+              <div *ngIf="f.endDate.errors.required">End Date is required</div>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+              <br>
+              <button type="submit" class="btn btn-primary">SUBMIT</button>
+          </div>
+         
+        </div>
+          </form>
+  </div>
+  
+
+
+<br>
+
+
+
+
+  <div class="row mt-4" *ngIf="myTicketCount === 0 " style="text-align: center;">
+    <div class="col-md-12">
+      <!-- <div class="card"  style="background-color: #E5E5E5;">
+      <div class="card-body" > -->
+      <p>No Tickets</p>
+      <!-- </div>
+        </div> -->
+    </div>
+  </div>
+
+<div class="scroll mt-3" (scroll)="divScroll($event)" *ngIf="myTicketCount !== 0 ">
+
+  <div class="row" *ngFor="let ticket of myTicket">
+    <div class="col-md-12">
+
+      <div class="card ml" *ngIf="ticket.priority === 'Medium' ">
+
+
+        <div class="card-body " >
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <p type="button" id="description" [routerLink]="['/home/users/incpdp',ticket.inid_id]">
+                {{ticket.short_desc}}</p>
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                  <a style="text-align: left;"> <span id="incid" class="la la-trash"> {{ticket.inid_id}}</span></a>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                  <p id="group">Assigned Group: {{ticket.sgname}} </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                  <p id="from">From: {{ticket.openedby}}/{{ticket.openedbyempid}}</p>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                  <p id="created">Created :{{ticket.createddate}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 col-sm-1">
+              <div class="vl"></div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+              <p id="assignedto">Last Updated:</p>
+              <p id="status">Assigned To</p>
+              <p id="priority">Status:</p>
+            </div>
+
+            <div class="col-md-2 col-sm-2">
+              <p id="assignedto1">{{ticket.created}}</p>
+              <p id="status1">{{ticket.assignedto}}</p>
+              <p id="priority1">{{ticket.status}}</p>
+            
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="card hl" *ngIf="ticket.priority === 'High' ">
+        <div class="card-body" >
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <p type="button" id="description" [routerLink]="['/home/users/incpdp',ticket.inid_id]">
+                {{ticket.short_desc}}</p>
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                  <a style="text-align: left;"> <span id="incid" class="la la-trash"> {{ticket.inid_id}}</span></a>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                  <p id="group">Assigned Group: {{ticket.sgname}} </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                  <p id="from">From: {{ticket.openedby}}/{{ticket.openedbyempid}}</p>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                  <p id="created">Created :{{ticket.createddate}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 col-sm-1">
+              <div class="vl"></div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+              <p id="assignedto">Last Updated:</p>
+              <p id="status">Assigned To</p>
+              <p id="priority">Status:</p>
+            </div>
+
+            <div class="col-md-2 col-sm-2">
+              <p id="assignedto1">{{ticket.created}}</p>
+              <p id="status1">{{ticket.assignedto}}</p>
+              <p id="priority1">{{ticket.status}}</p>
+            
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="card hl" *ngIf="ticket.priority === 'Critical' ">
+          <div class="card-body" >
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <p type="button" id="description" [routerLink]="['/home/users/incpdp',ticket.inid_id]">
+                  {{ticket.short_desc}}</p>
+                <div class="row">
+                  <div class="col-md-7 col-sm-7">
+                    <a style="text-align: left;"> <span id="incid" class="la la-trash"> {{ticket.inid_id}}</span></a>
+                  </div>
+                  <div class="col-md-5 col-sm-5">
+                    <p id="group">Assigned Group: {{ticket.sgname}} </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-7 col-sm-7">
+                    <p id="from">From: {{ticket.openedby}}/{{ticket.openedbyempid}}</p>
+                  </div>
+                  <div class="col-md-5 col-sm-5">
+                    <p id="created">Created :{{ticket.createddate}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 col-sm-1">
+                <div class="vl"></div>
+              </div>
+              <div class="col-md-3 col-sm-3">
+                <p id="assignedto">Last Updated:</p>
+                <p id="status">Assigned To</p>
+                <p id="priority">Status:</p>
+              </div>
+  
+              <div class="col-md-2 col-sm-2">
+                <p id="assignedto1">{{ticket.created}}</p>
+                <p id="status1">{{ticket.assignedto}}</p>
+                <p id="priority1">{{ticket.status}}</p>
+              
+              </div>
+            </div>
+          </div>
+          </div>
+  
+
+
+        <div class="card ll" *ngIf="ticket.priority === 'Low' ">      
+          <div class="card-body " >
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <p type="button" id="description" [routerLink]="['/home/users/incpdp',ticket.inid_id]">
+                {{ticket.short_desc}}</p>
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                  <a style="text-align: left;"> <span id="incid" class="la la-trash"> {{ticket.inid_id}}</span></a>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                  <p id="group">Assigned Group: {{ticket.sgname}} </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                  <p id="from">From: {{ticket.openedby}}/{{ticket.openedbyempid}}</p>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                  <p id="created">Created :{{ticket.createddate}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 col-sm-1">
+              <div class="vl"></div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+              <p id="assignedto">Last Updated:</p>
+              <p id="status">Assigned To</p>
+              <p id="priority">Status:</p>
+            </div>
+
+            <div class="col-md-2 col-sm-2">
+              <p id="assignedto1">{{ticket.created}}</p>
+              <p id="status1">{{ticket.assignedto}}</p>
+              <p id="priority1">{{ticket.status}}</p>
+            
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- </form> -->
+
+</div>

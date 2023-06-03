@@ -1,0 +1,252 @@
+
+.card {
+    padding: 15px;
+    transition: 0.5s;
+    border-radius: 10px;
+    margin-left: 15px;
+  }
+
+  
+.active {
+    box-shadow: 0 0px 11px -2px #565353d4;
+    text-decoration: none;
+    transition: 0.5s;
+  }
+  
+  .not-active {
+    cursor: pointer;
+  }
+
+  .clear-all{
+    margin-top: -30px;
+    font-size: 12px;
+    }
+  
+  /* .font-sans {
+    font-family: TKReg;
+  } */
+
+  
+.cust-create-btn {
+    width: 215px;
+   height: 45px;
+   font-size: 16px;
+   position: relative;
+   left: 10%;
+   color: #fff;
+   border-radius: 10px;
+   background-color: #bebebe;
+   outline: none;
+   border: none;
+   font-weight: 600;
+   padding: 10px 15px 10px 15px;
+ }
+ .cust-create-btn:enabled {
+   width: 215px;
+   height: 45px;
+   font-size: 16px;
+   position: relative;
+   left: 10%;
+   color: #fff;
+   border-radius: 10px;
+   background-color: rgb(62, 144, 249);
+   outline: none;
+   border: none;
+   font-weight: 600;
+   padding: 10px 15px 10px 15px;
+ }
+
+ .create-new {
+    background-color: #fff;
+    color: rgb(117, 116, 116);
+    width: 100px;
+    outline: none;
+    border-color: #8d8b8b;
+   margin-top: -55px;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+  }
+
+  .profile-name{
+    font-size: 25px;
+    font-weight: 600;
+    color: #8c8c8c;
+    margin-top: 30px;
+  }
+
+  
+#user{
+  
+    width: 70px;
+    height: 70px;
+   
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-color: #C4C4C4;
+    }
+    #Choose{
+      font-family: TKReg;
+      font-style: italic;
+      font-weight: normal;
+      margin-left: 5px;
+      font-size: 13px;
+      text-decoration-line: underline;
+     
+      }
+      hr {
+        border: 1px solid #c0bfbf;
+        margin-top: 0px !important;
+      }
+
+      div.scroll {
+        height: 430px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        }
+
+
+
+ .autocomplete-container .input-container input {
+    font-size: 12px;
+    box-sizing: border-box;
+    border: none;
+    box-shadow: none;
+    outline: 0;
+    background-color: #fff;
+    color: rgba(0,0,0,.87);
+    width: 100%;
+    padding: 0 15px;
+    /* line-height: 40px; */
+    /* height: 20px; */
+}
+
+.mat.dialog.container {
+    overflow-y:hidden !important ;
+    padding: 0px;
+ 
+   }
+  
+#p3{
+    position: relative;
+    width: 637px;
+    height: 32px;
+    margin-left: -25px;
+    top: 10px;
+    padding: 5px 5px 5px 10px;
+    /* margin-bottom: 40px; */
+     
+   font-family: TKReg;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    background-color: #007AFF;
+     text-align: left;
+     
+    color: white;
+}
+
+
+#p1{
+    position: relative;
+    width: 280px;
+    height: 21px;
+    margin-left: 0px;
+    top: 10px;
+     
+   font-family: TKReg;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+     
+    color: #2A2B2D;
+}
+#p2{
+    position: relative;
+    width: 637px;
+    height: 32px;
+    margin-left: -25px;
+    top: 10px;
+    padding: 5px 5px 5px 10px;
+    /* margin-bottom: 40px; */
+     
+   font-family: TKReg;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    background-color: #007AFF;
+     text-align: left;
+     
+    color: white;
+}
+
+
+#label1{
+    position: relative;
+  
+    /* margin-top: 20px; */
+   
+     
+   font-family: TKReg;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 16px;
+     
+    color: #2A2B2D;
+    }
+
+#p5{
+    position: relative;
+    width: 637px;
+    height: 32px;
+    margin-left: -10px;
+    padding: 5px 5px 5px 10px;
+   
+     
+   font-family: TKReg;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: left;
+    background-color: #007AFF;
+     
+    color: white;
+}
+
+#savenupdate{
+    position: absolute;
+    width: 160px;
+    height: 30px;
+    /* margin-left: 216.5px;
+    top: 50px; */
+     
+   font-family: TKReg;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    background-color: #C4C4C4;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+     
+    color: #2A2B2D;
+}
+
+  .required-asterisk{
+    color: red;
+    font-weight: bold;
+    margin-left: 3px;
+    font-size: 1.9em;
+}
+
+input.ng-touched.ng-invalid {
+    border-color: red;
+  }
+  
+  select.ng-touched.ng-invalid {
+    border-color: red;
+  }

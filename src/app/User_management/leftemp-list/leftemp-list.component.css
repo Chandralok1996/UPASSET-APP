@@ -1,0 +1,198 @@
+
+table{
+    width:100%;
+    box-shadow: none;
+    }
+    .mat-column-select {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 28% !important;
+        width: 6% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        
+        .mat-column-first_name {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 28% !important;
+        width: 15% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        
+        .mat-column-user_id {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 28% !important;
+        width: 8% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        
+        .mat-column-description {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 28% !important;
+        width: 11% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        
+        .mat-column-createdtime {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 28% !important;
+        width: 18% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        
+        .mat-column-mobile {
+          word-wrap: break-word !important;
+          white-space: unset !important;
+          flex: 0 0 28% !important;
+          width: 10% !important;
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+          
+          word-break: break-word;
+          
+          -ms-hyphens: auto;
+          -moz-hyphens: auto;
+          -webkit-hyphens: auto;
+          hyphens: auto;
+          }
+          .mat-column-location {
+            word-wrap: break-word !important;
+            white-space: unset !important;
+            flex: 0 0 28% !important;
+            width: 10% !important;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            
+            word-break: break-word;
+            
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+            }
+        .mat-column-actions {
+          word-wrap: break-word !important;
+          white-space: unset !important;
+          flex: 0 0 28% !important;
+          width: 10% !important;
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+          
+          word-break: break-word;
+          
+          -ms-hyphens: auto;
+          -moz-hyphens: auto;
+          -webkit-hyphens: auto;
+          hyphens: auto;
+          }
+          .mat-header-cell
+          {
+            background-color: #C4C4C4;
+            color: #292626;
+            font-family: "Open Sans", sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 15px;
+            line-height: 16px;
+          }
+        
+#action1 {
+  width: 300px;
+ height: 35px;
+ padding: 17px;
+ font-family: TKReg;
+ border: 1px solid #C4C4C4;
+ box-sizing: border-box;
+ border-radius: 5px;
+}
+
+
+#newt{
+background-color: #007AFF;
+width: 160px;
+height: 40px;
+border: none;
+font-size: 15px;
+float: right;
+/* margin-top: 15px; */
+border-radius: 5px;
+color: white;
+outline: none;
+text-align: center;
+/* padding: 10px 15px 10px 15px; */
+font-weight: 600;
+}
+
+#newt:hover{
+text-decoration: none;
+transition: 0.5s;
+bottom: 2px;
+top: none;
+z-index: -1;
+box-shadow: 0 3px 8px 2px #565353d4;
+
+}
+.fa-plus{
+padding-right: 20px;
+
+}
+          #headp{
+
+            float: left;
+            font-family: Raleway;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 19px;
+            text-decoration-line: underline;
+            color: #2A2B2D;
+          
+
+          }
+          .mat-elevation-z8 {
+            box-shadow: none !important;
+        }
+       

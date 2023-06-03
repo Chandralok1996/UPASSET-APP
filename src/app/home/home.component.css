@@ -1,0 +1,58 @@
+.navbar-expand-sm{
+    position: fixed;
+    width: 100% fit-content;
+    height: 60px;
+    
+    background: rgb(0, 153, 255);
+  }
+  .navbar{
+    background-color: #007AFF;
+    padding: .2rem .9rem;
+   
+  
+    /* padding: .2rem , .4rem, ; */
+    /* padding: 16px 2px; */
+  }
+  body{
+    padding-top: 70px;
+  }
+  .navbar-brand{
+    margin-left: 5rem;
+    font-family: Rezland;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 36px;
+            line-height: 36px;   
+            color: white; 
+  }
+
+
+  
+  .col-sm-3half, .col-sm-8half {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+   
+    .col-sm-3half {
+        width: 21.56666667%;
+    }
+    .col-sm-8half {
+        width: 78.43333333%;
+    }
+}
+
+.dropdown-item{
+  padding: 3px 3px 3px 3px;
+ 
+}
+.hr-pro{
+  /* margin-top: 8px; */
+  padding: 3px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.1);
+}

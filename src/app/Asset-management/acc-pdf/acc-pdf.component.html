@@ -1,0 +1,148 @@
+<i class="material-icons close" style="cursor:pointer;" (click)="onNoClick()">close</i>
+
+
+
+<button type="button" class="btn btn-success" value="Convert" 
+ (click)="convetToPDF()">Download PDF</button> &nbsp;&nbsp;
+
+<button (click)="printPage()" class="btn btn-success">print</button>
+
+<div id="printable">
+<div class="container mt-4" id="content">
+  <div id="contentToConvert" class="pdf-content" *ngFor="let det of details" #content>
+   
+    <div class="row">
+      <div class="col-md-10" style="text-align: center;">
+        <h2>thyssenkrupp Industries India Pvt.Ltd., Pimpri,Pune</h2>
+      </div>
+      <div class="col-md-2">
+        <img style="width: 85px; height: auto; margin-top: 7%;" src="assets/img/thyssen.png">
+      </div>
+    </div>
+ 
+  <div class="row">
+    <div class="col-md-6">
+      Dear Mr./Ms. <b>{{det.name}} ({{det.empid}})</b><br>
+      8 ID : <b>{{det.eightid}}</b>
+    </div>
+
+    <div class="col-md-6" >
+      Dept: <b> {{det.deptname}} </b>
+    </div>
+
+    <div class="col-md-12">
+      <br><br>
+      <p><b>
+          Below IT Asset is issued to you on returnable basis as per your request and approval note.This Desktop is
+          company property and its your responsibility
+          to keep it in prper condition.
+        </b>
+      </p>
+    </div>
+
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-3">
+      <p><b>Issued Date</b></p>
+      <p><b>Make/Model</b></p>
+      <p><b>Serial No.</b></p>
+      <p><b>Asset No.</b></p>
+      <p><b>Other Accesories</b></p>
+    </div>
+    <div class="col-md-9">
+      <p>: {{date | date:'dd-MM-yyyy'}}</p>
+      <p>: {{det.make}}</p>
+      <p>: {{det.serialno}} </p>
+      <p>: {{det.assetno}}</p>
+      <input type="text" class="form-control" />
+    </div>
+
+  </div><br><br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <input type="text" /><br><br>
+      <p style="margin-left: 35px;"><b> For T & IS Dept </b></p>
+    </div>
+
+    <div class="col-md-6" style="text-align: end;">
+      <input type="text" /><br><br>
+      <p style="margin-right: 70px;"><b> User </b> </p>
+    </div>
+  </div>
+  <br>
+  <hr style="border-top:3px dotted rgb(104, 101, 101);">
+  <br><br>
+
+
+  <div class="row">
+    <div class="col-md-10" style="text-align: center;">
+      <h2>thyssenkrupp Industries India Pvt.Ltd., Pimpri,Pune</h2>
+    </div>
+    <div class="col-md-2">
+      <img style="width: 85px; height: auto; margin-top: 7%;" src="assets/img/thyssen.png">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      Dear Mr./Ms. <b>{{det.name}} ({{det.empid}})</b><br>
+      8 ID : <b>{{det.eightid}}</b>
+    </div>
+
+    <div class="col-md-6" >
+      Dept: <b> {{det.deptname}} </b>
+    </div>
+
+    <div class="col-md-12">
+      <br><br>
+      <p><b>
+          Below IT Asset is issued to you on returnable basis as per your request and approval note.This Desktop is
+          company property and its your responsibility
+          to keep it in prper condition.
+        </b>
+      </p>
+    </div>
+
+  </div>
+ 
+
+  <div class="row mt-2">
+    <div class="col-md-3">
+      <p><b>Issued Date</b></p>
+      <p><b>Make/Model</b></p>
+      <p><b>Serial No.</b></p>
+      <p><b>Asset No.</b></p>
+      <p><b>Other Accesories</b></p>
+    </div>
+    <div class="col-md-9">
+      <p>: {{date | date:'dd-MM-yyyy'}}</p>
+      <p>: {{det.make}}</p>
+      <p>: {{det.serialno}} </p>
+      <p>: {{det.assetno}}</p>
+      <input type="text" class="form-control" />
+    </div>
+
+  </div><br><br>
+
+  <div class="row">
+    <div class="col-md-6">
+      <input type="text" /><br><br>
+      <p style="margin-left: 35px;"><b> For T & IS Dept </b></p>
+    </div>
+
+    <div class="col-md-6" style="text-align: end;">
+      <input type="text" /><br><br>
+      <p style="margin-right: 70px;"><b> User </b> </p>
+    </div>
+  </div>
+
+
+</div>
+
+
+</div>
+</div>
+
+

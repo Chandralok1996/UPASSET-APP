@@ -1,0 +1,44 @@
+   
+.material-icons{
+    background-color: rgba(0, 0, 0, 0.3) ;
+    border-radius: 20px;
+    border: 0.1px solid transparent;
+    color: black;
+}
+
+ 
+.pdf-content {
+    background: #fff;
+  }
+
+  input {
+    outline: none;
+    border-width: 0 0 2px;
+    border-color: black
+  }
+  input:focus {
+    border-color: black
+  }
+  
+  .container{
+      width: 100%;
+  }
+
+  html, body, h1, h2, h3, h4, p, img { margin: 0;} /* margin reset*/
+h1{font-size: 18pt; font-weight: 500; margin-bottom: 0.5cm;}
+h2{font-size: 16pt; font-weight: 500;}
+p{font-size: 12pt;}
+
+@media print {
+  body * {
+    visibility:hidden;
+  }
+  #printable, #printable * {
+    visibility:visible;
+  }
+  #printable {
+    position:absolute;
+    left:0;
+    top:0;
+  }
+}

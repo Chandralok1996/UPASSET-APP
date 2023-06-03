@@ -1,0 +1,130 @@
+#p2{
+  position: relative;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: #2A2B2D;
+  
+}
+#hr{
+  position: relative;
+ border: 1px solid #c0bdbd;
+}
+
+#p3{
+position: relative;
+font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 23px;
+color: #2A2B2D;
+
+}
+.list{
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  
+  
+  color: #2A2B2D;
+  
+}
+.listdata{
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  
+  
+  color: #696969;
+}
+
+.lastactivity{
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  text-decoration-line: underline;
+  
+  color: #2A2B2D;
+}
+.created{
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #2A2B2D;
+}
+.createdata{
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+   color: #696969; 
+}
+.edit{
+  width: 150px;
+  height: 40px;
+  font-weight: 600;
+  padding: 10px 10px 10px 10px;
+  /* margin-left: 72px; */
+  text-align: center;
+  background: #00B4EB;
+  border-radius: 5px;
+  border: none;
+  color: white;
+ 
+  
+}
+.edit:hover{
+  text-decoration: none;
+  transition: 0.5s;
+  bottom: 2px;
+  top: none;
+  z-index: -1;
+  box-shadow: 0 3px 8px 2px #565353d4;
+}
+.back{
+  font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+text-decoration-line: underline;
+
+color: #2A2B2D;
+}
+
+#headp {
+  /* float: right; */
+ 
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  cursor: pointer;
+ 
+  /* identical to box height */
+
+  text-decoration-line: underline;
+
+  color: #2a2b2d;
+}
+/* 
+.card-body{
+  height: 70px;
+} */

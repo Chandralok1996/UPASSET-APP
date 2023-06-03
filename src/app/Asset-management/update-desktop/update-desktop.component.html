@@ -1,0 +1,275 @@
+<div class="container-fluid" style="margin: 30px 0 0 0;padding: 0;">
+    <div class="row">
+        <div class="col-md-12 ">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <img id="user" src="assets/img/Trial 2.png" /><br>
+
+                    <a href="" id="Choose"> Add photo </a>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="profile-name">UPDATE ASSET </div>
+
+                </div>
+            </div>
+
+
+
+            <ng-template #content let-modal>
+                <div class="container" style="width:300px; height:150px;">
+                    <div>
+                        <p style="text-align:center; padding:15px; margin-top:10px;">Are you sure you
+                            want to cancel the current operation?
+                        <p>
+                    </div>
+
+                    <div class="clear-fix" style="text-align:center; padding-bottom:15px;">
+                        <button type="button"
+                            style="margin-right:25px; border-radius:5px; background-color:#bebebe; height:30px; width:110px; font-size:12px; border: none; outline: none;"
+                            (click)="modal.close('Close click');close()">Cancel</button>
+                        <button type="button"
+                            style=" background-color:rgb(62,144,249); border-radius:5px;height:30px; width:110px; font-size: 12px; border: none; outline: none; color:white"
+                            (click)="modal.close('Close click')">Keep editing</button>
+                    </div>
+                </div>
+            </ng-template>
+            <button type="button" class="create-new float-right"
+                (click)="openVerticallyCentered(content)">Cancel</button>
+        </div>
+    </div>
+    <hr class="hr">
+
+    <div class="scroll" (scroll)="divScroll($event)">
+        <form class="form-group card" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Asset Type</label>
+                        <!-- <select type="text" class="form-controll f-10" id="drop"
+                             formControlName="type" (change)="assetcatagory($event.target.value)">
+                            <option value="" hidden>Select asset type</option>
+                            <option *ngFor="let pr of assetty">{{pr.type}}
+                            </option>
+
+                        </select> -->
+                        <input type="text" class="form-control f-10 "
+                        formControlName="type" readonly>
+
+
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Asset Category</label>
+                        <!-- <select type="text" class="form-controll f-10" id="drop"
+                            formControlName="category" (change)="assetgroup($event.target.value)">
+                            <option value="" hidden>Select asset Category</option>
+                            <option *ngFor="let pr of assetcat" >{{pr.category}}
+                            </option>
+
+                        </select> -->
+                        <input type="text" class="form-control f-10 "
+                        formControlName="category" readonly>
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Asset Group</label>
+                        <!-- <select type="text" class="form-controll f-10" id="drop"
+                            formControlName="astg_group" (change)="assetmake($event.target.value)">
+                            <option value="" hidden>Select asset group</option>
+                            <option *ngFor="let pr of assetgrop">{{pr.astg_group}}</option>
+
+                        </select> -->
+                        <input type="text" class="form-control f-10 "
+                        formControlName="astg_group" readonly>
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Make</label>
+                        <!-- <select type="text" class="form-controll f-10" id="drop"
+                           formControlName="make" (change)="assetmodel($event.target.value)">
+                            <option value="" hidden>Select asset make</option>
+                            <option *ngFor="let pr of mak">{{pr.make}}
+                            </option>
+
+                        </select> -->
+                        <input type="text" class="form-control f-10 "
+                        formControlName="make" readonly>
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Model</label>
+                        <!-- <select type="text" class="form-controll f-10" id="drop" formControlName="model">
+                            <option value="" hidden>Select asset model</option>
+                            <option *ngFor="let pr of assetmod">{{pr.model}}</option>
+
+                        </select> -->
+                        <input type="text" class="form-control f-10 "
+                        formControlName="model" readonly>
+                    </div>
+
+
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Asset Name</label>
+                        <input type="text" class="form-controll f-10 "
+                            formControlName="asset_name">
+
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Asset ID</label>
+                        <input type="text" class="form-controll f-10"
+                            formControlName="asset_id">
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Host Name</label>
+                        <input type="text" class="form-controll f-10 "
+                            formControlName="hostname">
+
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                      <label class="lbl">Quantity</label>
+                      <input type="text" class="form-controll f-10 "
+                          formControlName="quantity">
+
+                  </div>
+
+
+
+                            <div class="col-md-6 col-sm-12">
+                                <label id="label1"> Status<span
+                                    class="required-asterisk">*</span></label>
+                                <select class="form-controll f-10" formControlName="status">
+                                    <option hidden> Select Status</option>
+                                    <option *ngFor="let sertype of status">{{sertype.status}}</option>
+                                </select>
+
+                            </div>
+
+
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Serial Number</label>
+                        <input type="text" class="form-controll f-10 "
+                            formControlName="serialno">
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Custodian</label>
+                        <select type="text" class="form-controll f-10" id="drop" (change)="custodd($event.target.value)"
+                            formControlName="custodian">
+                            <option value="" hidden>Select Custodian</option>
+                            <option>
+                                <button type="button" id="exampleModal" mat-raised-button
+                                    (click)="addField('custo')">ADD NEW CUSTODIAN</button>
+                            </option><br>
+                            <hr style="width: 100px;"> <br><br>
+                            <option *ngFor="let pr of custod">{{pr.custodian}}</option>
+
+
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Asset Owner</label>
+                        <!-- <select type="text" class="form-controll f-10" id="drop" formControlName="assetowner">
+                            <option value="" hidden>Select asset owner</option>
+                            <option *ngFor="let pr of owner">{{pr.owner_name}}</option>
+                        </select> -->
+                        <input type="text" class="form-control f-10 "
+                            formControlName="assetowner" readonly>
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Location</label>
+                        <select type="text" class="form-controll f-10" id="drop" formControlName="location">
+                            <option value="" hidden>Select Location</option>
+                            <option *ngFor="let pr of loc">{{pr.location}}</option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Confidentiality</label>
+                        <select type="text" class="form-controll f-10" id="drop" formControlName="conf">
+                            <option value="" hidden>Select Confidentiality</option>
+                            <option *ngFor="let pr of confide">{{pr.conf}}</option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Integrity</label>
+                        <select type="text" class="form-controll f-10" id="drop" formControlName="inte">
+                            <option value="" hidden>Select Integrity</option>
+                            <option *ngFor="let pr of integ">{{pr.inte}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Availibility</label>
+                        <select type="text" class="form-controll f-10" id="drop" formControlName="avail">
+                            <option value="" hidden>Select Availibility</option>
+                            <option *ngFor="let pr of avail">{{pr.avail}}</option>
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Family</label>
+                        <select type="text" class="form-controll f-10" id="drop" formControlName="family">
+                            <option value="" hidden>Select Family</option>
+                            <option *ngFor="let pr of fam">{{pr.family}}</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Warranty Start Date </label>
+                        <input type="text" class="form-controll f-10"
+                            formControlName="wsdate" readonly>
+                            <!-- <input type="date" formControlName="wsdate"  [ngModel]="wsdate | date:'yyyy-MM-dd'" class="form-controll"> -->
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label class="lbl">Warranty End Date </label>
+                        <input type="text" class="form-controll f-10"
+                            formControlName="wedate" readonly>
+                    </div>
+
+                    <!-- <div class="col-md-12 mt-2">
+                        <label class="lbl">Detail Description</label><br>
+                        <textarea id="" required maxlength="100" formControlName="description"
+                            placeholder="Enter your valuable description" pattern="[a-z0-9A-Z.-@_%$,\s]{5,100}"
+                            minlength="5" class="form-controll f-10" cols="50">
+               </textarea>
+
+
+                    </div> -->
+
+
+                </div>
+            </div>
+
+            <br>
+            <div style="text-align: center; float: center;">
+
+                <button class="cust-create-btn" > UPDATE ASSET </button>
+                <!-- <button type="submit" class="cust-create-btn" [disabled]="form.invalid">UPDATE ASSET</button> -->
+
+            </div>
+
+        </form>
+    </div>
+</div>
+

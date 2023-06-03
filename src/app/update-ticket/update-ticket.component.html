@@ -1,0 +1,313 @@
+<div class="container-fluid" style="margin: 30px 0 0 0;padding: 0;">
+
+
+
+    <!-- <button class="close" mat-button (click)="onNoClick()">X</button> -->
+
+    <!-- <div  style="margin-left:0px;font-family: Raleway;margin-right:0px" > -->
+
+    <!-- 
+    <div class="row">
+        <div class="col-sm-11 col-md-11">
+   <p id="create">UPDATE TICKET</p>
+  
+    </div>
+   
+    </div> -->
+    <div class="row">
+        <div class="col-md-12 ">
+
+            <div class="card vl pro-card col-md-10">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="card-heading">
+                            {{short}}
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="card-heading-down">
+                            Created by : {{createdby}}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <ng-template #content let-modal>
+                <div class="container" style="width:300px; height:150px;">
+                    <div>
+                        <p style="text-align:center; padding:15px; margin-top:10px;">Are you sure you
+                            want to cancel the current operation?
+                        <p>
+                    </div>
+
+                    <div class="clear-fix" style="text-align:center; padding-bottom:15px;">
+                        <button type="button"
+                            style="margin-right:25px; border-radius:5px; background-color:#bebebe; height:30px; width:110px; font-size:12px; border: none; outline: none;"
+                            (click)="modal.close('Close click');close()">Cancel</button>
+                        <button type="button"
+                            style=" background-color:rgb(62,144,249); border-radius:5px;height:30px; width:110px; font-size: 12px; border: none; outline: none; color:white"
+                            (click)="modal.close('Close click')">Keep editing</button>
+                    </div>
+                </div>
+            </ng-template>
+            <button type="button" class="create-new float-right"
+                (click)="openVerticallyCentered(content)">Cancel</button>
+        </div>
+    </div>
+    <!-- <hr class="hr">  -->
+
+    <br>
+    <div class="scroll" (scroll)="divScroll($event)">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="col-md-10 card" *ngIf="div1" [ngClass]="statusClass" (click)="setActiveClass1()">
+                <br>
+                <div class="row ">
+                    <div class="col-md-12">
+                        <label>Issue Description <span class="required-asterisk">*</span></label>
+                        <input type="text" formControlName="issue_desc" [(ngModel)]="short" class="form-control" readonly>
+
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Organization <span class="required-asterisk">*</span></label><br>
+                        <input type="text"  class="form-control" formControlName="organization" readonly>
+                    </div>
+
+                   
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Call Mode <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" formControlName="callmode" readonly>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Your Name <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" formControlName="openedby" readonly>
+                    </div>
+                </div>
+
+                <!-- <div class="row mt-3">
+            <div class="col-md-12">
+                <label id="ctf" >Creating ticket for</label><br>
+                <input name="type"  [(ngModel)]="type" type="radio" [value]="1" [checked]="options" [ngModelOptions]="{standalone: true}" />&nbsp;&nbsp;<b> Myself</b> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input name="type"  [(ngModel)]="type" type="radio" [value]="0" [checked]="!options" [ngModelOptions]="{standalone: true}" />&nbsp;&nbsp;<b> Others</b>
+           
+            </div>
+        </div>
+
+        <div class="row mt-3"  *ngIf="type == 0">
+            <div class="col-md-6">
+                <label  >User Name</label>
+                <input type="text" class="form-control" formControlName="username" >
+            </div>
+            
+            <div class="col-md-6">
+                <label  >Contact Number</label>
+                <input type="text" class="form-control" formControlName="contact">
+            </div>
+        </div> -->
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Affected Product <span class="required-asterisk">*</span></label>
+                        <input class="form-control" formControlName="affectedpro" readonly>
+
+
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Priority <span class="required-asterisk">*</span></label>
+                        <select class="form-control" formControlName="priority"
+                            [ngClass]="{ 'is-invalid': submitted && f.priority.errors }" required>
+                            <option></option>
+                            <option *ngFor="let p of priority">{{p.priority}}</option>
+
+                        </select>
+
+                        <div *ngIf="submitted && f.priority.errors || f.priority.invalid && (f.priority.dirty || f.priority.touched)"
+                            style="color: red; font-size: 12px;">
+                            <div *ngIf="f.priority.errors.required">Priority is required</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label>Opened On <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" formControlName="created" readonly>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label>Opened By <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="createdby" formControlName="openedby" readonly>
+
+                    </div>
+
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6" *ngIf="accountService.user.rolename != 'ITsupport'">
+                        <label>Assigned To <span class="required-asterisk">*</span></label>
+                        <!-- <select class="form-control" formControlName="assignedto" [ngClass]="{ 'is-invalid': submitted && f.assignedto.errors }" >
+                   <option></option>
+                   <option *ngFor="let asgn of assigned">{{asgn.username}}/{{asgn.empid}}</option>
+               </select> -->
+
+
+                        <ng-autocomplete formControlName="assignedto" [data]="assigned" [searchKeyword]="keyword1"
+                            (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)'
+                            (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+                            [notFoundTemplate]="notFoundTemplate"
+                            [ngClass]="{ 'is-invalid': submitted && f.assignedto.errors }">
+                        </ng-autocomplete>
+                        <ng-template #itemTemplate let-item>
+                            <a [innerHTML]="item.username"></a>
+                        </ng-template>
+                        <ng-template #notFoundTemplate let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                        </ng-template>
+
+
+
+                        <div *ngIf="submitted && f.assignedto.errors || f.assignedto.invalid && (f.assignedto.dirty || f.assignedto.touched)"
+                            style="color: red; font-size: 12px;">
+                            <div *ngIf="f.assignedto.errors.required">assigned to is required</div>
+                        </div>
+                        <div *ngIf="assigneWarning">
+                            <p  style="color: red; font-size: 12px;">Assignedto not available please contact with system admin</p>
+                    </div>
+                    
+                    </div>
+
+                    <div class="col-md-6" *ngIf="accountService.user.rolename === 'ITsupport'">
+                        <label>Assigned To <span class="required-asterisk">*</span></label>
+                        <input class="form-control" formControlName="assignedto" readonly>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label>Status <span class="required-asterisk">*</span></label>
+                        <select class="form-control" formControlName="status"
+                            [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                            <option></option>
+                            <option *ngFor="let sta of status">{{sta.status}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.status.errors || f.status.invalid && (f.status.dirty || f.status.touched)"
+                            style="color: red; font-size: 12px;">
+                            <div *ngIf="f.status.errors.required">status is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3" >
+                    <div class="col-md-12">
+                        <label>Response Mode <span *ngIf="this.form.value.status !== 'New'" class="required-asterisk">*</span></label><br>
+                        <div *ngIf="this.form.value.status === 'New'">
+                            <input type="text" formControlName="inrmid" class="form-control" readonly>
+                        </div>
+                        <div *ngIf="this.form.value.status !== 'New'">
+                            <select type="text" formControlName="inrmid" class="form-control" >
+                                <option hidden>Select Response Mode</option>
+                                <option *ngFor="let res of resMode">{{res.responsemode}}</option>
+                                </select>
+                        </div>
+                        <div *ngIf="form.controls['status'].value !=='New' && form.controls['inrmid'].value === '' "
+                        style="color: red; font-size: 12px;">
+                        <p>Assigned Date is required</p>
+                      </div>
+
+                    </div>
+                </div>
+
+                <div class="row mt-3" *ngIf="this.form.value.status === 'Resolved'">
+                    <div class="col-md-12">
+                        <label>Resolution Description <span class="required-asterisk">*</span></label><br>
+                        <textarea type="text" rows="4"  formControlName="resolution" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Notify Others (Optional)</label>
+                        <input type="text" class="form-control" formControlName="email">
+
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Previous Notes</label>
+                        <textarea type="text" rows="4" class="form-control" formControlName="working_notes"
+                            readonly></textarea>
+
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Notes <span class="required-asterisk">*</span></label>
+                        <textarea type="text" rows="4" class="form-control" formControlName="notes"
+                            [ngClass]="{ 'is-invalid': submitted && f.notes.errors }"></textarea>
+                        <div *ngIf="submitted && f.notes.errors || f.notes.invalid && (f.notes.dirty || f.notes.touched)"
+                            style="color: red; font-size: 12px;">
+                            <div *ngIf="f.notes.errors.required">notes is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label>Detail Description <span class="required-asterisk">*</span></label>
+                        <textarea type="text" rows="4" class="form-control" formControlName="detaii_desc"
+                            readonly></textarea>
+
+                    </div>
+                </div><br>
+                <hr>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label id="label1"> Upload an image (Optional)</label><br>
+                        <input id="cin" name="cin" type="file" formControlName="file" (change)="fileChangeEvent($event)"
+                            placeholder="Upload a file..." multiple />
+                    </div>
+                </div>
+                <br>
+
+
+               
+
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <!-- <button type="submit" class="btn btn-primary" style="background: #00B4EB;">SUBMIT</button> -->
+                    <button type="submit" [disabled]="form.invalid" style="cursor: pointer;" class="cust-create-btn">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1 "></span>
+                        SUBMIT</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </form>
+
+       
+        <br>
+    </div>
+</div>

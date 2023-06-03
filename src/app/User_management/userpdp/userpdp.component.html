@@ -1,0 +1,337 @@
+
+<div>
+    
+    <div class="row">
+     
+      <div class="col-md-3">
+        <p id="headp" (click)="routeHome()" style="cursor: pointer;" > <span> < </span>Back </p>
+      </div>
+    </div>
+  
+      
+
+      <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 mt-0" style="background-color:white;margin-top: 0rem;border-radius: 3px;">
+
+<br>
+
+<!-- <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-2">
+        <button type="button"id="edit">EDIT &nbsp;<i class="fa fa-edit" ></i> </button>
+    </div>
+</div> -->
+
+<div class="row" *ngFor="let afd of details">
+    <div class="col-md-3">
+      <!-- Model for user history -->
+      <br>
+        <div style="text-align: center;">
+          <div class="image-responsive">
+           
+              <img style='height:150px;width:145px;max-width: 100%;max-height: 100%;border-radius: 50%;object-fit: contain;border: solid 2px trans'
+               [src]="file1" (error)="setDefaultPic()"/>           
+            
+          
+           
+          </div>
+        <!-- <img  id="user"src="assets/img/Trial 2.png"/> --><br> 
+        <label id="username"><b>  {{afd.firstname}}</b></label><br>
+        <label id="userid">{{afd.user_id}}</label><br><br>
+        <label id="designation"><img id="bcase"src="assets/img/Briefcase.png">&nbsp;&nbsp;&nbsp; Designation </label><br>
+        <label id="userdesignation">{{afd.designation}}</label><br>
+        <label id="Email"><img id="messages1"src="assets/img/Email Grey.png"/>&nbsp;&nbsp;&nbsp; Email I.D </label><br>
+        <label id="userdesignation" >{{afd.email}}</label><br>
+        <label id="contact"><img id="phone"src="assets/img/Telephone.png">&nbsp;&nbsp;&nbsp; Contact No</label><br>
+        <label id="userdesignation"  >{{afd.mobile}}</label>
+
+        <div  *ngIf="accountservice.user.rolename === 'Helpdesk'" >
+          <button type="button" class="btn btn-primary" style="width: auto;background-color:#007AFF ;"   (click)="openDialog()" >RESET PASSWORD </button>
+        
+        </div>
+       
+        
+
+    </div>
+    </div>
+   
+    
+      <div class="vl"></div>
+  
+
+    <div class="col-md-8" >
+     
+      <ul ngbNav #nav="ngbNav"  class="nav-tabs" style="border-radius: 3px;" >
+        <li [ngbNavItem]="1" class="mt-0">
+          <a ngbNavLink><span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INFORMATION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </b></span> 
+        </a>
+
+        <ng-template ngbNavContent>  
+
+        <div id="p1" >
+          <label id="userdept" >Local ID</label><br>
+          <label id="ipuserdept">{{afd.empid}}</label>
+      </div>
+      <div id="p2">
+        <label id="deptid" >Employee ID</label><br>
+        <label id="ipdeptid">{{afd.eightid}}</label>
+    </div>
+
+    <div id="p13" *ngIf="accountservice.user.rolename === 'Helpdesk'">
+      <label id="deptid" >Employee Status</label><br>
+      <div *ngIf="inactive === 'true' ">
+        <input type="radio" name="type"  [(ngModel)]="type"  [value]="1" [checked]="options"  class="ml-2 mt-3">Inactive &nbsp;
+      </div>    
+     <div *ngIf="rejoin === 'true' ">
+     <input type="radio" name="type"  [(ngModel)]="type"  [value]="0" [checked]="!options" class="ml-2 mt-3">Rejoin
+     </div>
+
+     <div *ngIf="type === 1">
+      <button type="button" style="width: 150px;height: 30px;" class="btn btn-primary" (click)="openInactive()">Inactive Form</button>
+     </div>
+
+     <div *ngIf="type === 0">
+      <button type="button" class="btn btn-primary" (click)="openRejoin()">Rejoin Form</button>
+     </div>
+  </div>
+
+    <div id="p3" >
+      <label id="userdept" >User Role</label><br>
+      <label id="ipuserdept">{{afd.role}}</label>
+  </div>
+
+  <div id="p4">
+    <label id="usertype" >Authority</label><br>
+    <label id="ipusertype">{{afd.usertype}}</label>
+</div>
+
+<div id="p5" >
+  <label id="supportgroup" >Building</label><br>
+  <label id="ipsupgrp">{{afd.building}}</label>
+</div>
+
+<div id="p9" >
+  <label id="userdept" >Secondary Contact Number</label><br>
+  <label id="ipuserdept">{{afd.landline}}</label>
+</div>
+
+<div id="p10">
+<label id="usertype" >Desk Number </label><br>
+<label id="ipusertype">{{afd.deskno}}</label>
+</div>
+
+<div id="p11" >
+<label id="supportgroup" >Section Code</label><br>
+<label id="ipsupgrp">{{afd.scode}}</label>
+</div>
+
+
+<!-- 
+<div class="col-md-3">
+  <div  *ngIf="accountservice.user.rolename === 'Helpdesk'" >
+    <button type="button" class="btn btn-primary" style="width: auto;background-color:#007AFF ;"   (click)="openDialog()" >RESET PASSWORD </button>
+  
+  </div>
+</div> -->
+
+
+
+
+<!-- <div id="p12" >
+  <label id="supportgroup" >Building</label><br>
+  <label id="ipsupgrp">{{afd.building}}</label>
+  </div> -->
+  
+
+<!-- <div id="p6">
+<label id="usergrp" >User Group</label><br>
+<label id="ipusergrp">{{afd.usergrp}}</label>
+<br>
+<label id="reportingto" >Reporting To</label><br>
+<label id="ipreporting">{{afd.reportingto}}</label>
+</div>  -->
+
+</ng-template>
+</li>
+
+       
+<li [ngbNavItem]="2" class="mt-0">
+  <a ngbNavLink><span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TICKETS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </b></span> 
+</a><br>
+  <ng-template ngbNavContent>
+   
+    <div class="row">
+      <div class="col-sm-4">
+         <input type="text" class="button3 buttonb" id="action3" placeholder="ex:550001" (keyup)="applyFilterMyticket($event.target.value)"> 
+      </div>
+       <div class="col-sm-4">
+         <select class="button3 buttonb" id="action4" (change)="sortMyTicket($event.target.value)"     >
+       <option  [value]="0"  [disabled]="true" selected>Select one category </option>
+       <option *ngFor="let city of selected1">
+        {{ city}} 
+    </option>
+
+</select> 
+      </div>
+     
+      <div class="col-sm-5 col-md-5 col-xs-5 col-lg-5 col-xl-5" style="text-align:end;">
+        <!-- <button type="button" id="newt1" (click)="openFilter()" class="mr-1" >FILTER</button>
+       
+        <button type="button" style="margin-right: 11px;" id="newt"  (click)="openDialog()" ><img style="height:28px;width:28px;text-align:left;" src="assets/img/addbtn.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NEW TICKET</button> -->
+
+       </div>
+
+    </div>
+
+    <div class="row" *ngFor="let ticket of myTicket">
+      <div class="col-md-12">    
+            <div class="card"        >
+<div class="card-body" >
+  <div class="row">
+    <div class="col-md-5 col-sm-5" >
+     
+      <p type="button"  [routerLink]="['/home/users/incpdp',ticket.inid_id]" id="description">{{ticket.short_desc}}</p>
+<!-- <div class="row">
+    <div class="col-md-7 col-sm-7" > -->
+     <a class="btn" style="text-align: left;margin-left: -14px;" >   <span id="incid" (click)=getItems(ticket)  class="la la-trash"> {{ticket.inid_id}}</span></a>
+     <!-- </div> -->
+     <!-- <div class="col-md-6 col-sm-6" > -->
+     <!-- <p  id="group" >Assigned Group:  {{ticket.sgname}} </p> -->
+     <!-- </div> -->
+     <!-- </div> -->
+    <!-- <div class="row"  > -->
+      <!-- <div class="col-md-6 col-sm-6"> -->
+   <p id="from" >From: {{ticket.openedby}}</p>
+    <!-- </div> -->
+     <!-- <div class="col-md-6 col-sm-6"> -->
+     <p id="created">Created :{{ticket.created}}</p>
+     <!-- </div> -->
+     <!-- </div> -->
+  </div>
+  <!-- <div class="col-md-1 col-sm-1">
+  <div class="vl"></div>
+  </div> -->
+     <div class="col-md-3 col-sm-3">
+  <p id="assignedto">Assigned To</p>
+  <p id="status">Status:</p>
+  <p id="priority">Priority:</p>
+  <p  id="group" >Assigned Group: </p>
+  </div>
+     <div class="col-md-4 col-sm-4">
+ <p id="assignedto1" >{{ticket.assignedto  == null || ticket.assignedto == ' ' ? ("-") : (ticket.assignedto)}}</p>
+   <p id="status1" >{{ticket.status}}</p>
+  <p id="priority1" >{{ticket.priority}}</p>
+  <p id="priority1" >{{ticket.sgname}}</p>
+  
+  </div>
+  
+
+  </div>
+ 
+ 
+</div>
+
+
+
+</div>
+     
+
+      </div>
+    </div>
+
+
+ </ng-template>
+</li>
+
+<li [ngbNavItem]="3" class="mt-0">
+  <a ngbNavLink><span><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASSETS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </b></span> 
+</a><br>
+  <ng-template ngbNavContent>
+    
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="select" class="mat-column-select">
+          <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+              </mat-checkbox>
+          </td>
+      </ng-container>
+
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="first_name" class="mat-column-asset_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Owner </th>
+          <td mat-cell *matCellDef="let products"> {{products.first_name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="assetno" class="mat-column-category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Asset Name </th>
+        <td mat-cell *matCellDef="let products"> {{products.assetno}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category" class="mat-column-category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Asset Category </th>
+      <td mat-cell *matCellDef="let products"> {{products.category}} </td>
+  </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="serialno" class="mat-column-serial_number">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Serial Number </th>
+          <td mat-cell *matCellDef="let products"> {{products.serialno}} </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="astg_group" class="mat-column-astg_group">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Asset Group </th>
+          <td mat-cell *matCellDef="let products"> {{products.astg_group}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status" class="mat-column-status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let products"> {{products.status}} </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="actions" class="mat-column-actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
+
+             <span type="button" class="material-icons">delete_forever</span>&nbsp;&nbsp;&nbsp;
+              <span  type="button" class="material-icons" (click)="OpenUpdate(row.astd_id)"> border_color</span>
+
+          </td>
+      </ng-container> -->
+
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"  [routerLink]="['/home/users/assetdetails',row.astd_id]" ></tr>
+
+  </table>
+
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+      showFirstLastButtons class="mat-elevation-z8">
+  </mat-paginator>
+
+ </ng-template>
+ 
+</li>
+
+
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    
+
+    </div>
+  </div>
+</div>

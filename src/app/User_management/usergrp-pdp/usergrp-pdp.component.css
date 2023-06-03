@@ -1,0 +1,395 @@
+
+ 
+  
+  
+  
+  #user1{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-top: -18px;
+    /* margin-left:-45px; */
+    margin-right: 10px;
+    
+    border: 1px solid #3F704D;
+    box-sizing: content-box;
+    
+    border-radius: 50%;
+    background-color: #3F704D;
+}
+#path{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    
+    background-color: #C9E3DB;    
+}
+.p{
+    position: relative;
+    margin-left: 288px;
+    margin-top: 70px;
+    font-size: 16px;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    color: #2A2B2D;
+    text-decoration-line: underline;
+}
+
+    
+
+
+#user{
+  height:100px;
+  width:100px;
+  /* margin-top: 40px;
+  margin-left: 10px; */
+  border-radius: 50%;
+}
+#username{
+  margin-top:10px;
+  margin-left: 0px;
+  color:#2A2B2D;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: normal;
+  font-weight: bold;
+
+}
+#userid{
+  /* margin-top:5px; */
+  color:#2A2B2D;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: normal;
+  font-weight: bold;
+}
+#designation{
+    float: left;
+  height: 5px;
+  width: auto;
+ margin-left: 20px;
+  color:#2A2B2D;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: bold;
+}
+#bcase{
+  height: 15px;
+  width: 30px;
+  /* margin-left:-80px; */
+  /* margin-top: -30px; */
+}
+#userdesignation{
+    margin-left: -10px;
+  
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    
+    color: #2A2B2D;
+}
+
+#Email{
+  float: left;
+  margin-top:5px;
+  margin-left: 20px;
+  color:#2A2B2D;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: bold;
+}
+#messages1{
+  height: 15px;
+  width: 20px;
+  
+}
+#ipemail{
+  float: left;
+
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  
+  color: #2A2B2D;
+}
+
+#contact{
+    float: left;
+    margin-left: 20px;
+  margin-top:5px;
+  /* margin-left: -40px; */
+  color:#2A2B2D;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: bold;
+}
+#phone{
+  height: 20px;
+  width: 18px;
+  /* margin-left:10px; */
+}
+#ipcontact{
+    float: left;
+  /* margin-top:05px; */
+  margin-left: 50px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  
+  color: #2A2B2D;
+}
+
+#location{
+    float: left;
+    margin-left: 15px;
+  margin-top:5px;
+  /* margin-left: -40px; */
+  color:#2A2B2D;
+  font-family: Raleway;
+  font-size: 14px;
+  font-weight: bold;
+}
+#bcase{
+  height: 15px;
+  width: 20px;
+  /* margin-left:10px; */
+}
+#iplocation{
+float: left;
+  margin-left: 50px;
+  font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #2A2B2D;
+}
+#locpin{
+  width:9.53px;
+  height:16px;
+  margin-left: 10px;
+}
+#edit{
+  width:90px;
+  background-color: #c4c4c4;
+  color: #2A2B2D;
+  border-radius:5px ;
+  font-family: Raleway;
+  float: right;
+  border: #C4C4C4 3px solid;
+
+}
+
+
+
+
+a{
+    /* margin-top:600px; */
+    margin-left: 30px;
+    font-size: 14px;
+    font-family: Raleway;
+    
+    
+}
+#sub{
+  
+  font-size: 14px;
+  background-color: #4A4A4B 1px solid;
+
+}
+#plus{
+  height:15px;
+  width:15px;
+}
+#action1{
+    margin-top: 20px;
+    margin-bottom: 25px;
+    margin-left: 280px;
+    width: 250px;
+    font-family: Raleway;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 3px;
+
+
+}
+
+th{
+  background-color: #C4C4C4;color:#2A2B2D;font-size: 18px;font-family: Raleway;
+}
+
+#delete{
+    margin-top: 20px;
+    margin-bottom: 25px;
+    margin-left: 250px;
+
+    font-family: Raleway;
+    font-weight: normal;
+    
+}
+
+
+
+#p1{
+  position: absolute;
+  margin-left:10px;
+  margin-top :10px;
+  border:  1px solid #C4C4C4;
+  width: 258px;
+  height:90px;
+  border-radius: 8px;
+  
+}
+
+#userdept,#deptid,#usertype,#supportgroup,#usergrp,#reportingto{
+  font-family: Raleway;
+  position: absolute;
+  margin-top: 10px;
+  margin-left:10px;
+  text-indent: 5px right;
+  font-weight: bold;
+  
+}
+#ipuserdept,#ipdeptid,#ipusertype,#ipsupgrp,#ipusergrp,#ipreporting{
+  margin-left: 10px;
+  margin-top: 20px;
+  font-family: Raleway;
+  font-weight: normal;
+}
+
+#p2{
+  position: absolute;
+  margin-left:275px;
+  margin-top :10px;
+  border:  1px solid #C4C4C4;
+  width: 258px;
+  height:90px;
+  border-radius: 3px;
+  text-indent: 5px right;
+  background-color: white;
+  border-radius: 8px;
+}
+
+#p3{
+  position: absolute;
+  margin-left:10px;
+  margin-top :125px;
+  border:  1px solid #C4C4C4;
+  width: 258px;
+  height:90px;
+  border-radius: 3px;
+  text-indent: 5px right;
+  background-color: white;
+  border-radius: 8px;
+}
+
+#p4{
+  position: absolute;
+  margin-left:275px;
+  margin-top :125px;
+  border:  1px solid #C4C4C4;
+  width: 258px;
+  height:90px;
+  border-radius: 3px;
+  text-indent: 5px right;
+  background-color: white;
+  border-radius: 8px;
+}
+
+#p5{
+  position: absolute;
+  margin-left:540px;
+  margin-top :125px;
+  border:  1px solid #C4C4C4;
+  width: 208px;
+  height:90px;
+  border-radius: 3px;
+  text-indent: 5px right;
+  background-color: white;
+  border-radius: 8px;
+}
+
+#p6{
+  position: absolute;
+  margin-left:10px;
+  margin-top :245px;
+  border:  1px solid #C4C4C4;
+  width: 738px;
+  height:230px;
+  border-radius: 3px;
+  text-indent: 5px right;
+  background-color: white;
+  border-radius: 8px;
+}
+
+#p7{
+  position: absolute;
+  margin-left:800px;
+  margin-top :65px;
+  border:  1px solid #C4C4C4;
+  width: 208px;
+  height:90px;
+  border-radius: 3px;
+  text-indent: 5px right;
+  background-color: white;
+  border-radius: 8px;
+}
+
+button{
+  width:257px;
+  height:40px;
+  background-color:#696969;
+  border: #696969 1px solid;
+  color:white;
+  font-family: Raleway;
+  font-size: 16px;
+  text-align: left;
+  
+}
+
+#imguser{
+  position: relative;
+width: 90px;
+height: 90px;
+
+top: 40px;
+}
+#info{
+  margin-top: 10px;
+  font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+color: #2A2B2D;
+}
+
+#headp{
+  float: left;
+  font-family: Raleway;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+padding-left: 0px;
+
+text-decoration-line: underline;
+
+color: #2A2B2D;
+}
+
+.vl {
+  
+  border-left: 1px solid #C4C4C4;
+  height: 450px;
+  margin-top: 3.5rem;
+
+}

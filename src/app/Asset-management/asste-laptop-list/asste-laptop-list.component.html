@@ -1,0 +1,961 @@
+<div>
+    <div class="row">
+        <div class="col-md-6">
+            <p id="headp">Asset Management &nbsp;</p>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 "
+        style="background-color:white;margin-top: 0rem;border-radius: 3px;">
+
+        <br>
+        <div class="row">
+            <!-- <div class="col-md-2"></div> -->
+            <div class="col-md-6 col-lg-6 col-xl-6 col-sm-6">
+                <input type="search"  (keyup)="applyFilter($event.target.value)" placeholder="Search Assets"  [(ngModel)]="value">
+            </div>
+
+            <div class="col-sm-6 col-md-6  col-lg-6 col-xl-6" style="text-align: right;">
+                <!-- <button type="button" id="newt1" (click)="openFilter()">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-funnel" viewBox="0 0 16 16">
+                        <path
+                            d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
+                    </svg>&nbsp;&nbsp;
+
+
+                    FILTER</button>&nbsp; -->
+                <!-- <button type="button" style="margin-right: 11px;" id="newt" (click)="openDialog()"><i
+                        class=" fa fa-plus"></i>NEW LAPTOP</button> &nbsp; -->
+
+                <button type="button" style="cursor:pointer" aria-haspopup="true" aria-expanded="false"
+                    aria-controls="navbarSupportedContent" aria-label="Toggle navigation"
+                    (click)="sidebarShow = !sidebarShow" id="collapseBtn"> <i class=" fa fa-plus"></i>&nbsp;&nbsp;&nbsp;
+                    NEW ASSET</button>
+
+            </div>
+
+        </div>
+        <br>
+
+        <div class="sidebar-slider" style="border-radius: 8px;z-index: 9999;" [class.sidebar-slide-in]="sidebarShow">
+            <div>
+
+                <i class=" sidebar-close fa fa-close" (click)="sidebarShow = !sidebarShow"></i>
+
+            </div>
+            <div class="sidebar-content">
+                <div class="container-fluid" style="margin-top: 15px;">
+
+                    <form class="form-group"[formGroup]="form" name="form" (ngSubmit)="onSubmit()">
+
+                        <!-- case_Creation_1 -->
+                        <div class="col-sm-12 col-md-12">
+                            <div class="row">
+                                <h2>Add New Asset</h2>
+                            </div>
+                        </div>
+                        <hr class="hr">
+                        <div class="scroll mt-3" (scroll)="divScroll($event)">
+                            <div class="col-md-12">
+                                <div class="row">
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Asset Type <span class="required-asterisk">*</span></label>
+                                        <select type="text" class="form-controll f-10" id="drop"
+                                            (change)="assetcatagory($event.target.value); mastype($event.target.value)" formControlName="assettype">
+                                            <option value="" hidden>Select asset type</option>
+
+                                            <!-- <option>
+                                                <button type="button" id="typeModel" mat-raised-button
+                                                    (click)="addTy()"><b>ADD NEW Type</b></button>
+                                            </option><hr> -->
+
+                                            <option *ngFor="let pr of assetty" value="{{pr.astt_id}}">{{pr.type}}
+                                            </option>
+
+                                        </select>
+                                        <div *ngIf="submitted && f.assettype.errors" class="invalid-feedback">
+                                            <div *ngIf="f.assettype.errors.required">Asset type is required
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Asset Category<span
+                                                class="required-asterisk">*</span>
+
+                                                &nbsp;
+                                                <button type="button" title="ADD NEW Category" id="catModel" class="btn"
+                                                (click)="catModell()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                                  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                                </svg>
+                                              </button>
+
+
+                                              </label>
+                                        <select type="text" class="form-controll f-10" id="drop"
+                                            (change)="assetgroup($event.target.value); mastcat($event.target.value)" formControlName="assetcat">
+                                            <option value="" hidden>Select asset Category</option>
+                                            <option *ngFor="let pr of assetcat" value="{{pr.astc_id}}">{{pr.category}}
+                                            </option>
+
+                                        </select>
+                                        <div *ngIf="submitted && f.assetcat.errors" class="invalid-feedback">
+                                            <div *ngIf="f.assetcat.errors.required">Asset category is required
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Asset Group<span class="required-asterisk">*</span>
+
+                                          &nbsp;
+                                          <button type="button" title="ADD NEW Group" id="grpModel" class="btn"
+                                          (click)="grpModell()">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                          </svg>
+                                        </button>
+
+
+                                        </label>
+
+                                        <input list="grpp" type="text" class="form-controll f-10" (change)="assetmake($event.target.value)"
+                                        (change)="mastgrp($event.target.value)"  formControlName="assetgroup" placeholder="Select asset group">
+                                        <datalist id="grpp">
+                                            <option *ngFor="let pr of assetgrop" value="{{pr.astg_id}}">{{pr.astg_group}}</option>
+                                        </datalist>
+
+                                        <div *ngIf="submitted && f.assetgroup.errors" class="invalid-feedback">
+                                            <div *ngIf="f.assetgroup.errors.required">Asset group is required
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Make<span class="required-asterisk">*</span>
+
+                                          &nbsp;
+                                          <button type="button" title="ADD NEW Make" id="makeModel" class="btn"
+                                          (click)="makModell()">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                          </svg>
+                                        </button>
+
+                                        </label>
+                                        <select type="text" class="form-controll f-10" id="drop"
+                                            (change)="assetmodel($event.target.value)" (change)="mastmk($event.target.value)" formControlName="make">
+                                            <option value="" hidden>Select asset make</option>
+                                            <option *ngFor="let pr of mak" value="{{pr.astupmk_id}}">{{pr.make}}
+                                            </option>
+
+                                        </select>
+                                        <div *ngIf="submitted && f.make.errors" class="invalid-feedback">
+                                            <div *ngIf="f.make.errors.required">make is required
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Model<span class="required-asterisk">*</span>
+
+                                          &nbsp;
+                                          <button type="button" title="ADD NEW Model" id="mModel" class="btn"
+                                          (click)="modModell()">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                          </svg>
+                                        </button>
+
+                                        </label>
+                                        <select type="text" class="form-controll f-10" id="drop" (change)="mastmod($event.target.value)"
+                                            formControlName="model">
+                                            <option value="" hidden>Select asset model</option>
+                                            <option *ngFor="let pr of assetmod" value="{{pr.astupmod_id}}">{{pr.model}}</option>
+
+                                        </select>
+                                        <div *ngIf="submitted && f.model.errors" class="invalid-feedback">
+                                            <div *ngIf="f.model.errors.required">Model is required
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Asset Name<span class="required-asterisk">*</span></label>
+                                        <input type="text" class="form-controll f-10 "
+                                            placeholder="Type asset name here" formControlName="assetname"
+                                            [ngClass]="{ 'is-invalid': submitted && f.assetname.errors }">
+
+                                        <div *ngIf="submitted && f.assetname.errors" class="invalid-feedback">
+                                            <div *ngIf="f.assetname.errors.required">Asset name is
+                                                required</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Asset ID<span class="required-asterisk">*</span></label>
+                                        <input type="text" class="form-controll f-10 " placeholder="Enter the Asset ID"
+                                            formControlName="assetid"
+                                            [ngClass]="{ 'is-invalid': submitted && f.assetid.errors }">
+
+                                        <div *ngIf="submitted && f.assetid.errors" class="invalid-feedback">
+                                            <div *ngIf="f.assetid.errors.required">Asset ID is
+                                                required</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Host Name</label>
+                                        <input type="text" class="form-controll f-10 " placeholder="Enter the Host Name"
+                                            formControlName="hostname"
+                                            [ngClass]="{ 'is-invalid': submitted && f.hostname.errors }">
+
+                                        <!-- <div *ngIf="submitted && f.hostname.errors" class="invalid-feedback">
+                                            <div *ngIf="f.hostname.errors.required">Host name is
+                                                required</div>
+                                        </div> -->
+
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                      <label class="lbl">Quantity</label>
+                                      <input type="text" class="form-controll f-10 " placeholder="Enter the quantity"
+                                          formControlName="quantity">
+
+                                  </div>
+
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Serial Number <span
+                                                class="required-asterisk">*</span></label>
+                                        <input type="text" class="form-controll f-10 "
+                                            placeholder="Type Serial number here" formControlName="srno"
+                                            [ngClass]="{ 'is-invalid': submitted && f.srno.errors }">
+
+                                        <div *ngIf="submitted && f.srno.errors" class="invalid-feedback">
+                                            <div *ngIf="f.srno.errors.required">Serial number is
+                                                required</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Custodian <span class="required-asterisk">*</span>
+
+                                          &nbsp;
+                                          <button type="button" title="ADD NEW CUSTODIAN" id="exampleModal" class="btn"
+                                          (click)="addCusto()">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                          </svg>
+                                        </button>
+
+                                        </label>
+                                        <select type="text" class="form-controll f-10" id="drop" (change)="custodd($event.target.value)"
+                                            formControlName="custodian">
+                                            <option value="" hidden>Select Custodian</option>
+                                            <option *ngFor="let pr of custod" value="{{pr.astupct_id}}" >{{pr.custodian}}</option>
+
+                                        </select>
+                                        <div *ngIf="submitted && f.custodian.errors" class="invalid-feedback">
+                                            <div *ngIf="f.custodian.errors.required">Custodian is required
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Asset Owner <span class="required-asterisk">*</span></label>
+                                        <select type="text" class="form-controll f-10" id="drop"
+                                            formControlName="assetowner">
+                                            <option value="" hidden>Select asset owner</option>
+
+                                            <option *ngFor="let pr of owner" value="{{pr.user_id}}">{{pr.owner_name}}</option>
+
+                                        </select>
+                                        <div *ngIf="submitted && f.assetowner.errors" class="invalid-feedback">
+                                            <div *ngIf="f.assetowner.errors.required">Asset owner is required
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Location<span class="required-asterisk">*</span>
+
+                                          &nbsp;
+                                          <button type="button" title="ADD NEW Location" id="locationModel" class="btn"
+                                          (click)="addLoc()">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                          </svg>
+                                        </button>
+
+                                        </label>
+
+                                        <input list="loca" type="text" class="form-controll f-10" (change)="locatio($event.target.value)"
+                                            formControlName="location" placeholder="Select Location">
+                                            <datalist id="loca">
+                                            <option *ngFor="let pr of loc" value="{{pr.astuploc_id}}">{{pr.location}}</option>
+                                          </datalist>
+
+                                        <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                                            <div *ngIf="f.location.errors.required">Location is required
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Confidentiality<span
+                                                class="required-asterisk">*</span>
+
+                                                &nbsp;
+                                                <button type="button" title="ADD NEW Confidentiality" id="exampleModal2" class="btn"
+                                                (click)="addConfi()">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                                  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                                </svg>
+                                              </button>
+
+                                              </label>
+                                        <select type="text" class="form-controll f-10" id="drop" (change)="confid($event.target.value)"
+                                            formControlName="confident">
+                                            <option value="" hidden>Select Confidentiality</option>
+                                            <option *ngFor="let pr of confide" value="{{pr.astupc_id}}">{{pr.conf}}</option>
+
+                                        </select>
+                                        <div *ngIf="submitted && f.confident.errors" class="invalid-feedback">
+                                            <div *ngIf="f.confident.errors.required">Confidentiality is required
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 mt-2">
+                                        <label class="lbl">Integrity<span class="required-asterisk">*</span>
+                                          &nbsp;
+                                          <button type="button" title="ADD NEW Integrity" id="exampleModal1" class="btn"
+                                          (click)="addInteg()">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                          </svg>
+                                        </button>
+                                        </label>
+                                        <select type="text" class="form-controll f-10" id="drop" (change)="assetown($event.target.value)"
+                                            formControlName="integrity">
+                                            <option value="" hidden>Select Integrity</option>
+                                            <option *ngFor="let pr of integ" value="{{pr.astupi_id}}">{{pr.inte}}</option>
+
+                                        </select>
+                                        <div *ngIf="submitted && f.integrity.errors" class="invalid-feedback">
+                                            <div *ngIf="f.integrity.errors.required">Integrity is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                      <label class="lbl">Availibility<span class="required-asterisk">*</span>
+                                        &nbsp;
+
+                                        <button type="button" title="ADD NEW vailibility" id="availModel" class="btn"
+                                        (click)="addAvail()">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                        </svg>
+                                      </button>
+                                      </label>
+                                      <select type="text" class="form-controll f-10" id="drop"(change)="availib($event.target.value)"
+                                          formControlName="availibility">
+                                          <option value="" hidden>Select Availibility</option>
+                                          <option *ngFor="let pr of avail" value="{{pr.astupa_id}}">{{pr.avail}}</option>
+
+                                      </select>
+                                      <div *ngIf="submitted && f.availibility.errors" class="invalid-feedback">
+                                          <div *ngIf="f.availibility.errors.required">Availibility is required
+                                          </div>
+                                      </div>
+                                  </div>
+
+
+                                    <div class="col-md-12 mt-2">
+
+                                        <label class="lbl">Family &nbsp;
+
+                                          <button type="button" title="ADD NEW Family" id="famModel" class="btn"
+                                          (click)="addfam()">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                                          </svg>
+                                        </button>
+                                        </label>
+                                        <input list="fam" type="text" placeholder="Select Family" class="form-controll f-10" (change)="fami($event.target.value)"
+                                        formControlName="family">
+                                        <datalist id="fam">
+                                          <option *ngFor="let pr of fam" value="{{pr.astupf_id}}">{{pr.family}}</option>
+                                        </datalist>
+
+
+                                    </div>
+
+
+                                    <div class="col-md-6 mt-2">
+                                        <label class="lbl">Warranty Start Date </label>
+                                        <input type="date" class="form-controll f-10" placeholder="Select Date"
+                                            formControlName="wsdate">
+                                    </div>
+
+                                    <div class="col-md-6 mt-2">
+                                        <label class="lbl">Warranty End Date </label>
+                                        <input type="date" class="form-controll f-10" placeholder="Select Date"
+                                            formControlName="wedate">
+                                    </div>
+
+                                    <!-- <div class="col-md-12 mt-2">
+                                        <label class="lbl">Detail Description <span class="required-asterisk">*</span></label><br>
+                                        <textarea id="" required maxlength="100" formControlName="description"
+                                            placeholder="Enter your valuable description"
+                                            pattern="[a-z0-9A-Z.-@_%$,\s]{5,100}" minlength="5"
+                                            class="form-controll f-10" cols="50"
+                                            [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+                                   </textarea>
+
+                                   <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                    <div *ngIf="f.description.errors.required">Description is
+                                        required</div>
+                                </div>
+                                    </div> -->
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                        <br>
+                        <div class="row float-right" style="margin-right: 15px;">
+                            <button class="cust-create-btn" #closeButton  (click)="sidebarShow = !sidebarShow"> Cancel </button>
+                            &nbsp;&nbsp; <button class="assetcret" type="submit"  [disabled]="form.invalid"
+                            style="cursor: pointer;"  name="send" required >
+                                Add Asset </button>
+                                <!-- <button type="submit" class="cust-create-btn" [disabled]="form.invalid">Add Asset </button> -->
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="color: blue;">
+
+            <ng-container matColumnDef="select" class="mat-column-select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="assetname" class="mat-column-assetname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Asset Name </th>
+                <td mat-cell *matCellDef="let products" style="color: #007aff;cursor: pointer;"> {{products.asset_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="assetid" class="mat-column-assetid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Asset ID </th>
+                <td mat-cell *matCellDef="let products"> {{products.asset_id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="owner_name" class="mat-column-owner_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Owner </th>
+                <td mat-cell *matCellDef="let products"> {{products.assetowner}} </td>
+
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="status" class="mat-column-status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let products"> {{products.status}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="custodian" class="mat-column-custodian">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Custodian</th>
+                <td mat-cell *matCellDef="let products"> {{products.custodian}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="actions" class="mat-column-actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
+
+                    <i class="fa fa-edit fa-lg" (click)="OpenUpdate(row.astd_id)"></i>&nbsp;&nbsp;
+                    <i class="fa fa-paperclip fa-lg"></i>&nbsp;&nbsp;
+
+
+                    <!-- <span type="button" (click)="OpenUpdate(row.astd_id)"><img
+                            src="assets/img/edit.svg"></span>&nbsp;&nbsp;&nbsp;
+                    <span type="button" (click)="openAttachment(row.astd_id,row.astg_group)"><img
+                            src="assets/img/attachment.svg"></span> -->
+
+                </td>
+            </ng-container>
+
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                [routerLink]="['/home/users/assetdetails',row.astd_id]"></tr>
+
+
+
+        </table>
+
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons
+            class="mat-elevation-z8">
+        </mat-paginator>
+
+
+
+    </div>
+
+</div>
+
+
+
+        <!-- popup-massage-cong start-->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+
+            <div class="modal-content">
+                <!-- <div class="modal-header">
+
+
+                  </div> -->
+
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                <div class="modal-body">
+                    <!-- <img src="./assets/img/cong.png"
+                    style="width:100%; height:250px; object-fit: cover;"> -->
+                    <p class="text-center2">{{result}}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+      <!-- popup-massage-cong end-->
+
+
+   <!-- popup-massage-error start-->
+   <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
+   aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+   <div class="modal-dialog modal-dialog-centered" role="document">
+
+       <div class="modal-content">
+
+           <div class="modal-body">
+              <i class="fa fa-exclamation-triangle" style="color:yellow; margin-left: 48%;font-size: 40px;"></i><br>
+               <p class="text-center1">{{result1}}</p>
+
+           </div>
+
+       </div>
+
+   </div>
+
+</div>
+<!-- popup-massage-error end-->
+
+  <!-- popup-master-type start-->
+  <!-- <div class="modal fade" id="createTyp" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+      <div class="modal-content">
+
+          <div class="modal-body">
+            <div  style="text-align: center;">
+              <form [formGroup]="formtype" (ngSubmit)="onSubmitType()">
+                <div class="row">
+                  <div class="col-md-12">
+                      <label>ADD NEW Type</label> <input class="form-control" formControlName="type" type="text" [ngClass]="{'is-invalid': submitted && formType.type.errors}" />
+                      <div *ngIf="submitted && formType.type.errors" class="invalid-feedback"><div *ngIf="formType.type.errors.required">Type is required</div></div>
+                  </div>
+              </div>
+                  <div class="row mt-3" style="text-align: end;">
+                      <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                  </div>
+              </form>
+          </div>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div> -->
+<!-- popup-master-type end-->
+
+
+  <!-- popup-master-category start-->
+  <div class="modal fade" id="createCat" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+      <div class="modal-content">
+
+          <div class="modal-body">
+            <div  style="text-align: center;">
+              <form [formGroup]="formcate" (ngSubmit)="onSubmitCateg()">
+                  <div class="row">
+
+                      <div class="col-md-12">
+                          <label>ADD NEW Category</label> <input class="form-control" formControlName="category" type="text" [ngClass]="{'is-invalid': submitted && formCat.category.errors}" />
+                          <div *ngIf="submitted && formCat.category.errors" class="invalid-feedback"><div *ngIf="formCat.category.errors.required">Category is required</div></div>
+                      </div>
+                  </div>
+                  <div class="row mt-3" style="text-align: end;">
+                      <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                  </div>
+              </form>
+          </div>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>
+<!-- popup-master-category end-->
+
+  <!-- popup-master-group start-->
+  <div class="modal fade" id="createGrp" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+      <div class="modal-content">
+
+          <div class="modal-body">
+            <div  style="text-align: center;">
+              <form [formGroup]="formgrop" (ngSubmit)="onSubmitGrp()">
+                  <div class="row">
+
+                      <div class="col-md-12">
+                          <label>ADD NEW Group</label> <input class="form-control" formControlName="astg_group" type="text" [ngClass]="{'is-invalid': submitted && formGrp.astg_group.errors}" />
+                          <div *ngIf="submitted && formGrp.astg_group.errors" class="invalid-feedback"><div *ngIf="formGrp.astg_group.errors.required">Group is required</div></div>
+                      </div>
+                  </div>
+                  <div class="row mt-3" style="text-align: end;">
+                      <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                  </div>
+              </form>
+          </div>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>
+<!-- popup-master-group end-->
+
+  <!-- popup-master-Make start-->
+  <div class="modal fade" id="mkModel" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+      <div class="modal-content">
+
+          <div class="modal-body">
+            <div  style="text-align: center;">
+              <form [formGroup]="formake" (ngSubmit)="onSubmitMk()">
+                  <div class="row">
+
+                      <div class="col-md-12">
+                          <label>ADD NEW Make</label>
+                           <input class="form-control" formControlName="make" type="text" [ngClass]="{'is-invalid': submitted && formMake.make.errors}" />
+                          <div *ngIf="submitted && formMake.make.errors" class="invalid-feedback"><div *ngIf="formMake.make.errors.required">Make is required</div></div>
+                      </div>
+                  </div>
+                  <div class="row mt-3" style="text-align: end;">
+                      <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                  </div>
+              </form>
+          </div>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>
+<!-- popup-master-Make end-->
+
+  <!-- popup-master-Model start-->
+  <div class="modal fade" id="modModel" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+      <div class="modal-content">
+
+          <div class="modal-body">
+            <div  style="text-align: center;">
+              <form [formGroup]="formodel" (ngSubmit)="onSubmitModel()">
+                  <div class="row">
+
+                      <div class="col-md-12">
+                          <label>ADD NEW Model</label>
+                           <input class="form-control" formControlName="model" type="text" [ngClass]="{'is-invalid': submitted && formMode.model.errors}" />
+                          <div *ngIf="submitted && formMode.model.errors" class="invalid-feedback"><div *ngIf="formMode.model.errors.required">Model is required</div></div>
+                      </div>
+                  </div>
+                  <div class="row mt-3" style="text-align: end;">
+                      <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                  </div>
+              </form>
+          </div>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>
+<!-- popup-master-Model end-->
+
+ <!-- popup-master-Custodian start-->
+ <div class="modal fade" id="custModel" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+ <div class="modal-dialog modal-dialog-centered" role="document">
+
+     <div class="modal-content">
+
+         <div class="modal-body">
+           <div  style="text-align: center;">
+             <form [formGroup]="formcustodian" (ngSubmit)="onSubmitCustodian()">
+
+                <div class="row">
+                  <div class="col-md-12">
+                      <label>Add New Custodian</label> <input class="form-control" formControlName="custodian" type="text" [ngClass]="{'is-invalid': submitted && formCusto.custodian.errors}" />
+                      <div *ngIf="submitted && formCusto.custodian.errors" class="invalid-feedback"><div *ngIf="formCusto.custodian.errors.required">Custodian is required</div></div>
+                  </div>
+              </div>
+                 <div class="row mt-3" style="text-align: end;">
+                     <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                 </div>
+             </form>
+         </div>
+
+         </div>
+
+     </div>
+
+ </div>
+
+</div>
+<!-- popup-master-Custodian end-->
+
+ <!-- popup-master-Location start-->
+ <div class="modal fade" id="locModel" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+ <div class="modal-dialog modal-dialog-centered" role="document">
+
+     <div class="modal-content">
+
+         <div class="modal-body">
+           <div  style="text-align: center;">
+             <form  [formGroup]="formlocat" (ngSubmit)="onSubmitLoc()">
+
+                <div class="row">
+                  <div class="col-md-12">
+                      <label>ADD NEW Location</label> <input class="form-control" formControlName="location" type="text" [ngClass]="{'is-invalid': submitted && formLoca.location.errors}" />
+                      <div *ngIf="submitted && formLoca.location.errors" class="invalid-feedback"><div *ngIf="formLoca.location.errors.required">Location is required</div></div>
+                  </div>
+              </div>
+                 <div class="row mt-3" style="text-align: end;">
+                     <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                 </div>
+             </form>
+         </div>
+
+         </div>
+
+     </div>
+
+ </div>
+
+</div>
+<!-- popup-master-Location end-->
+
+ <!-- popup-master-Confidentiality start-->
+ <div class="modal fade" id="confModel" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+ <div class="modal-dialog modal-dialog-centered" role="document">
+
+     <div class="modal-content">
+
+         <div class="modal-body">
+           <div  style="text-align: center;">
+             <form [formGroup]="formconfid" (ngSubmit)="onSubmitConfident()">
+
+              <div class="row">
+                <div class="col-md-12">
+                    <label>Add New Confidentiality</label> <input class="form-control" formControlName="confident" type="text" [ngClass]="{'is-invalid': submitted && formConf.confident.errors}" />
+                    <div *ngIf="submitted && formConf.confident.errors" class="invalid-feedback"><div *ngIf="formConf.confident.errors.required">Confidentiality is required</div></div>
+                </div>
+            </div>
+                 <div class="row mt-3" style="text-align: end;">
+                     <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                 </div>
+             </form>
+         </div>
+
+         </div>
+
+     </div>
+
+ </div>
+
+</div>
+<!-- popup-master-Confidentiality end-->
+
+ <!-- popup-master-Integrity start-->
+ <div class="modal fade" id="integModel" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+ <div class="modal-dialog modal-dialog-centered" role="document">
+
+     <div class="modal-content">
+
+         <div class="modal-body">
+           <div  style="text-align: center;">
+             <form [formGroup]="forminteg" (ngSubmit)="onSubmitInteg()">
+
+              <div class="row">
+                <div class="col-md-12">
+                    <label>ADD NEW Integrity</label> <input class="form-control" formControlName="inte" type="text" [ngClass]="{'is-invalid': submitted && formInt.inte.errors}" />
+                    <div *ngIf="submitted && formInt.inte.errors" class="invalid-feedback"><div *ngIf="formInt.inte.errors.required">Integrity is required</div></div>
+                </div>
+            </div>
+                 <div class="row mt-3" style="text-align: end;">
+                     <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                 </div>
+             </form>
+         </div>
+
+         </div>
+
+     </div>
+
+ </div>
+
+</div>
+<!-- popup-master-Integrity end-->
+
+ <!-- popup-master-Availibility start-->
+ <div class="modal fade" id="avaiModel" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+ <div class="modal-dialog modal-dialog-centered" role="document">
+
+     <div class="modal-content">
+
+         <div class="modal-body">
+           <div  style="text-align: center;">
+             <form [formGroup]="formavail" (ngSubmit)="onSubmitAvail()">
+
+              <div class="row">
+                <div class="col-md-12">
+                    <label>ADD NEW Availibility</label> <input class="form-control" formControlName="avail" type="text" [ngClass]="{'is-invalid': submitted && formAvai.avail.errors}" />
+                    <div *ngIf="submitted && formAvai.avail.errors" class="invalid-feedback"><div *ngIf="formAvai.avail.errors.required">Availibility is required</div></div>
+                </div>
+            </div>
+                 <div class="row mt-3" style="text-align: end;">
+                     <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                 </div>
+             </form>
+         </div>
+
+         </div>
+
+     </div>
+
+ </div>
+
+</div>
+<!-- popup-master-Availibility end-->
+
+ <!-- popup-master-Family start-->
+ <div class="modal fade" id="familyModel" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+ <div class="modal-dialog modal-dialog-centered" role="document">
+
+     <div class="modal-content">
+
+         <div class="modal-body">
+           <div  style="text-align: center;">
+             <form [formGroup]="formfam" (ngSubmit)="onSubmitfamily()">
+
+              <div class="row">
+                <div class="col-md-12">
+                    <label>ADD NEW Family</label> <input class="form-control" formControlName="family" type="text" [ngClass]="{'is-invalid': submitted && formFami.family.errors}" />
+                    <div *ngIf="submitted && formFami.family.errors" class="invalid-feedback"><div *ngIf="formFami.family.errors.required">family is required</div></div>
+                </div>
+            </div>
+                 <div class="row mt-3" style="text-align: end;">
+                     <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
+                 </div>
+             </form>
+         </div>
+
+         </div>
+
+     </div>
+
+ </div>
+
+</div>
+<!-- popup-master-Family end-->
+

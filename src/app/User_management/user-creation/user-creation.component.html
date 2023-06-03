@@ -1,0 +1,518 @@
+<div class="container-fluid" style="    margin: 30px 0 0 0;padding: 0;">
+    <form class="form-group" [formGroup]="form" (ngSubmit)="onSubmit()" #ff="ngForm" name="form">
+
+        <!-- User_Creation -->
+        <div class="col-sm-12 col-md-12">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12 ">
+
+
+                        <div class="col-md-2">
+                            <img id="user" src="assets/img/Trial 2.png" /><br>
+
+                            <a href="" id="Choose"> Add photo </a>
+                        </div>
+
+                        <div class="profile-txt">
+                            <p for="" style="font-weight: 600;margin-bottom: 0; font-size: 22px;">
+                                {{title1}}&nbsp;{{fname}}&nbsp;{{mname}}&nbsp;{{lname}}</p>
+
+                            <p style="margin-bottom: 0;font-size:16px;font-weight: 600;">{{desig}}</p>
+                            <p style="font-size: 14px; font-weight: 600;">{{email}}
+                                &nbsp;&nbsp;&nbsp;{{mobile}}</p>
+
+                        </div>
+
+
+                        <ng-template #content let-modal>
+                            <div class="container" style="width:300px; height:150px;">
+                                <div>
+                                    <p style="text-align:center; padding:15px; margin-top:10px;">Are you sure you
+                                        want to cancel the current operation?
+                                    <p>
+                                </div>
+
+                                <div class="clear-fix" style="text-align:center; padding-bottom:15px;">
+                                    <button type="button"
+                                        style="margin-right:25px; border-radius:5px; background-color:#bebebe; height:30px; width:110px; font-size:12px; border: none; outline: none;"
+                                        (click)="modal.close('Close click');close()">Cancel</button>
+                                    <button type="button"
+                                        style=" background-color:rgb(62,144,249); border-radius:5px;height:30px; width:110px; font-size: 12px; border: none; outline: none; color:white"
+                                        (click)="modal.close('Close click')">Keep editing</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <button type="button" class="create-new float-right"
+                            (click)="openVerticallyCentered(content)">Cancel</button>
+
+                    </div>
+
+                </div>
+
+                <hr class="mt-5">
+
+                <div class="scroll mt-3" (scroll)="divScroll($event)">
+
+                    <div class="row">
+                        <div class="col-md-11 card" *ngIf="div1" [ngClass]="statusClass" (click)="setActiveClass1()">
+
+                            <div class="">
+                                <h1 class="font-sans f-20">User Information</h1>
+                                <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+                                    (click)="ff.resetForm()"><u>X Clear all</u></a>
+                            </div><br>
+
+
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+
+                                    <div class="row mt-2">
+                                        <div class="col-md-2">
+                                          
+                                            <select class="form-control f-10" placeholder="Title"
+                                                formControlName="title" [(ngModel)]="title1"
+                                                [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                                                <option hidden></option>
+                                                <option *ngFor="let com3 of products7">{{com3.title}} </option>
+                                            </select>
+
+                                            <div *ngIf="submitted && f.title.errors || f.title.invalid && (f.title.dirty || f.title.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.title.errors.required">Title is required</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-10">
+                                          
+                                            <input type="text" formControlName="firstname" class="form-control f-10"
+                                                placeholder="First Name" [(ngModel)]="fname"
+                                                [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
+                                            <div
+                                                *ngIf="f.firstname.invalid && (f.firstname.dirty || f.firstname.touched)">
+                                                <div *ngIf="submitted && f.firstname.errors || f.firstname.invalid && (f.firstname.dirty || f.firstname.touched)"
+                                                    style="color: red; font-size: 12px;">
+                                                    <div *ngIf="f.firstname.errors.required">First Name is required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <div class="col-md-6">
+                                            <input type="text" formControlName="middlename" class="form-control f-10"
+                                                placeholder="Middle Name" [(ngModel)]="mname">
+                                          
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" formControlName="lastname" class="form-control f-10"
+                                                placeholder="Last Name" [(ngModel)]="lname">
+                                           
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-2">
+
+                                        <div class="col-md-12 ">
+                                            <label class="lbl">User Type </label><br>
+                                            <input class="form-control f-10" formControlName="usertype"
+                                                readonly>
+                              
+                                        </div>
+
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-6">
+                                            <label class="lbl">Login Name <span
+                                                    class="required-asterisk">*</span></label><br>
+                                            <input type="text" class="form-control f-10" formControlName="loginname"
+                                                (ngModelChange)="loginName($event)" placeholder="Enter login name"
+                                                [ngClass]="{ 'is-invalid': submitted && f.loginname.errors }">
+                                            <div *ngIf="submitted && f.loginname.errors || f.loginname.invalid && (f.loginname.dirty || f.loginname.touched)"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.loginname.errors.required">Login Name is required</div>
+                                            </div>
+
+                                            <div *ngIf="assetResultLogin" style="color: red; font-size: 12px;">
+                                                <p>{{assetResultLogin}}</p>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="lbl">Password <span
+                                                    class="required-asterisk">*</span></label><br>
+                                            <input type="password" class="form-control f-10" formControlName="password"
+                                               
+                                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                            <div *ngIf="submitted && f.password.errors || f.password.invalid && (f.password.dirty || f.password.touched)"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                  
+
+                                        <!-- <div class="col-md-12 ">
+                                            <label class="lbl">Employee ID <span
+                                                    class="required-asterisk">*</span></label><br>
+                                            <input type="text" class="form-control" formControlName="empid"
+                                                (ngModelChange)="localID($event)"
+                                                [ngClass]="{ 'is-invalid': submitted && f.empid.errors }"
+                                                pattern="[a-z0-9A-Z\s]{2,10}" minlength="2" maxlength="10">
+
+                                            <div *ngIf="submitted && f.empid.errors || f.empid.invalid && (f.empid.dirty || f.empid.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.empid.errors.required">Local ID is required</div>
+                                            </div>
+
+                                            <div *ngIf="f.empid.errors" style="color: red; font-size: 12px;">
+                                                <span *ngIf="f.empid.errors?.pattern"> Invalid Local ID</span>
+                                            </div>
+
+                                            <div *ngIf="assetResultLocal" style="color: red; font-size: 12px;">
+                                                <p>{{assetResultLocal}}</p>
+                                            </div>
+
+
+                                        </div> -->
+                                        <!-- <div class="col-md-6 ">
+                                            <label class="lbl">8ID <span class="required-asterisk">*</span></label><br>
+                                            <input type="text" class="form-control" formControlName="eightid"
+                                            (ngModelChange)="eightidAPI($event)"
+                                                [ngClass]="{ 'is-invalid': submitted && f.eightid.errors }"
+                                                pattern="[a-z0-9A-Z\s]{2,10}" minlength="2" maxlength="10">
+                                            <div *ngIf="submitted && f.eightid.errors  || f.eightid.invalid && (f.eightid.dirty || f.eightid.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.eightid.errors.required">8ID is required</div>
+                                            </div>
+                                            <div *ngIf="f.eightid.errors" style="color: red; font-size: 12px;">
+                                                <span *ngIf="f.eightid.errors?.pattern"> Invalid 8ID </span>
+                                            </div>
+
+                                            <div *ngIf="assetResultEight"  style="color: red; font-size: 12px;">
+                                                <p>{{assetResultEight}}</p>
+                                            </div>
+                                        </div> -->
+                                   
+
+                                    <!-- <div class="row mt-2">
+                                        <div class="col-md-6">
+                                            <label class="lbl">Reporting To <span
+                                                    class="required-asterisk">*</span></label><br>
+
+
+                                            <ng-autocomplete formControlName="reportingto" [data]="reportingtoo"
+                                                [searchKeyword]="keyword1" (selected)='selectEvent($event)'
+                                                (inputChanged)='onChangeSearch($event)'
+                                                (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+                                                [notFoundTemplate]="notFoundTemplate"
+                                                [ngClass]="{ 'is-invalid': submitted && f.reportingto.errors }">
+                                            </ng-autocomplete>
+                                            <ng-template #itemTemplate let-item>
+                                                <a [innerHTML]="item.username1"></a>
+                                            </ng-template>
+
+                                            <ng-template #notFoundTemplate let-notFound>
+                                                <div [innerHTML]="notFound"></div>
+                                            </ng-template>
+
+                                            <div *ngIf="submitted && f.reportingto.errors || f.reportingto.invalid && (f.reportingto.dirty || f.reportingto.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.reportingto.errors.required">Reportingto is required</div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="lbl">VIP Status <span
+                                                    class="required-asterisk">*</span></label><br>
+                                            <select class="form-control f-10 " formControlName="vipstatus"
+                                                [ngClass]="{ 'is-invalid': submitted && f.vipstatus.errors }">
+                                                <option hidden>Select VIP status</option>
+                                                <option>General </option>
+                                                <option>VIP </option>
+                                            </select>
+                                            <div *ngIf="submitted && f.vipstatus.errors || f.vipstatus.invalid && (f.vipstatus.dirty || f.vipstatus.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.vipstatus.errors.required">VIP STATUS is required</div>
+                                            </div>
+                                        </div>
+
+                                    </div> -->
+
+                                    <div class="row mt-2">
+                                        <div class="col-md-6">
+                                            <label class="lbl">Department <span
+                                                    class="required-asterisk">*</span></label><br>
+                                            <select class="form-control f-10" formControlName="department"
+                                                [ngClass]="{ 'is-invalid': submitted && f.department.errors }"
+                                                (change)="osystem($event.target.value)">
+                                                <option hidden>Select Department</option>
+                                                <option *ngFor="let dept of department">{{dept.deptname}} </option>
+                                                <option>
+                                                    <button type="button" id="exampleModal1" mat-raised-button
+                                                        (click)="addField('department')">ADD NEW Department</button>
+                                                </option>
+
+                                            </select>
+                                            <div *ngIf="submitted && f.department.errors || f.department.invalid && (f.department.dirty || f.department.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.department.errors.required">Department is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="lbl">User Role <span
+                                                    class="required-asterisk">*</span></label><br>
+                                            <select class="form-control f-10 " formControlName="role"
+                                                [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
+                                                <option hidden> Select user role</option>
+                                                <option *ngFor="let com3 of role">{{com3.name}} </option>
+                                            </select>
+                                            <div *ngIf="submitted && f.role.errors || f.role.invalid && (f.role.dirty || f.role.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.role.errors.required">User Role is required</div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <!-- <div class="col-md-6">
+                                            <label class="lbl">Support Group</label><br>
+                                            <select class="form-control f-10" formControlName="supgrp"
+                                               >
+                                                <option hidden> Select support group</option>
+                                                <option *ngFor="let com3 of usergrp">{{com3.sgname}} </option>
+                                            </select>
+
+                                            <div *ngIf="submitted && f.supgrp.errors || f.supgrp.invalid && (f.supgrp.dirty || f.supgrp.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.supgrp.errors.required">Support Group is required</div>
+                                            </div>
+
+                                        </div> -->
+
+                                        <div class="col-md-12">
+                                            <label class="lbl">Designation <span
+                                                    class="required-asterisk">*</span></label><br>
+                                            <select class="form-control f-10" formControlName="designation"
+                                                [(ngModel)]="desig"
+                                                [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"
+                                                (change)="osystem($event.target.value)">
+                                                <option hidden>Select Designation</option>
+                                                <option *ngFor="let com3 of designation">{{com3.designationname}}
+                                                </option>
+                                                <option>
+                                                    <button type="button" id="exampleModal2" mat-raised-button
+                                                        (click)="addField('Designation')">ADD NEW Designation</button>
+                                                </option>
+                                            </select>
+                                            <div *ngIf="submitted && f.designation.errors || f.designation.invalid && (f.designation.dirty || f.designation.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.designation.errors.required">Designation is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <br>
+
+
+
+                    <div class="row">
+                        <div class="col-md-11 card" *ngIf="div2" [ngClass]="statusClasses" (click)="setActiveClass2()">
+
+                            <div class="">
+                                <h1 class="font-sans f-20">Contact Details </h1>
+                                <a class="clear-all float-right" (click)="ff.resetForm();"
+                                    style="color:rgb(98, 98, 255); cursor: pointer;"><u>X Clear all</u></a>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="row mt-2">
+                                        <div class="col-md-6">
+                                            <label class="lbl">Contact Number</label>
+                                            <input type="text" class="form-control f-10" formControlName="mobile"
+                                                (keypress)="OnlyNumbersAllowed($event)"
+                                                placeholder="Enter mobile number" [(ngModel)]="mobile"
+                                                pattern="[0-9]{10}" minlength="10" maxlength="10">
+                                            <div *ngIf="f.mobile.errors" style="color: red; font-size: 12px;">
+                                                <span *ngIf="f.mobile.errors?.pattern"> Invalid Contact Number</span>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-md-4">
+                                            <label>Secondary Contact No </label>
+                                            <input type="text" class="form-control" formControlName="landline">
+                                        </div> -->
+                                        <div class="col-md-6">
+                                            <label class="lbl">Desk Number</label>
+                                            <input type="text" class="form-control f-10" placeholder="Enter desk number"
+                                                formControlName="deskno">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <!-- <div class="col-md-4">
+                                            <label class="lbl">Building </label>
+                                            <select class="form-control f-10" formControlName="building"
+                                                (change)="osystem($event.target.value);getFloor($event.target.value)">
+                                                <option hidden>Select building</option>
+                                                <option *ngFor="let com3 of products9">{{com3.building}} </option>
+                                                <option>
+                                                    <button type="button" id="exampleModal3" mat-raised-button
+                                                        (click)="addField('Building')">ADD NEW Building</button>
+                                                </option>
+
+                                            </select>
+                                          
+
+                                        </div> -->
+                                        <div class="col-md-6">
+                                            <label class="lbl">Email-ID <span class="required-asterisk">*</span></label>
+                                            <input type="text" class="form-control f-10" formControlName="email"
+                                                [(ngModel)]="email"
+                                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"
+                                                placeholder="Email ID" required>
+                                            <div *ngIf="f.email.errors" style="color: red; font-size: 12px;">
+                                                <span *ngIf="f.email.errors?.pattern"> Invalid Email ID</span>
+                                            </div>
+                                            <div *ngIf="submitted && f.email.errors || f.email.invalid && (f.email.dirty || f.email.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.email.errors.required">Email ID is required.</div>
+                                            </div>
+
+                                        </div>
+                                        <!-- <div class="col-md-4">
+                                            <label class="lbl">Section Code </label>
+                                            <select class="form-control f-10" formControlName="scode"
+                                                (change)="osystem($event.target.value)"
+                                               >
+                                                <option hidden>Select section code</option>
+                                                <option *ngFor="let com3 of products11">{{com3.scode}} </option>
+                                                <option>
+                                                    <button type="button" id="exampleModal4" mat-raised-button
+                                                        (click)="addField('Section Code')">ADD NEW Section Code</button>
+                                                </option>
+
+                                            </select>
+                                           
+
+                                        </div> -->
+                                        <!-- </div> -->
+
+                                        <!-- <div class="row mt-2"> -->
+                                        <!-- <div class="col-md-4">
+                                            <label class="lbl">Floor </label>
+                                            <select class="form-control f-10" formControlName="floor"
+                                                (change)="osystem($event.target.value)"
+                                                >
+                                                <option hidden> Select floor</option>
+                                                <option *ngFor="let com3 of floor">{{com3.floor}} </option>
+                                                <option>
+                                                    <button type="button" id="exampleModal5" mat-raised-button
+                                                        (click)="addField('Floor')">ADD NEW Floor</button>
+                                                </option>
+                                            </select>
+                                        </div> -->
+                                        <div class="col-md-6">
+                                            <label class="lbl">Organization <span
+                                                    class="required-asterisk">*</span></label>
+                                            <select class="form-control f-10" formControlName="org"
+                                                [ngClass]="{ 'is-invalid': submitted && f.org.errors }">
+                                                <option hidden>Select organization</option>
+                                                <option *ngFor="let com3 of products8">{{com3.org}} </option>
+                                            </select>
+                                            <div *ngIf="submitted && f.org.errors || f.org.invalid && (f.org.dirty || f.org.touched)"
+                                                style="color: red; font-size: 12px;">
+                                                <div *ngIf="f.org.errors.required">Organization is required</div>
+                                            </div>
+
+                                        </div>
+                                        <!-- <div class="col-md-4">
+                                            <label class="lbl">Branch </label>
+                                            <select class="form-control f-10" formControlName="branch"
+                                                (change)="osystem($event.target.value)">
+                                                <option hidden>Select branch</option>
+                                                <option *ngFor="let com3 of products10">{{com3.branch}} </option>
+                                                <option>
+                                                    <button type="button" id="exampleModal6" mat-raised-button
+                                                        (click)="addField('Branch')">ADD NEW Branch</button>
+                                                </option>
+                                            </select>
+                                        </div> -->
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                            <label class="lbl">Short description</label>
+                                            <textarea id="" name="msg-box" class="form-control f-10" rows="6"
+                                                formControlName="description" placeholder="Short Description">
+                                             </textarea>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <br>
+
+
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4">
+
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <button [disabled]="form.invalid" style="cursor: pointer;" id="savenupdate"
+                                class="cust-create-btn">
+                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1 "></span>
+                                CREATE USER</button>
+
+
+
+                        </div>
+                    </div> <br>
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+    </form>
+
+</div>
+

@@ -1,0 +1,53 @@
+.accordion .card-header:after {
+    font-family: 'FontAwesome';  
+    content: "\f068";
+    float: right; 
+}
+.accordion .card-header.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f067"; 
+}
+.card-header{
+    background: #007AFF;
+    height: 32px;
+    padding: 5px 5px 5px 10px;
+
+}
+
+#savenupdate{
+    position: relative;
+    width: 160px;
+    height: 30px;
+  
+     
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    background-color: #C4C4C4;
+    border: 1px solid #C4C4C4;
+    border-radius: 3px;
+    text-align: center;
+     
+    color: #2A2B2D;
+}
+          
+.material-icons{
+    background-color: rgba(0, 0, 0, 0.3) ;
+    /* opacity:0.5; */
+    border-radius: 20px;
+    border: 0.1px solid transparent;
+    color: white;
+    
+}
+#p1{
+    font-family: Raleway;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: 21px;
+letter-spacing: 0em;
+text-align: left;
+
+}

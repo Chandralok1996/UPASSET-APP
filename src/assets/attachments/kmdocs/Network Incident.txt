@@ -1,0 +1,71 @@
+Details API:
+
+select a.* from
+    (select inid.inid_id as Ticket_No,
+(select concat(usud.first_name,' ',usud.last_name) as Emp_Name from usud where user_id = inop.user_id),
+(select deptname as Dept from usdt where usdt_id=(select usdt_id from usre where user_id=inop.user_id)), 
+inid.short_desc as Problem,inid.detaii_desc as Problem_Summary,
+(select concat(first_name,' ',last_name) as Engineer from usud where user_id = inow.user_id),
+inst.status as Call_Status,
+to_char(inid.last_update,'DD-MM-YYYY HH24:MI:SS')as Log_Time,
+(select working_notes as Action_Taken from inwn where inwn.inid_id=inid.inid_id order by created limit 1),
+(select category as Asset_category from astc where astc_id=(select astc_id from astr where astr.astd_id=astd.astd_id)),
+(select astg_group as Asset_group from astg where astg_id=(select astg_id from astr where astr.astd_id=astd.astd_id)),
+inpr.priority,ussg.sgname as Support_group,incm.callmode,inrm.responsemode,intp.category,
+to_char(inid.created,'FMmonth') as month,extract(quarter from inid.created) as quarter,extract(year from inid.created) as year
+  from inid 
+  LEFT JOIN inre ON inre.inid_id=inid.inid_id
+  LEFT JOIN inop ON inop.inid_id=inid.inid_id
+  LEFT JOIN inst ON inst.inst_id=inre.inst_id
+  LEFT JOIN inpr ON inpr.inpr_id=inre.inpr_id
+  LEFT JOIN intp ON intp.intp_id=inre.intp_id
+  LEFT JOIN incm ON incm.incm_id=inre.incm_id
+  LEFT JOIN inrm ON inrm.inrm_id=inre.inrm_id
+  LEFT JOIN inow ON inow.inid_id=inid.inid_id
+  LEFT JOIN inmp ON inmp.inid_id=inid.inid_id
+  LEFT JOIN astr ON astr.astr_id=inmp.astr_id
+  LEFT JOIN astd ON astd.astd_id=astr.astd_id
+  LEFT JOIN astag ON astag.astd_id=astd.astd_id
+  LEFT JOIN ussg ON ussg.ussg_id=astag.ussg_id order by inpr.inpr_id desc ) a where a.year='2021' and a.Asset_group='LAPTOP'
+    group by a.responsemode,a.Ticket_No,a.Call_Status,a.Problem_Summary,a.Problem,a.Log_Time ,a.quarter,a.month,a.year,a.callmode,a.Emp_Name,
+a.Dept,a.Engineer,a.Action_Taken,a.category,a.priority,a.Support_group,a.Asset_category,Asset_group order by a.quarter,a.month asc
+
+
+
+count:
+
+
+
+select a.Asset_group, count(a.inid_id) from 
+            (select inid.inid_id as Ticket_No,
+(select concat(usud.first_name,' ',usud.last_name) as Emp_Name from usud where user_id = inop.user_id),
+(select deptname as Dept from usdt where usdt_id=(select usdt_id from usre where user_id=inop.user_id)), 
+inid.short_desc as Problem,inid.detaii_desc as Problem_Summary,
+(select concat(first_name,' ',last_name) as Engineer from usud where user_id = inow.user_id),
+inst.status as Call_Status,
+to_char(inid.last_update,'DD-MM-YYYY HH24:MI:SS')as Log_Time,
+(select working_notes as Action_Taken from inwn where inwn.inid_id=inid.inid_id order by created limit 1),
+(select category as Asset_category from astc where astc_id=(select astc_id from astr where astr.astd_id=astd.astd_id)),
+(select astg_group as Asset_group from astg where astg_id=(select astg_id from astr where astr.astd_id=astd.astd_id)),
+inpr.priority,ussg.sgname as Support_group,incm.callmode,inrm.responsemode,intp.category,
+to_char(inid.created,'FMmonth') as month,extract(quarter from inid.created) as quarter,extract(year from inid.created) as year
+  from inid 
+  LEFT JOIN inre ON inre.inid_id=inid.inid_id
+  LEFT JOIN inop ON inop.inid_id=inid.inid_id
+  LEFT JOIN inst ON inst.inst_id=inre.inst_id
+  LEFT JOIN inpr ON inpr.inpr_id=inre.inpr_id
+  LEFT JOIN intp ON intp.intp_id=inre.intp_id
+  LEFT JOIN incm ON incm.incm_id=inre.incm_id
+  LEFT JOIN inrm ON inrm.inrm_id=inre.inrm_id
+  LEFT JOIN inow ON inow.inid_id=inid.inid_id
+  LEFT JOIN inmp ON inmp.inid_id=inid.inid_id
+  LEFT JOIN astr ON astr.astr_id=inmp.astr_id
+  LEFT JOIN astd ON astd.astd_id=astr.astd_id
+  LEFT JOIN astag ON astag.astd_id=astd.astd_id
+  LEFT JOIN ussg ON ussg.ussg_id=astag.ussg_id order by inpr.inpr_id desc) a
+            where a.year=$1
+                      group by a.Asset_group  
+                      order by count desc
+
+
+

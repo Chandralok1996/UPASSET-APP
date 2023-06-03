@@ -1,0 +1,879 @@
+<div class="container-fluid" style="    margin: 30px 0 0 0;padding: 0;">
+  <div class="row">
+    <div class="col-md-12 ">
+
+      <div class="row">
+        <div class="col-md-2">
+          <img id="user" src="assets/img/Trial 2.png" /><br>
+
+          <a href="" id="Choose"> Add photo </a>
+        </div>
+
+
+        <div class="row">
+
+          <div class="profile-name">NEW ASSET | Server</div>
+
+        </div>
+      </div>
+
+
+
+      <ng-template #content let-modal>
+        <div class="container" style="width:300px; height:150px;">
+          <div>
+            <p style="text-align:center; padding:15px; margin-top:10px;">Are you sure you
+              want to cancel the current operation?
+            <p>
+          </div>
+
+          <div class="clear-fix" style="text-align:center; padding-bottom:15px;">
+            <button type="button"
+              style="margin-right:25px; border-radius:5px; background-color:#bebebe; height:30px; width:110px; font-size:12px; border: none; outline: none;"
+              (click)="modal.close('Close click');close()">Cancel</button>
+            <button type="button"
+              style=" background-color:rgb(62,144,249); border-radius:5px;height:30px; width:110px; font-size: 12px; border: none; outline: none; color:white"
+              (click)="modal.close('Close click')">Keep editing</button>
+          </div>
+        </div>
+      </ng-template>
+      <button type="button" class="create-new float-right" (click)="openVerticallyCentered(content)">Cancel</button>
+    </div>
+  </div>
+
+  <hr class="hr">
+
+  <div class="scroll" (scroll)="divScroll($event)">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" #ff="ngForm">
+
+      <div class="col-md-11 card" *ngIf="div1" [ngClass]="statusClass" (click)="setActiveClass1()">
+        <div class="">
+          <h1 class="font-sans f-20">Asset Information</h1>
+          <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+            (click)="ff.resetForm()"><u>X
+              Clear all</u></a>
+        </div><br>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> User Name <span class="required-asterisk">*</span></label>
+              <!-- <select formControlName="name" class="form-control" (click)="userdet()" 
+             [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+             <option></option>
+             <option *ngFor="let name of username">{{name.username}}</option>
+              </select> -->
+
+              <ng-autocomplete formControlName="name" [data]="username" [searchKeyword]="keyword1"
+                (selected)='userdet($event)' (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)'
+                [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+              </ng-autocomplete>
+              <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.username"></a>
+              </ng-template>
+              <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+              </ng-template>
+
+              <div *ngIf="submitted && f.name.errors || f.name.invalid && (f.name.dirty || f.name.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.name.errors.required">User Name is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Asset No. <span class="required-asterisk">*</span></label>
+              <input type="text" class="form-control f-10" formControlName="assetno" (ngModelChange)="onPercentChange($event)"
+              placeholder="Enter asset number"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+
+              <div *ngIf="submitted && f.assetno.errors || f.assetno.invalid && (f.assetno.dirty || f.assetno.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.assetno.errors.required">Asset No. is required</div>
+              </div>
+              <div *ngIf="assetResult"  style="color: red; font-size: 12px;">
+                <p>{{assetResult}}</p>
+            </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Department</label>
+              <select class="form-control f-10" formControlName="deptname" readonly>
+
+                <option *ngFor="let dept of uname" [disabled]="true">{{dept.deptname}}</option>
+              </select>
+
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Employee ID</label>
+              <select class="form-control f-10" formControlName="eightid" readonly>
+                <option *ngFor="let eight of uname" [disabled]="true">{{eight.eightid}}</option>
+
+              </select>
+
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Building</label>
+              <select class="form-control f-10" formControlName="building" (click)="getFloor()" readonly>
+
+                <option *ngFor="let bld of uname" [disabled]="true">{{bld.building}}</option>
+                <!-- <option   *ngFor="let com3 of building">{{com3.building}} </option> -->
+              </select>
+
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Floor</label>
+              <select class="form-control f-10" formControlName="floor" readonly>
+                <option *ngFor="let flr of uname" [disabled]="true">{{flr.floor}}</option>
+                <!-- <option   *ngFor="let com3 of floor">{{com3.floor}} </option> -->
+              </select>
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Status <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="status"
+                [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                <option hidden> Select Status</option>
+                <option *ngFor="let statusData of status">{{statusData.status}}</option>
+
+              </select>
+              <div *ngIf="submitted && f.status.errors || f.status.invalid && (f.status.dirty || f.status.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.status.errors.required">Status is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Branch</label>
+              <select class="form-control f-10" formControlName="branch" readonly>
+                <option *ngFor="let br of uname" [disabled]="true">{{br.branch}}</option>
+                <!-- <option   *ngFor="let com3 of branch">{{com3.branch}} </option> -->
+              </select>
+
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1">Group <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="astg_group" 
+                [ngClass]="{ 'is-invalid': submitted && f.astg_group.errors }">
+              <!-- <select  class="form-control" formControlName="astg_group" 
+             [ngClass]="{ 'is-invalid': submitted && f.astg_group.errors }" >
+                 <option></option>
+                 <option>SERVER</option>
+                     </select> -->
+              <div
+                *ngIf="submitted && f.astg_group.errors || f.astg_group.invalid && (f.astg_group.dirty || f.astg_group.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.astg_group.errors.required">Group is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Category <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="category"
+                [ngClass]="{ 'is-invalid': submitted && f.category.errors }" readonly>
+                <!-- <option hidden> Select Category</option>
+                <option *ngFor="let categoryData of category">{{categoryData.category}}</option>
+
+              </select> -->
+              <div
+                *ngIf="submitted && f.category.errors || f.category.invalid && (f.category.dirty || f.category.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.category.errors.required">Category is required</div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Asset Type <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="asset_type"
+                [ngClass]="{ 'is-invalid': submitted && f.asset_type.errors }">
+                <option hidden> Select Asset Type</option>
+                <option *ngFor="let assetData of assetType">{{assetData.type}}</option>
+              </select>
+              <div
+                *ngIf="submitted && f.asset_type.errors || f.asset_type.invalid && (f.asset_type.dirty || f.asset_type.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.asset_type.errors.required">Asset Type is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1">Purchase Date </label>
+              <input type="date" class="form-control f-10" formControlName="purchase">
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Assigned Date </label>
+              <input type="date" class="form-control f-10" formControlName="assigned">
+              <div *ngIf="form.controls['purchase'].value !=='' && form.controls['assigned'].value === '' "
+                style="color: red; font-size: 12px;">
+                <p>Assigned Date is required</p>
+              </div>
+
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Expiry Date </label>
+              <input type="date" class="form-control f-10" formControlName="expiry">
+              <div *ngIf="form.controls['purchase'].value !=='' && form.controls['expiry'].value === '' "
+                style="color: red; font-size: 12px;">
+                <p>Expiry Date is required</p>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <br>
+
+      <!-- second-div-card-start -->
+      <div class="col-md-11 card" *ngIf="div2" [ngClass]="statusClasses" (click)="setActiveClass2()">
+        <div class="">
+          <h1 class="font-sans f-20">System Information</h1>
+          <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+            (click)="ff.resetForm()"><u>X
+              Clear all</u></a>
+        </div><br>
+
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Sr.No <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="serialno" (ngModelChange)="onSerialnum($event)"
+               placeholder="Enter serial number"
+                [ngClass]="{ 'is-invalid': submitted && f.serialno.errors }">
+              <div
+                *ngIf="submitted && f.serialno.errors || f.serialno.invalid && (f.serialno.dirty || f.serialno.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.serialno.errors.required">Sr.No is required</div>
+              </div>
+              <div *ngIf="assetResultSerial" style="color: red; font-size: 12px;">
+                <p>{{assetResultSerial}}</p>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Server Type <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="sertype"
+                [ngClass]="{ 'is-invalid': submitted && f.sertype.errors }">
+                <option hidden> Select Server Type</option>
+                <option *ngFor="let sertype of server">{{sertype.sertype}}</option>
+              </select>
+              <div *ngIf="submitted && f.sertype.errors || f.sertype.invalid && (f.sertype.dirty || f.sertype.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.sertype.errors.required">Server Type is required</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1">Hardware class <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="hwclass"
+                [ngClass]="{ 'is-invalid': submitted && f.hwclass.errors }">
+                <option hidden> Select Hardware Class</option>
+                <option *ngFor="let class of hardclass">{{class.hwclass}}</option>
+              </select>
+              <div *ngIf="submitted && f.hwclass.errors || f.hwclass.invalid && (f.hwclass.dirty || f.hwclass.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.hwclass.errors.required">Hardware class is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Manufacturer <span class="required-asterisk">*</span></label>
+              <select formControlName="make" class="form-control f-10" (change)="model($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.make.errors }">
+                <option hidden> Select Manufacturer</option>
+                <option *ngFor="let mfg of manufacture">{{mfg.make}}</option>
+              </select>
+              <div *ngIf="submitted && f.make.errors || f.make.invalid && (f.make.dirty || f.make.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.make.errors.required">Manufacturer is required</div>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Model <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="model"
+                [ngClass]="{ 'is-invalid': submitted && f.model.errors }">
+                <option hidden> Select Model</option>
+                <option *ngFor="let mfg of make">{{mfg.model}}</option>
+              </select>
+              <div *ngIf="submitted && f.model.errors || f.model.invalid && (f.model.dirty || f.model.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.model.errors.required">Model No is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Product Number <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="productno" placeholder="Enter product number"
+                [ngClass]="{ 'is-invalid': submitted && f.productno.errors }">
+              <div
+                *ngIf="submitted && f.productno.errors || f.productno.invalid && (f.productno.dirty || f.productno.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.productno.errors.required">Product No is required</div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Blade Slot <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="bladeslot" placeholder="Enter blade slots"
+                [ngClass]="{ 'is-invalid': submitted && f.bladeslot.errors }">
+              <div
+                *ngIf="submitted && f.bladeslot.errors || f.bladeslot.invalid && (f.bladeslot.dirty || f.bladeslot.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.bladeslot.errors.required">Sr.No is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Operating System <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="os" (change)="os($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.os.errors }">
+                <option hidden> Select Operating System</option>
+                <option *ngFor="let os of operartingSystem">{{os.os}}</option>
+
+              </select>
+              <div *ngIf="submitted && f.os.errors || f.os.invalid && (f.os.dirty || f.os.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.os.errors.required">Operating System is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Service Pack <span class="required-asterisk">*</span> </label>
+              <select class="form-control f-10" formControlName="sp"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                <option hidden> Select Service Pack</option>
+                <option *ngFor="let sp of servicePack">{{sp.sp}}</option>
+              </select>
+              <div *ngIf="submitted && f.sp.errors || f.sp.invalid && (f.sp.dirty || f.sp.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.sp.errors.required">Service Pack is required</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1">Processor <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="processor"
+                [ngClass]="{ 'is-invalid': submitted && f.processor.errors }">
+                <option hidden> Select Processor</option>
+                <option *ngFor="let p of processor">{{p.processor}}</option>
+              </select>
+              <div
+                *ngIf="submitted && f.processor.errors || f.processor.invalid && (f.processor.dirty || f.processor.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.processor.errors.required">Processor is required</div>
+              </div>
+
+            </div>
+            <!-- <div class="col-md-4 col-sm-4">
+                <label id="label1" > RAM Slots</label>
+                <input type="text" class="form-control"   > 
+             </div> -->
+
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> RAM Type <span class="required-asterisk">*</span></label>
+              <select formControlName="rtype" class="form-control f-10" (change)="ramtype($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.rtype.errors }">
+                <option hidden> Select Ram Type</option>
+                <option *ngFor="let ram of ramType">{{ram.rtype}}</option>
+              </select>
+              <div *ngIf="submitted && f.rtype.errors || f.rtype.invalid && (f.rtype.dirty || f.rtype.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.rtype.errors.required">RAM Type is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> RAM Size <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="rsize"
+                [ngClass]="{ 'is-invalid': submitted && f.rsize.errors }">
+                <option hidden> Select Ram Size</option>
+                <option *ngFor="let rs of ramSize">{{rs.rsize}}</option>
+              </select>
+              <div *ngIf="submitted && f.rsize.errors || f.rsize.invalid && (f.rsize.dirty || f.rsize.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.rsize.errors.required">RAM Size is required</div>
+              </div>
+
+            </div>
+
+
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> RAM Slots <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="ramslot"
+                [ngClass]="{ 'is-invalid': submitted && f.ramslot.errors }">
+                <option hidden> Select Ram Slots</option>
+                <option *ngFor="let rs of ramslot">{{rs.ramslot}}</option>
+              </select>
+              <div *ngIf="submitted && f.ramslot.errors || f.ramslot.invalid && (f.ramslot.dirty || f.ramslot.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.ramslot.errors.required"> RAM Slots is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Local Disk <span class="required-asterisk">*</span></label>
+              <input type="text" class="form-control f-10" formControlName="disksize" placeholder="Enter local disk"
+                [ngClass]="{ 'is-invalid': submitted && f.disksize.errors }">
+              <div
+                *ngIf="submitted && f.disksize.errors || f.disksize.invalid && (f.disksize.dirty || f.disksize.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.disksize.errors.required"> Local Disk is required</div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Capacity</label>
+              <input type="text" class="form-control f-10" formControlName="capacity">
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1">Storage Type <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="storagetype"
+                [ngClass]="{ 'is-invalid': submitted && f.storagetype.errors }">
+                <option hidden> Select Storage Type</option>
+                <option *ngFor="let st of stgtype">{{st.storagetype}}</option>
+              </select>
+              <div
+                *ngIf="submitted && f.storagetype.errors || f.storagetype.invalid && (f.storagetype.dirty || f.storagetype.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.storagetype.errors.required"> RAM Slots is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Rack No. <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="rackno"
+                [ngClass]="{ 'is-invalid': submitted && f.rackno.errors }">
+                <option hidden> Select Rack Number</option>
+                <option *ngFor="let rack of rackno">{{rack.rackno}}</option>
+              </select>
+              <div *ngIf="submitted && f.rackno.errors || f.rackno.invalid && (f.rackno.dirty || f.rackno.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.rackno.errors.required"> RAM Slots is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> NIC <span class="required-asterisk">*</span></label>
+
+              <select class="form-control f-10" formControlName="nic" 
+                [ngClass]="{ 'is-invalid': submitted && f.nic.errors }">
+                <option hidden> Select NIC</option>
+                <option *ngFor="let ni of nic">{{ni.nic}}</option>
+              </select>
+              <div *ngIf="submitted && f.nic.errors || f.nic.invalid && (f.nic.dirty || f.nic.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.nic.errors.required"> NIC is required</div>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> No of CPU <span class="required-asterisk">*</span></label>
+              <input type="text" class="form-control f-10" formControlName="ncorecard" placeholder="Enter number of CPU"
+                [ngClass]="{ 'is-invalid': submitted && f.nic.errors }">
+              <div
+                *ngIf="submitted && f.ncorecard.errors || f.ncorecard.invalid && (f.ncorecard.dirty || f.ncorecard.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.nic.errors.required"> NIC is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Cores/CPU <span class="required-asterisk">*</span></label>
+              <input type="text" class="form-control f-10" formControlName="ncorepercard" placeholder="Enter cores/CPU"
+                [ngClass]="{ 'is-invalid': submitted && f.ncorepercard.errors }">
+              <div
+                *ngIf="submitted && f.ncorepercard.errors || f.ncorepercard.invalid && (f.ncorepercard.dirty || f.ncorepercard.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.ncorepercard.errors.required"> core/card is required</div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> IP Address <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="ip" placeholder="Enter IP address"
+                [ngClass]="{ 'is-invalid': submitted && f.ip.errors }">
+              <div *ngIf="submitted && f.ip.errors || f.ip.invalid && (f.ip.dirty || f.ip.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.ip.errors.required"> ip is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> MAC Address <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="mac" placeholder="Enter MAC address"
+                [ngClass]="{ 'is-invalid': submitted && f.mac.errors }">
+              <div *ngIf="submitted && f.mac.errors || f.mac.invalid && (f.mac.dirty || f.mac.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.mac.errors.required"> MAC is required</div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> Cores <span class="required-asterisk">*</span></label>
+              <input type="text" class="form-control f-10" formControlName="totcore" placeholder="Enter cores"
+                [ngClass]="{ 'is-invalid': submitted && f.totcore.errors }">
+              <div *ngIf="submitted && f.totcore.errors || f.totcore.invalid && (f.totcore.dirty || f.totcore.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.totcore.errors.required"> totcore is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> Management IP <span class="required-asterisk">*</span></label>
+              <input class="form-control f-10" formControlName="managementip" placeholder="Enter management IP"
+                [ngClass]="{ 'is-invalid': submitted && f.managementip.errors }">
+              <div
+                *ngIf="submitted && f.managementip.errors || f.managementip.invalid && (f.managementip.dirty || f.managementip.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.managementip.errors.required"> managementip is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> Host Name </label>
+              <input class="form-control f-10" formControlName="hostname" placeholder="Enter host name">
+
+            </div>
+
+
+          </div>
+        </div>
+        <hr>
+
+        <!-- <div class="form-group" >
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                 <label id="label1" > Software Installed</label>
+                <input type="text"  class="form-control"      >
+            </div>
+            <div class="col-md-4 col-sm-4">
+                   <label id="label1" > Version</label>
+                <input type="text" class="form-control"  >
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <label id="label1" > .</label><br>
+                <button class="btn btn-success"> +  &nbsp;&nbsp;&nbsp;&nbsp; ADD &nbsp;&nbsp;</button>
+            
+         </div>
+            
+     
+        </div>
+     </div> -->
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Upload an image (Optional)</label>
+
+              <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..."
+                multiple />
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="col-md-11 card" *ngIf="div3" [ngClass]="statusClassess" (click)="setActiveClass3()">
+        <div class="">
+          <h1 class="font-sans f-20">Financial Summary</h1>
+          <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
+            (click)="ff.resetForm()"><u>X
+              Clear all</u></a>
+        </div><br>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> PO_Number </label>
+              <input type="text" class="form-control f-10" formControlName="pon" placeholder="Enter PO number">
+
+
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Warranty <span class="required-asterisk">*</span></label><br>
+              <input type="radio" [(ngModel)]="type" [value]="'valid'" formControlName="warranty"
+                [ngClass]="{ 'is-invalid': submitted && f.warranty.errors }">&nbsp;&nbsp;&nbsp;Valid
+              <input type="radio" [(ngModel)]="type" [value]="'expired'" formControlName="warranty" class="ml-5"
+                [ngClass]="{ 'is-invalid': submitted && f.warranty.errors }">&nbsp;&nbsp;&nbsp;Expired
+
+              <div
+                *ngIf="submitted && f.warranty.errors || f.warranty.invalid && (f.warranty.dirty || f.warranty.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.warranty.errors.required">Warranty is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="type == 'valid'">
+          <div class="row">
+            <div class="col-md-6">
+              <label id="label1"> Start Date <span class="required-asterisk">*</span></label><br>
+              <input type="date" formControlName="wsdate" class="form-control f-10">
+              <div *ngIf="form.controls['warranty'].value ==='valid' && form.controls['wsdate'].value === '' "
+              style="color: red; font-size: 12px;">
+              <p>Start Date is required</p>
+            </div>
+            </div>
+            <div class="col-md-6">
+              <label id="label1"> End Date <span class="required-asterisk">*</span></label><br>
+              <input type="date" formControlName="wedate" class="form-control f-10">
+              <div *ngIf="form.controls['warranty'].value ==='valid' && form.controls['wedate'].value === ''  "
+              style="color: red; font-size: 12px;">
+              <p>End Date is required</p>
+            </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Vendor <span class="required-asterisk">*</span></label>
+              <select id="input1" class="form-control f-10" formControlName="vendor"
+                [ngClass]="{ 'is-invalid': submitted && f.vendor.errors }"
+                (change)="vendorname($event.target.value);osystem($event.target.value)">
+                <option hidden> Select Vendor</option>
+                <option *ngFor="let ven of vendor">{{ven.vendor_name}}</option>
+                <option>
+                  <button type="button" id="exampleModal2" mat-raised-button (click)="addField('vendor')">ADD NEW
+                    Vendor</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.vendor.errors || f.vendor.invalid && (f.vendor.dirty || f.vendor.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.vendor.errors.required">Vendor is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <label id="label1"> Vendor_Location <span class="required-asterisk">*</span></label>
+              <select class="form-control f-10" formControlName="vloc" (change)="osystem($event.target.value)"
+                [ngClass]="{ 'is-invalid': submitted && f.vloc.errors }">
+                <option hidden> Select Vendor Location</option>
+                <option *ngFor="let ven of vendorlocation">{{ven.vendor_location}}</option>
+                <option>
+                  <button type="button" id="exampleModal3" mat-raised-button (click)="addField('vendorl')">ADD NEW
+                    Location</button>
+                </option>
+              </select>
+              <div *ngIf="submitted && f.vloc.errors || f.vloc.invalid && (f.vloc.dirty || f.vloc.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.vloc.errors.required">Vendor_Location is required</div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> AMC Authority <span class="required-asterisk">*</span></label>
+              <input type="text" class="form-control f-10" formControlName="mauth" placeholder="Enter AMC authority"
+                [ngClass]="{ 'is-invalid': submitted && f.mauth.errors }">
+              <div *ngIf="submitted && f.mauth.errors || f.mauth.invalid && (f.mauth.dirty || f.mauth.touched)"
+                style="color: red; font-size: 12px;">
+                <div *ngIf="f.mauth.errors.required">Authority is required</div>
+              </div>
+
+            </div>
+
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1"> AMC Expiry </label>
+              <input type="date" class="form-control f-10" formControlName="mexp" placeholder="Enter AMC expiry">
+
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+              <label id="label1">Finance Asset Number </label>
+              <input type="text" class="form-control f-10" formControlName="fastno" placeholder="Enter finance number">
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <br>
+      <br>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <button [disabled]="form.invalid" style="cursor: pointer;" class="cust-create-btn">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1 "></span>
+              Save and Update</button>
+
+          </div>
+        </div>
+      </div>
+      <br><br>
+    </form>
+  </div>
+</div>
