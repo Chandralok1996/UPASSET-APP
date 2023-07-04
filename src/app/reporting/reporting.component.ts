@@ -46,7 +46,7 @@ export class ReportingComponent implements OnInit {
     this.incidentservice.graph(this.incidentservice.enduser).subscribe(
       result=>{
      
-    console.log(result.rows);
+   (result.rows);
     this.incidentservice.graphData = result.rows; 
     
     })
@@ -65,7 +65,7 @@ export class ReportingComponent implements OnInit {
   getallTicket(){
     this.incidentservice.reporting(this.incidentservice.enduser).subscribe(data => {
       this.allTicketSort = data.rows;
-      console.log(data.rows)
+     (data.rows)
       this.excel=data.rows;
       this.allTicket =  this.allTicketSort ;
       this.allTicketCount = data.rowCount;
@@ -74,37 +74,22 @@ export class ReportingComponent implements OnInit {
 
   }
 
-  async applyFilter(filterValue: string) {
+  async applyFilter(event: any) {
+    const filterValue = event.target ? (event.target as HTMLInputElement).value : event;
     this.allTicket=this.allTicketSort;
     if(filterValue === ''){
         return this.getallTicket();
      }
-     this.allTicket=this.allTicket.filter(filteredData =>
+     this.allTicket=this.allTicket.filter((filteredData:any) =>
       filteredData.ticket_no.includes(filterValue.toUpperCase().trim()) ||
          filteredData.emp_name.toUpperCase().includes(filterValue.toUpperCase().trim()) 
-         )
-   
-     console.log(this.allTicket);
-
-
-
-
-    // this.allTicket=this.allTicketSort;
-    // if(filterValue === ''){
-    //     return this.getallTicket();
-    //  }
-    //  this.allTicket=this.allTicket.filter(filteredData =>
-    //      filteredData.inid_id.includes(filterValue.toUpperCase().trim())
-    //       ||
-    //      filteredData.emp_name.includes(filterValue.toUpperCase().trim())
-    //      )
-   
-    
+         ) 
       
   }
 
-  onCitySelect(option:string) {
-   console.log(option);
+  onCitySelect(event:any) {
+    const option = event.target ? (event.target as HTMLInputElement).value : event;
+  (option);
     let htol=[];
     if(option ===  'New'){
      this.allTicket= this.allTicketSort;
@@ -136,7 +121,7 @@ export class ReportingComponent implements OnInit {
           
       
       }
-      console.log(htol)
+     (htol)
       this.allTicket=htol;
       this.allTicketCount = this.allTicket.length;
      
@@ -170,7 +155,7 @@ export class ReportingComponent implements OnInit {
            htol.push(this.allTicket[i])
        }     
       }
-       console.log(htol)
+      (htol)
        this.allTicket=htol;
        this.allTicketCount = this.allTicket.length;
        
@@ -189,14 +174,9 @@ export class ReportingComponent implements OnInit {
   
 
 }
-  getItems(ticket){
+  getItems(ticket:any){
     
   }
-
-
- 
-
-
 
   routerPage(){
     if(this.accountService.user.rolename === 'enduser'){
@@ -213,13 +193,13 @@ export class ReportingComponent implements OnInit {
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
+divScroll(e:any) {
   //console.log('div App', e);
 }
 

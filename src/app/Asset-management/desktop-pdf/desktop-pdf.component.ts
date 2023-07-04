@@ -30,7 +30,7 @@ export class DesktopPdfComponent implements OnInit {
     this.assetService.getbyassetdetails(this.assetService.astd_id)
     .subscribe(details => {
         this.details = details.rows;
-        console.log(this.details)
+       (this.details)
     });
   }
 
@@ -48,7 +48,7 @@ export class DesktopPdfComponent implements OnInit {
   title = 'html-to-pdf-angular-application';
   public convetToPDF()
   {
-  var data = document.getElementById('contentToConvert');
+  var data:any = document.getElementById('contentToConvert');
   html2canvas(data).then(canvas => {
   // Few necessary setting options
   var imgWidth = 130;
@@ -68,30 +68,43 @@ export class DesktopPdfComponent implements OnInit {
 
   print(): void {
     let printContents, popupWin;
-    printContents = document.getElementById('print-section').innerHTML;
+    const element = document.getElementById('elementId');
+if (element !== null) {
+  // Element is not null, safe to use
+  element.classList.add('some-class');
+}
+
+    // printContents = document.getElementById('print-section').innerHTML;
     popupWin = window.open('', '_blank', '');
-    popupWin.document.open();
-    popupWin.document.write(`
-      <html>
-        <head>
-          <title>Print tab</title>
-          <style>
-          //........Customized style.......
-          </style>
-        </head>
-    <body onload="window.print();window.close()">${printContents}</body>
-      </html>`
-    );
-    popupWin.document.close();
+    // popupWin.document.open();
+    // popupWin.document.write(`
+    //   <html>
+    //     <head>
+    //       <title>Print tab</title>
+    //       <style>
+    //       //........Customized style.......
+    //       </style>
+    //     </head>
+    // <body onload="window.print();window.close()">${printContents}</body>
+    //   </html>`
+    // );
+    if (popupWin !== null) {
+      popupWin.close();
+    }
+    // popupWin.document.close();
 }
   
 printToCart(printSectionId: string){
   let popupWinindow
-  let innerContents = document.getElementById(printSectionId).innerHTML;
-  popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
-  popupWinindow.document.open();
-  popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + innerContents + '</html>');
-  popupWinindow.document.close();
+  if (document !== null) {
+    const element = document.getElementById('elementId');
+  }
+  
+  // let innerContents = document.getElementById(printSectionId).innerHTML;
+  popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no'); 
+  // popupWinindow.document.open();
+  // popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + innerContents + '</html>');
+  // popupWinindow.document.close();
 }
 
 }

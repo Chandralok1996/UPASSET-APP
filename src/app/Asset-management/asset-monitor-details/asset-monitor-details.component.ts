@@ -19,17 +19,17 @@ export class AssetMonitorDetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const assetid = params.get('id');
       this.getbyassetdetails1(assetid)
-      console.log(assetid)
-      //.then().catch(err => console.log(err));
+     
+      //.then().catch(err =>(err));
     });
 
   }
 
-  getbyassetdetails1(assetid){
+  getbyassetdetails1(assetid:any){
     this.assetService.getbyassetdetailsMonitor(assetid)
         .subscribe(details => {
             this.details = details.rows;
-            console.log(this.details)
+           (this.details)
         });
 
   }

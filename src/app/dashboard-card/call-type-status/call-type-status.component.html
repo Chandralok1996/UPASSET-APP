@@ -7,21 +7,18 @@
         </div>
     </div>
 
-
-
-
     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 "
         style="background-color:white;margin-top: 0rem;border-radius: 3px;">
 
         <br>
         <div class="row">
             <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3">
-                <input id="action1" (keyup)="applyFilter($event.target.value)" matInput placeholder="Search "
+                <input id="action1" (keyup)="applyFilter($event)" matInput placeholder="Search "
                     [(ngModel)]="value" />
             </div>
 
             <div class="col-sm-6 col-md-6  col-lg-6 col-xl-6" style="text-align: right;" >
-               <select class="form-control" (change)="getbydetails1(month,$event.target.value)">
+               <select class="form-control" (change)="getbydetails1(month,$event)">
                    <option hidden>Select Call Mode</option>
                    <option>Incident</option>
                    <option>Request</option>
@@ -102,7 +99,7 @@
 
         </table>
 
-        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons
+        <mat-paginator  [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons
             class="mat-elevation-z8">
         </mat-paginator>
 

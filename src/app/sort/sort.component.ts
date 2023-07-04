@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { AccountService } from '../_services/account.service';
 import { AssetService } from '../_services/asset.service';
 import { IncidentService } from '../_services/incident.service';
-
-
-
 @Component({
   selector: 'app-sort',
   templateUrl: './sort.component.html',
@@ -38,15 +35,15 @@ dropdownSettings = {};
   priorityDropdownList = [];
   priorityDropdownSettings = {};
 
-  assignedDropdownList = [];
+  assignedDropdownList :any = [];
   assignedDropdownSettings = {};
 
   supportDropdownList = [];
   supportDropdownSettings = {};
   username: any;
-  userName: string;
-  user_id: string;
-  empid1: string[];
+  userName: any;
+  user_id: any;
+  empid1:any;
 
   constructor( public assetService: AssetService,
     public accountService: AccountService,
@@ -70,7 +67,7 @@ dropdownSettings = {};
       this.products1 = JSON.stringify(data);
       this.products1 = JSON.parse(this.products1);
       this.dropdownList =  this.products1.rows;
-      console.log(this.dropdownList)
+     (this.dropdownList)
      
       
    }),
@@ -112,18 +109,6 @@ dropdownSettings = {};
     allowSearchFilter: true
   }
 
-  // this.assignedDropdownSettings = {
-  //   singleSelection: false,
-  //   idField: 'user_id',
-  //   textField: 'username',
-  //   selectAllText: 'Select All',
-  //   unSelectAllText: 'UnSelect All',
-  //   itemsShowLimit: 3,
-  //   allowSearchFilter: true
-  // }
-
-
-
   this.supportDropdownSettings = {
     singleSelection: false,
     idField: 'ussg_id',
@@ -133,21 +118,16 @@ dropdownSettings = {};
     itemsShowLimit: 3,
     allowSearchFilter: true
   }
-
-
-
-
-
  
 }
 
 onItemSelect(item: any) {
-  console.log(item);
+ (item);
   
 }
 onSelectAll(items: any) {
   
-  console.log(items[0].status);
+ (items[0].status);
 }
 handleChange(){
   this.getdata();
@@ -157,8 +137,8 @@ handleChange(){
 onNoClick() {
   this.dialogRef.close();
 }
-onChange($event){
-  console.log(this.dateTime);
+onChange($event:any){
+ (this.dateTime);
 }
 clearAll(){
   this.st=null;
@@ -170,18 +150,18 @@ if(this.enduser.assignedto){
   this.empid1 = this.enduser.assignedto.split('/');
   this.enduser.assignedto = this.empid1[0];
   this.enduser.empid = this.empid1[1];
-  console.log('assignedto '+ this.enduser.empid + this.enduser.assignedto);
+ ('assignedto '+ this.enduser.empid + this.enduser.assignedto);
 }else if(this.enduser.openedby){
   this.empid1 = this.enduser.openedby.split('/');
   this.enduser.openedby = this.empid1[0];
   this.enduser.empid = this.empid1[1];
-  console.log('openby '+ this.enduser.empid + this.enduser.openedby);
+ ('openby '+ this.enduser.empid + this.enduser.openedby);
 
 }
   
  
   this.incidentservice.enduser = this.enduser;
-  console.log(this.incidentservice.enduser);
+ (this.incidentservice.enduser);
  
         this.onNoClick();
      this.router.navigate(["/home/users/report"]); 

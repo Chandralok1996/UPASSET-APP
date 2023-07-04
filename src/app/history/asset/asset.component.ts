@@ -9,7 +9,7 @@ import { AssetService } from 'src/app/_services/asset.service';
 })
 export class AssetComponent implements OnInit {
 
-  form: FormGroup;
+  form: any;
   asset_name: any;
   empid: any;
   assetDetails: any;
@@ -27,12 +27,12 @@ export class AssetComponent implements OnInit {
 
   
   asset(){
-    console.log(this.asset_name)
+   (this.asset_name)
     this.userDetails = null;  
     this.userpastDetails =  null;
     this.assetService.getbyassetHistory(this.asset_name)
         .subscribe(details => {
-          console.log(details)
+         (details)
           this.assetDetails = details.current_ast;
           this.assetPastDetails = details.past_ast;            
         });
@@ -44,52 +44,52 @@ export class AssetComponent implements OnInit {
     this.assetPastDetails = null;
     // this.userDetails = null;  
     //  this.userpastDetails = null;
-    console.log(this.empid)
+   (this.empid)
     this.assetService.getbyuserHistory(this.empid)
         .subscribe(details => {
-          console.log(details)
+         (details)
             this.userDetails = details.current_ast;  
             this.userpastDetails =  details.past_ast;
-            console.log(this.userpastDetails);   
+           (this.userpastDetails);   
         });
   }
 
-  user1(data){
-    console.log(data);
+  user1(data:any){
+   (data);
     this.asset_name = data
    // this.assetDetails = null;
     this.userpastDetails = null;
     this.userDetails = null;
     this.assetService.getbyassetHistory(data)
         .subscribe(details => {
-          console.log(details)
+         (details)
             this.assetDetails = details.current_ast;  
             this.assetPastDetails =  details.past_ast;      
         });
   }
 
 
-  user2(empid){
+  user2(empid:any){
     this.empid = empid;
     this.assetDetails = null;
     this.assetPastDetails = null;
-    console.log(this.empid)
+   (this.empid)
     this.assetService.getbyuserHistory(empid)
         .subscribe(details => {
-          console.log(details)
+         (details)
             this.userDetails = details.current_ast;  
             this.userpastDetails =  details.past_ast;
-            console.log(this.userpastDetails);   
+           (this.userpastDetails);   
         });
   }
   
   @HostListener('window:scroll', ['$event'])
-  onScroll(e) {  
+  onScroll(e:any) {  
   }
   
    
   
-  divScroll(e) {
+  divScroll(e:any) {
   }
   
 }

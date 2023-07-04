@@ -352,7 +352,7 @@
 
             <div class="col-md-6 col-sm-6">
               <label id="label1"> Manufacturer <span class="required-asterisk">*</span></label>
-              <select formControlName="make" class="form-control f-10" (change)="model($event.target.value)"
+              <select formControlName="make" class="form-control f-10" (change)="model($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.make.errors }">
                 <option hidden> Select Manufacturer</option>
                 <option *ngFor="let mfg of manufacture">{{mfg.make}}</option>
@@ -420,7 +420,7 @@
 
             <div class="col-md-6 col-sm-6">
               <label id="label1"> Operating System <span class="required-asterisk">*</span></label>
-              <select class="form-control f-10" formControlName="os" (change)="os($event.target.value)"
+              <select class="form-control f-10" formControlName="os" (change)="os($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.os.errors }">
                 <option hidden> Select Operating System</option>
                 <option *ngFor="let os of operartingSystem">{{os.os}}</option>
@@ -477,7 +477,7 @@
           <div class="row">
             <div class="col-md-6 col-sm-6">
               <label id="label1"> RAM Type <span class="required-asterisk">*</span></label>
-              <select formControlName="rtype" class="form-control f-10" (change)="ramtype($event.target.value)"
+              <select formControlName="rtype" class="form-control f-10" (change)="ramtype($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.rtype.errors }">
                 <option hidden> Select Ram Type</option>
                 <option *ngFor="let ram of ramType">{{ram.rtype}}</option>
@@ -785,7 +785,7 @@
               <label id="label1"> Vendor <span class="required-asterisk">*</span></label>
               <select id="input1" class="form-control f-10" formControlName="vendor"
                 [ngClass]="{ 'is-invalid': submitted && f.vendor.errors }"
-                (change)="vendorname($event.target.value);osystem($event.target.value)">
+                (change)="vendorname($event);osystem($event)">
                 <option hidden> Select Vendor</option>
                 <option *ngFor="let ven of vendor">{{ven.vendor_name}}</option>
                 <option>
@@ -801,7 +801,7 @@
 
             <div class="col-md-6 col-sm-6">
               <label id="label1"> Vendor_Location <span class="required-asterisk">*</span></label>
-              <select class="form-control f-10" formControlName="vloc" (change)="osystem($event.target.value)"
+              <select class="form-control f-10" formControlName="vloc" (change)="osystem($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.vloc.errors }">
                 <option hidden> Select Vendor Location</option>
                 <option *ngFor="let ven of vendorlocation">{{ven.vendor_location}}</option>

@@ -22,11 +22,11 @@ import { UpdateMonitorComponent } from '../update-monitor/update-monitor.compone
   styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent implements OnInit {
-  allUser: assetlist[];
-  dataSource: MatTableDataSource<assetlist>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['select','assetname','assetid','owner_name', 'custodian'];
+  allUser!: assetlist[];
+  dataSource!: MatTableDataSource<assetlist>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = ['assetname','assetid', 'serialno','make','model','quantity','status'];
 
   selection = new SelectionModel<assetlist>(true, []);
   tabledata: any;
@@ -36,6 +36,7 @@ export class InventoryComponent implements OnInit {
   pageSizeOptions: number[] = [8, 16, 24, 32];
 
   group:any;
+  rowData: any;
 
 
   constructor(public fb: FormBuilder,
@@ -49,9 +50,8 @@ export class InventoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.assetservice.bms().subscribe(data => {
-      console.log(data)
       this.tabledata = data.rows;
-
+      this.rowData = data.rowCount;
       this.dataSource = new MatTableDataSource( this.tabledata );
 
       this.dataSource.sort = this.sort;
@@ -62,8 +62,6 @@ export class InventoryComponent implements OnInit {
 
 
   onRowClicked(row: any) {
-    console.log('Row clicked: ', row.astg_group);
-
     this.group = row.astg_group;
   }
 
@@ -92,18 +90,18 @@ export class InventoryComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     //  this.animal = result;
     });
 
 
   }
 
-  OpenUpdate(astd_id){
+  OpenUpdate(astd_id:any){
    
     if(this.group === 'DESKTOP'){
       this.assetservice.astd_id = astd_id;
-      console.log(this.assetservice.astd_id)
+     (this.assetservice.astd_id)
 
       const dialogRef = this.dialog.open(UpdateDesktopComponent, {
         width: '653px',
@@ -115,13 +113,13 @@ export class InventoryComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+       ('The dialog was closed');
      
       });
 
     }else if(this.group === 'LAPTOP'){
       this.assetservice.astd_id = astd_id;
-      console.log(this.assetservice.astd_id)
+     (this.assetservice.astd_id)
 
       const dialogRef = this.dialog.open(UpdateDesktopComponent, {
         width: '653px',
@@ -133,13 +131,13 @@ export class InventoryComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+       ('The dialog was closed');
       
       });
 
     }else if(this.group === 'MONITOR'){
       this.assetservice.monitor_astd_id = astd_id;
-      console.log(this.assetservice.monitor_astd_id)
+     (this.assetservice.monitor_astd_id)
 
       const dialogRef = this.dialog.open(UpdateMonitorComponent, {
         width: '653px',
@@ -151,13 +149,13 @@ export class InventoryComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+       ('The dialog was closed');
       
       });
 
     }else if(this.group === 'ACCESSORIES'){
       this.assetservice.accesory_astd_id = astd_id;
-      console.log(this.assetservice.accesory_astd_id)
+     (this.assetservice.accesory_astd_id)
 
       const dialogRef = this.dialog.open(UpdateAccesoryComponent, {
         width: '653px',
@@ -169,7 +167,7 @@ export class InventoryComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+       ('The dialog was closed');
       
       });
 
@@ -178,7 +176,8 @@ export class InventoryComponent implements OnInit {
 
   }
   
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -187,7 +186,7 @@ export class InventoryComponent implements OnInit {
     this.alterservices.error('Asset Created successfully', {  autoClose: true, keepAfterRouteChange: true });       
   }
 
-  openAttachment(astdid,ast_grp){
+  openAttachment(astdid:any,ast_grp:any){
     this.assetservice.att_astg_grp = ast_grp
     this.assetservice.att_astdid = astdid;
   
@@ -201,7 +200,7 @@ export class InventoryComponent implements OnInit {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     //  this.animal = result;
     });
   

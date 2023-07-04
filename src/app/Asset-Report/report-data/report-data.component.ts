@@ -13,6 +13,7 @@ import { AssetService } from 'src/app/_services/asset.service';
 import { IncidentService } from 'src/app/_services/incident.service';
 import * as XLSX from 'xlsx';
 
+
 @Component({
   selector: 'app-report-data',
   templateUrl: './report-data.component.html',
@@ -20,10 +21,10 @@ import * as XLSX from 'xlsx';
 })
 export class ReportDataComponent implements OnInit {
 
-  allUser: assetlist[];
-  dataSource: MatTableDataSource<assetlist>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  allUser!: assetlist[];
+  dataSource!: MatTableDataSource<assetlist>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['employee_name','asset_number','asset_group','laptop_desktop_serialno','monitor_serialno','accessory_serialno','server_serialno','asset_status'];
 
   selection = new SelectionModel<assetlist>(true, []);
@@ -81,7 +82,8 @@ console.log(this.assetservice.enduser);
          
         }
 
-  applyFilter(filterValue: string) {
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
  

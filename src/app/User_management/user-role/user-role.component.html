@@ -14,7 +14,7 @@
 <div class="row">
 
   <div class="col-md-6 col-lg-6 col-sm-6 col-xl-6">
-    <input type="search"  (keyup)="applyFilter($event.target.value)" placeholder="Search User role"  [(ngModel)]="value">
+    <input type="search"  (keyup)="applyFilter($event)" placeholder="Search User role"  [(ngModel)]="value">
   </div>
 
   <div class="col-md-6 col-lg-6 col-sm-6 col-xl-6">
@@ -50,7 +50,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)" ></tr>
   </table>
-  <mat-paginator [length]="length" [pageSize]="pageSize"  [pageSizeOptions]="pageSizeOptions"
+  <mat-paginator  [pageSize]="pageSize"  [pageSizeOptions]="pageSizeOptions"
   showFirstLastButtons class="mat-elevation-z8">
 </mat-paginator>
 

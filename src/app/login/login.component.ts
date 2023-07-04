@@ -6,7 +6,7 @@ import { first } from 'rxjs/operators';
 import { AccountService, } from '../_services/account.service';
 import { AlertService } from '../_services/alert.service';
 
-import { error } from 'protractor';
+// import { error } from 'protractor';
 
 declare var $: any;
 @Component({
@@ -14,13 +14,13 @@ declare var $: any;
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    form: FormGroup;
-    form1: FormGroup;
+    form: any;
+    form1: any;
     loading = false;
     submitted = false;
-    defaultValue;
-    returnUrl: string;
-    result: string;
+    defaultValue:any;
+    returnUrl: any;
+    result: any;
 
 
     constructor(
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
 
-        console.log(this.form.value.name)
+       (this.form.value.name)
         this.submitted = true;
 
         // reset alerts on submit
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe({
                 next: (res) => {
-                    console.log(res);
+                   (res);
                     this.accountService.user = res;
 
                     if (res.rolename === 'Asset Manager') {
@@ -125,8 +125,8 @@ export class LoginComponent implements OnInit {
 
     }
 
-    aduser;
-    nonaduser;
+    aduser:boolean = true;
+    nonaduser:boolean = false;
     adUser() {
         this.nonaduser = false;
         this.aduser = true;

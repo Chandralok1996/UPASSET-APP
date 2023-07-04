@@ -34,9 +34,6 @@ export class IndidentListComponent implements OnInit {
   allTicketCount: any;
   myfilterData = 'Last 24 hours';
   filterAllData = 'Last 24 hours';
-
-
-
   constructor( public dialog: MatDialog, 
     public accountService: AccountService,
       public incidentservice: IncidentService, ) { }
@@ -46,12 +43,10 @@ export class IndidentListComponent implements OnInit {
   this.openedby = this.accountService.user.userid;
   this.getallTicket(this.filterAllData);
   this.getmyTicket(this.myfilterData);
-
-
-   
+ 
   }
 
-  getallTicket(data){
+  getallTicket(data:any){
     this.filterAllData = data;
   
     if(this.filterAllData === 'Last 24 hours'){
@@ -83,7 +78,7 @@ export class IndidentListComponent implements OnInit {
     }
   }
 
-  getmyTicket(data){
+  getmyTicket(data:any){
     this.myfilterData = data
     if( this.myfilterData === 'Last 24 hours'){
       this.myfilterData = '1';
@@ -92,7 +87,7 @@ export class IndidentListComponent implements OnInit {
         this.myticketsort= data.rows;
           this.myTicket = this.myticketsort;
           this.myTicketCount = data.rowCount;
-          console.log('my ticket'+this.myTicket)
+         ('my ticket'+this.myTicket)
       });
     }else if( this.myfilterData === 'Last 7 days'){
       this.myfilterData = '7';
@@ -101,7 +96,7 @@ export class IndidentListComponent implements OnInit {
         this.myticketsort= data.rows;
           this.myTicket = this.myticketsort;
           this.myTicketCount = data.rowCount;
-          console.log('my ticket'+this.myTicket)
+         ('my ticket'+this.myTicket)
       });
     }else if( this.myfilterData === 'Last 30 days'){
       this.myfilterData = '30';
@@ -110,7 +105,7 @@ export class IndidentListComponent implements OnInit {
         this.myticketsort= data.rows;
           this.myTicket = this.myticketsort;
           this.myTicketCount = data.rowCount;
-          console.log('my ticket'+this.myTicket)
+         ('my ticket'+this.myTicket)
       });
     }
 
@@ -119,29 +114,31 @@ export class IndidentListComponent implements OnInit {
 
 }
 
-  async applyFilter(filterValue: string) {
+  async applyFilter(event: any) {
+    const filterValue = event.target ? (event.target as HTMLInputElement).value : event;
     this.allTicket=this.allTicketSort;
     if(filterValue === ''){
         return this.getallTicket(this.filterAllData);
      }
-     this.allTicket=this.allTicket.filter(filteredData =>
+     this.allTicket=this.allTicket.filter((filteredData:any) =>
       filteredData.openedbyempid.includes(filterValue.toUpperCase().trim()) ||
          filteredData.inid_id.includes(filterValue.toUpperCase().trim()))
    
-     console.log(this.allTicket);
+    (this.allTicket);
       
   }
 
-  async applyFilterMyTicket(filterValue: string) {
+  async applyFilterMyTicket(event: any) {
+    const filterValue = event.target ? (event.target as HTMLInputElement).value : event;
     this.myTicket=this.myticketsort;
     if(filterValue === ''){
         return this.getmyTicket(this.filterAllData);
      }
-     this.myTicket=this.myTicket.filter(filteredData =>
+     this.myTicket=this.myTicket.filter((filteredData:any) =>
       filteredData.openedbyempid.includes(filterValue.toUpperCase().trim()) ||
          filteredData.inid_id.includes(filterValue.toUpperCase().trim()))
    
-     console.log(this.myTicket);
+    (this.myTicket);
       
   }
 
@@ -157,7 +154,7 @@ export class IndidentListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     //  this.animal = result;
     });
   }
@@ -175,7 +172,7 @@ export class IndidentListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.getallTicket(this.myfilterData);
       this.getmyTicket(this.myfilterData);
-      console.log('The dialog was closed');
+     ('The dialog was closed');
    
     });
 
@@ -186,8 +183,8 @@ export class IndidentListComponent implements OnInit {
 
   
 
-  sortAllTicket(option:string) {
- 
+  sortAllTicket(event:any) {
+    const option = event.target ? (event.target as HTMLInputElement).value : event;
     let htol=[];
     if(option ===  'High to Low'){
     
@@ -209,7 +206,7 @@ export class IndidentListComponent implements OnInit {
           
       
       }
-      console.log(htol)
+     (htol)
       this.allTicket=htol;
      
     }
@@ -233,7 +230,7 @@ export class IndidentListComponent implements OnInit {
            
        
        }
-       console.log(htol)
+      (htol)
        this.allTicket=htol;
        
      }
@@ -244,8 +241,8 @@ export class IndidentListComponent implements OnInit {
    
   }
 
-  sortMyTicket(option:string) {
- 
+  sortMyTicket(event:any) {
+    const option = event.target ? (event.target as HTMLInputElement).value : event;
     let htol=[];
    if(option ===  'High to Low'){
    
@@ -267,7 +264,7 @@ export class IndidentListComponent implements OnInit {
          
      
      }
-     console.log(htol)
+    (htol)
      this.myTicket=htol;
     
    }
@@ -291,17 +288,17 @@ export class IndidentListComponent implements OnInit {
           
       
       }
-      console.log(htol)
+     (htol)
       this.myTicket=htol;
       
     }
    
   }
 
-getItems(data){
+getItems(data:any){
 
   this.incidentservice.inid = data.inid_id;
-  console.log(this.incidentservice.inid)
+ (this.incidentservice.inid)
           this.incidentUpdate();
   }
   
@@ -318,7 +315,7 @@ getItems(data){
     dialogRef.afterClosed().subscribe(result => {
       this.getallTicket(this.myfilterData);
       this.getmyTicket(this.myfilterData);
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     //  this.animal = result;
     });
   }
@@ -328,14 +325,14 @@ getItems(data){
 
 
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
- // console.log('div App', e);
+divScroll(e:any) {
+ //('div App', e);
 }
 
 

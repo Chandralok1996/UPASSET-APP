@@ -31,12 +31,12 @@ export class NewTicketUserComponent implements OnInit {
   aproduct: any;
   priority: any;
   status: any;
-  form: FormGroup;
+  form: any;
   loading = false;
   submitted = false;
   assigned: any;
   filesToUpload: Array<File> = [];
-  userid: string;
+  userid: any;
   prioritystatus: any;
   username1: any;
   
@@ -154,7 +154,6 @@ export class NewTicketUserComponent implements OnInit {
     // this.incidentservice.assetName(this.userid)
     // .subscribe(data => {
     //     this.aproduct = data.rows;
-    //     console.log(this.aproduct)
     // }),
     this.incidentservice.getpriority()
     .subscribe(data => {
@@ -181,11 +180,9 @@ export class NewTicketUserComponent implements OnInit {
     }),
     this.incidentservice.callMode().subscribe(data => {
       this.calmode = data.rows;
-      console.log(this.calmode)
     }),
     this.accountservice.organization().subscribe(data => {
       this.products8 = data.rows;
-      console.log(this.products8)
     })
 
   }
@@ -208,15 +205,13 @@ export class NewTicketUserComponent implements OnInit {
       return;
     }
 
-    console.log(this.form.value.callmode)
     for(let i=0; i<this.calmode.length; i++){
       if(this.form.value.callmode === this.calmode[i].callmode){
         this.form.value.callmode = this.calmode[i].incm_id;
-        console.log(this.form.value.callmode)
     }
     }
 
-    let orgid = this.products8.filter(orgname =>{
+    let orgid = this.products8.filter((orgname:any) =>{
       if(orgname.org === this.form.value.orgid){
            return orgname
       }
@@ -224,33 +219,17 @@ export class NewTicketUserComponent implements OnInit {
 
       }
     });
-    console.log(orgid);
 
     this.form.value.orgid = orgid[0].uscorg_id;
-    console.log(this.form.value.orgid)
-    // reset alerts on submit
-   
-
-   // this.empid1 = this.name1.split('/');
     this.form.value.openedby = this.name1[0];
     this.form.value.empid = this.name1[1];
 
     this.empid2 = this.form.value.affectedpro.split('/');
     this.form.value.affectedpro = this.empid2[0];
     this.form.value.astoempid = this.empid2[1];
-   
-    console.log('name '+this.form.value.empid + this.form.value.openedby);
- 
     this.form.value.empid = this.form.value.empid.trim();
     this.form.value.openedby = this.form.value.openedby.trim();
    this.form.value.affectedpro = this.form.value.affectedpro.trim();
-
-   
-
-   
-
-    console.log(this.form.value)
-  
 
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -259,12 +238,6 @@ export class NewTicketUserComponent implements OnInit {
       return;
     }
     this.loading = true;
-   
-    
-    console.log('name '+this.form.value.empid + this.form.value.openedby);
-
-   
-
     this.createIncident();
 
   }
@@ -273,10 +246,7 @@ export class NewTicketUserComponent implements OnInit {
 
     const formData: any = new FormData();
     const files: Array<File> = this.filesToUpload;
-     console.log(this.form.value);
-
     for (let i = 0; i < files.length; i++) {
-
       formData.append("up", files[i], files[i]['name']);
     }
 
@@ -287,7 +257,6 @@ export class NewTicketUserComponent implements OnInit {
     .subscribe(res => {
       this.form.value.affectedpro = this.empid2[0]+'/'+ this.empid2[1];
 
-      console.log(res);
         if(res.Status === 'Incident created Successfully!!!'){
           if(this.accountService.user.rolename === 'ITsupport'){
             this.router.navigate(['/home/users/supuser']);
@@ -326,32 +295,26 @@ export class NewTicketUserComponent implements OnInit {
 
   }
 
-  asset(astgrp){
+  asset(event:any){
+    const astgrp = event.target ? (event.target as HTMLInputElement).value : event;
   //  astgrp = astgrp.trim(); ,this.form.value.intp
-    console.log(astgrp, this.name1[1])
     this.incidentservice.assetGroup(astgrp,this.name1[1])
     .subscribe(data => {
       this.aproduct = data.rows;
       this.prlength = this.aproduct.lengt;
-      console.log(data.rows)
-     
     })
   }
 
-  userdet(name){
-   // name = name.trim();
-    console.log(name)
+  userdet(event:any){
+    let name:any = event.target ? (event.target as HTMLInputElement).value : event;
     this.form.patchValue({
       contactnum : name.contactnum
     });
     this.name1 = name.username.split('/');
     name = this.name1[0];
-    console.log(name)
     this.assetService.userdet(name)
     .subscribe(data => {
         this.vip = data.rows;
-        console.log(this.vip);
-        
         if(this.vip[0].vipstatus === 'General'){
          
            this.form.patchValue({
@@ -371,7 +334,7 @@ export class NewTicketUserComponent implements OnInit {
 
   }
 
-  selectEvent(item) {
+  selectEvent(item:any) {
     this.astno = item.assetno;
     // do something with selected item
   }
@@ -381,11 +344,12 @@ export class NewTicketUserComponent implements OnInit {
     // And reassign the 'data' which is binded to 'data' property.
   }
   
-  onFocused(e){
+  onFocused(e:any){
     // do something when input is focused
   }
 
-  inctype(inpt){
+  inctype(event:any){
+    const inpt = event.target ? (event.target as HTMLInputElement).value : event;
     this.incidentservice.incshort(inpt)
     .subscribe(data => {
       this.shortdec = data.rows; 
@@ -416,14 +380,12 @@ export class NewTicketUserComponent implements OnInit {
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
 }
 
  
 
-divScroll(e) {
- // console.log('div App', e);
+divScroll(e:any) {
 }
 
 }

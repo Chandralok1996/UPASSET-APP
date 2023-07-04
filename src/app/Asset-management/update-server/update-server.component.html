@@ -60,14 +60,10 @@
           <div class="row">
             <div class="col-md-6 col-sm-6">
               <label id="label1"> User Name <span class="required-asterisk">*</span></label>
-              <!-- <select formControlName="name" class="form-control" (change)="userdet($event.target.valid)" 
-             [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
-             <option></option>
-             <option *ngFor="let name of username">{{name.username}}</option>
-              </select> -->
+             
 
               <ng-autocomplete formControlName="name" [data]="username" [searchKeyword]="keyword1"
-                (change)='userdet($event.target.value)' (selected)='userdet($event)'
+                (change)='userdet($event)' (selected)='userdet($event)'
                 (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
                 [notFoundTemplate]="notFoundTemplate" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
               </ng-autocomplete>
@@ -145,7 +141,7 @@
 
             <div class="col-md-6 col-sm-6">
               <label id="label1"> Building</label>
-              <select class="form-control f-10" formControlName="building" (change)="getFloor($event.target.value)" readonly>
+              <select class="form-control f-10" formControlName="building" (change)="getFloor($event)" readonly>
 
                 <option *ngFor="let bld of uname" [disabled]="true">{{bld.building}}</option>
                 <!-- <option   *ngFor="let com3 of building">{{com3.building}} </option> -->
@@ -330,7 +326,7 @@
 
             <div class="col-md-6 col-sm-6">
               <label id="label1"> Manufacturer <span class="required-asterisk">*</span></label>
-              <select formControlName="make" class="form-control f-10" (change)="model($event.target.value)"
+              <select formControlName="make" class="form-control f-10" (change)="model($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.make.errors }">
                 <option></option>
                 <option *ngFor="let mfg of manufacture" [value]="mfg.make">{{mfg.make}}</option>
@@ -398,7 +394,7 @@
 
             <div class="col-md-6 col-sm-6">
               <label id="label1"> Operating System <span class="required-asterisk">*</span></label>
-              <select class="form-control f-10" formControlName="os" (change)="os($event.target.value)"
+              <select class="form-control f-10" formControlName="os" (change)="os($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.os.errors }">
                 <option></option>
                 <option *ngFor="let os of operartingSystem" [value]="os.os">{{os.os}}</option>
@@ -441,11 +437,6 @@
               </div>
 
             </div>
-            <!-- <div class="col-md-4 col-sm-4">
-                <label id="label1" > RAM Slots</label>
-                <input type="text" class="form-control"   > 
-             </div> -->
-
           </div>
         </div>
 
@@ -454,7 +445,7 @@
           <div class="row">
             <div class="col-md-6 col-sm-6">
               <label id="label1"> RAM Type <span class="required-asterisk">*</span></label>
-              <select formControlName="rtype" class="form-control f-10" (change)="ramtype($event.target.value)"
+              <select formControlName="rtype" class="form-control f-10" (change)="ramtype($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.rtype.errors }">
                 <option></option>
                 <option *ngFor="let ram of ramType" [value]="ram.rtype">{{ram.rtype}}</option>

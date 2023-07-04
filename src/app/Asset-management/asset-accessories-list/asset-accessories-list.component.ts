@@ -24,11 +24,11 @@ import { UpdateDesktopComponent } from '../update-desktop/update-desktop.compone
   styleUrls: ['./asset-accessories-list.component.css']
 })
 export class AssetAccessoriesListComponent implements OnInit {
-  allUser: assetlist[];
-  dataSource: MatTableDataSource<assetlist>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] =  ['select','assetname','assetid','owner_name', 'custodian'];
+  allUser!: assetlist[];
+  dataSource!: MatTableDataSource<assetlist>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = ['assetname','assetid', 'serialno','make','model','quantity','status'];
 
   selection = new SelectionModel<assetlist>(true, []);
   tabledata: any;
@@ -36,6 +36,7 @@ export class AssetAccessoriesListComponent implements OnInit {
   length = 32;
   pageSize = 8;
   pageSizeOptions: number[] = [8, 16, 24, 32];
+  rowData: any;
 
 
   constructor(public fb: FormBuilder,
@@ -55,9 +56,8 @@ export class AssetAccessoriesListComponent implements OnInit {
 
   updateData(){
     this.assetservice.electrical().subscribe(data => {
-      console.log(data)
       this.tabledata = data.rows;
-      console.log(this.tabledata);
+      this.rowData = data.rowCount;
       this.dataSource = new MatTableDataSource( this.tabledata );
 
       this.dataSource.sort = this.sort;
@@ -69,12 +69,6 @@ export class AssetAccessoriesListComponent implements OnInit {
 
 
   onRowClicked(row: any) {
-    console.log('Row clicked: ', row);
-    // this.apiservice.dataRow = row;
-    // console.log('row click',this.apiservice.dataRow);
-    // // this.apiservice.userid = row.name;
-    // // console.log('name: ', row.company);
-    // this.router.navigate(['/atsuserpdp']);   
 
   }
 
@@ -105,12 +99,12 @@ export class AssetAccessoriesListComponent implements OnInit {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+     ('The dialog was closed');
   
     });
   }
 
-  OpenUpdate(astd_id){
+  OpenUpdate(astd_id:any){
 
     this.router.navigate(['/home/users/updateaccesory',astd_id]);
   
@@ -119,11 +113,12 @@ export class AssetAccessoriesListComponent implements OnInit {
 
 
   }
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openAttachment(astdid,ast_grp){
+  openAttachment(astdid:any,ast_grp:any){
     this.assetservice.att_astg_grp = ast_grp
     this.assetservice.att_astdid = astdid;
   
@@ -137,7 +132,7 @@ export class AssetAccessoriesListComponent implements OnInit {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     //  this.animal = result;
     });
   

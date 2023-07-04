@@ -21,10 +21,10 @@ import { RejoinFormComponent } from '../rejoin-form/rejoin-form.component';
 })
 export class UserpdpComponent implements OnInit {
 
-  allUser: assetlist[];
-  dataSource: MatTableDataSource<assetlist>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  allUser!: assetlist[];
+  dataSource!: MatTableDataSource<assetlist>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['select','first_name','assetno','astg_group', 'serialno','status'];
 
   selection = new SelectionModel<assetlist>(true, []);
@@ -34,7 +34,7 @@ export class UserpdpComponent implements OnInit {
   pageSize = 8;
   pageSizeOptions: number[] = [8, 16, 24, 32];
   details: any;
-  assetid;
+  assetid:any;
   myTicketSort: any;
   myTicket: any;
   openedby: any;
@@ -106,7 +106,7 @@ file1:any;
     this.file1 = 'assets/img/Trial 2.png';
   }
 
-  getbyassetdetails1(assetid){
+  getbyassetdetails1(assetid:any){
     this.accountservice.getbyuser(assetid)
         .subscribe(details => {
             this.details = details.rows;
@@ -136,29 +136,30 @@ file1:any;
   
   }
 
-  async applyFilterMyticket(filterValue: string) {
+  async applyFilterMyticket(event: any) {
+    const filterValue = event.target ? (event.target as HTMLInputElement).value : event;
     this.myTicket=this.myTicketSort;
     if(filterValue === ''){
         return this.getmyTicket();
      }
-     this.myTicket=this.myTicket.filter(filteredData =>
+     this.myTicket=this.myTicket.filter((filteredData:any) =>
          filteredData.inid_id.includes(filterValue.toUpperCase().trim()))
    
      console.log(this.myTicket);
       
   }
-  getItems(ticket){
+  getItems(ticket:any){
 
   }
 
-  sortMyTicket(option:string) {
- 
+  sortMyTicket(event:any) {
+    const option = event.target ? (event.target as HTMLInputElement).value : event;
     if(option ===  'High to Very High'){
-    this.myTicket=  this.myTicket.sort((a, b) => (a.priority > b.priority) ? 1 : -1)
+    this.myTicket=  this.myTicket.sort((a:any, b:any) => (a.priority > b.priority) ? 1 : -1)
     }
   
     if(option ===  'Very High to High'){
-     this.myTicket=  this.myTicket.sort((a, b) => (b.priority > a.priority) ? 1 : -1)
+     this.myTicket=  this.myTicket.sort((a:any, b:any) => (b.priority > a.priority) ? 1 : -1)
      }
    
   }

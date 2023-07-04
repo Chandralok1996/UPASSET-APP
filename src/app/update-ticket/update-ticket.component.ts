@@ -25,8 +25,8 @@ import { Location } from '@angular/common'
     `]
 })
 export class UpdateTicketComponent implements OnInit {
-  @ViewChild('exampleModal', { static: true }) exampleModalRef: ElementRef;
-  @ViewChild('closeButton') closeButton;
+  @ViewChild('exampleModal', { static: true }) exampleModalRef!: ElementRef;
+  @ViewChild('closeButton') closeButton:any;
 
 
   type: any;
@@ -37,7 +37,7 @@ export class UpdateTicketComponent implements OnInit {
   aproduct: any;
   priority: any;
   status: any;
-  form: FormGroup;
+  form: any;
   loading = false;
   submitted = false;
   assigned: any;
@@ -50,7 +50,7 @@ export class UpdateTicketComponent implements OnInit {
   b1:any;
   note1: any;
   note2: any;
-  prioritystatus: string;
+  prioritystatus: any;
   empid1: any;
   empid2: any;
   previousData :any = []; 
@@ -67,7 +67,7 @@ export class UpdateTicketComponent implements OnInit {
   statusClasses = 'not-active';
   statusClassess = 'not-active';
   orga: any;
-  assigneWarning: boolean;
+  assigneWarning: boolean = false;
   resMode: any;
 
 
@@ -106,7 +106,7 @@ export class UpdateTicketComponent implements OnInit {
   ngOnInit(): void {
   
     this.userName = this.accountService.user.userid;
-    console.log(this.userName);
+   (this.userName);
 
     if( this.accountService.user.vipstatus === 'General'){
       this.prioritystatus = 'High';
@@ -152,21 +152,21 @@ export class UpdateTicketComponent implements OnInit {
       const assetid = params.get('id');
     this.incidentservice.incidentgetbyid(assetid)
     .subscribe(async (details) => {
-         console.log(details)
+        (details)
           this.asset = details.rows;
           this.asset.openedby = this.asset.openedby+'/'+this.asset.openedbyempid;
           this.asset.assignedto = this.asset.assignedto+'/'+this.asset.assignedtoempid;
           this.asset1 =details.rows1;
           this.asset2 = details.rows3;
        
-        this.asset1 = this.asset1.map(item => ({ data: `\n${item.created} - ${item.working_notes}` }));
+        this.asset1 = this.asset1.map((item:any) => ({ data: `\n${item.created} - ${item.working_notes}` }));
         for (const iterator of this.asset1) {
           this.previousData.push(iterator.data)
         } 
-         console.log(this.asset)
+        (this.asset)
         
 
-           console.log(this.asset.assignedto)
+          (this.asset.assignedto)
           this.assignedto(this.asset.affectedpro);
 
           if(this.asset.status === 'Assigned'){
@@ -219,18 +219,18 @@ export class UpdateTicketComponent implements OnInit {
     }),
     this.incidentservice.getresmode().subscribe(data => {
       this.resMode = data.rows;
-      console.log( this.resMode)
+     ( this.resMode)
     })
    
 
   }
 
-  assignedto(affectedpro){
-    console.log(affectedpro)
+  assignedto(affectedpro:any){
+   (affectedpro)
     this.incidentservice.assignedto(affectedpro)
     .subscribe(data => {
         this.assigned = data.rows;
-        console.log(this.assigned);
+       (this.assigned);
     })
   }
 
@@ -257,11 +257,11 @@ export class UpdateTicketComponent implements OnInit {
     for(let i=0; i<this.resMode.length; i++){
       if(this.form.value.inrmid === this.resMode[i].responsemode){
         this.form.value.inrmid = this.resMode[i].inrm_id;
-        console.log(this.form.value.resmode)
+       (this.form.value.resmode)
     }
     }
     
-    console.log(this.form.value);
+   (this.form.value);
     debugger;
     if(this.form.value.assignedto.username){
       this.empid1 = this.form.value.assignedto.username.split('/');
@@ -278,13 +278,13 @@ export class UpdateTicketComponent implements OnInit {
     this.form.value.openedby = this.empid2[0];
     this.form.value.openedbyempid = this.empid2[1];
 
-    // console.log(this.form.value.inid_id)
+    //(this.form.value.inid_id)
     // this.inid1 = this.form.value.inid_id.split('-');
     // this.form.value.inid_id = this.inid1[1];
     
 
-    console.log('name '+ this.form.value.assignedtoempid + this.form.value.assignedto + this.form.value.inid_id);
-    console.log('openby '+ this.form.value.openedby +  this.form.value.openedbyempid);
+   ('name '+ this.form.value.assignedtoempid + this.form.value.assignedto + this.form.value.inid_id);
+   ('openby '+ this.form.value.openedby +  this.form.value.openedbyempid);
 
 
     // stop here if form is invalid
@@ -304,7 +304,7 @@ export class UpdateTicketComponent implements OnInit {
    
     const formData: any = new FormData();
     const files: Array<File> = this.filesToUpload;
-     console.log(this.form.value);
+    (this.form.value);
 
     for (let i = 0; i < files.length; i++) {
 
@@ -314,11 +314,10 @@ export class UpdateTicketComponent implements OnInit {
     formData.append("details", JSON.stringify(this.form.value))
     this.loading = false;
 
-    this.incidentservice.updateIncident(formData)
-    .subscribe(res => {
+    this.incidentservice.updateIncident(formData).subscribe(res => {
       this.form.value.openedby = this.empid2[0] +'/'+this.empid2[1]
       this.form.value.assigned = this.empid1[0]+'/'+this.empid1[1];
-      console.log(res);
+     (res);
 
       if(res.Status){
 
@@ -348,15 +347,15 @@ export class UpdateTicketComponent implements OnInit {
 
   }
 
-  selectEvent(item) {
+  selectEvent(item:any) {
    
     this.empid1 = item.username;
-    console.log(this.empid1)
+   (this.empid1)
   }
 
   onChangeSearch(val: string) {}
   
-  onFocused(e){}
+  onFocused(e:any){}
 
 
   openVerticallyCentered(content:any) {
@@ -378,14 +377,14 @@ export class UpdateTicketComponent implements OnInit {
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
- // console.log('div App', e);
+divScroll(e:any) {
+ //('div App', e);
 }
 
 }

@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class DateListComponent implements OnInit {
 
-  form: FormGroup;
+  form: any;
   constructor( private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {

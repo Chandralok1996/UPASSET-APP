@@ -21,11 +21,11 @@ import { UpdateMonitorComponent } from '../update-monitor/update-monitor.compone
   styleUrls: ['./monitor-list.component.css']
 })
 export class MonitorListComponent implements OnInit {
-  allUser: assetlist[];
-  dataSource: MatTableDataSource<assetlist>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['select','assetname','assetid','owner_name', 'custodian'];
+  allUser!: assetlist[];
+  dataSource!: MatTableDataSource<assetlist>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = ['assetname','assetid','owner_name', 'serialno','make','model','status'];
   
   selection = new SelectionModel<assetlist>(true, []);
   tabledata: any;
@@ -33,6 +33,7 @@ export class MonitorListComponent implements OnInit {
   length = 32;
   pageSize = 8;
   pageSizeOptions: number[] = [8, 16, 24, 32];
+  rowData: any;
 
   
 
@@ -52,9 +53,9 @@ export class MonitorListComponent implements OnInit {
 
   updateData(){
     this.assetservice.itdevices().subscribe(data => {
-      console.log(data);
+     
       this.tabledata = data.rows;
-
+      this.rowData = data.rowCount;
       this.dataSource = new MatTableDataSource( this.tabledata );
 
       this.dataSource.sort = this.sort;
@@ -66,11 +67,11 @@ export class MonitorListComponent implements OnInit {
 
 
   onRowClicked(row: any) {
-    console.log('Row clicked: ', row);
+   
     // this.apiservice.dataRow = row;
-    // console.log('row click',this.apiservice.dataRow);
+    //('row click',this.apiservice.dataRow);
     // // this.apiservice.userid = row.name;
-    // // console.log('name: ', row.company);
+    // //('name: ', row.company);
     // this.router.navigate(['/atsuserpdp']);   
 
   }
@@ -92,19 +93,20 @@ export class MonitorListComponent implements OnInit {
 
   }
 
-  OpenUpdate(astd_id){
+  OpenUpdate(astd_id:any){
   
     this.assetservice.monitor_astd_id = astd_id;
     this.router.navigate(['/home/users/updatemonitor',astd_id]);
 
 
   }
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   
-openAttachment(astdid,ast_grp){
+openAttachment(astdid:any,ast_grp:any){
   this.assetservice.att_astg_grp = ast_grp
   this.assetservice.att_astdid = astdid;
 
@@ -118,7 +120,7 @@ openAttachment(astdid,ast_grp){
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
+   ('The dialog was closed');
   //  this.animal = result;
   });
 
@@ -135,7 +137,7 @@ openFilter(): void {
   });
 
   dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
+   ('The dialog was closed');
 
   });
 }

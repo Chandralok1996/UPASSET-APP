@@ -13,9 +13,9 @@ am4core.useTheme(am4themes_animated);
   styleUrls: ['./graph.component.css']
 })
 export class GraphComponent implements OnInit {
-  private chart: am4charts.XYChart;
-  changedData: { status: string; count: string; }[];
-  graph: [{ status: string; count: string; priority: string}];
+  private chart!: am4charts.XYChart;
+  changedData!: { status: string; count: string; }[];
+  graph!: [{ status: string; count: string; priority: string}];
 
   constructor( public incidentservice: IncidentService,
     public router:Router, ) { }
@@ -24,9 +24,9 @@ export class GraphComponent implements OnInit {
     this.incidentservice.graph(this.incidentservice.enduser).subscribe(
       result=>{
      
-    console.log(result.rows);
+   (result.rows);
     this.graph = result.rows; 
-    console.log(this.graph); 
+   (this.graph); 
     })
 
     setTimeout(() => {
@@ -68,11 +68,11 @@ export class GraphComponent implements OnInit {
     // let data = [{"status":"New ","priority":"High","count":"2"},
     // {"status":"New","priority":"Very High","count":"1"}];
      let data =  this.graph ;
-    // console.log(this.graph.status);
+    //(this.graph.status);
       this.changedData = this.graph.map(item => ({ status: `${item.status} and ${item.priority}`, count: item.count }));
    
       chart.data = this.changedData;
-      console.log(chart.data);
+     (chart.data);
     
 // chart.data = [ {
 //  "status": "New",
@@ -139,7 +139,7 @@ labelBullet.label.text = "{values.valueY.workingValue.formatNumber('#.')}";
 chart.zoomOutButton.disabled = true;
 
 // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
-series.columns.template.adapter.add("fill", function (fill, target) {
+series.columns.template.adapter.add("fill", function (fill:any, target:any) {
  return chart.colors.getIndex(target.dataItem.index);
 });
 

@@ -20,10 +20,10 @@ export class EngineerCallComponent implements OnInit {
 
   year = this.currentDate.getFullYear();
 
-  allUser: any[];
-  dataSource: MatTableDataSource<any>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  allUser: any;
+  dataSource!: MatTableDataSource<any>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['engineer','count'];
   selection = new SelectionModel<any>(true, []);
   tabledata: any;
@@ -44,7 +44,7 @@ export class EngineerCallComponent implements OnInit {
   engineerData(){
     this.incidentservice.engineerCount().subscribe(data => {
       this.tabledata = data.rows;
-      console.log(this.tabledata)
+     (this.tabledata)
       this.dataSource = new MatTableDataSource( this.tabledata );
 
       this.dataSource.sort = this.sort;
@@ -54,12 +54,13 @@ export class EngineerCallComponent implements OnInit {
 
   }
 
-  detail(user_id){
-    console.log(user_id)
+  detail(user_id:any){
+   (user_id)
     this.router.navigate(['/home/users/engineerdetail',user_id])
    }
 
-   applyFilter(filterValue: string) {
+   applyFilter(event: any) {
+    const filterValue = event.target ? (event.target as HTMLInputElement).value : event;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   

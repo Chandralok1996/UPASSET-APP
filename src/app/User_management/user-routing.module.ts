@@ -14,7 +14,7 @@ import { IndidentListComponent } from '../incident-management/indident-list/indi
 import { IncPdpComponent } from '../incident-management/inc-pdp/inc-pdp.component';
 import { SupportListComponent } from '../support-user/support-list/support-list.component';
 import { CoordinatorListComponent } from '../coordinator/coordinator-list/coordinator-list.component';
-import { SupportPdpComponent } from '../support-user/support-pdp/support-pdp.component';
+
 import { UserpdpComponent } from './userpdp/userpdp.component';
 import { UsergrpPdpComponent } from './usergrp-pdp/usergrp-pdp.component';
 import { UserrolePdpComponent } from './userrole-pdp/userrole-pdp.component';
@@ -48,7 +48,7 @@ import { UserCreationComponent } from './user-creation/user-creation.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { AssteLaptopListComponent } from '../Asset-management/asste-laptop-list/asste-laptop-list.component';
 import { DateListComponent } from '../date/date-list/date-list.component';
-import { UserComponent } from '../history/user/user.component';
+
 import { AssetComponent } from '../history/asset/asset.component';
 import { InactiveFormComponent } from './inactive-form/inactive-form.component';
 import { RejoinFormComponent } from './rejoin-form/rejoin-form.component';
@@ -62,7 +62,7 @@ import { EngineerDetailsComponent } from '../dashboard-card/engineer-details/eng
 import { SlaDetailsComponent } from '../dashboard-card/sla-details/sla-details.component';
 import { EngineerCallComponent } from '../dashboard-card/engineer-call/engineer-call.component';
 import { HardwareDetailComponent } from '../dashboard-card/hardware-detail/hardware-detail.component';
-import { NewArticleComponent } from '../knowl-management/new-article/new-article.component';
+
 import { DasboardReportComponent } from '../dashboard-card/dasboard-report/dasboard-report.component';
 import { ItlistComponent } from '../Asset-management/itlist/itlist.component';
 import { UpdateComponent } from '../Asset-management/update/update.component';
@@ -134,7 +134,6 @@ import { MailsendComponent } from '../Asset-management/mailsend/mailsend.compone
 
             {path: 'supuser', component: SupportListComponent, pathMatch: 'full',  canActivate: [AuthGuard]},
             
-            {path: 'suppdp', component: SupportPdpComponent, pathMatch: 'full',  canActivate: [AuthGuard]},
             
             {path: 'coordinator', component: CoordinatorListComponent, pathMatch: 'full' , canActivate: [AuthGuard]},
             
@@ -148,7 +147,6 @@ import { MailsendComponent } from '../Asset-management/mailsend/mailsend.compone
     
             {path: 'modal', component: AddFieldComponent, pathMatch: 'full' , canActivate: [AuthGuard]},
       
-             {path: 'new-article', component: NewArticleComponent, pathMatch: 'full' , canActivate: [AuthGuard]},
         
             // form route
             {path: 'laptopcreation', component: AssteLaptopComponent, pathMatch: 'full' ,   canActivate: [AuthGuard]},
@@ -184,11 +182,8 @@ import { MailsendComponent } from '../Asset-management/mailsend/mailsend.compone
 
             {path: 'datelist', component: DateListComponent, pathMatch: 'full', canActivate: [AuthGuard]},
             
-            {path: 'userhistory', component: UserComponent, pathMatch: 'full', canActivate: [AuthGuard]},
-           
             {path: 'assethistory', component: AssetComponent, pathMatch: 'full', canActivate: [AuthGuard]},
 
-           
             {path: 'dashboardstatus', component: DashboardCardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
             
             {path: 'dashboard', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},

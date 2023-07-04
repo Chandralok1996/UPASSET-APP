@@ -22,19 +22,20 @@ import { UserCreationComponent } from '../user-creation/user-creation.component'
 })
 export class UserListComponent implements OnInit {
 
-  allUser: userpdp[];
-  dataSource: MatTableDataSource<userpdp>;
+  allUser!: userpdp[];
+  dataSource!: MatTableDataSource<userpdp>;
 
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   
-  displayedColumns: string[] = ['select', 'username','loginname','user_id', 'description', 'createdtime','actions'];
+  displayedColumns: string[] = ['username','loginname','user_id', 'description', 'createdtime','actions'];
   selection = new SelectionModel<userpdp>(true, []);
   tabledata: any;
   value: any;
   length = 32;
   pageSize = 8;
   pageSizeOptions: number[] = [8, 16, 24, 32];
+  rowData: any;
 
 
   constructor(public fb: FormBuilder, public accountservice: AccountService,  public router: Router,
@@ -50,26 +51,22 @@ export class UserListComponent implements OnInit {
 
   updateData(){
     this.accountservice.alluserdetails1().subscribe(data => {
-
       this.tabledata = data.rows;
-     console.log(this.tabledata)
-
+      this.rowData = data.rowCount;
       this.dataSource = new MatTableDataSource( this.tabledata );
-
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator; 
-     
     this.dataSource.paginator = this.paginator; 
     });
 
   }
 
   onRowClicked(row: any) {
-    // console.log('Row clicked: ', row);
+    //('Row clicked: ', row);
     // this.apiservice.dataRow = row;
-    // console.log('row click',this.apiservice.dataRow);
+    //('row click',this.apiservice.dataRow);
     // // this.apiservice.userid = row.name;
-    // // console.log('name: ', row.company);
+    // //('name: ', row.company);
     // this.router.navigate(['/atsuserpdp']);   
   }
 
@@ -92,7 +89,7 @@ export class UserListComponent implements OnInit {
   }
 
 
-  OpenUpdate(astd_id){
+  OpenUpdate(astd_id:any){
   
     this.router.navigate(['/home/users/updateuser',astd_id]);
 
@@ -100,7 +97,8 @@ export class UserListComponent implements OnInit {
     
 
   }
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 

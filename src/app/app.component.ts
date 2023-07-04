@@ -10,11 +10,11 @@ import { AccountService } from './_services/account.service';
 })
 export class AppComponent {
   title = 'thyssentt';
-  user: User;
+  user: any;
   public buttonName:any = 'Show';
   public admin:boolean = false;
   public asset:boolean = false;
-  date1: string;
+  date1: any;
   collapsed=true;
  
 
@@ -37,3 +37,4 @@ export class AppComponent {
 
 
 }
+

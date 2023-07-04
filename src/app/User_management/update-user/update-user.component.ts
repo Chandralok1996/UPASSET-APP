@@ -16,28 +16,28 @@ import { AccountService } from '../../_services/account.service';
 })
 export class UpdateUserComponent implements OnInit {
 
-  @ViewChild('exampleModal', { static: true }) exampleModalRef: ElementRef;
-  @ViewChild('closeButton') closeButton;
+  @ViewChild('exampleModal', { static: true }) exampleModalRef!: ElementRef;
+  @ViewChild('closeButton') closeButton:any;
   public buttonName: any = 'Show';
   public sys: boolean = false;
   public contact: boolean = false;
   loading = false;
-  form: FormGroup;
+  form: any;
   submitted = false;
 
 
-  products7;
-  products8 = [];
-  products9 = [];
-  products10 = [];
-  products11 = [];
-  usergrp = [];
-  role = [];
-  designation = [];
-  department = [];
-  floors = [];
-  usertype = [];
-  reportingtoo = [];
+  products7:any;
+  products8 :any = [];
+  products9 :any = [];
+  products10:any = [];
+  products11 :any = [];
+  usergrp :any = [];
+  role :any = [];
+  designation :any = [];
+  department :any = [];
+  floors :any = [];
+  usertype :any = [];
+  reportingtoo :any = [];
   userType1: any;
   empid1: any;
   
@@ -61,6 +61,7 @@ export class UpdateUserComponent implements OnInit {
   statusClassess = 'not-active';
   orga: any;
   item: any;
+ 
 
   
 
@@ -83,13 +84,13 @@ export class UpdateUserComponent implements OnInit {
     this.statusClassess = "active";
   }
   formSubmit(val: any) {
-    console.log(val)
+   (val)
   }
 
 
 
 
-  homeworld: Observable<{}>;
+  homeworld!: Observable<{}>;
   constructor(public accountservice: AccountService,
     public route:ActivatedRoute,
     private formBuilder: FormBuilder, public alterservices: AlertService,
@@ -102,10 +103,8 @@ export class UpdateUserComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       
-      actionid:[this.accountservice.user.userid], 
-      usorg_id:[this.accountservice.user.orgdet.usorg_id],
-       
-      
+       actionid:[this.accountservice.user.userid], 
+       usorg_id:[this.accountservice.user.orgdet.usorg_id],
        title: [''],
        firstname: [''],
        middlename: [''],
@@ -115,7 +114,7 @@ export class UpdateUserComponent implements OnInit {
        password: [''],
        department: [''],
        role: [''],
-     
+       ussg_id : [''],
        designation:[''],
        mobile:['',Validators.pattern('[0-9]{10}')],
        deskno:[''],
@@ -129,7 +128,7 @@ export class UpdateUserComponent implements OnInit {
     // this.homeworld = this.http
     //   .get('http://172.16.15.21:6700/user/api/v1/getbyuser/')
     //   .pipe(mergeMap(character => this.http.get(this.accountservice.user_id)));
-    //   console.log(this.homeworld)
+    //  (this.homeworld)
     //   this.form.patchValue(this.homeworld);
 
     this.route.paramMap.subscribe((params) => {
@@ -137,7 +136,7 @@ export class UpdateUserComponent implements OnInit {
 
     this.accountservice.getbyuser(assetid)
     .subscribe(async (details) => {
-         console.log(details)
+        (details)
           let asset = details.rows[0];
           if(asset.reportingto === null){
             asset.reportingto = null;
@@ -214,7 +213,7 @@ export class UpdateUserComponent implements OnInit {
     }),
     this.accountservice.alluserdetails1().subscribe(data => {
       this.reportingtoo = data.rows;
-      console.log(this.reportingtoo)
+     (this.reportingtoo)
     });
 
   }
@@ -227,26 +226,24 @@ export class UpdateUserComponent implements OnInit {
 
     // reset alerts on submit
     this.alterservices.clear();
-
- 
-    console.log(this.form.value)
-
     // stop here if form is invalid
-    if (this.form.invalid) {
-      return;
-    }
-
+    // if (this.form.invalid) {
+    //   return;
+    // }
+// debugger
+//   var groupp=this.usergrp.filter((item:any)=>{
+//     return item.sgname==this.form.value.group
+//   })
+//   console.log(groupp);
+//   this.form.value.group=groupp[0].ussg_id
     this.loading = true;
     this.createUser();
 
   }
 
   createUser() {
-    console.log(this.form);
-
     this.accountservice.userUpdate(this.form.value)
       .subscribe(res => {
-        console.log(res);
         debugger
         this.loading = false;
         if(res.status){
@@ -290,43 +287,42 @@ export class UpdateUserComponent implements OnInit {
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
+divScroll(e:any) {
   //console.log('div App', e);
 }
 
 
-OnlyNumbersAllowed(event):boolean
+OnlyNumbersAllowed(event:any):boolean
 {
   const charCode = (event.which)?event.which:event.keyCode;
   if(charCode > 31 && (charCode <48 || charCode > 57))
   {
-    console.log('charCode restricted is '+ charCode);
+   ('charCode restricted is '+ charCode);
     return false;
   }
   return true;
 }
 
 
-selectEvent(item) {
-  console.log(item)
+selectEvent(item:any) {
   this.item = item;
-  console.log(this.item.username1)
+ (this.item.username1)
   this.form.value.reportingto = this.item.username1;
  // this.empid2 = item.username1
 }
 
-onChangeSearch(val: string) {
+onChangeSearch(val: any) {
  // fetch remote data from here
  // And reassign the 'data' which is binded to 'data' property.
 }
 
-onFocused(e){
+onFocused(e:any){
  // do something when input is focused
 }
 

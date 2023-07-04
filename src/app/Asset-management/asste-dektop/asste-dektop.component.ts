@@ -29,8 +29,8 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild, ViewEncapsulati
 export class AssteDektopComponent implements OnInit {
 
 
-  @ViewChild('exampleModal', { static: true }) exampleModalRef: ElementRef;
-  @ViewChild('closeButton') closeButton;
+  @ViewChild('exampleModal', { static: true }) exampleModalRef!: ElementRef;
+  @ViewChild('closeButton') closeButton:any;
 
 
   submitted = false;
@@ -44,7 +44,7 @@ export class AssteDektopComponent implements OnInit {
   manufacture: any;
   processor: any;
   speed: any;
-  form: FormGroup;
+  form: any;
   loading = false;
 
 filesToUpload: Array<File> = [];
@@ -79,7 +79,7 @@ filesToUpload: Array<File> = [];
   statusClassess = 'not-active';
   orga: any;
   assetResult: any;
-  assetResultSerial: string;
+  assetResultSerial: any;
 
 
   setActiveClass1() {
@@ -225,7 +225,7 @@ filesToUpload: Array<File> = [];
 
   }
 
-servicp(os){
+servicp(os:any){
   this.assetService.servicePack(os).subscribe(data => {
     this.servicePack = data.rows;
   })
@@ -239,13 +239,13 @@ servicp(os){
         });
   }
 
-  getSpeed(processor){
+  getSpeed(processor:any){
     this.assetService.speed(processor)
     .subscribe(data => {
         this.speed = data.rows;
     });
   }
-  ramtype(rtype){
+  ramtype(rtype:any){
 
     this.assetService.ramSize(rtype)
     .subscribe(data => {
@@ -253,7 +253,7 @@ servicp(os){
        
     });
   }
-  hardDisk(hddtype){
+  hardDisk(hddtype:any){
     this.assetService.capacity(hddtype)
     .subscribe(data => {
         this.capacity = data.rows;
@@ -261,14 +261,14 @@ servicp(os){
 
   }
 
-  gpu(gpucard){
+  gpu(gpucard:any){
     this.assetService.gCard(gpucard)
     .subscribe(data => {
         this.card = data.rows;
     });
 
   }
-  model(make){
+  model(make:any){
 
     this.assetService.make(make)
     .subscribe(data => {
@@ -278,7 +278,7 @@ servicp(os){
   }
 
 
-  userdet(item){
+  userdet(item:any){
    
     let name = item.username
     this.empid1 = name.split('/');
@@ -290,7 +290,7 @@ servicp(os){
 
   }
 
-  vendorname(vendor){
+  vendorname(vendor:any){
     this.assetService.vendorloc(vendor)
     .subscribe(data => {
         this.vendorlocation = data.rows;
@@ -389,7 +389,7 @@ servicp(os){
   }
 
 
-  addField(item){
+  addField(item:any){
   
     const dialogRef = this.dialog.open(AddFieldComponent, {
       width: 'auto',
@@ -484,62 +484,75 @@ servicp(os){
 
   }
 
-  osystem(item){
+  osystem(item:any){
     // this.osys = os;
    // this.osys = os;
    if(item === 'ADD NEW OS' ){
-    document.getElementById('exampleModal').click();
+    (document.getElementById('exampleModal') as HTMLInputElement).click();
+   
   }
   else if(item === 'ADD NEW Vendor'){
-    document.getElementById('exampleModal2').click();
+    (document.getElementById('exampleModal2') as HTMLInputElement).click();
+   
   }
   else if(item === 'ADD NEW SP'){
-    document.getElementById('exampleModal1').click();
+    (document.getElementById('exampleModal1') as HTMLInputElement).click();
   }
   else if(item === 'ADD NEW Location'){
-    document.getElementById('exampleModal3').click();
+    (document.getElementById('exampleModal3') as HTMLInputElement).click();
+   
   }
   else if(item === 'ADD NEW Make'){
-    document.getElementById('exampleModal4').click();
+    (document.getElementById('exampleModal4') as HTMLInputElement).click();
+   
   }
   else if(item === 'ADD NEW Model'){
-    document.getElementById('exampleModal5').click();
+    (document.getElementById('exampleModal5') as HTMLInputElement).click();
+  
   }
   else if(item === 'ADD NEW Processor'){
-    document.getElementById('exampleModal6').click();
+    (document.getElementById('exampleModal6') as HTMLInputElement).click();
+   
   }
   else if(item === 'ADD NEW Speed'){
-    document.getElementById('exampleModal7').click();
+    (document.getElementById('exampleModal7') as HTMLInputElement).click();
+   
   }
   else if(item === 'ADD NEW Ram Type'){
-    document.getElementById('exampleModal8').click();
+    (document.getElementById('exampleModal8') as HTMLInputElement).click();
+  
   }
   else if(item === 'ADD NEW Ram Size'){
-    document.getElementById('exampleModal9').click();
+    (document.getElementById('exampleModal9') as HTMLInputElement).click();
+    
   }
   else if(item === 'ADD NEW HDD Type'){
-    document.getElementById('exampleModal10').click();
+    (document.getElementById('exampleModal10') as HTMLInputElement).click();
+ 
   }
   else if(item === 'ADD NEW Capacity'){
-    document.getElementById('exampleModal11').click();
+    (document.getElementById('exampleModal11') as HTMLInputElement).click();
+ 
   }
   else if(item === 'ADD NEW GPU Card'){
-    document.getElementById('exampleModal12').click();
+    (document.getElementById('exampleModal12') as HTMLInputElement).click();
+   
   }
   else if(item === 'ADD NEW Graphic RAM'){
-    document.getElementById('exampleModal13').click();
+    (document.getElementById('exampleModal13') as HTMLInputElement).click();
+
   }
   }
 
 
-  selectEvent(item) {
+  selectEvent(item:any) {
     console.log(item)
     this.empid1 = item.username;
   }
 
   onChangeSearch(val: string) {}
   
-  onFocused(e){}
+  onFocused(e:any){}
 
   openVerticallyCentered(content:any) {
     this.modalService.open(content, { centered: true });
@@ -553,17 +566,17 @@ servicp(os){
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
+onScroll(e:any) {
  // console.log('window', e);
 }
 
  
 
-divScroll(e) {
+divScroll(e:any) {
  // console.log('div App', e);
 }
 
-onPercentChange(assetno){
+onPercentChange(assetno:any){
  
   this.assetService.validateAssetno(assetno).subscribe(
     data => {
@@ -580,7 +593,7 @@ onPercentChange(assetno){
 
 }
 
-onSerialnum(serialnum){
+onSerialnum(serialnum:any){
   console.log(serialnum);
   this.assetService.validateSerialNum(this.form.value.astg_group,serialnum).subscribe(
     data => {

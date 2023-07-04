@@ -1,115 +1,3 @@
-<!-- <div class="row">
-
-  <div class="col-md-6">
-    <p id="headp" (click)="routerPage()" class="button"><span>></span>&nbsp;&nbsp;Back </p>
-  </div>
-</div>
-
-<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 "
-  style="background-color:white;margin-top: 0.1rem;border-radius: 3px;">
-
-
-  <ul ngbNav #nav="ngbNav" class="nav-tabs" style="border-radius: 3px;">
-    <li [ngbNavItem]="1" class="mt-2">
-      <a ngbNavLink><span><b>Tabular Data
-          </b></span> <b style="width:auto;height:20px;
-         border-radius: 3px;
-    background-color: #3F704D;
-    font-family: Raleway;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 21px;
-    color: white;
-    text-align: center;
-    padding: 0px 7px;" class="ml-5">{{allTicketCount}}</b></a>
-
-      <ng-template ngbNavContent>
-
-        <div class="row">
-          <div class="col-sm-3">
-            <input type="text" class="button3 buttonb" id="action3" placeholder="ex:550001 "
-              (keyup)="applyFilter($event.target.value)">
-
-          </div>
-          <div class="col-sm-4">
-            <select class="button3 buttonb" id="action4" (change)="sortAllTicket($event.target.value)">
-              <option [value]="0" [disabled]="true" selected>Select one category </option>
-              <option *ngFor="let city of selected1"> {{ city}} </option>
-            </select>
-          </div>
-          <div class="col-sm-5 col-md-5 col-xs-5 col-lg-5 col-xl-5" style="text-align:end;">
-               <button type="button" style="outline: none;text-align:center;border-radius:3px;background-color:#007AFF;border:#007AFF 1px solid;"
-                class="btn btn-info mb-4 mt-4"  (click)="openGraph()" >GENARATE REPORT</button>
-
-            <button (click)="exportAsXLSX()" class="btn btn-info mb-4 mt-4"
-              style="outline: none;text-align:center;border-radius:3px;margin-left: 10px;background-color:#007AFF;border:#007AFF 1px solid;">DOWNLOAD
-              EXCEL</button>
-
-          </div>
-
-        </div>
-
-        <div class="row" *ngFor="let ticket of allTicket ">
-          <div class="col-md-12">
-            <div class="card" style="background-color: #E5E5E5;" >
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-6 col-sm-6">
-                    <p id="description">{{ticket.problem}}</p>
-                    <div class="row">
-                      <div class="col-md-7 col-sm-7">
-                        <a class="btn" style="text-align: left;margin-left: -14px;"> <span id="incid"
-                            (click)=getItems(ticket) class="la la-trash">INC No {{ticket.ticket_no}}</span></a>
-                      </div>
-                      <div class="col-md-5 col-sm-5">
-                        <p id="group">Assigned Group: {{ticket.sgname}} </p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-7 col-sm-7">
-                        <p id="from">From: {{ticket.emp_name}}</p>
-                      </div>
-                      <div class="col-md-5 col-sm-5">
-                        <p id="created">Created :{{ticket.created}}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-1 col-sm-1">
-                    <div class="vl"></div>
-                  </div>
-
-                  <div class="col-md-3 col-sm-3">
-                    <p id="assignedto">Assigned To</p>
-                    <p id="status">Status:</p>
-                    <p id="priority">Priority:</p>
-                  </div>
-
-                  <div class="col-md-2 col-sm-2">
-                    <p id="assignedto1">{{ticket.engineer}}</p>
-                    <p id="status1">{{ticket.status}}</p>
-                    <p id="priority1">{{ticket.priority}}</p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </ng-template>
-    </li>
-
-   
-
-  </ul>
-
-  <div [ngbNavOutlet]="nav" class="mt-2"></div>
-</div>
-
-       
-
-       -->
 
        <div class="row">
 
@@ -121,10 +9,6 @@
        
 <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12"
 style="background-color:white;border-radius: 3px;margin-top: -0.7rem;">
-
-
-<!-- 
-  <form > -->
 <div class="row mt-0">
   <div class="col-sm-3 mt-2" >
     <p id="p2"><b>Tabular Data</b></p>
@@ -139,11 +23,11 @@ style="background-color:white;border-radius: 3px;margin-top: -0.7rem;">
  
 
   <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-    <input type="text" class="button3 buttonb form-control" id="action3" (keyup)="applyFilter($event.target.value)"
+    <input type="text" class="button3 buttonb form-control" id="action3" (keyup)="applyFilter($event)"
       placeholder="Search Tickets">
   </div>
   <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-    <select id="action4" class="button3 buttonb form-control" style="color: #646464;" (change)="onCitySelect($event.target.value)">
+    <select id="action4" class="button3 buttonb form-control" style="color: #646464;" (change)="onCitySelect($event)">
       <option [value]="0" [disabled]="true" selected>
         <p style="color: #646464;border-color: white;">Select Priority </p>
       </option>

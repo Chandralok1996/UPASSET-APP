@@ -25,7 +25,7 @@ export class UpdateServerComponent implements OnInit {
   manufacture: any;
   processor: any;
   speed: any;
-  form: FormGroup;
+  form: any;
   loading = false;
 
 filesToUpload: Array<File> = [];
@@ -168,10 +168,10 @@ filesToUpload: Array<File> = [];
 
     this.assetService.getbyassetserverdetails(assetid)
     .subscribe(async (details) => {
-         console.log('details'+details.rows)
+        ('details'+details.rows)
           this.asset = details.rows[0];
           this.asset.name = this.asset.name+'/'+this.asset.empid;
-          console.log( this.asset.name)
+         ( this.asset.name)
           this.userdet(this.asset.name);
           this.model(this.asset.make);
            this.getFloor(this.asset.building);
@@ -228,7 +228,7 @@ filesToUpload: Array<File> = [];
     // }),
     this.assetService.serverram().subscribe(data => {
       this.ramType = data.rows;
-      console.log('ramtype'+this.ramType)
+     ('ramtype'+this.ramType)
     }),
     this.assetService.hardDisk().subscribe(data => {
       this.hardType = data.rows;
@@ -241,7 +241,7 @@ filesToUpload: Array<File> = [];
     }),
     this.assetService.userName().subscribe(data => {
       this.username = data.rows;
-      console.log(this.username)
+     (this.username)
     }),
     this.assetService.vendor().subscribe(data => {
       this.vendor = data.rows;
@@ -275,7 +275,7 @@ filesToUpload: Array<File> = [];
 
   }
 
-  getFloor(building){
+  getFloor(building:any){
 
     this.accountservice.floor(building)
         .subscribe(floor => {
@@ -289,21 +289,21 @@ filesToUpload: Array<File> = [];
         this.speed = data.rows;
     });
   }
-  ramtype(rtype){
+  ramtype(rtype:any){
 
     this.assetService.serverramSize(rtype)
     .subscribe(data => {
         this.ramSize = data.rows;
-        console.log(this.ramSize)
+       (this.ramSize)
        
     });
   }
 
-  os(os){
+  os(os:any){
     this.assetService.serverOSS(os)
     .subscribe(data => {
         this.servicePack = data.rows;
-        console.log(this.ramSize)
+       (this.ramSize)
        
     });
   }
@@ -322,17 +322,17 @@ filesToUpload: Array<File> = [];
     });
 
   }
-  model(make){
+  model(make:any){
 
     this.assetService.serverModel(make)
     .subscribe(data => {
         this.make = data.rows;
-        console.log(this.make)
+       (this.make)
     });
 
   }
 
-  userdet(item){
+  userdet(item:any){
   
     if(item.username){
       let username = item.username;
@@ -353,7 +353,7 @@ filesToUpload: Array<File> = [];
 
   }
 
-  vendorname(vendor){
+  vendorname(vendor:any){
     this.assetService.vendorloc(vendor)
     .subscribe(data => {
         this.vendorlocation = data.rows;
@@ -371,7 +371,7 @@ filesToUpload: Array<File> = [];
     // this.form.value.fastno = this.form.value.fastno.trim();
 
     this.submitted = true;
-    console.log(this.form.value.name);
+   (this.form.value.name);
    
     // reset alerts on submit
     this.alterservices.clear();
@@ -418,7 +418,7 @@ if(this.form.value.warranty === 'valid' && (this.form.value.wsdate === null || t
        // this.form.value.name = this.form.value.name+'/'+ this.form.value.empid;
        
         this.loading = false;
-        console.log(res)
+       (res)
 
         if(res === 'Server Updated Succesfully')
         {
@@ -454,12 +454,12 @@ if(this.form.value.warranty === 'valid' && (this.form.value.wsdate === null || t
 
    
   keyword1='username';
-  selectEvent(item){
-    console.log(item)
+  selectEvent(item:any){
+   (item)
   }
   onChangeSearch(val: string) {}
   
-  onFocused(e){}
+  onFocused(e:any){}
 
   
 
@@ -475,14 +475,14 @@ if(this.form.value.warranty === 'valid' && (this.form.value.wsdate === null || t
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
-  console.log('div App', e);
+divScroll(e:any) {
+
 }
 
 }

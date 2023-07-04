@@ -1,19 +1,5 @@
 <div class="container-fluid" style="margin: 30px 0 0 0;padding: 0;">
 
-
-
-    <!-- <button class="close" mat-button (click)="onNoClick()">X</button> -->
-
-    <!-- <div  style="margin-left:0px;font-family: Raleway;margin-right:0px" > -->
-
-    <!-- 
-    <div class="row">
-        <div class="col-sm-11 col-md-11">
-   <p id="create">UPDATE TICKET</p>
-  
-    </div>
-   
-    </div> -->
     <div class="row">
         <div class="col-md-12 ">
 
@@ -96,29 +82,6 @@
                     </div>
                 </div>
 
-                <!-- <div class="row mt-3">
-            <div class="col-md-12">
-                <label id="ctf" >Creating ticket for</label><br>
-                <input name="type"  [(ngModel)]="type" type="radio" [value]="1" [checked]="options" [ngModelOptions]="{standalone: true}" />&nbsp;&nbsp;<b> Myself</b> 
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input name="type"  [(ngModel)]="type" type="radio" [value]="0" [checked]="!options" [ngModelOptions]="{standalone: true}" />&nbsp;&nbsp;<b> Others</b>
-           
-            </div>
-        </div>
-
-        <div class="row mt-3"  *ngIf="type == 0">
-            <div class="col-md-6">
-                <label  >User Name</label>
-                <input type="text" class="form-control" formControlName="username" >
-            </div>
-            
-            <div class="col-md-6">
-                <label  >Contact Number</label>
-                <input type="text" class="form-control" formControlName="contact">
-            </div>
-        </div> -->
-
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <label>Affected Product <span class="required-asterisk">*</span></label>
@@ -164,12 +127,7 @@
                 <div class="row mt-3">
                     <div class="col-md-6" *ngIf="accountService.user.rolename != 'ITsupport'">
                         <label>Assigned To <span class="required-asterisk">*</span></label>
-                        <!-- <select class="form-control" formControlName="assignedto" [ngClass]="{ 'is-invalid': submitted && f.assignedto.errors }" >
-                   <option></option>
-                   <option *ngFor="let asgn of assigned">{{asgn.username}}/{{asgn.empid}}</option>
-               </select> -->
-
-
+                       
                         <ng-autocomplete formControlName="assignedto" [data]="assigned" [searchKeyword]="keyword1"
                             (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)'
                             (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"

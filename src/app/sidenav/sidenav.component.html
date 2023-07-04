@@ -14,9 +14,7 @@
           <p id="online">Online</p>
         </div>
 
-
-        <br>
-        <!-- <div class="scroll mt-3 ab" (scroll)="divScroll($event)"> -->
+        <div class="scroll" (scroll)="divScroll($event)">
 
           <ul class="nav flex-column flex-nowrap overflow-hidden">
 
@@ -76,11 +74,11 @@
 
                       <div class="collapse" id="submenu2" aria-expanded="false">
                         <ul style="background-color: #1717187c;" class="flex-column  nav">
+                         
                           <li class="nav-item ">
                             <a [routerLink]="['/home/users/assetserver']" class="nav-link text-truncate buttonb "> <span
                                 class=" " style="margin-left: 100px;">IT RACKS</span></a>
                           </li>
-
                           <li class="nav-item">
                             <a [routerLink]="['/home/users/assetmonitor']" class="nav-link text-truncate  buttonb "> <span
                                 class="" style="margin-left: 100px;">DEVICES</span></a>
@@ -101,9 +99,9 @@
                           </svg>&nbsp;
                           NON IT
 
-                          <img *ngIf="!open" style="width: 20px;height: 20px;" class="float-right"
+                          <img *ngIf="open" style="width: 20px;height: 20px;" class="float-right"
                             src="assets/img/right.png">
-                          <img *ngIf="open" style="width: 20px;height: 15px;" class="float-right"
+                          <img *ngIf="!open" style="width: 20px;height: 15px;" class="float-right"
                             src="assets/img/down.png">
 
                         </span></a>
@@ -119,6 +117,8 @@
                             <a [routerLink]="['/home/users/inventory']" class="nav-link text-truncate  buttonb "> <span
                                 class="" style="margin-left: 100px;">BMS</span></a>
                           </li>
+
+                         
 
                         </ul>
                       </div>
@@ -158,8 +158,8 @@
 
 
                 <span class="d-none d-md-inline">USER MANAGEMENT
-                  <img *ngIf="!open" style="width: 20px;height: 20px; margin-left: 28px; " src="assets/img/right.png">
-                  <img *ngIf="open" style="width: 20px;height: 15px; margin-left: 28px;" src="assets/img/down.png">
+                  <img *ngIf="open" style="width: 20px;height: 20px; margin-left: 28px; " src="assets/img/right.png">
+                  <img *ngIf="!open" style="width: 20px;height: 15px; margin-left: 28px;" src="assets/img/down.png">
                 </span></a>
 
               <ng-container *ngIf="show1">
@@ -206,7 +206,7 @@
 
           </ul>
 
-        <!-- </div> -->
+        </div>
 
       </div>
     </div>
@@ -294,11 +294,11 @@
 
                         <div class="collapse" id="submenu2" aria-expanded="false">
                           <ul style="background-color: #1717187c;" class="flex-column  nav">
+                          
                             <li class="nav-item ">
                               <a [routerLink]="['/home/users/assetserver']" class="nav-link text-truncate buttonb "> <span
                                   class=" " style="margin-left: 100px;">IT RACKS</span></a>
                             </li>
-
                             <li class="nav-item">
                               <a [routerLink]="['/home/users/assetmonitor']" class="nav-link text-truncate  buttonb "> <span
                                   class="" style="margin-left: 100px;">DEVICES</span></a>
@@ -319,9 +319,9 @@
                             </svg>&nbsp;
                             NON IT
 
-                            <img *ngIf="!open" style="width: 20px;height: 20px;" class="float-right"
+                            <img *ngIf="open" style="width: 20px;height: 20px;" class="float-right"
                               src="assets/img/right.png">
-                            <img *ngIf="open" style="width: 20px;height: 15px;" class="float-right"
+                            <img *ngIf="!open" style="width: 20px;height: 15px;" class="float-right"
                               src="assets/img/down.png">
 
                           </span></a>
@@ -337,6 +337,7 @@
                               <a [routerLink]="['/home/users/inventory']" class="nav-link text-truncate  buttonb "> <span
                                   class="" style="margin-left: 100px;">BMS</span></a>
                             </li>
+                           
 
                           </ul>
                         </div>

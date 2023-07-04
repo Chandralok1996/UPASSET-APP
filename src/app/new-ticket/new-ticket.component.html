@@ -68,7 +68,7 @@
                         <label>Call Type <span class="required-asterisk">*</span></label>
                         <select type="text" formControlName="intp" class="form-control" placeholder="Short Description"
                             [ngClass]="{ 'is-invalid': submitted && f.intp.errors }"
-                            (change)="inctype($event.target.value)">
+                            (change)="inctype($event)">
                             <option></option>
                             <option *ngFor="let type of incidenttype">{{type.category}}</option>
 
@@ -85,7 +85,7 @@
                 <label>Call Mode <span class="required-asterisk">*</span></label>
                 <input type="text" formControlName="callmode" class="form-control" placeholder="Short Description"
                     [ngClass]="{ 'is-invalid': submitted && f.callmode.errors }"
-                    (change)="inctype($event.target.value)" readonly>
+                    (change)="inctype($event)" readonly>
                    
                 <div *ngIf="submitted && f.callmode.errors || f.callmode.invalid && (f.callmode.dirty || f.callmode.touched)"
                     style="color: red; font-size: 12px;">

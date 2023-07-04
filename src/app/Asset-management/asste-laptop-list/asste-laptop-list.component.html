@@ -11,11 +11,14 @@
         <br>
         <div class="row">
             <!-- <div class="col-md-2"></div> -->
-            <div class="col-md-6 col-lg-6 col-xl-6 col-sm-6">
-                <input type="search"  (keyup)="applyFilter($event.target.value)" placeholder="Search Assets"  [(ngModel)]="value">
+            <div class="col-md-6 col-lg-4 col-xl-4 col-sm-4">
+                <input type="search"  (keyup)="applyFilter($event)" placeholder="Search Assets"  [(ngModel)]="value">
+            </div>
+            <div class="col-md-4 col-lg-4 col-xl-4 col-sm-4">
+                <h4 class="float-right"> Total Assets : <span class="border" style="border-radius: 5px; padding: 3px;">{{rowData}}</span> </h4>
             </div>
 
-            <div class="col-sm-6 col-md-6  col-lg-6 col-xl-6" style="text-align: right;">
+            <div class="col-sm-4 col-md-4  col-lg-4 col-xl-4" style="text-align: right;">
                 <!-- <button type="button" id="newt1" (click)="openFilter()">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -37,7 +40,7 @@
             </div>
 
         </div>
-        <br>
+        <hr>
 
         <div class="sidebar-slider" style="border-radius: 8px;z-index: 9999;" [class.sidebar-slide-in]="sidebarShow">
             <div>
@@ -64,7 +67,7 @@
                                     <div class="col-md-12 mt-2">
                                         <label class="lbl">Asset Type <span class="required-asterisk">*</span></label>
                                         <select type="text" class="form-controll f-10" id="drop"
-                                            (change)="assetcatagory($event.target.value); mastype($event.target.value)" formControlName="assettype">
+                                            (change)="assetcatagory($event); mastype($event)" formControlName="assettype">
                                             <option value="" hidden>Select asset type</option>
 
                                             <!-- <option>
@@ -97,7 +100,7 @@
 
                                               </label>
                                         <select type="text" class="form-controll f-10" id="drop"
-                                            (change)="assetgroup($event.target.value); mastcat($event.target.value)" formControlName="assetcat">
+                                            (change)="assetgroup($event); mastcat($event)" formControlName="assetcat">
                                             <option value="" hidden>Select asset Category</option>
                                             <option *ngFor="let pr of assetcat" value="{{pr.astc_id}}">{{pr.category}}
                                             </option>
@@ -123,11 +126,17 @@
 
                                         </label>
 
-                                        <input list="grpp" type="text" class="form-controll f-10" (change)="assetmake($event.target.value)"
-                                        (change)="mastgrp($event.target.value)"  formControlName="assetgroup" placeholder="Select asset group">
+                                        <select type="text" class="form-controll f-10" id="drop"
+                                        (change)="assetmake($event); mastgrp($event)" formControlName="assetgroup">
+                                        <option value="" hidden>Select asset group</option>
+                                        <option *ngFor="let pr of assetgrop" value="{{pr.astg_id}}">{{pr.astg_group}}</option>
+                                         </select>
+
+                                        <!-- <input list="grpp" type="text" class="form-controll f-10" (change)="assetmake($event)"
+                                        (change)="mastgrp($event)"  formControlName="assetgroup" placeholder="Select asset group">
                                         <datalist id="grpp">
                                             <option *ngFor="let pr of assetgrop" value="{{pr.astg_id}}">{{pr.astg_group}}</option>
-                                        </datalist>
+                                        </datalist> -->
 
                                         <div *ngIf="submitted && f.assetgroup.errors" class="invalid-feedback">
                                             <div *ngIf="f.assetgroup.errors.required">Asset group is required
@@ -148,7 +157,7 @@
 
                                         </label>
                                         <select type="text" class="form-controll f-10" id="drop"
-                                            (change)="assetmodel($event.target.value)" (change)="mastmk($event.target.value)" formControlName="make">
+                                            (change)="assetmodel($event)" (change)="mastmk($event)" formControlName="make">
                                             <option value="" hidden>Select asset make</option>
                                             <option *ngFor="let pr of mak" value="{{pr.astupmk_id}}">{{pr.make}}
                                             </option>
@@ -172,7 +181,7 @@
                                         </button>
 
                                         </label>
-                                        <select type="text" class="form-controll f-10" id="drop" (change)="mastmod($event.target.value)"
+                                        <select type="text" class="form-controll f-10" id="drop" (change)="mastmod($event)"
                                             formControlName="model">
                                             <option value="" hidden>Select asset model</option>
                                             <option *ngFor="let pr of assetmod" value="{{pr.astupmod_id}}">{{pr.model}}</option>
@@ -227,7 +236,7 @@
 
                                     <div class="col-md-12 mt-2">
                                       <label class="lbl">Quantity</label>
-                                      <input type="text" class="form-controll f-10 " placeholder="Enter the quantity"
+                                      <input type="text" class="form-controll f-10 " placeholder="Enter the quantity" (keypress)="OnlyNumbersAllowed($event)"
                                           formControlName="quantity">
 
                                   </div>
@@ -259,7 +268,7 @@
                                         </button>
 
                                         </label>
-                                        <select type="text" class="form-controll f-10" id="drop" (change)="custodd($event.target.value)"
+                                        <select type="text" class="form-controll f-10" id="drop" (change)="custodd($event)"
                                             formControlName="custodian">
                                             <option value="" hidden>Select Custodian</option>
                                             <option *ngFor="let pr of custod" value="{{pr.astupct_id}}" >{{pr.custodian}}</option>
@@ -301,11 +310,17 @@
 
                                         </label>
 
-                                        <input list="loca" type="text" class="form-controll f-10" (change)="locatio($event.target.value)"
+                                        <select type="text" class="form-controll f-10" id="drop"
+                                        (change)="locatio($event);" formControlName="location">
+                                        <option value="" hidden>Select Location</option>
+                                        <option *ngFor="let pr of loc" value="{{pr.astuploc_id}}">{{pr.location}}</option>
+                                         </select>
+
+                                        <!-- <input list="loca" type="text" class="form-controll f-10" (change)="locatio($event)"
                                             formControlName="location" placeholder="Select Location">
                                             <datalist id="loca">
                                             <option *ngFor="let pr of loc" value="{{pr.astuploc_id}}">{{pr.location}}</option>
-                                          </datalist>
+                                          </datalist> -->
 
                                         <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
                                             <div *ngIf="f.location.errors.required">Location is required
@@ -326,7 +341,7 @@
                                               </button>
 
                                               </label>
-                                        <select type="text" class="form-controll f-10" id="drop" (change)="confid($event.target.value)"
+                                        <select type="text" class="form-controll f-10" id="drop" (change)="confid($event)"
                                             formControlName="confident">
                                             <option value="" hidden>Select Confidentiality</option>
                                             <option *ngFor="let pr of confide" value="{{pr.astupc_id}}">{{pr.conf}}</option>
@@ -348,7 +363,7 @@
                                           </svg>
                                         </button>
                                         </label>
-                                        <select type="text" class="form-controll f-10" id="drop" (change)="assetown($event.target.value)"
+                                        <select type="text" class="form-controll f-10" id="drop" (change)="assetown($event)"
                                             formControlName="integrity">
                                             <option value="" hidden>Select Integrity</option>
                                             <option *ngFor="let pr of integ" value="{{pr.astupi_id}}">{{pr.inte}}</option>
@@ -370,7 +385,7 @@
                                         </svg>
                                       </button>
                                       </label>
-                                      <select type="text" class="form-controll f-10" id="drop"(change)="availib($event.target.value)"
+                                      <select type="text" class="form-controll f-10" id="drop"(change)="availib($event)"
                                           formControlName="availibility">
                                           <option value="" hidden>Select Availibility</option>
                                           <option *ngFor="let pr of avail" value="{{pr.astupa_id}}">{{pr.avail}}</option>
@@ -394,11 +409,17 @@
                                           </svg>
                                         </button>
                                         </label>
-                                        <input list="fam" type="text" placeholder="Select Family" class="form-controll f-10" (change)="fami($event.target.value)"
+
+                                        <select type="text" class="form-controll f-10" id="drop"
+                                        (change)="fami($event);" formControlName="family">
+                                        <option value="" hidden>Select Family</option>
+                                        <option *ngFor="let pr of fam" value="{{pr.astupf_id}}">{{pr.family}}</option>
+                                         </select>
+                                        <!-- <input list="fam" type="text" placeholder="Select Family" class="form-controll f-10" (change)="fami($event)"
                                         formControlName="family">
                                         <datalist id="fam">
                                           <option *ngFor="let pr of fam" value="{{pr.astupf_id}}">{{pr.family}}</option>
-                                        </datalist>
+                                        </datalist> -->
 
 
                                     </div>
@@ -416,21 +437,6 @@
                                             formControlName="wedate">
                                     </div>
 
-                                    <!-- <div class="col-md-12 mt-2">
-                                        <label class="lbl">Detail Description <span class="required-asterisk">*</span></label><br>
-                                        <textarea id="" required maxlength="100" formControlName="description"
-                                            placeholder="Enter your valuable description"
-                                            pattern="[a-z0-9A-Z.-@_%$,\s]{5,100}" minlength="5"
-                                            class="form-controll f-10" cols="50"
-                                            [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
-                                   </textarea>
-
-                                   <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-                                    <div *ngIf="f.description.errors.required">Description is
-                                        required</div>
-                                </div>
-                                    </div> -->
-
 
                                 </div>
                             </div>
@@ -438,16 +444,18 @@
                         </div>
 
 
-
-
-
-
                         <br>
-                        <div class="row float-right" style="margin-right: 15px;">
-                            <button class="cust-create-btn" #closeButton  (click)="sidebarShow = !sidebarShow"> Cancel </button>
-                            &nbsp;&nbsp; <button class="assetcret" type="submit"  [disabled]="form.invalid"
-                            style="cursor: pointer;"  name="send" required >
-                                Add Asset </button>
+                        <div class="row float-right">
+                            <div class="col-md-6">
+                                <button class=" btn btn-primary assetcret" type="submit"  [disabled]="form.invalid"
+                                style="cursor: pointer;"  name="send" required >
+                                    Add Asset </button>
+                            </div>
+                            <div class="col-md-6">
+
+                                <button class="cust-create-btn" #closeButton  (click)="sidebarShow = !sidebarShow"> Cancel </button>
+                            </div>
+                           
                                 <!-- <button type="submit" class="cust-create-btn" [disabled]="form.invalid">Add Asset </button> -->
 
                         </div>
@@ -459,7 +467,7 @@
 
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="color: blue;">
 
-            <ng-container matColumnDef="select" class="mat-column-select">
+            <!-- <ng-container matColumnDef="select" class="mat-column-select">
                 <th mat-header-cell *matHeaderCellDef>
                     <mat-checkbox (change)="$event ? masterToggle() : null"
                         [checked]="selection.hasValue() && isAllSelected()"
@@ -471,7 +479,7 @@
                         [checked]="selection.isSelected(row)">
                     </mat-checkbox>
                 </td>
-            </ng-container>
+            </ng-container> -->
 
 
 
@@ -491,6 +499,11 @@
                 <td mat-cell *matCellDef="let products"> {{products.assetowner}} </td>
 
             </ng-container>
+            <ng-container matColumnDef="serialno" class="mat-column-serialno">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Serial No </th>
+                <td mat-cell *matCellDef="let products"> {{products.serialno}} </td>
+
+            </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="status" class="mat-column-status">
@@ -506,11 +519,11 @@
 
 
             <ng-container matColumnDef="actions" class="mat-column-actions">
-                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
                 <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
 
                     <i class="fa fa-edit fa-lg" (click)="OpenUpdate(row.astd_id)"></i>&nbsp;&nbsp;
-                    <i class="fa fa-paperclip fa-lg"></i>&nbsp;&nbsp;
+                    <!-- <i class="fa fa-paperclip fa-lg"></i>&nbsp;&nbsp; -->
 
 
                     <!-- <span type="button" (click)="OpenUpdate(row.astd_id)"><img
@@ -532,7 +545,7 @@
 
         </table>
 
-        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons
+        <mat-paginator  [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons
             class="mat-elevation-z8">
         </mat-paginator>
 
@@ -592,39 +605,6 @@
    </div>
 
 </div>
-<!-- popup-massage-error end-->
-
-  <!-- popup-master-type start-->
-  <!-- <div class="modal fade" id="createTyp" tabindex="-1" role="dialog"
-  aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-
-  <div class="modal-dialog modal-dialog-centered" role="document">
-
-      <div class="modal-content">
-
-          <div class="modal-body">
-            <div  style="text-align: center;">
-              <form [formGroup]="formtype" (ngSubmit)="onSubmitType()">
-                <div class="row">
-                  <div class="col-md-12">
-                      <label>ADD NEW Type</label> <input class="form-control" formControlName="type" type="text" [ngClass]="{'is-invalid': submitted && formType.type.errors}" />
-                      <div *ngIf="submitted && formType.type.errors" class="invalid-feedback"><div *ngIf="formType.type.errors.required">Type is required</div></div>
-                  </div>
-              </div>
-                  <div class="row mt-3" style="text-align: end;">
-                      <div class="col-md-12"><button type="button" (click)="closeModel()" class="btn btn-warning">Cancel</button> <button class="btn btn-primary ml-2">Create</button></div>
-                  </div>
-              </form>
-          </div>
-
-          </div>
-
-      </div>
-
-  </div>
-
-</div> -->
-<!-- popup-master-type end-->
 
 
   <!-- popup-master-category start-->

@@ -16,28 +16,28 @@ import { UserAddFieldComponent } from '../user-add-field/user-add-field.componen
   styleUrls: ['./user-creation.component.css']
 })
 export class UserCreationComponent implements OnInit {
-  @ViewChild('exampleModal', { static: true }) exampleModalRef: ElementRef;
-  @ViewChild('closeButton') closeButton;
+  @ViewChild('exampleModal', { static: true }) exampleModalRef!: ElementRef;
+  @ViewChild('closeButton') closeButton:any;
   public buttonName: any = 'Show';
   public sys: boolean = false;
   public contact: boolean = false;
-  loading = false;
-  form: FormGroup;
+  loading:boolean = false;
+  form: any;
   submitted = false;
 
 
-  products7;
-  products8 = [];
-  products9 = [];
-  products10 = [];
-  products11 = [];
-  usergrp = [];
-  role = [];
-  designation = [];
-  department = [];
-  floor = [];
-  usertype = [];
-  reportingtoo = [];
+  products7:any;
+  products8 :any = [];
+  products9 :any = [];
+  products10 :any = [];
+  products11 :any = [];
+  usergrp :any = [];
+  role :any = [];
+  designation :any = [];
+  department :any = [];
+  floor :any = [];
+  usertype :any = [];
+  reportingtoo :any = [];
   userType1: any;
   empid1: any;
 
@@ -65,6 +65,7 @@ export class UserCreationComponent implements OnInit {
   assetResultLogin: any;
   assetResultEight: any;
   assetResultLocal: any;
+  group: any;
 
 
 
@@ -87,7 +88,7 @@ export class UserCreationComponent implements OnInit {
     this.statusClassess = "active";
   }
   formSubmit(val: any) {
-    console.log(val)
+   (val)
   }
 
 
@@ -124,7 +125,7 @@ export class UserCreationComponent implements OnInit {
       email:['',[Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       org: ['', Validators.required],
       description: [''],
-       
+       group : ['', Validators.required],
     });
 
 setTimeout(() => {
@@ -137,36 +138,28 @@ setTimeout(() => {
    
   }
 
-  private validateUsername(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: any} => {
-      return this.accountservice.alluserdetails1()
-        .subscribe(
-          ( data ) => {
-            console.log(data);
-            console.log(control.value);
-            let res: string = data;
-            console.log(res);
-           for( let i=0; i<res.length;i++){
-              if(data[i].user_id === control.value){
-                console.log('exist')
-                return { 'alreadyExist': true };
-              }
-              else{
-                return null;
-              }
-           }
-            // if (res === control.value) {
-            //   return { 'alreadyExist': true };
-            // } else {
-            //   return null;
-            // }
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-    }
-}
+//   private validateUsername(): ValidatorFn {
+//     return (control: AbstractControl): {[key: string]: any} => { 
+//       return this.accountservice.alluserdetails1().subscribe((data:any) => {
+//             let res: any = data;
+//            (res);
+//            for( let i=0; i<res.length;i++){
+//               if(data[i].user_id === control.value){
+//                ('exist')
+//                 return { 'alreadyExist': true };
+//               }
+//               else{
+//                 return null;
+//               }
+//            }
+         
+//           },
+//           (error) => {
+//            (error);
+//           }
+//         );
+//     }
+// }
 
   get f() { return this.form.controls; }
 
@@ -198,25 +191,27 @@ setTimeout(() => {
         this.products8 = data.rows;
       }),
 
-      // this.accountservice.building().subscribe(data => {
-      //   this.products9 = data.rows;
-      // }),
+      
       this.accountservice.branch().subscribe(data => {
         this.products10 = data.rows;
       }),
-      // this.accountservice.sectioncode().subscribe(data => {
-      //   this.products11 = data.rows;
-      // }),
-      this.accountservice.getUserGroup().subscribe(data => {
-        this.usergrp = data.rows;
-        console.log(this.usergrp);
-      }),
+    
+        this.accountservice.getUserGroup().subscribe(data => {
+          console.log(data);
+          
+          this.usergrp = data.rows;
+          console.log(this.usergrp);
+          
+        }),
+
+      
       this.accountservice.getUserRole().subscribe(data => {
         this.role = data.rows;
       }),
       this.accountservice.designation().subscribe(data => {
         this.designation = data.rows;
       }),
+     
     this.accountservice.department().subscribe(data => {
       this.department = data.rows;
     }),
@@ -228,7 +223,7 @@ setTimeout(() => {
     // }),
     this.accountservice.alluserdetails1().subscribe(data => {
       this.reportingtoo = data.rows;
-      console.log(this.reportingtoo)
+     (this.reportingtoo)
     });
 
   }
@@ -258,7 +253,7 @@ setTimeout(() => {
     // this.empid1 = this.empid2.split('/');
     // this.form.value.reportingto = this.empid1[0];
     // this.form.value.repempid = this.empid1[1];
-    console.log(this.form.value);
+   (this.form.value);
 
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -272,12 +267,9 @@ setTimeout(() => {
   }
 
   createUser() {
-    console.log(this.form);
-
     this.accountservice.newUser(this.form.value)
       .subscribe(res => {
        
-        console.log(res);
         this.loading = false;
        if(res.Status === 'User created Successfully'){
       
@@ -307,7 +299,7 @@ setTimeout(() => {
   }
 
 
-  addField(item){
+  addField(item:any){
   
     const dialogRef = this.dialog.open(UserAddFieldComponent, {
       width: 'auto',
@@ -345,15 +337,15 @@ setTimeout(() => {
 
 
     
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     });
   }
 
   
-  loginName(name){
+  loginName(name:any){
     this.accountservice.validateGetLoginName(name).subscribe(
       data => {
-        console.log(data.Status);
+       (data.Status);
         if(data.Status === "User with this login name Already exists!!!"){
               this.assetResultLogin = data.Status;
         }else{
@@ -366,10 +358,10 @@ setTimeout(() => {
 
   }
 
-  eightidAPI(eightid){
+  eightidAPI(eightid:any){
     this.accountservice.validateGetEight(eightid).subscribe(
       data => {
-        console.log(data.Status);
+       (data.Status);
         if(data.Status === "User with this Eight ID Already exists!!!"){
               this.assetResultEight = data.Status;
         }else{
@@ -382,10 +374,10 @@ setTimeout(() => {
 
   }
 
-  localID(empid){
+  localID(empid:any){
     this.accountservice.validateGetLocalid(empid).subscribe(
       data => {
-        console.log(data.Status);
+       (data.Status);
         if(data.Status === "User with this Emp ID Already exists!!!"){
               this.assetResultLocal = data.Status;
         }else{
@@ -397,44 +389,45 @@ setTimeout(() => {
 
   }
 
-  osystem(item){
+  osystem(item:any){
     // this.osys = os;
     if(item === 'ADD NEW Department' ){
-      document.getElementById('exampleModal1').click();
+      (document.getElementById('exampleModal1') as HTMLInputElement).click();
+    
     }
     else if(item === 'ADD NEW Designation'){
-      document.getElementById('exampleModal2').click();
+      (document.getElementById('exampleModal2') as HTMLInputElement).click();
+    
     }
     else if(item === 'ADD NEW Building'){
-      document.getElementById('exampleModal3').click();
+      (document.getElementById('exampleModal3') as HTMLInputElement).click();
+      
     }
     else if(item === 'ADD NEW Section Code'){
-      document.getElementById('exampleModal4').click();
+      (document.getElementById('exampleModal4') as HTMLInputElement).click();
+    
     }
     else if(item === 'ADD NEW Floor'){
-      document.getElementById('exampleModal5').click();
+      (document.getElementById('exampleModal5') as HTMLInputElement).click();
+      
     }
     else if(item === 'ADD NEW Branch'){
-      document.getElementById('exampleModal6').click();
+      (document.getElementById('exampleModal6') as HTMLInputElement).click();
+      
     }
-   
-   
-    console.log(item);
+ 
   }
 
 
-  selectEvent(item) {
+  selectEvent(item:any) {
      this.empid2 = item.username1
-     
-    // do something with selected item
   }
 
-  onChangeSearch(val: string) {
-    // fetch remote data from here
-    // And reassign the 'data' which is binded to 'data' property.
+  onChangeSearch(val: any) {
+  
   }
   
-  onFocused(e){
+  onFocused(e:any){
     // do something when input is focused
   }
 
@@ -453,22 +446,22 @@ setTimeout(() => {
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
+divScroll(e:any) {
   //console.log('div App', e);
 }
 
-OnlyNumbersAllowed(event):boolean
+OnlyNumbersAllowed(event:any):boolean
 {
   const charCode = (event.which)?event.which:event.keyCode;
   if(charCode > 31 && (charCode <48 || charCode > 57))
   {
-    console.log('charCode restricted is '+ charCode);
+   ('charCode restricted is '+ charCode);
     return false;
   }
   return true;

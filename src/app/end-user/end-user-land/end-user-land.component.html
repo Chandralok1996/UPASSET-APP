@@ -17,7 +17,7 @@ style="background-color:white;margin-top: 35px;border-radius: 7px;">
 <div class="row">
 
   <div class="col-md-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-    <select  class="button3 buttonb form-control" id="action5" (change)="getmyTicket($event.target.value)">
+    <select  class="button3 buttonb form-control" id="action5" (change)="getmyTicket($event)">
       <option>Last 24 hours</option>
       <option>Last 7 days</option>
       <option>Last 30 days</option>
@@ -26,11 +26,11 @@ style="background-color:white;margin-top: 35px;border-radius: 7px;">
   </div>
 
   <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-    <input type="text" class="button3 buttonb form-control" id="action3" (keyup)="applyFilterMyticket($event.target.value)"
+    <input type="text" class="button3 buttonb form-control" id="action3" (keyup)="applyFilterMyticket($event)"
       placeholder="Search Tickets">
   </div>
   <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-    <select id="action4" class="button3 buttonb form-control" style="color: #646464;" (change)="onCitySelect($event.target.value)">
+    <select id="action4" class="button3 buttonb form-control" style="color: #646464;" (change)="onCitySelect($event)">
       <option [value]="0" [disabled]="true" selected>
         <p style="color: #646464;border-color: white;">Select Priority </p>
       </option>

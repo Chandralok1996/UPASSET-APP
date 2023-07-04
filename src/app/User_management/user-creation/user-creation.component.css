@@ -91,10 +91,10 @@ hr {
 }
 
 .left-arrow-icon {
-  margin: 80px 0px -110px -20px;
+  /* margin: 80px 0px -110px -20px; */
 }
 .profile-txt {
-  margin: -88px 0 -65px 100px;
+  margin: 0px 0 0px 52px;
 }
 .profile-t{
   border: 0px !important;
@@ -118,7 +118,7 @@ hr {
   width: 100px;
   outline: none;
   border-color: #8d8b8b;
-
+margin-top: -55px;
   border-radius: 10px;
   padding: 10px 10px 10px 10px;
 }
@@ -256,8 +256,44 @@ select.ng-valid.ng-dirty {
    
     }
 
-    div.scroll {
-      height: 400px;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      }
+     /* scrollbar */
+
+  .scroll {
+    height: 480px;
+    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    }
+
+    .scroll::-webkit-scrollbar {
+
+      width: 8px;
+
+  }
+
+
+
+  .scroll::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px #696969;
+      border-radius: 10px;
+      box-shadow: #696969;
+  }
+  .scroll::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px #696969;
+      box-shadow: #696969;
+  }
+  .scroll::-webkit-scrollbar-track {
+  background-color: #ebebeb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+
+  }
+
+  .scroll::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #696969;
+
+  }

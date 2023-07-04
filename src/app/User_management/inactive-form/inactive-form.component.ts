@@ -14,7 +14,7 @@ import { AssetService } from 'src/app/_services/asset.service';
 })
 export class InactiveFormComponent implements OnInit {
 
-  form: FormGroup;
+  form: any;
   submitted = false;
   department: any;
   tabledata: any;
@@ -96,7 +96,7 @@ export class InactiveFormComponent implements OnInit {
 
     this.accountservice.getbyuser(assetid)
     .subscribe(async (details) => {
-         console.log(details)
+        (details)
          if(details){
           let asset = await details.rows[0];
           asset.reportingto = asset.reportingto+'/'+asset.repempid;
@@ -114,7 +114,7 @@ export class InactiveFormComponent implements OnInit {
       
       this.tabledata = data.rows;
 
-      this.tabledata = this.tabledata.map(item => ({ data: `${item.assetno}` }));
+      this.tabledata = this.tabledata.map((item:any) => ({ data: `${item.assetno}` }));
         for (const iterator of this.tabledata) {
           this.previousData.push(iterator.data)
         } 
@@ -149,10 +149,7 @@ export class InactiveFormComponent implements OnInit {
  
      // reset alerts on submit
      this.alterservices.clear();
- console.log(this.form.value)
-    //  this.empid1 = this.form.value.reportingto.split('/');
-    //  this.form.value.reportingto = this.empid1[0];
-    //  this.form.value.repempid = this.empid1[1];
+
  
      // stop here if form is invalid
      if (this.form.invalid) {
@@ -166,14 +163,12 @@ export class InactiveFormComponent implements OnInit {
    }
  
    createUser() {
-     console.log(this.form);
- 
      this.accountservice.inactiveUser(this.form.value)
        .subscribe(res => {
          //this.form.value.reportingto = this.empid1[0]+'/'+ this.empid1[1];
          //console.log(res[0].Status);
          this.loading = false;
-         console.log(res);
+        (res);
        
         if(res.Status === 'User Inactivated Successfully!!'){
           this.router.navigate(['/home/users/leftemplist'])
@@ -215,14 +210,14 @@ export class InactiveFormComponent implements OnInit {
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
- // console.log('div App', e);
+divScroll(e:any) {
+ //('div App', e);
 }
 
  

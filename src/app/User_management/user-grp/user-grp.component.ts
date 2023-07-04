@@ -20,10 +20,10 @@ import { NewUserGroupComponent } from '../new-user-group/new-user-group.componen
   styleUrls: ['./user-grp.component.css']
 })
 export class UserGrpComponent implements OnInit {
-  allUser: usergroup[];
-  dataSource: MatTableDataSource<usergroup>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  allUser!: usergroup[];
+  dataSource!: MatTableDataSource<usergroup>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['usug_id', 'ugname', 'description', ];
   selection = new SelectionModel<usergroup>(true, []);
   tabledata: any;
@@ -93,7 +93,8 @@ export class UserGrpComponent implements OnInit {
 
 
   }
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

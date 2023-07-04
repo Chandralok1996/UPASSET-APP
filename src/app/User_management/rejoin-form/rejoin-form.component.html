@@ -231,7 +231,7 @@
                             <label>Department <span class="required-asterisk">*</span></label><br>
                             <select class="form-control" formControlName="department"
                                 [ngClass]="{ 'is-invalid': submitted && f.department.errors }"
-                                (change)="osystem($event.target.value)">
+                                (change)="osystem($event)">
                                 <option></option>
                                 <option *ngFor="let dept of department" [value]="dept.deptname">{{dept.deptname}}
                                 </option>
@@ -282,7 +282,7 @@
                             <label>Designation <span class="required-asterisk">*</span></label><br>
                             <select class="form-control" formControlName="designation"
                                 [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"
-                                (change)="osystem($event.target.value)">
+                                (change)="osystem($event)">
                                 <option></option>
                                 <option *ngFor="let com3 of designation" [value]="com3.designationname">
                                     {{com3.designationname}} </option>
@@ -382,7 +382,7 @@
                         <div class="col-md-6 col-sm-6">
                             <label>Building <span class="required-asterisk">*</span></label>
                             <select class="form-control" formControlName="building"
-                                (change)="osystem($event.target.value);getFloor($event.target.value)"
+                                (change)="osystem($event);getFloor($event)"
                                 [ngClass]="{ 'is-invalid': submitted && f.building.errors }">
                                 <option></option>
                                 <option *ngFor="let com3 of products9" [value]="com3.building">{{com3.building}}
@@ -421,7 +421,7 @@
                     <div class="row mt-2">
                         <div class="col-md-6">
                             <label>Section Code <span class="required-asterisk">*</span></label>
-                            <select class="form-control" formControlName="scode" (change)="osystem($event.target.value)"
+                            <select class="form-control" formControlName="scode" (change)="osystem($event)"
                                 [ngClass]="{ 'is-invalid': submitted && f.scode.errors }">
                                 <option></option>
                                 <option *ngFor="let com3 of products11" [value]="com3.scode">{{com3.scode}} </option>
@@ -438,7 +438,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Floor <span class="required-asterisk">*</span></label>
-                            <select class="form-control" formControlName="floor" (change)="osystem($event.target.value)"
+                            <select class="form-control" formControlName="floor" (change)="osystem($event)"
                                 [ngClass]="{ 'is-invalid': submitted && f.floor.errors }">
                                 <option></option>
                                 <option *ngFor="let com3 of floor" [value]="com3.floor">{{com3.floor}} </option>
@@ -473,7 +473,7 @@
                         <div class="col-md-6">
                             <label>Branch <span class="required-asterisk">*</span></label>
                             <select class="form-control" formControlName="branch"
-                                (change)="osystem($event.target.value)"
+                                (change)="osystem($event)"
                                 [ngClass]="{ 'is-invalid': submitted && f.branch.errors }">
                                 <option></option>
                                 <option *ngFor="let com3 of products10" [value]="com3.branch">{{com3.branch}} </option>

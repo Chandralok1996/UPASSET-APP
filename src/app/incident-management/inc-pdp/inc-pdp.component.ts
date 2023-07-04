@@ -35,26 +35,26 @@ export class IncPdpComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const assetid = params.get('id');
       this.getbyassetdetails1(assetid)
-      console.log(assetid)
-      //.then().catch(err => console.log(err));
+    
+      //.then().catch(err =>(err));
     });
   }
 
-  getbyassetdetails1(inid_id){
+  getbyassetdetails1(inid_id:any){
     this.incidentservice.incidentgetbyid(inid_id)
     .subscribe(details => {
         this.details = details.rows;
         this.details1 = details.rows;
         this.details = Array.of(this.details)
         this.pdfFiles = details.rows2;
-        console.log(this.details)
+       (this.details)
 
         this.asset1 =details.rows1;
-        this.asset1 = this.asset1.map(item => ({ data: `${item.created} - ${item.working_notes}\n` }));
+        this.asset1 = this.asset1.map((item:any) => ({ data: `${item.created} - ${item.working_notes}\n` }));
         for (const iterator of this.asset1) {
           this.previousData.push(iterator.data)
         } 
-         console.log(this.previousData)
+        (this.previousData)
     });
 
   }
@@ -64,40 +64,16 @@ export class IncPdpComponent implements OnInit {
   }
 
   openDoc(pdfUrl: string, startPage: number ) {
-    window.open(pdfUrl + '#page=' + startPage, '_blank', '', true);
+    window.open(pdfUrl + '#page=' + startPage, '_blank');
   }
 
   edit(){
     this.incidentservice.inid = this.details1.inid_id;
-    console.log(this.incidentservice.inid)
-
-    // const dialogRef = this.dialog.open(UpdateTicketComponent, {
-    //   width: '653px',
-    //   height: '500px',
-    
-    //   scrollStrategy: new NoopScrollStrategy(),
-    //   position: {top:'7.9%'},
-    // });
-  
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    
-    // });
-
+   (this.incidentservice.inid)
     this.router.navigate(['home/users/updateticket/:'+ this.incidentservice.inid]);
   }
 
   routerPage(){
-    // if(this.accountService.user.rolename === 'enduser'){
-    //   this.router.navigate(['home/users/enduser']);
-
-    // }else if(this.accountService.user.rolename === 'Administrator'){
-    //   this.router.navigate(['home/users/incident']);
-    // }else if(this.accountService.user.rolename === 'Helpdesk'){
-    //   this.router.navigate(['home/users/coordinator']);
-    // }else if(this.accountService.user.rolename === 'ITsupport'){
-    //   this.router.navigate(['home/users/supuser']);
-    // }
     this.location.back()
 
   }

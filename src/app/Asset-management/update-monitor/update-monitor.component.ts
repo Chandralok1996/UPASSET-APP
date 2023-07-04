@@ -17,7 +17,7 @@ export class UpdateMonitorComponent implements OnInit {
 
   loading = false;
   submitted = false;
-  form: FormGroup;
+  form: any;
   filesToUpload: Array<File> = [];
   status: any;
   group: any;
@@ -30,7 +30,7 @@ export class UpdateMonitorComponent implements OnInit {
   floor: any;
   monitor: any;
   type= '';
-  asset;
+  asset:any;
   empid1: any;
 
   // design code
@@ -121,7 +121,7 @@ export class UpdateMonitorComponent implements OnInit {
 
     this.assetService.getbyassetdetailsMonitor(assetid)
     .subscribe(async (details) => {
-         console.log(details)
+        (details)
           this.asset = details.rows[0];
           this.asset.name = this.asset.name+'/'+this.asset.empid;
           this.userdet(this.asset.name);
@@ -167,12 +167,12 @@ export class UpdateMonitorComponent implements OnInit {
     }),
     this.assetService.monitor().subscribe(data => {
       this.monitor = data.rows;
-      console.log(this.monitor)
+     (this.monitor)
      
     })
   }
 
-  userdet(item){
+  userdet(item:any){
     // this.empid1 = username.split('/');
     // username = this.empid1[0];
 
@@ -201,7 +201,7 @@ export class UpdateMonitorComponent implements OnInit {
 
  
 
-  getFloor(building){
+  getFloor(building:any){
 
     this.accountservice.floor(building)
         .subscribe(floor => {
@@ -227,7 +227,7 @@ export class UpdateMonitorComponent implements OnInit {
    
     this.form.value.name = this.empid1[0];
     this.form.value.empid = this.empid1[1];
- console.log(this.form.value);
+(this.form.value);
 
  if(this.form.value.purchase !== null && (this.form.value.assigned === null || this.form.value.expiry === null)){
   return;
@@ -250,10 +250,10 @@ if(this.form.value.warranty === 'valid' && (this.form.value.wsdate === null || t
   }
 
   assetMonitorUpdate(){
-    console.log(this.form.value)
+   (this.form.value)
     const formData: any = new FormData();
     const files: Array<File> = this.filesToUpload;
-    // console.log(files);
+    //(files);
 
     for (let i = 0; i < files.length; i++) {
 
@@ -267,7 +267,7 @@ if(this.form.value.warranty === 'valid' && (this.form.value.wsdate === null || t
        
         
         this.loading = false;
-        console.log(res);
+       (res);
         if(res === 'Asset Updated Successfully')
         {
           this.router.navigate(['/home/users/assetmonitor']);
@@ -300,12 +300,12 @@ if(this.form.value.warranty === 'valid' && (this.form.value.wsdate === null || t
   }
   
   keyword1='username';
-  selectEvent(item){
-    console.log(item)
+  selectEvent(item:any){
+   (item)
   }
   onChangeSearch(val: string) {}
   
-  onFocused(e){}
+  onFocused(e:any){}
 
   
 
@@ -321,14 +321,14 @@ if(this.form.value.warranty === 'valid' && (this.form.value.wsdate === null || t
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
-  console.log('div App', e);
+divScroll(e:any) {
+
 }
  
 

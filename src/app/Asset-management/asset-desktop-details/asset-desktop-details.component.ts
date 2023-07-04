@@ -14,7 +14,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./asset-desktop-details.component.css']
 })
 export class AssetDesktopDetailsComponent implements OnInit {
-  @ViewChild('content') content: ElementRef;
+  @ViewChild('content') content!: ElementRef;
   details: any;
   
  
@@ -29,16 +29,16 @@ export class AssetDesktopDetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const assetid = params.get('id');
       this.getbyassetdetails1(assetid)
-      console.log(assetid)
-      //.then().catch(err => console.log(err));
+    
+      //.then().catch(err =>(err));
     });
 
   }
 
-  getbyassetdetails1(astd_id){
+  getbyassetdetails1(astd_id:any){
     this.assetService.getbyasset(astd_id)
         .subscribe(details => {
-          console.log(details)
+         (details)
             this.details = details.rows;
            
         });
@@ -46,7 +46,7 @@ export class AssetDesktopDetailsComponent implements OnInit {
   }
 
 
-  openAttachment(astdid){
+  openAttachment(astdid:any){
     this.assetService.astd_id = astdid;
   
     const dialogRef = this.dialog.open(DesktopPdfComponent, {
@@ -59,33 +59,22 @@ export class AssetDesktopDetailsComponent implements OnInit {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     });
   
   }
 
   
   @HostListener('window:scroll', ['$event'])
-  onScroll(e) {
-   // console.log('window', e);
+  onScroll(e:any) {
+   //('window', e);
   }
   
    
   
-  divScroll(e) {
-   // console.log('div App', e);
+  divScroll(e:any) {
+   //('div App', e);
   } 
-
-  
-  
-  // routeLink(){
-  //   if(this.details[0].astg_group === 'LAPTOP'){
-  //     this.router.navigate(['/home/users/assetlaptop']);
-  //   }else(this.details[0].astg_group === 'DESKTOP')
-  //   {
-  //     this.router.navigate(['/home/users/assetdekstop']);
-  //   }
-  // }
 
 }
 

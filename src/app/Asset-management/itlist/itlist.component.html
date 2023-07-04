@@ -13,20 +13,17 @@
 
             <br>
               <div class="row">
-  
                 <div class="col-md-6 col-lg-6 col-sm-6 col-xl-6">
-                  <input type="search"  (keyup)="applyFilter($event.target.value)" placeholder="Search IT Assets"  [(ngModel)]="value">
+                  <input type="search"  (keyup)="applyFilter($event)" placeholder="Search IT Assets"  [(ngModel)]="value">
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-6 col-xl-6">
-                  <!-- <button type="button" id="newt" (click)="openDialog()">
-                    <i class=" fa fa-plus"></i>NEW USER</button> -->
+               <h4 class="float-right"> Total Number of IT : <span class="border" style="border-radius: 5px; padding: 3px;">{{rowData}}</span> </h4>
                 </div>
-  
                 </div>
-        <br>
+        <hr>
                 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
         
-                    <ng-container matColumnDef="select" class="mat-column-select" >
+                    <!-- <ng-container matColumnDef="select" class="mat-column-select" >
                         <th mat-header-cell *matHeaderCellDef >
                           <mat-checkbox (change)="$event ? masterToggle() : null"
                                         [checked]="selection.hasValue() && isAllSelected()"
@@ -40,7 +37,7 @@
                           </mat-checkbox>
                         </td>
                       </ng-container> 
-      
+       -->
                    
             <ng-container matColumnDef="assetname" class="mat-column-assetname">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Asset Name </th>
@@ -56,13 +53,31 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Owner </th>
               <td mat-cell *matCellDef="let products"> {{products.assetowner}} </td>
           </ng-container>
+          <ng-container matColumnDef="serialno" class="mat-column-serialno">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> SerialNo </th>
+              <td mat-cell *matCellDef="let products"> {{products.serialno}} </td>
+          </ng-container>
 
-          <!-- Name Column -->
-          <ng-container matColumnDef="custodian" class="mat-column-custodian">
+         
+          <!-- <ng-container matColumnDef="custodian" class="mat-column-custodian">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Custodian </th>
               <td mat-cell *matCellDef="let products"> {{products.custodian}} </td>
+          </ng-container> -->
 
+          <ng-container matColumnDef="make" class="mat-column-make">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Make </th>
+              <td mat-cell *matCellDef="let products"> {{products.make}} </td>
           </ng-container>
+          <ng-container matColumnDef="model" class="mat-column-model">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
+              <td mat-cell *matCellDef="let products"> {{products.model}} </td>
+          </ng-container>
+         
+          <ng-container matColumnDef="status" class="mat-column-status">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+              <td mat-cell *matCellDef="let products"> {{products.status}} </td>
+          </ng-container>
+        
 
 <!--         
          <ng-container matColumnDef="actions" class="mat-column-actions">
@@ -81,7 +96,7 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
                     <!-- [routerLink]="['/home/users/userpdp',{id: row.user_id,inactive:'false',rejoin:'true'}]" -->
                   </table>
-                  <mat-paginator [length]="length" [pageSize]="pageSize"  [pageSizeOptions]="pageSizeOptions"
+                  <mat-paginator  [pageSize]="pageSize"  [pageSizeOptions]="pageSizeOptions"
               showFirstLastButtons class="mat-elevation-z8">
             </mat-paginator>
         

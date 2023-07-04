@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-5">
-                    <input id="action1" (keyup)="applyFilter($event.target.value)" matInput
+                    <input id="action1" (keyup)="applyFilter($event)" matInput
                         placeholder="Search " [(ngModel)]="value" />
                       
                         
@@ -83,27 +83,13 @@
                     <td mat-cell *matCellDef="let products"> {{products.asset_status}} </td>
                 </ng-container>
 
-                <!-- <ng-container matColumnDef="actions" class="mat-column-actions">
-                    <th mat-header-cell *matHeaderCellDef> Actions </th>
-                    <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
-
-                       <span type="button" class="material-icons">delete_forever</span>&nbsp;&nbsp;&nbsp;
-                        <span  type="button" class="material-icons" (click)="OpenUpdate(row.astd_id)"> border_color</span>&nbsp;&nbsp;&nbsp;
-                        <span type="button" class="material-icons" (click)="openAttachment(row.astd_id,row.astg_group)" > attachment</span>
-                    </td>
-                </ng-container> -->
-
-              
-
-
-
-
+          
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"  [routerLink]="['/home/users/assetdetails',row.astd_id]" ></tr>
 
             </table>
 
-            <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+            <mat-paginator  [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
                 showFirstLastButtons class="mat-elevation-z8">
             </mat-paginator>
 

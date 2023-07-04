@@ -15,7 +15,7 @@ import { ConfirmValidator } from '../confirm.validator';
   styleUrls: ['./validator.component.css']
 })
 export class ValidatorComponent implements OnInit {
-  form: FormGroup = new FormGroup({});
+  form: any = new FormGroup({});
   
   constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<ValidatorComponent>,
@@ -42,11 +42,11 @@ export class ValidatorComponent implements OnInit {
   }
    
   submit(){
-    console.log(this.form.value);
+   (this.form.value);
 
     this.accountservice.passwordUpdate(this.form.value)
     .subscribe(res => {
-      console.log(res);
+     (res);
       this.onNoClick();
       this.alterservices.success('Password Updated successfully', { autoClose:true, keepAfterRouteChange: true });
      

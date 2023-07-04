@@ -14,11 +14,11 @@
         <div class="row">
           <div class="col-sm-3">
             <input type="text" class="button3 buttonb" id="action3" placeholder="ex:550001 "
-              (keyup)="applyFilterMyTicket($event.target.value)">
+              (keyup)="applyFilterMyTicket($event)">
 
           </div>
           <div class="col-sm-4">
-            <select class="button3 buttonb" id="action4" (change)="sortMyTicket($event.target.value)">
+            <select class="button3 buttonb" id="action4" (change)="sortMyTicket($event)">
               <option [value]="0" [disabled]="true" selected>Select one category </option>
               <option>
 
@@ -120,11 +120,11 @@
         <div class="row">
           <div class="col-sm-3">
             <input type="text" class="button3 buttonb" id="action3" placeholder="Search Tickets "
-              (keyup)="applyFilter($event.target.value)">
+              (keyup)="applyFilter($event)">
 
           </div>
           <div class="col-sm-4">
-            <select class="button3 buttonb" id="action4" (change)="sortAllTicket($event.target.value)">
+            <select class="button3 buttonb" id="action4" (change)="sortAllTicket($event)">
               <option [value]="0" [disabled]="true" selected>Select Priority</option>
               <option *ngFor="let priority of selected">
                 {{ priority}}

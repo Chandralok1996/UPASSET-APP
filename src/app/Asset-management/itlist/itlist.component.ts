@@ -20,23 +20,24 @@ import { AssetService } from '../../_services/asset.service';
 })
 export class ItlistComponent implements OnInit {
 
-  allUser: userpdp[];
-  dataSource: MatTableDataSource<userpdp>;
+  allUser!: userpdp[];
+  dataSource!: MatTableDataSource<userpdp>;
 
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   
-  displayedColumns: string[] = ['select','assetname','assetid','owner_name', 'custodian'];
+  displayedColumns: string[] = ['assetname','assetid','owner_name', 'serialno','make','model','status'];
   selection = new SelectionModel<userpdp>(true, []);
   tabledata: any;
   value: any;
   length = 32;
   pageSize = 8;
   pageSizeOptions: number[] = [8, 16, 24, 32];
+  rowData: any;
 
 
   constructor(public fb: FormBuilder, 
-     public assetservice: AssetService,  
+     public assetservice: AssetService, 
       public router: Router,
     public dialog: MatDialog) {
 
@@ -47,12 +48,14 @@ export class ItlistComponent implements OnInit {
   this.updateData();
   }
 
-
   updateData(){
     this.assetservice.itlist().subscribe(data => {
-      console.log(data)
+     
+      
       this.tabledata = data.rows;
-     console.log(this.tabledata)
+      this.rowData = data.rowCount;
+       console.log(this.rowData);
+    
 
       this.dataSource = new MatTableDataSource( this.tabledata );
 
@@ -65,11 +68,11 @@ export class ItlistComponent implements OnInit {
   }
 
   onRowClicked(row: any) {
-    // console.log('Row clicked: ', row);
+    //('Row clicked: ', row);
     // this.apiservice.dataRow = row;
-    // console.log('row click',this.apiservice.dataRow);
+    //('row click',this.apiservice.dataRow);
     // // this.apiservice.userid = row.name;
-    // // console.log('name: ', row.company);
+    // //('name: ', row.company);
     // this.router.navigate(['/atsuserpdp']);   
   }
 
@@ -96,32 +99,13 @@ export class ItlistComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.updateData();
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     });
   }
 
 
-  // OpenUpdate(astd_id){
-  
-  //   this.accountservice.user_id = astd_id;
-  //   console.log(this.accountservice.user_id)
-  //   const dialogRef = this.dialog.open(UpdateUserComponent, {
-  //     width: '653px',
-  //     height: '500px',
-  //     scrollStrategy: new NoopScrollStrategy(),
-  //     disableClose:true,
-  //     position: {top:'7.7%'}
-
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.updateData();
-  //     console.log('The dialog was closed');
-   
-  //   });
-
-  // }
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

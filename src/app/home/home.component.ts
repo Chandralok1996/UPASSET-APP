@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   
 }
 
+
 logout() {
   this.accountService.logout();
 }
@@ -41,7 +42,7 @@ openDialog(): any {
         resolve(res);
       },
       (error) => {
-        console.log(error);
+       (error);
         reject(error);
       }
     );

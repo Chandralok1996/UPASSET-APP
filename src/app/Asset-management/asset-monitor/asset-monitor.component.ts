@@ -18,12 +18,12 @@ import { AddFieldComponent } from '../add-field/add-field.component';
 export class AssetMonitorComponent implements OnInit {
 
   
-  @ViewChild('exampleModal', { static: true }) exampleModalRef: ElementRef;
-  @ViewChild('closeButton') closeButton;
+  @ViewChild('exampleModal', { static: true }) exampleModalRef!: ElementRef;
+  @ViewChild('closeButton') closeButton:any;
 
   loading = false;
   submitted = false;
-  form: FormGroup;
+  form: any;
   filesToUpload: Array<File> = [];
   status: any;
   group: any;
@@ -137,7 +137,7 @@ export class AssetMonitorComponent implements OnInit {
 
   }
 
-  userdet(item){
+  userdet(item:any){
     let name = item.username
     this.empid1 = name.split('/');
    
@@ -148,7 +148,7 @@ export class AssetMonitorComponent implements OnInit {
 
   }
 
-  vendorname(vendor){
+  vendorname(vendor:any){
     this.assetService.vendorloc(vendor)
     .subscribe(data => {
         this.vendorlocation = data.rows;
@@ -254,7 +254,7 @@ export class AssetMonitorComponent implements OnInit {
   }
 
   
-  addField(item){
+  addField(item:any){
   
     const dialogRef = this.dialog.open(AddFieldComponent, {
       width: 'auto',
@@ -281,63 +281,70 @@ export class AssetMonitorComponent implements OnInit {
 
   }
 
-  osystem(item){
-    // this.osys = os;
+  osystem(item:any){
+ 
     if(item === 'ADD NEW OS' ){
-      document.getElementById('exampleModal').click();
+      (document.getElementById('exampleModal') as HTMLInputElement).click();
     }
     else if(item === 'ADD NEW Vendor'){
-      document.getElementById('exampleModal2').click();
+      (document.getElementById('exampleModal2') as HTMLInputElement).click();
     }
     else if(item === 'ADD NEW SP'){
-      document.getElementById('exampleModal1').click();
+      (document.getElementById('exampleModal1') as HTMLInputElement).click();
     }
     else if(item === 'ADD NEW Location'){
-      document.getElementById('exampleModal3').click();
+      (document.getElementById('exampleModal3') as HTMLInputElement).click();
     }
     else if(item === 'ADD NEW Make'){
-      document.getElementById('exampleModal4').click();
+      (document.getElementById('exampleModal4') as HTMLInputElement).click();
     }
     else if(item === 'ADD NEW Model'){
-      document.getElementById('exampleModal5').click();
+      (document.getElementById('exampleModal5') as HTMLInputElement).click();
     }
     else if(item === 'ADD NEW Processor'){
-      document.getElementById('exampleModal6').click();
+      (document.getElementById('exampleModal6') as HTMLInputElement).click();
+     
     }
     else if(item === 'ADD NEW Speed'){
-      document.getElementById('exampleModal7').click();
+      (document.getElementById('exampleModal7') as HTMLInputElement).click();
+    
     }
     else if(item === 'ADD NEW Ram Type'){
-      document.getElementById('exampleModal8').click();
+      (document.getElementById('exampleModal8') as HTMLInputElement).click();
+     
     }
     else if(item === 'ADD NEW Ram Size'){
-      document.getElementById('exampleModal9').click();
+      (document.getElementById('exampleModal9') as HTMLInputElement).click();
+    
     }
     else if(item === 'ADD NEW HDD Type'){
-      document.getElementById('exampleModal10').click();
+      (document.getElementById('exampleModal10') as HTMLInputElement).click();
+     
     }
     else if(item === 'ADD NEW Capacity'){
-      document.getElementById('exampleModal11').click();
+      (document.getElementById('exampleModal11') as HTMLInputElement).click();
+
     }
     else if(item === 'ADD NEW GPU Card'){
-      document.getElementById('exampleModal12').click();
+      (document.getElementById('exampleModal12') as HTMLInputElement).click();
+    
     }
     else if(item === 'ADD NEW Capacity'){
-      document.getElementById('exampleModal11').click();
+      (document.getElementById('exampleModal11') as HTMLInputElement).click();
+     
     }
   
-   
-    console.log(item);
+  
   }
 
-  selectEvent(item) {
+  selectEvent(item:any) {
     console.log(item)
     this.empid1 = item.username;
   }
 
   onChangeSearch(val: string) {}
   
-  onFocused(e){}
+  onFocused(e:any){}
 
 
   
@@ -372,19 +379,19 @@ setActiveClass3() {
 }
 
 
-divScroll(e) {
+divScroll(e:any) {
   console.log('div App', e);
 }
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+
 }
 
 
 
-onPercentChange(assetno){
+onPercentChange(assetno:any){
  
   this.assetService.validateAssetno(assetno).subscribe(
     data => {
@@ -401,7 +408,7 @@ onPercentChange(assetno){
 
 }
 
-onSerialnum(serialnum){
+onSerialnum(serialnum:any){
   console.log(serialnum);
   this.assetService.validateSerialNum(this.form.value.astg_group,serialnum).subscribe(
     data => {

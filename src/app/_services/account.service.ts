@@ -11,7 +11,7 @@ import { organization, role, UserC, usergroup, userpdp } from '../_models/userm'
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-    private userSubject: BehaviorSubject<User>;
+    private userSubject!: BehaviorSubject<User>;
     public user: User;
     isLoggedIn = true;
     user_id: any;
@@ -25,7 +25,7 @@ export class AccountService {
        // private accountService: AccountService
     ) 
     {
-        let storedUser = localStorage.getItem('user');
+        let storedUser:any = localStorage.getItem('user');
         this.user = JSON.parse(storedUser);
         // this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
         // debugger;
@@ -39,7 +39,7 @@ export class AccountService {
     // }
 
 
-    login(name, password) {
+    login(name:any, password:any) {
       
         return this.http.post<any>(`${environment.apiUrl}/user/api/v1/login`, { name, password })
             .pipe(map(user => {
@@ -52,7 +52,7 @@ export class AccountService {
             }));
     }
 
-    adlogin(name, password) {
+    adlogin(name:any, password:any) {
       
         return this.http.post<any>(`${environment.apiUrl}/user/api/v1/adlogin`, { name, password })
             .pipe(map(user => {
@@ -73,7 +73,7 @@ export class AccountService {
     }
 
     alluserdetails1(): Observable<any>{
-      console.log(this.user.orgdet.org)
+     (this.user.orgdet.org)
         return this.http.get<any>(`${environment.apiUrl}/user/api/v1/getuser/${this.user.orgdet.usorg_id}`);
     }
 
@@ -115,6 +115,9 @@ export class AccountService {
     designation(): Observable<any>{
         return this.http.get<any>(`${environment.apiUrl}/user/api/v1/getdesignation`);
     }
+    // group(): Observable<any>{
+    //     return this.http.get<any>(`${environment.apiUrl}user/api/v1/getsupportgrp/:${orgid}`);
+    // }
 
     title(): Observable<any>{
         return this.http.get<any>(`${environment.apiUrl}/user/api/v1/getusertitle`);
@@ -132,7 +135,7 @@ export class AccountService {
         return this.http.get<any>(`${environment.apiUrl}/user/api/v1/getuserreportingto/${this.user.orgdet.usorg_id}`);
     }
 
-    getbyuser(user): Observable<any> {
+    getbyuser(user:any): Observable<any> {
         return this.http.get<any>(`${environment.apiUrl}/user/api/v1/getbyuser/${user}`);
     }
 
@@ -148,53 +151,53 @@ export class AccountService {
 
     }
 
-    userUpdate(user): Observable<any>  {
+    userUpdate(user:any): Observable<any>  {
         return this.http.put<any>(`${environment.apiUrl}/user/api/v1/updateuser`, user)
     }
 
-    passwordUpdate(user): Observable<any>  {
+    passwordUpdate(user:any): Observable<any>  {
         return this.http.put<any>(`${environment.apiUrl}/user/api/v1/updatepassword`, user)
     }
 
-    newDesignation(user): Observable<any>  {
+    newDesignation(user:any): Observable<any>  {
         return this.http.post<any>(`${environment.apiUrl}/user/api/v1/newdesg`, user)
     }
 
-    newBranch(user): Observable<any>  {
+    newBranch(user:any): Observable<any>  {
         return this.http.post<any>(`${environment.apiUrl}/user/api/v1/newbranch`, user)
     }
 
-    newBuilding(user): Observable<any>  {
+    newBuilding(user:any): Observable<any>  {
         return this.http.post<any>(`${environment.apiUrl}/user/api/v1/newbuilding`, user)
     }
-    newSeccode(user): Observable<any>  {
+    newSeccode(user:any): Observable<any>  {
         return this.http.post<any>(`${environment.apiUrl}/user/api/v1/newseccode`, user)
     }
-    newDepartment(user): Observable<any>  {
+    newDepartment(user:any): Observable<any>  {
         return this.http.post<any>(`${environment.apiUrl}/user/api/v1/newdept/${this.user.orgdet.usorg_id}`, user)
     }
 
-    inactiveUser(user): Observable<any> {
+    inactiveUser(user:any): Observable<any> {
 
         return this.http.post(`${environment.apiUrl}/user/api/v1/leftuser`, user);
 
     }
 
-    validateGetLoginName(name){
+    validateGetLoginName(name:any){
         return this.http.get<any>(`${environment.apiUrl}/user/api/v1/validateloginname/${name}`);
     }
 
-    validateGetEight(eightid){
+    validateGetEight(eightid:any){
         return this.http.get<any>(`${environment.apiUrl}/user/api/v1/validateeightid/${eightid}`);
     }
 
-    validateGetLocalid(empid){
+    validateGetLocalid(empid:any){
         return this.http.get<any>(`${environment.apiUrl}/user/api/v1/validateempid/${empid}`);
 	}
 
 
 	//reset-password
-	reset(password): Observable<any>{
+	reset(password:any): Observable<any>{
    	 debugger;
    	 return this.http.put<any>(`${environment.apiUrl}/user/api/v1/updatepassword`,password);
 	}

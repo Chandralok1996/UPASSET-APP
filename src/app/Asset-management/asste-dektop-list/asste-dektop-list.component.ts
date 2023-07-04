@@ -22,11 +22,11 @@ import { UpdateDesktopComponent } from '../update-desktop/update-desktop.compone
   styleUrls: ['./asste-dektop-list.component.css']
 })
 export class AssteDektopListComponent implements OnInit {
-  allUser: assetlist[];
-  dataSource: MatTableDataSource<assetlist>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['select','assetname','assetid','owner_name','custodian'];
+  allUser!: assetlist[];
+  dataSource!: MatTableDataSource<assetlist>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = ['assetname','assetid','owner_name', 'serialno','make','model','status'];
 
   selection = new SelectionModel<assetlist>(true, []);
   tabledata: any;
@@ -35,6 +35,7 @@ export class AssteDektopListComponent implements OnInit {
   pageSize = 8;
   pageSizeOptions: number[] = [8, 16, 24, 32];
   filesToUpload: Array<File> = [];
+  rowData: any;
 
 
   constructor(public fb: FormBuilder,
@@ -55,8 +56,8 @@ export class AssteDektopListComponent implements OnInit {
 
   updateData(){
     this.assetservice.nonitlist().subscribe(data => {
-      console.log(data)
       this.tabledata = data.rows;
+      this.rowData = data.rowCount;
 
       this.dataSource = new MatTableDataSource( this.tabledata );
 
@@ -95,7 +96,7 @@ export class AssteDektopListComponent implements OnInit {
 
   }
 
-  OpenUpdate(astd_id){
+  OpenUpdate(astd_id:any){
   
     this.assetservice.astd_id = astd_id;
     this.router.navigate(['/home/users/updatedesktop',astd_id]);
@@ -103,7 +104,8 @@ export class AssteDektopListComponent implements OnInit {
 
   }
   
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -115,7 +117,7 @@ export class AssteDektopListComponent implements OnInit {
     this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 
-  upload(astd_id) {
+  upload(astd_id:any) {
     console.log(astd_id);
     var astdid = astd_id;
     const formData: any = new FormData();
@@ -135,7 +137,7 @@ export class AssteDektopListComponent implements OnInit {
       })
 }
 
-openAttachment(astdid,ast_grp){
+openAttachment(astdid:any,ast_grp:any){
   this.assetservice.att_astg_grp = ast_grp
   this.assetservice.att_astdid = astdid;
 

@@ -2,8 +2,8 @@ import { FormGroup } from '@angular/forms';
     
 export function ConfirmValidator(controlName: string, matchingControlName: string){
     return (formGroup: FormGroup) => {
-        const control = formGroup.controls[controlName];
-        const matchingControl = formGroup.controls[matchingControlName];
+        const control:any = formGroup.controls[controlName];
+        const matchingControl:any = formGroup.controls[matchingControlName];
         if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
             return;
         }

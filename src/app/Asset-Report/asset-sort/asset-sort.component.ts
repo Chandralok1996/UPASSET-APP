@@ -37,14 +37,14 @@ products1:any;
       this.products = JSON.stringify(data);
       this.products = JSON.parse(this.products)
       this.priorityDropdownList = this.products.rows;
-      console.log(this.priorityDropdownList )
+     (this.priorityDropdownList )
     }),
     this.assetService.sortstatus().subscribe((data: any[])=>{
      
       this.products1 = JSON.stringify(data);
       this.products1 = JSON.parse(this.products1);
       this.dropdownList =  this.products1.rows;
-      console.log(this.dropdownList )
+     (this.dropdownList )
      
       
    }),
@@ -93,7 +93,7 @@ onNoClick() {
 
 submit(){
   this.assetService.enduser = this.enduser;
-  console.log(this.assetService.enduser);
+ (this.assetService.enduser);
  
         this.onNoClick();
      this.router.navigate(["/home/users/assetreport"]); 

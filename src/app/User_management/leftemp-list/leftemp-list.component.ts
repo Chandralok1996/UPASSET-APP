@@ -19,11 +19,11 @@ import { UserCreationComponent } from '../user-creation/user-creation.component'
 })
 export class LeftempListComponent implements OnInit {
 
-  allUser: userpdp[];
-  dataSource: MatTableDataSource<userpdp>;
+  allUser!: userpdp[];
+  dataSource!: MatTableDataSource<userpdp>;
 
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   
   displayedColumns: string[] = ['select', 'username', 'user_id', 'description', 'createdtime','actions'];
   selection = new SelectionModel<userpdp>(true, []);
@@ -49,7 +49,7 @@ export class LeftempListComponent implements OnInit {
     this.accountservice.leftemplist().subscribe(data => {
 
       this.tabledata = data.rows;
-     console.log(this.tabledata)
+    (this.tabledata)
 
       this.dataSource = new MatTableDataSource( this.tabledata );
 
@@ -62,11 +62,11 @@ export class LeftempListComponent implements OnInit {
   }
 
   onRowClicked(row: any) {
-    // console.log('Row clicked: ', row);
+    //('Row clicked: ', row);
     // this.apiservice.dataRow = row;
-    // console.log('row click',this.apiservice.dataRow);
+    //('row click',this.apiservice.dataRow);
     // // this.apiservice.userid = row.name;
-    // // console.log('name: ', row.company);
+    // //('name: ', row.company);
     // this.router.navigate(['/atsuserpdp']);   
   }
 
@@ -93,15 +93,15 @@ export class LeftempListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.updateData();
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     });
   }
 
 
-  OpenUpdate(astd_id){
+  OpenUpdate(astd_id:any){
   
     this.accountservice.user_id = astd_id;
-    console.log(this.accountservice.user_id)
+   (this.accountservice.user_id)
     const dialogRef = this.dialog.open(UpdateUserComponent, {
       width: '653px',
       height: '500px',
@@ -113,12 +113,13 @@ export class LeftempListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.updateData();
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     //  this.animal = result;
     });
 
   }
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

@@ -29,15 +29,15 @@ declare var $: any;
   styleUrls: ['./asste-laptop-list.component.css']
 })
 export class AssteLaptopListComponent implements OnInit {
-  @ViewChild('exampleModal', { static: true }) exampleModalRef: ElementRef;
-  @ViewChild('closeButton') closeButton;
+  @ViewChild('exampleModal', { static: true }) exampleModalRef!: ElementRef;
+  @ViewChild('closeButton') closeButton:any;
   public sidebarShow: boolean = false;
 
-  allUser: assetlist[];
-  dataSource: MatTableDataSource<assetlist>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['select','assetid','assetname', 'owner_name', 'status','custodian','actions'];
+  allUser!: assetlist[];
+  dataSource!: MatTableDataSource<assetlist>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = ['assetid','assetname', 'owner_name','serialno', 'status','custodian','actions'];
 
   selection = new SelectionModel<assetlist>(true, []);
   tabledata: any;
@@ -45,7 +45,7 @@ export class AssteLaptopListComponent implements OnInit {
   length = 32;
   pageSize = 8;
   pageSizeOptions: number[] = [8, 16, 24, 32];
-  form: FormGroup;
+  form: any;
   submitted = false;
   assetty: any;
   assetcat: any;
@@ -62,23 +62,24 @@ export class AssteLaptopListComponent implements OnInit {
   assetmod: any;
   assetgrop: any;
   result1: any;
-  result: string;
+  result: any;
   categoryType:any;
   grpMst: any;
   mkMst: any;
   modMst: any;
 
-  formtype: FormGroup;
-  formcate: FormGroup;
-  formgrop: FormGroup;
-  formake: FormGroup;
-  formodel: FormGroup;
-  formcustodian: FormGroup;
-  formconfid: FormGroup;
-  forminteg: FormGroup;
-  formlocat: FormGroup;
-  formavail: FormGroup;
-  formfam: FormGroup;
+  formtype: any;
+  formcate: any;
+  formgrop: any;
+  formake: any;
+  formodel: any;
+  formcustodian: any;
+  formconfid: any;
+  forminteg: any;
+  formlocat: any;
+  formavail: any;
+  formfam: any;
+  rowData: any;
 
 
   formSubmit(val: any) {
@@ -163,8 +164,8 @@ export class AssteLaptopListComponent implements OnInit {
       srno:['', Validators.required],
       model:['', Validators.required],
       make:['', Validators.required],
-      hostname:[''],
-      quantity:[''],
+      hostname:[null],
+      quantity:[null],
       assetid:['', Validators.required],
       custodian:['', Validators.required],
       location:['', Validators.required],
@@ -172,11 +173,11 @@ export class AssteLaptopListComponent implements OnInit {
       confident:['', Validators.required],
       integrity:['', Validators.required],
       availibility:['', Validators.required],
-      family:[''],
-      warranty:[''],
-      wedate:[''],
-      wsdate:[''],
-      description:[''],
+      family:[null],
+      wedate:[null],
+      wsdate:[null],
+      // warranty:[''],
+      // description:[''],
     })
 
   }
@@ -198,6 +199,7 @@ export class AssteLaptopListComponent implements OnInit {
   updateData(){
     this.assetservice.assetlist().subscribe(data => {
       this.tabledata = data.rows;
+      this.rowData = data.rowCount;
       console.log(this.tabledata);
       this.dataSource = new MatTableDataSource( this.tabledata );
       this.dataSource.sort = this.sort;
@@ -228,18 +230,19 @@ export class AssteLaptopListComponent implements OnInit {
   }
 
 
-  OpenUpdate(astd_id){
+  OpenUpdate(astd_id:any){
     console.log(astd_id);
     this.assetservice.astd_id = astd_id;
     this.router.navigate(['/home/users/updatedesktop',astd_id]);
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 
-openAttachment(astdid,ast_grp){
+openAttachment(astdid:any,ast_grp:any){
   this.assetservice.att_astg_grp = ast_grp
   this.assetservice.att_astdid = astdid;
 
@@ -275,7 +278,7 @@ openFilter(): void {
 }
 
 
-divScroll(e) {
+divScroll(e:any) {
   //console.log('div App', e);
 }
 
@@ -326,73 +329,75 @@ dropdown(){
 }
 
 //For popupmodel masterdata
-mastype(item){
+mastype(item:any){
+  
   if(item === 'ADD NEW Type' ){
-    document.getElementById('typeModel').click();
+(document.getElementById('typeModel') as HTMLInputElement).click();
   }
 }
 
-mastcat(item){
+mastcat(item:any){
   if(item === 'ADD NEW Category' ){
-    document.getElementById('catModel').click();
+    (document.getElementById('catModel') as HTMLInputElement).click();
+ 
   }
 }
 
-mastgrp(item){
+mastgrp(item:any){
   if(item === 'ADD NEW Group' ){
-    document.getElementById('grpModel').click();
+    (document.getElementById('grpModel') as HTMLInputElement).click();
   }
 }
-mastmk(item){
+mastmk(item:any){
   if(item === 'ADD NEW Make' ){
-    document.getElementById('makeModel').click();
+    (document.getElementById('makeModel') as HTMLInputElement).click();
   }
 }
-mastmod(item){
+mastmod(item:any){
   if(item === 'ADD NEW Model' ){
-    document.getElementById('mModel').click();
+    (document.getElementById('mModel') as HTMLInputElement).click();
   }
 }
 
-custodd(item){
+custodd(item:any){
   if(item === 'ADD NEW CUSTODIAN' ){
-    document.getElementById('exampleModal').click();
+    (document.getElementById('exampleModal') as HTMLInputElement).click();
   }
 }
 
-confid(item){
+confid(item:any){
   if(item === 'ADD NEW Confidentiality' ){
-    document.getElementById('exampleModal2').click();
+    (document.getElementById('exampleModal2') as HTMLInputElement).click();
   }
 }
 
-assetown(item){
+assetown(item:any){
   if(item === 'ADD NEW Integrity' ){
-    document.getElementById('exampleModal1').click();
+    (document.getElementById('exampleModal1') as HTMLInputElement).click();
   }
 }
 
-locatio(item){
+locatio(item:any){
   if(item === 'ADD NEW Location' ){
-    document.getElementById('locationModel').click();
+    (document.getElementById('locationModel') as HTMLInputElement).click();
   }
 }
-availib(item){
+availib(item:any){
   if(item === 'ADD NEW Availibility' ){
-    document.getElementById('availModel').click();
+    (document.getElementById('availModel') as HTMLInputElement).click();
   }
 }
 
-fami(item){
+fami(item:any){
   if(item === 'ADD NEW Family' ){
-    document.getElementById('famModel').click();
+    (document.getElementById('famModel') as HTMLInputElement).click();
   }
 }
 
 
-assetcatagory(astt_id)
+assetcatagory(event:any)
 {
-  console.log(astt_id)
+  const astt_id = event.target ? (event.target as HTMLInputElement).value : event;
   this.categoryType = astt_id
   this.assetservice.assetcat(astt_id).subscribe(data => {
     this.assetcat = data.rows;
@@ -400,8 +405,9 @@ assetcatagory(astt_id)
   })
 }
 
-assetgroup(astc_id)
+assetgroup(event:any)
 {
+  const astc_id = event.target ? (event.target as HTMLInputElement).value : event;
   console.log(astc_id)
   this.grpMst = astc_id
   this.assetservice.assetgrp(astc_id).subscribe(data => {
@@ -410,8 +416,9 @@ assetgroup(astc_id)
   })
 }
 
-assetmake(astg_id)
+assetmake(event:any)
 {
+  const astg_id = event.target ? (event.target as HTMLInputElement).value : event;
   console.log(astg_id)
   this.mkMst = astg_id
   this.assetservice.makee(astg_id).subscribe(data => {
@@ -421,8 +428,9 @@ assetmake(astg_id)
 }
 
 
-assetmodel(astupmk_id)
+assetmodel(event:any)
 {
+  const astupmk_id = event.target ? (event.target as HTMLInputElement).value : event;
   console.log(astupmk_id)
   this.modMst = astupmk_id
   this.assetservice.model(astupmk_id).subscribe(data => {
@@ -440,14 +448,51 @@ onSubmit(){
     return;
   }
 
-
+      if(this.form.value.hostname=="")
+      {
+        this.form.value.hostname=null
+  
+      }
+      else
+      {
+      }
+      if(this.form.value.quantity=="")
+      {
+        this.form.value.quantity=null
+  
+      }
+      else
+      {
+      }
+      if(this.form.value.family=="")
+      {
+        this.form.value.family=null
+  
+      }
+      else
+      {
+      }
+      if(this.form.value.wsdate=="")
+      {
+        this.form.value.wsdate=null
+  
+      }
+      else
+      {
+      }
+      if(this.form.value.wedate=="")
+      {
+        this.form.value.wedate=null
+  
+      }
+      else
+      {
+      }
 
 this.loading = true;
 this.assetcretmanagement();
 
 }
-
-
 
 assetcretmanagement() {
   console.clear();
@@ -455,9 +500,6 @@ assetcretmanagement() {
     .subscribe(res => {
       var allData = res
       this.loading = false;
-      console.log("allData=", allData)
-
-
 
         if (res.status) {
           this.ngOnInit();
@@ -477,13 +519,7 @@ assetcretmanagement() {
             // }, 2500);
           }
 
-        // else if (res.error) {
-        //   this.alterservices.error(res.error, { autoClose: true, keepAfterRouteChange: true });
-        // }
-
-
-        // this.alterservices.success('Asset Created Succesfully', { autoClose: true, keepAfterRouteChange: true });
-
+       
 
     },
       error => {
@@ -493,6 +529,9 @@ assetcretmanagement() {
       }
 
     )
+
+
+   
 
   // this.form.value.name = this.form.value.name + '/' + this.form.value.empid;
 
@@ -551,7 +590,6 @@ onSubmitGrp(){
       this.alterservices.success(res.message, {  autoClose: true, keepAfterRouteChange: true });
       this.assetgroup(this.grpMst);
     }
-       console.log(data);
   })
 }
 
@@ -579,11 +617,17 @@ onSubmitMk(){
       this.alterservices.success(res.message, {  autoClose: true, keepAfterRouteChange: true });
       this.assetmake(this.mkMst);
     }
-       console.log(data);
   })
 }
 
-
+OnlyNumbersAllowed(event: any): boolean {
+  const charCode = event.which ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    console.log('charCode restricted is ' + charCode);
+    return false;
+  }
+  return true;
+}
 
 onSubmitModel(){
 
@@ -608,7 +652,7 @@ onSubmitModel(){
       this.alterservices.success(res.message, {  autoClose: true, keepAfterRouteChange: true });
       this.assetmodel(this.modMst);
     }
-       console.log(data);
+      
   })
 }
 
@@ -758,6 +802,7 @@ onSubmitfamily(){
   if (this.formfam.invalid) {
     return;
   }
+ 
   this.loading = true;
   this.assetservice.mastfamadd(this.formfam.value)
   .subscribe(res => {

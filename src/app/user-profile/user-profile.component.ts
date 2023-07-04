@@ -37,7 +37,7 @@ export class UserProfileComponent implements OnInit {
    this.start();
   }
 
-  getbyassetdetails1(assetid){
+  getbyassetdetails1(assetid:any){
     this.accountService.getbyuser(assetid)
         .subscribe(details => {
             this.details = details.rows;
@@ -60,19 +60,21 @@ export class UserProfileComponent implements OnInit {
 
  
 
-  routerPage(){
-    if(this.accountService.user.rolename === 'enduser'){
-      this.router.navigate(['home/users/enduser']);
+  // routerPage(){
+  //   console.log(this.accountService.user.rolename === 'Administrator');
+    
+  //   if(this.accountService.user.rolename === 'enduser'){
+  //     this.router.navigate(['home/users/enduser']);
 
-    }else if(this.accountService.user.rolename === 'Administrator'){
-      this.router.navigate(['home/users/userlist']);
-    }else if(this.accountService.user.rolename === 'HelpDesk'){
-      this.router.navigate(['home/users/coordinator']);
-    }else if(this.accountService.user.rolename === 'ITsupport'){
-      this.router.navigate(['home/users/supuser']);
-    }
+  //   }else if(this.accountService.user.rolename === 'Administrator'){
+  //     this.router.navigate(['home/users/userlist']);
+  //   }else if(this.accountService.user.rolename === 'HelpDesk'){
+  //     this.router.navigate(['home/users/coordinator']);
+  //   }else if(this.accountService.user.rolename === 'ITsupport'){
+  //     this.router.navigate(['home/users/supuser']);
+  //   }
 
-  }
+  // }
 
   OpenUpdate(){
  

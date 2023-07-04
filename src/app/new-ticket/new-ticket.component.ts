@@ -21,12 +21,12 @@ export class NewTicketComponent implements OnInit {
   aproduct: any;
   priority: any;
   status: any;
-  form: FormGroup;
+  form: any;
   loading = false;
   submitted = false;
   assigned: any;
   filesToUpload: Array<File> = [];
-  userid: string;
+  userid: any;
   prioritystatus: any;
   shortdec: any;
   incidenttype: any;
@@ -81,7 +81,7 @@ export class NewTicketComponent implements OnInit {
     this.userid = this.accountService.user.userid;
     
 
-    console.log(this.userName);
+   (this.userName);
     this.dropdown();
 
     if( this.accountService.user.vipstatus === 'General'){
@@ -126,7 +126,7 @@ export class NewTicketComponent implements OnInit {
     this.incidentservice.assetName(this.userid)
     .subscribe(data => {
         this.aproduct = data.rows;
-        console.log(this.aproduct)
+       (this.aproduct)
         this.prlength = this.aproduct.length
        
     }),
@@ -178,7 +178,7 @@ export class NewTicketComponent implements OnInit {
 
     const formData: any = new FormData();
     const files: Array<File> = this.filesToUpload;
-     console.log(this.form.value);
+    (this.form.value);
 
     for (let i = 0; i < files.length; i++) {
 
@@ -190,7 +190,7 @@ export class NewTicketComponent implements OnInit {
 
     this.incidentservice.newIncident(formData)
     .subscribe(res => {
-      console.log(res);
+     (res);
 
       if(res.Status === 'Incident created Successfully!!!'){
         this.router.navigate(['/home/users/enduser']);
@@ -216,7 +216,8 @@ export class NewTicketComponent implements OnInit {
 
   }
 
-  inctype(inpt){
+  inctype(event:any){
+    const inpt = event.target ? (event.target as HTMLInputElement).value : event;
     this.incidentservice.incshort(inpt)
     .subscribe(data => {
       this.shortdec = data.rows; 
@@ -237,13 +238,13 @@ export class NewTicketComponent implements OnInit {
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
- // console.log('div App', e);
+divScroll(e:any) {
+ //('div App', e);
 }
 }

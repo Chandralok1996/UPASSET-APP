@@ -120,7 +120,7 @@
         <div class="row">
 
           <div class="col-md-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-            <select  class="button3 buttonb form-control" id="action5" (change)="getassignedTicket($event.target.value)">
+            <select  class="button3 buttonb form-control" id="action5" (change)="getassignedTicket($event)">
               <option>Last 24 hours</option>
               <option>Last 7 days</option>
               <option>Last 30 days</option>
@@ -131,11 +131,11 @@
 
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <input type="text" class="button3 buttonb form-control" id="action3" placeholder="Search Tickets"
-              (keyup)="applyFilterAssigned($event.target.value)">
+              (keyup)="applyFilterAssigned($event)">
           </div>
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <select class="button3 buttonb form-control" id="action4" style="color: #646464;"
-              (change)="sortAssignedTicket($event.target.value)">
+              (change)="sortAssignedTicket($event)">
               <option [value]="0" [disabled]="true" style="color: #646464;" selected>Select Status </option>
               <option *ngFor="let city of selected1" style="color: black">
                 {{ city}}
@@ -203,7 +203,7 @@
             </div>
           </div>
 
-          <div class="scroll mt-3" (scroll)="divScroll($event)" *ngIf="assignedTicketCount !== 0 " >
+          <div class="scroll mt-3" *ngIf="assignedTicketCount !== 0 " >
           <div class="row" *ngFor="let ticket of assignedTicket">
             <div class="col-md-12">
 
@@ -293,10 +293,6 @@
                   </div>
                 </div>
               </div>
- 
-
-
-              
               <!-- priority -->
 
               <div class="card ml" *ngIf="ticket.priority === 'Medium' " style="background-color: #E5E5E5;">
@@ -416,7 +412,7 @@
         <div class="row">
 
           <div class="col-md-2 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-            <select  class="button3 buttonb form-control" id="action5" (change)="getclosedTicket($event.target.value)">
+            <select  class="button3 buttonb form-control" id="action5" (change)="getclosedTicket($event)">
               <option>Last 24 hours</option>
               <option>Last 7 days</option>
               <option>Last 30 days</option>
@@ -427,11 +423,11 @@
 
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <input type="text" class="button3 buttonb form-control" id="action3" placeholder="Search Tickets"
-              (keyup)="applyFilterClosed($event.target.value)">
+              (keyup)="applyFilterClosed($event)">
           </div>
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <select class="button3 buttonb form-control" id="action4" style="color: #646464;"
-              (change)="sortClosedTicket($event.target.value)">
+              (change)="sortClosedTicket($event)">
               <option [value]="0" [disabled]="true" style="color: #646464;" selected>Select Status </option>
               <option *ngFor="let city of selected1" style="color: black">
                 {{ city}}
@@ -500,7 +496,7 @@
             </div>
           </div>
 
-          <div class="scroll mt-3" (scroll)="divScroll($event)" *ngIf="closedTicketCount !== 0 ">
+          <div class="scroll mt-3"  *ngIf="closedTicketCount !== 0 ">
           <div class="row" *ngFor="let ticket of closedTicket">
             <div class="col-md-12">
               <div class="card ml" *ngIf="ticket.priority === 'Medium' " style="background-color: #E5E5E5;">

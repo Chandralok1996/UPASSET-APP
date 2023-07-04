@@ -24,18 +24,18 @@ import { UpdateServerComponent } from '../update-server/update-server.component'
 })
 export class AssteServerListComponent implements OnInit {
 
-  allUser: assetlist[];
-  dataSource: MatTableDataSource<assetlist>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['select','assetname','assetid','owner_name','custodian'];
-
+  allUser!: assetlist[];
+  dataSource!: MatTableDataSource<assetlist>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = ['assetname','assetid','owner_name', 'serialno','make','model','status'];
   selection = new SelectionModel<assetlist>(true, []);
   tabledata: any;
   value: any;
   length = 32;
   pageSize = 8;
   pageSizeOptions: number[] = [8, 16, 24, 32];
+  rowData: any;
 
 
   constructor(public fb: FormBuilder,
@@ -52,20 +52,15 @@ export class AssteServerListComponent implements OnInit {
 
   updateData(){
     this.assetservice.itrackslist().subscribe(data => {
-      console.log(data);
-
       this.tabledata = data.rows;
-
+      this.rowData = data.rowCount;
       this.dataSource = new MatTableDataSource( this.tabledata );
-
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator; 
       console.log(this.tabledata)
-      //  this.dataSource.paginator = this.paginator; 
     });
 
   }
-
   onRowClicked(row: any) {
     console.log('Row clicked: ', row);
     // this.apiservice.dataRow = row;
@@ -91,12 +86,13 @@ export class AssteServerListComponent implements OnInit {
     this.router.navigate(['/home/users/servercreation']);
 
   }
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 
-  openAttachment(astdid,ast_grp){
+  openAttachment(astdid:any,ast_grp:any){
     this.assetservice.att_astg_grp = ast_grp
     this.assetservice.att_astdid = astdid;
   
@@ -111,15 +107,9 @@ export class AssteServerListComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      
-    //  this.animal = result;
     });
-  
   }
-
-
-  OpenUpdate(astd_id){
-    
+  OpenUpdate(astd_id:any){
     this.assetservice.astserd_id = astd_id;
     this.router.navigate(['/home/users/updateserver',astd_id]);
   }
@@ -139,8 +129,3 @@ export class AssteServerListComponent implements OnInit {
     });
   }
 }
-
-
-
-
-

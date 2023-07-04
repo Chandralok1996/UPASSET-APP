@@ -1,18 +1,16 @@
 <div class="row">
        
     <div class="col-md-6">
-        <p type="button" id="headp" (click)="routerPage()" class="button"><u><span>></span>&nbsp;&nbsp;Back </u></p>
+        <p type="button" id="headp" routerLink="/home/users/userlist" class="btn btn-outline-primary"><u><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+       </svg></span>&nbsp;&nbsp;Back </u></p>
     </div>
 </div>
 
 
 <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 col-xl-12 "
      style="background-color:white;margin-top: 0rem;border-radius: 3px;" *ngFor="let data of details">
-
-         
-
-<!-- <div id="form"> -->
-            
+       
     <div class="row">
         <div class="col-md-2 col-sm-2">
         </div>
@@ -25,8 +23,8 @@
      <div class="row">
         <div class="col-md-2 col-sm-2">
          <div class="image-responsive">
-            <img style='height:150px;width:145px;max-width: 100%;max-height: 100%;border-radius: 50%;object-fit: contain;border: solid 2px black' 
-            [src]="file1" />
+            <img src="../../assets/img/PatilYS.jpg" style='height:150px;width:145px;max-width: 100%;max-height: 100%;border-radius: 50%;object-fit: contain;border: solid 2px black' 
+             />
           </div>
 
 

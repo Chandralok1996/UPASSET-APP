@@ -8,7 +8,7 @@ import { AlertService } from 'src/app/_services';
   styleUrls: ['./mailsend.component.css']
 })
 export class MailsendComponent implements OnInit {
-  warrentyForm: FormGroup;
+  warrentyForm: any;
   tabledata: any;
   submitted = false;
   update : boolean =false;
@@ -41,13 +41,12 @@ export class MailsendComponent implements OnInit {
       listData() : void {
         this.assetservice.warrantylist().subscribe(data => {
           this.tabledata=data.rows;
-           console.log(this.tabledata);
+          (this.tabledata);
 
          });
       }
 
-      mailUpdate(data) : void {
-        console.log(data);
+      mailUpdate(data:any) : void {
         this.button = 'Update';
         this.update = true;
         var patchData = {
@@ -61,12 +60,12 @@ export class MailsendComponent implements OnInit {
         // this.assetservice.wemail_id = wemail_id;
 
       }
-      delMail(weid) : void{
+      delMail(weid:any) : void{
         var data = {
           wemail_id: weid
         };
         this.assetservice.warmaildel(data).subscribe(res =>{
-          console.log(res);
+         (res);
 
           if (res.status) {
             this.alterservices.success(res.message, { autoClose: true, keepAfterRouteChange: true });
@@ -85,7 +84,6 @@ export class MailsendComponent implements OnInit {
 
       onWarrentySubmit(): void {
         this.submitted = true;
-        console.log(this.warrentyForm.value);
 
         if(this.update){
           this.warrentyForm.value.wemail_id = this.email_id;
@@ -100,11 +98,11 @@ export class MailsendComponent implements OnInit {
        this.ngOnInit();
       }
 
-      warmailsend(data) : void {
+      warmailsend(data:any) : void {
         this.assetservice.warrantymail(data)
         .subscribe(res => {
 
-          console.log(res);
+         (res);
 
 	  if (res.status) {
 	   this.ngOnInit();
@@ -122,11 +120,11 @@ export class MailsendComponent implements OnInit {
       }
 
 
-      warmailupdate(data) : void {
+      warmailupdate(data:any) : void {
         this.assetservice.warrantyupdatemail(data)
         .subscribe(res => {
 
-          console.log(res);
+         (res);
 
            if (res.status) {
              this.ngOnInit();

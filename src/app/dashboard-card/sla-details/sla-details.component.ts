@@ -15,10 +15,10 @@ import * as XLSX from 'xlsx';
 })
 export class SlaDetailsComponent implements OnInit {
 
-  allUser: any[];
-  dataSource: MatTableDataSource<any>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  allUser: any;
+  dataSource!: MatTableDataSource<any>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['ticket_no','problem','employee_name','support_group','engineer','call_status','priority'];
 
 
@@ -29,16 +29,16 @@ export class SlaDetailsComponent implements OnInit {
   pageSize = 8;
   pageSizeOptions: number[] = [8, 16, 24, 32];
   excel: any;
-  key: string;
-  form: FormGroup;
+  key: any;
+  form: any;
 
   currentDate = new Date();
   currentMonthString = Math.floor(this.currentDate.getMonth() / 3) + 1;
   priority: any;
   incidenttype: any;
   submitted = false;
-  flag: number;
-  quater: string;
+  flag: any;
+  quater: any;
 
 
   constructor(private route: ActivatedRoute,
@@ -67,9 +67,9 @@ export class SlaDetailsComponent implements OnInit {
       this.flag = 1;
       this.incidentservice.sla(this.quater)
       .subscribe(data => {
-         console.log(data);
+        (data);
       this.tabledata = data.within;
-      console.log(this.tabledata)
+     (this.tabledata)
       this.excel =  this.tabledata;
   
       this.dataSource = new MatTableDataSource( this.tabledata );
@@ -84,7 +84,7 @@ export class SlaDetailsComponent implements OnInit {
     .subscribe(data => {
        
     this.tabledata = data.outof;
-    console.log(this.tabledata)
+   (this.tabledata)
     this.excel =  this.tabledata;
 
     this.dataSource = new MatTableDataSource( this.tabledata );
@@ -97,13 +97,15 @@ export class SlaDetailsComponent implements OnInit {
     
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
+
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 
   exportAsXLSX(){
-    // console.log('llll',this.data1);
+    //('llll',this.data1);
     var ws = XLSX.utils.json_to_sheet(this.excel);          
     var wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "data");            
@@ -114,7 +116,6 @@ export class SlaDetailsComponent implements OnInit {
 
           this.incidentservice.flagData(this.form.value.prority,this.form.value.call_type,this.flag,this.quater)
     .subscribe(data => {
-      console.log(data); 
       this.tabledata = data.rows;
       this.excel =  this.tabledata;
   

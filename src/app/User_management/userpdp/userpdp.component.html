@@ -4,7 +4,9 @@
     <div class="row">
      
       <div class="col-md-3">
-        <p id="headp" (click)="routeHome()" style="cursor: pointer;" > <span> < </span>Back </p>
+        <p id="headp" (click)="routeHome()" style="cursor: pointer;" > <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg> </span>Back </p>
       </div>
     </div>
   
@@ -163,10 +165,10 @@
    
     <div class="row">
       <div class="col-sm-4">
-         <input type="text" class="button3 buttonb" id="action3" placeholder="ex:550001" (keyup)="applyFilterMyticket($event.target.value)"> 
+         <input type="text" class="button3 buttonb" id="action3" placeholder="ex:550001" (keyup)="applyFilterMyticket($event)"> 
       </div>
        <div class="col-sm-4">
-         <select class="button3 buttonb" id="action4" (change)="sortMyTicket($event.target.value)"     >
+         <select class="button3 buttonb" id="action4" (change)="sortMyTicket($event)"     >
        <option  [value]="0"  [disabled]="true" selected>Select one category </option>
        <option *ngFor="let city of selected1">
         {{ city}} 
@@ -267,7 +269,6 @@
           </td>
       </ng-container>
 
-
       <!-- Position Column -->
       <ng-container matColumnDef="first_name" class="mat-column-asset_name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Owner </th>
@@ -319,7 +320,7 @@
 
   </table>
 
-  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+  <mat-paginator  [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
       showFirstLastButtons class="mat-elevation-z8">
   </mat-paginator>
 

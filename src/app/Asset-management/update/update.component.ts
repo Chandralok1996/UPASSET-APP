@@ -13,9 +13,10 @@ import { AlertService } from 'src/app/_services/alert.service';
 
 export class UpdateComponent implements OnInit {
  
-  form: FormGroup;
-  submitted: boolean;
-  loading: boolean;
+  form: any;
+  submitted: boolean = false;
+  loading: boolean = false;
+
   result: any;
   customerservice: any;
   
@@ -57,7 +58,7 @@ export class UpdateComponent implements OnInit {
  
     // reset alerts on submit
     this.alterservices.clear();
-    console.log(this.form.value)
+   (this.form.value)
  
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -70,22 +71,12 @@ export class UpdateComponent implements OnInit {
   }
  
   createUser() {
-    console.log(this.form);
+   (this.form);
  
     this.accountservice.reset(this.form.value)
       .subscribe(res => {
        // this.form.value.reportingto = this.empid1[0]+'/'+ this.empid1[1];
        this.loading = false;
-        console.log(res);
-        // if(res){
-        //  this.result = res;
-        //   this.alterservices.error(res.message, {autoClose:true, keepAfterRouteChange: true });
-        // }
-        // else if(res.error){
-        //   this.alterservices.error(res.error, { autoClose:true, keepAfterRouteChange: true });
-        // }
-      
-      
          if(res.status){
         this.router.navigate(['/home/users/userlist']);
         this.alterservices.success(res.message, { autoClose: true, keepAfterRouteChange: true });

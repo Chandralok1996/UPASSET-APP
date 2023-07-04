@@ -21,10 +21,10 @@ import { NewUserRoleComponent } from '../new-user-role/new-user-role.component';
 })
 export class UserRoleComponent implements OnInit {
 
-  allUser: role[];
-  dataSource: MatTableDataSource<role>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  allUser!: role[];
+  dataSource!: MatTableDataSource<role>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['usrl_id', 'name',  'description'];
  
   selection = new SelectionModel<role>(true, []);
@@ -95,7 +95,8 @@ export class UserRoleComponent implements OnInit {
 
 
   }
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 

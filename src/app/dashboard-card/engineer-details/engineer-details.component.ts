@@ -14,10 +14,10 @@ import * as XLSX from 'xlsx';
 })
 export class EngineerDetailsComponent implements OnInit {
  
-  allUser: any[];
-  dataSource: MatTableDataSource<any>;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  allUser: any;
+  dataSource!: MatTableDataSource<any>;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = ['ticket_no','problem','employee_name','support_group','engineer','call_status','priority'];
 
   selection = new SelectionModel<any>(true, []);
@@ -40,17 +40,18 @@ export class EngineerDetailsComponent implements OnInit {
   }
 
   
-  applyFilter(filterValue: string) {
+  applyFilter(event: any) {
+    const filterValue = event.target ? (event.target as HTMLInputElement).value : event;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 
-  getengineerResult(key){
+  getengineerResult(key:any){
     this.incidentservice.getengineerDetail(key)
     .subscribe(data => {
        
     this.tabledata = data.rows;
-    console.log(this.tabledata)
+   (this.tabledata)
     this.excel =  this.tabledata;
 
     this.dataSource = new MatTableDataSource( this.tabledata );
@@ -62,7 +63,7 @@ export class EngineerDetailsComponent implements OnInit {
   }
 
   exportAsXLSX(){
-    // console.log('llll',this.data1);
+    //('llll',this.data1);
     var ws = XLSX.utils.json_to_sheet(this.excel);          
     var wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "data");            

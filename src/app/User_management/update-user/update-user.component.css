@@ -91,10 +91,10 @@ hr {
 }
 
 .left-arrow-icon {
-  margin: 80px 0px -110px -20px;
+  /* margin: 80px 0px -110px -20px; */
 }
 .profile-txt {
-  margin: -88px 0 -65px 100px;
+  margin: 0px 0 0px 52px;
 }
 .profile-t{
   border: 0px !important;
@@ -118,7 +118,7 @@ hr {
   width: 100px;
   outline: none;
   border-color: #8d8b8b;
-
+margin-top: -40px;
   border-radius: 10px;
   padding: 10px 10px 10px 10px;
 }
@@ -260,7 +260,7 @@ select.ng-valid.ng-dirty {
   /* scrollbar */
 
   div.scroll {
-    height: 450px;
+    height: 480px;
     overflow-y: scroll;
     overflow-x: hidden;
     }

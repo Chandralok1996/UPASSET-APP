@@ -18,14 +18,14 @@ export interface DialogData{
 })
 export class UserAddFieldComponent implements OnInit {
 
-  form: FormGroup;
+  form: any;
   loading = false;
   submitted = false;
-  formDepartment: FormGroup;
-  formDesignation: FormGroup;
-  formBranch: FormGroup;
-  formBuilding: FormGroup;
-  formSectioncode: FormGroup;
+  formDepartment: any;
+  formDesignation: any;
+  formBranch: any;
+  formBuilding: any;
+  formSectioncode: any;
   products9: any;
   
   
@@ -108,7 +108,7 @@ export class UserAddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -135,7 +135,7 @@ export class UserAddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -162,7 +162,7 @@ export class UserAddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -189,7 +189,7 @@ export class UserAddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -216,7 +216,7 @@ export class UserAddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 

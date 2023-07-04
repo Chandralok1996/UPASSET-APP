@@ -14,7 +14,12 @@ ngb-tabset ul.nav-tabs li a.nav-link.active {
 
     }
 
-
+    .mat-sort-header-content {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+    }
 
 
 

@@ -16,7 +16,7 @@ import { IncidentService } from 'src/app/_services/incident.service';
 
 @Component({
   selector: 'app-support-list',
-  templateUrl: './support-list.component.html',
+  templateUrl:'./support-list.component.html',
   styleUrls: ['./support-list.component.css']
 })
 export class SupportListComponent implements OnInit {
@@ -49,7 +49,7 @@ export class SupportListComponent implements OnInit {
   filterCloseData = 'Last 24 hours';
   filterAssignData = 'Last 24 hours';
 
-  form: FormGroup;
+  form: any;
   loading = false;
   submitted = false;
 
@@ -96,7 +96,7 @@ export class SupportListComponent implements OnInit {
       return;
     }
     this.loading = true;
-    console.log(this.form.value)
+   (this.form.value)
 
     if(this.filterCloseData === 'Select date'){
       this.incidentservice.getCloseTicketDate(this.ownedby,this.form.value.startDate,this.form.value.endDate).subscribe(data => {
@@ -132,7 +132,7 @@ export class SupportListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     //  this.animal = result;
     });
    }
@@ -152,7 +152,7 @@ export class SupportListComponent implements OnInit {
      // this.getmyTicket();
       this.getassignedTicket(this.filterAssignData);
       this.getclosedTicket(this.filterCloseData);
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     //  this.animal = result;
     });
 }
@@ -165,9 +165,9 @@ export class SupportListComponent implements OnInit {
 //     this.myTicketSort = data.rows;
 //       this.myTicket = this.myTicketSort;
 //       this.myTicketCount = data.rowCount;
-//       console.log('my ticket '+(this.myTicket))
+//      ('my ticket '+(this.myTicket))
 //       debugger;
-//       console.log('openedbyempid',JSON.stringify(this.myTicket))
+//      ('openedbyempid',JSON.stringify(this.myTicket))
 //   });
 
 // }
@@ -177,13 +177,14 @@ export class SupportListComponent implements OnInit {
 //   if(filterValue === ''){
 //       return this.getmyTicket();
 //    }
-//    this.myTicket=this.myTicket.filter(filteredData =>
+//    this.myTicket=this.myTicket.filter((filteredData:any) =>
 //     filteredData.openedbyempid.includes(filterValue.toUpperCase().trim()) ||
 //        filteredData.inid_id.includes(filterValue.toUpperCase().trim()));
     
 // }
 
-getassignedTicket(data){
+getassignedTicket(event:any){
+  const data = event.target ? (event.target as HTMLInputElement).value : event;
   this.filterAssignData = data;
 
   if(this.filterAssignData === 'Last 24 hours'){
@@ -193,7 +194,7 @@ getassignedTicket(data){
       this.assigndeTicketSort = data.rows
         this.assignedTicket = this.assigndeTicketSort;
         this.assignedTicketCount = data.rowCount;
-        console.log('my assignedticket'+JSON.stringify(this.assignedTicket))
+       ('my assignedticket'+JSON.stringify(this.assignedTicket))
     });
   }else if(this.filterAssignData === 'Last 7 days'){
     this.filterAssignData = '7';
@@ -202,7 +203,7 @@ getassignedTicket(data){
       this.assigndeTicketSort = data.rows
         this.assignedTicket = this.assigndeTicketSort;
         this.assignedTicketCount = data.rowCount;
-        console.log('my assignedticket'+JSON.stringify(this.assignedTicket))
+       ('my assignedticket'+JSON.stringify(this.assignedTicket))
     });
   }else if(this.filterAssignData === 'Last 30 days'){
     this.filterAssignData = '30';
@@ -211,7 +212,7 @@ getassignedTicket(data){
       this.assigndeTicketSort = data.rows
         this.assignedTicket = this.assigndeTicketSort;
         this.assignedTicketCount = data.rowCount;
-        console.log('my assignedticket'+JSON.stringify(this.assignedTicket))
+       ('my assignedticket'+JSON.stringify(this.assignedTicket))
     });
   }
   
@@ -219,17 +220,18 @@ getassignedTicket(data){
 
 }
 
-async applyFilterAssigned(filterValue: string) {
+async applyFilterAssigned(event: any) {
+  const filterValue = event.target ? (event.target as HTMLInputElement).value : event;
   this.assignedTicket=this.assigndeTicketSort;
   if(filterValue === ''){
       return this.getassignedTicket(this.filterAssignData);
    }
-   this.assignedTicket=this.assignedTicket.filter(filteredData =>
+   this.assignedTicket=this.assignedTicket.filter((filteredData:any) =>
     filteredData.openedbyempid.includes(filterValue.toUpperCase().trim()) ||
        filteredData.inid_id.includes(filterValue.toUpperCase().trim()) ||
        filteredData.openedby.toUpperCase().includes(filterValue.toUpperCase().trim()) )
  
-   console.log(this.assignedTicket);
+  (this.assignedTicket);
     
 }
 
@@ -240,7 +242,7 @@ async applyFilterAssigned(filterValue: string) {
 //     this.unassigndeTicketSort = data.rows;
 //       this.unassignedTicket = this.unassigndeTicketSort;
 //       this.unassignedTicketCount = data.rowCount;
-//       console.log('my ticket'+this.unassignedTicketCount)
+//      ('my ticket'+this.unassignedTicketCount)
 //   });
 
 // }
@@ -250,11 +252,11 @@ async applyFilterAssigned(filterValue: string) {
 //   if(filterValue === ''){
 //       return this.getunassignedTicket();
 //    }
-//    this.unassignedTicket=this.unassignedTicket.filter(filteredData =>
+//    this.unassignedTicket=this.unassignedTicket.filter((filteredData:any) =>
 //     filteredData.openedbyempid.includes(filterValue.toUpperCase().trim()) ||
 //        filteredData.inid_id.includes(filterValue.toUpperCase().trim()))
  
-//    console.log(this.unassignedTicket);
+//   (this.unassignedTicket);
     
 // }
 
@@ -265,13 +267,14 @@ async applyFilterAssigned(filterValue: string) {
 //     this.closedTicketSort = data.rows;
 //       this.closedTicket =  this.closedTicketSort;
 //       this.closedTicketCount = data.rowCount;
-//       console.log('my ticket'+this.closedTicketCount)
+//      ('my ticket'+this.closedTicketCount)
 //   });
 
 // }
 
 
-getclosedTicket(data){
+getclosedTicket(event:any){
+  const data = event.target ? (event.target as HTMLInputElement).value : event;
   this.filterCloseData = data;
 
  if(this.filterCloseData === 'Last 24 hours'){
@@ -281,7 +284,7 @@ getclosedTicket(data){
        this.closedTicketSort = data.rows;
          this.closedTicket =  this.closedTicketSort;
          this.closedTicketCount = data.rowCount;
-         console.log('my ticket'+JSON.stringify(this.closedTicket))
+        ('my ticket'+JSON.stringify(this.closedTicket))
      });    
 
  }else  if(this.filterCloseData === 'Last 7 days'){
@@ -291,7 +294,7 @@ getclosedTicket(data){
      this.closedTicketSort = data.rows;
        this.closedTicket =  this.closedTicketSort;
        this.closedTicketCount = data.rowCount;
-       console.log('close ticket'+JSON.stringify(this.closedTicket))
+      ('close ticket'+JSON.stringify(this.closedTicket))
    });    
 
 }else if(this.filterCloseData === 'Last 30 days'){
@@ -301,7 +304,7 @@ getclosedTicket(data){
    this.closedTicketSort = data.rows;
      this.closedTicket =  this.closedTicketSort;
      this.closedTicketCount = data.rowCount;
-     console.log('close ticket'+JSON.stringify(this.closedTicket))
+    ('close ticket'+JSON.stringify(this.closedTicket))
  });    
 
 }
@@ -310,17 +313,18 @@ getclosedTicket(data){
 }
 
 
-async applyFilterClosed(filterValue: string) {
+async applyFilterClosed(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
   this.closedTicket=this.closedTicketSort;
   if(filterValue === ''){
       return this.getclosedTicket(this.filterCloseData);
    }
-   this.closedTicket=this.closedTicket.filter(filteredData =>
+   this.closedTicket=this.closedTicket.filter((filteredData:any) =>
     filteredData.openedbyempid.includes(filterValue.toUpperCase().trim()) ||
        filteredData.inid_id.includes(filterValue.toUpperCase().trim()) ||
        filteredData.openedby.toUpperCase().includes(filterValue.toUpperCase().trim()) )
  
-   console.log(this.closedTicket);
+  (this.closedTicket);
     
 }
 
@@ -348,7 +352,7 @@ sortMyTicket(option:string) {
          
      
      }
-     console.log(htol)
+    (htol)
      this.myTicket=htol;
     
    }
@@ -372,7 +376,7 @@ sortMyTicket(option:string) {
           
       
       }
-      console.log(htol)
+     (htol)
       this.myTicket=htol;
       
     }
@@ -383,9 +387,8 @@ sortMyTicket(option:string) {
  
 }
 
-sortAssignedTicket(option:string) {
- 
- 
+sortAssignedTicket(event:any) {
+  const option = event.target ? (event.target as HTMLInputElement).value : event;
   let htol=[];
   if(option ===  'New'){
    this.assignedTicket = this.assigndeTicketSort;
@@ -416,7 +419,7 @@ sortAssignedTicket(option:string) {
         
     
     }
-    console.log(htol)
+   (htol)
     this.assignedTicket=htol;
     this.assignedTicketCount = this.assignedTicket.length;
    
@@ -451,7 +454,7 @@ sortAssignedTicket(option:string) {
          
      
      }
-     console.log(htol)
+    (htol)
      this.assignedTicket=htol;
      this.assignedTicketCount = this.assignedTicket.length;
      
@@ -465,7 +468,7 @@ sortAssignedTicket(option:string) {
          
      
      }
-     console.log(htol)
+    (htol)
      this.assignedTicket=htol;
      this.assignedTicketCount = this.assignedTicket.length;
    }
@@ -501,7 +504,7 @@ sortunAssignedTicket(option:string) {
          
      
      }
-     console.log(htol)
+    (htol)
      this.unassignedTicket=htol;
     
    }
@@ -525,7 +528,7 @@ sortunAssignedTicket(option:string) {
           
       
       }
-      console.log(htol)
+     (htol)
       this.unassignedTicket=htol;
       
     }
@@ -534,8 +537,8 @@ sortunAssignedTicket(option:string) {
 }
 
 
-sortClosedTicket(option:string) {
- 
+sortClosedTicket(event:Event) {
+  const option = (event.target as HTMLInputElement).value;
   let htol=[];
   if(option ===  'New'){
    this.closedTicket =  this.closedTicketSort;
@@ -621,10 +624,10 @@ sortClosedTicket(option:string) {
 
 
 
-getItems(data){
+getItems(data:any){
 
   this.incidentservice.inid = data.inid_id;
-  console.log(this.incidentservice.inid)
+ (this.incidentservice.inid)
           this.incidentUpdate();
   }
   
@@ -642,22 +645,12 @@ getItems(data){
      
       this.getassignedTicket(this.filterAssignData  );
       this.getclosedTicket(this.filterCloseData);
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     //  this.animal = result;
     });
   }
 
-  
-@HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
-}
 
- 
-
-divScroll(e) {
-  //console.log('div App', e);
-}
 
   
 }

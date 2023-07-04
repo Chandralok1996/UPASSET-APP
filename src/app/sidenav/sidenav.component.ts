@@ -15,20 +15,20 @@ export class SidenavComponent implements OnInit {
   
   public admin:boolean = false;
   public asset:boolean = false;
-  date1: string;
+  date1: any;
   collapsed=true;
-  user: User;
+  user: any;
   tokenName: any;
 
   defaultpath='../../assets/img/';
 file=this.accountService.user.username+'.jpg'
 file1:any;
-  open: boolean;
+  open: boolean =true;
   itemManagement: any;
-  hardManagement: boolean;
+  hardManagement: boolean =false;
   dashboardManagement: any;
   openhistory: any;
-  op: boolean;
+  op: boolean=false;
 
   constructor(public accountService: AccountService, public router:Router,
     public dialog: MatDialog,) {
@@ -39,7 +39,7 @@ file1:any;
   ngOnInit(): void {    
     this.start();
     this.tokenName =localStorage.getItem("user");
-    console.log(this.accountService.user.username)
+   
   }
  
    
@@ -47,7 +47,7 @@ file1:any;
 
 start(){
   this.file1=this.defaultpath+this.file;
-  console.log('stats',this.file1);
+ 
   }
 
   async openConfirmationDialog() {
@@ -185,20 +185,13 @@ toggle4() {
 }
 
 
-// toggle5() {
-//   this.show5 = !this.show5;
-//   if(this.show5)  
-//     this.buttonName5 = "Hide";
-//   else
-//     this.buttonName5 = "Show";
-// }
 
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
+onScroll(e:any) {
   // console.log('window', e);
 }
 
-divScroll(e) {
+divScroll(e:any) {
   //console.log('div App', e);
 }
 
@@ -207,15 +200,6 @@ hardMang(){
   this.hardManagement = !this.hardManagement
 }
 
-// toggleHard(){
-//   this.show6 = !this.show6;
-
-  
-//   if(this.show6)  
-//     this.buttonName6 = "Hide";
-//   else
-//     this.buttonName6 = "Show";
-// }
 
 
 }

@@ -11,7 +11,7 @@
         <div class="row">
 
           <div class="col-md-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-            <select  class="button3 buttonb form-control" id="action5" (change)="getmyTicket($event.target.value)">
+            <select  class="button3 buttonb form-control" id="action5" (change)="getmyTicket($event)">
               <option>Last 24 hours</option>
               <option>Last 7 days</option>
               <option>Last 30 days</option>
@@ -24,11 +24,11 @@
 
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <input type="text" class="buttonb form-control" id="action3" placeholder="Search Tickets"
-              (keyup)="applyFilterMy($event.target.value)">
+              (keyup)="applyFilterMy($event)">
           </div>
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <select class="button3 buttonb form-control" id="action4" style="color: #646464;"
-              (change)="sortMyTicket($event.target.value)">
+              (change)="sortMyTicket($event)">
               <option [value]="0" [disabled]="true" selected>Select one category </option>
               <option *ngFor="let city of selected1">
                 {{ city}}
@@ -305,7 +305,7 @@
         <div class="row">
 
           <div class="col-md-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-            <select  class="button3 buttonb form-control" id="action5" (change)="getallTicket($event.target.value)">
+            <select  class="button3 buttonb form-control" id="action5" (change)="getallTicket($event)">
               <option>Last 24 hours</option>
               <option>Last 7 days</option>
               <option>Last 30 days</option>
@@ -318,12 +318,12 @@
 
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <input type="text" class="form-control" id="action3" placeholder="Search Tickets "
-              (keyup)="applyFilter($event.target.value)">
+              (keyup)="applyFilter($event)">
 
           </div>
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <select class="form-control" id="action4" style="color: #646464;"
-              (change)="sortallticket($event.target.value)">
+              (change)="sortallticket($event)">
               <option [value]="0" [disabled]="true" style="color: #646464;" selected>Select Priority </option>
               <option *ngFor="let priority of selected1" style="color: black">
                 {{ priority}}
@@ -614,7 +614,7 @@
         <div class="row">
 
           <div class="col-md-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-            <select  class="button3 buttonb form-control" id="action5" (change)="getunassignedTicket($event.target.value)">
+            <select  class="button3 buttonb form-control" id="action5" (change)="getunassignedTicket($event)">
               <option>Last 24 hours</option>
               <option>Last 7 days</option>
               <option>Last 30 days</option>
@@ -624,11 +624,11 @@
           
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <input type="text" class="button3 buttonb form-control" id="action3" placeholder="Search Tickets"
-              (keyup)="applyFilterunAssigned($event.target.value)">
+              (keyup)="applyFilterunAssigned($event)">
           </div>
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <select class="button3 buttonb form-control" id="action4" style="color: #646464;"
-              (change)="sortunAssignedTicket($event.target.value)">
+              (change)="sortunAssignedTicket($event)">
               <option [value]="0" [disabled]="true" style="color: #646464;" selected>Select Priority </option>
               <option *ngFor="let city of selected1" style="color: black">
                 {{ city}}
@@ -895,7 +895,7 @@
         <div class="row">
 
           <div class="col-md-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
-            <select  class="button3 buttonb form-control" id="action5" (change)="getclosedTicket($event.target.value)">
+            <select  class="button3 buttonb form-control" id="action5" (change)="getclosedTicket($event)">
               <option>Last 24 hours</option>
               <option>Last 7 days</option>
               <option>Last 30 days</option>
@@ -905,11 +905,11 @@
 
           <div class="col-sm-3 col-md-3 col-xs-3 col-lg-3 col-xl-3">
             <input type="text" class="button3 buttonb form-control" id="action3" placeholder="Search Tickets"
-              (keyup)="applyFilterClosed($event.target.value)">
+              (keyup)="applyFilterClosed($event)">
           </div>
           <div class="col-sm-3">
             <select class="button3 buttonb form-control" id="action4" style="color: #646464;"
-              (change)="sortClosedTicket($event.target.value)">
+              (change)="sortClosedTicket($event)">
               <option [value]="0" [disabled]="true" style="color: #646464;" selected>Select Priority </option>
               <option *ngFor="let city of selected1" style="color: black">
                 {{ city}}

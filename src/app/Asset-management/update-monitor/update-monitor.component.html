@@ -59,14 +59,10 @@
           <div class="row">
             <div class="col-md-6 col-sm-6">
               <label id="label1"> User Name <span class="required-asterisk">*</span></label>
-              <!-- <select formControlName="name" class="form-control" (change)="userdet($event.target.value)" 
-             [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
-             <option></option>
-             <option *ngFor="let name of username">{{name.username}}</option>
-              </select> -->
+            
 
               <ng-autocomplete formControlName="name" [data]="username" [searchKeyword]="keyword1"
-                (change)='userdet($event.target.value)' (selected)='userdet($event)'
+                (change)='userdet($event)' (selected)='userdet($event)'
                 (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
                 [notFoundTemplate]="notFoundTemplate" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
               </ng-autocomplete>
@@ -136,7 +132,7 @@
 
             <div class="col-md-6 col-sm-6">
               <label id="label1"> Building</label>
-              <select class="form-control f-10" formControlName="building" (change)="getFloor($event.target.value)" readonly>
+              <select class="form-control f-10" formControlName="building" (change)="getFloor($event)" readonly>
                 <option *ngFor="let bld of uname" [disabled]="true">{{bld.building}}</option>
               </select>
 

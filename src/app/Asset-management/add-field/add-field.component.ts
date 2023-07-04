@@ -14,16 +14,16 @@ export interface DialogData{
 })
 export class AddFieldComponent implements OnInit {
 
-  form: FormGroup;
-  formcustodian: FormGroup;
+  form: any;
+  formcustodian: any;
   loading = false;
   submitted = false;
-  formOS: FormGroup;
-  formMake: FormGroup;
-  formProcessor: FormGroup;
-  formRam: FormGroup;
-  formHdd: FormGroup;
-  formGpu: FormGroup;
+  formOS: any;
+  formMake: any;
+  formProcessor: any;
+  formRam: any;
+  formHdd: any;
+  formGpu: any;
   operartingSystem: any;
   vendor: any;
   manufacture: any;
@@ -155,7 +155,7 @@ export class AddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -181,7 +181,7 @@ export class AddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -207,7 +207,7 @@ export class AddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -234,7 +234,7 @@ export class AddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -261,7 +261,7 @@ export class AddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -288,7 +288,7 @@ export class AddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -315,7 +315,7 @@ export class AddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 
@@ -326,7 +326,7 @@ export class AddFieldComponent implements OnInit {
     
     // reset alerts on submit
     this.alterservices.clear();
-    console.log(this.formGpu.value)
+   (this.formGpu.value)
     // stop here if form is invalid
     if (this.formGpu.invalid) {  
       return;
@@ -341,7 +341,7 @@ export class AddFieldComponent implements OnInit {
         this.alterservices.success(res.Status, {  autoClose: true, keepAfterRouteChange: true });       
  
       }
-          console.log(res);
+         (res);
     })
   }
 

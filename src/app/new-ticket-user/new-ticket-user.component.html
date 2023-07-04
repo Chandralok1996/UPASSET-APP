@@ -1,14 +1,5 @@
 <div class="container-fluid" style="margin: 30px 0 0 0;padding: 0;">
 
-    <!-- <div  style="margin-left:0px;font-family: Raleway;margin-right:0px" > -->
-
-    <!-- <div class="row">
-        <div class="col-sm-8 col-md-8">
-   <p id="create">CREATE NEW TICKET</p>
-    </div>
-     <div class="col-sm-4 col-md-4">
-    </div>
-    </div> -->
     <div class="row">
         <div class="col-md-12 ">
 
@@ -91,7 +82,7 @@
                         <label>Call Type <span class="required-asterisk">*</span></label>
                         <select type="text" formControlName="intp" class="form-control" placeholder="Short Description"
                             [ngClass]="{ 'is-invalid': submitted && f.intp.errors }"
-                            (change)="inctype($event.target.value)">
+                            (change)="inctype($event)">
                             <option></option>
                             <option *ngFor="let type of incidenttype">{{type.category}}</option>
 
@@ -151,7 +142,7 @@
                         [data]="username1" [searchKeyword]="keyword1"
                             (selected)='userdet($event)' (inputChanged)='onChangeSearch($event)'
                             (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
-                            (change)="userdet($event.target.value)" [notFoundTemplate]="notFoundTemplate"
+                            (change)="userdet($event)" [notFoundTemplate]="notFoundTemplate"
                             [ngClass]="{ 'is-invalid': submitted && f.openedby.errors }">
                         </ng-autocomplete>
                         <ng-template #itemTemplate let-item>
@@ -219,7 +210,7 @@
                             >*</span></label>
                         <select class="form-control" formControlName="group"
                             
-                            (change)="asset($event.target.value)" >
+                            (change)="asset($event)" >
                             <option>DESKTOP</option>
                             <option>LAPTOP</option>
                             <option>MONITOR</option>

@@ -429,7 +429,7 @@
             <div class="col-md-6 col-sm-6">
               <label id="label1"> Vendor <span class="required-asterisk">*</span></label>
               <select id="input1" class="form-control f-10" formControlName="vendor"
-                (change)="vendorname($event.target.value);osystem($event.target.value)"
+                (change)="vendorname($event);osystem($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.vendor.errors }">
                 <option hidden>Select Vendor</option>
                 <option *ngFor="let ven of vendor">{{ven.vendor_name}}</option>
@@ -446,7 +446,7 @@
 
             <div class="col-md-6 col-sm-6">
               <label id="label1"> Vendor_Location <span class="required-asterisk">*</span></label>
-              <select class="form-control f-10" formControlName="vloc" (change)="osystem($event.target.value)"
+              <select class="form-control f-10" formControlName="vloc" (change)="osystem($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.vloc.errors }">
                 <option hidden>Select Vendor Location</option>
                 <option *ngFor="let ven of vendorlocation">{{ven.vendor_location}}</option>

@@ -1,6 +1,6 @@
 import { Injectable, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 import { User } from '../_models';
 import { assetlist } from '../_models/asset';
 import { AccountService } from './account.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({ providedIn: 'root' })
@@ -33,21 +34,12 @@ export class AssetService {
        constructor(
         private router: Router,
         private http: HttpClient,
-        private accountService: AccountService
+        private accountService: AccountService,
+       public toaster :ToastrService,
     )
     {}
 
-    // assetDesktop(): Observable<any>{
-    //     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getdesktop/${this.accountService.user.orgdet.usorg_id}`);
-    // }
-
-
-
-
-
-
-
-
+ 
     eightid(): Observable<any>{
         return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/geteightid`);
     }
@@ -97,7 +89,7 @@ export class AssetService {
         return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getastspeed/${processor}`);
     }
 
-    assetforperticularuser(user_id) {
+    assetforperticularuser(user_id:any) {
         return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getbyassetforuser/${user_id}`);
     }
 
@@ -130,7 +122,7 @@ export class AssetService {
     }
 
     userName(): Observable<any>{
-      //  console.log(this.accountService.user.orgdet.usorg_id)
+      // (this.accountService.user.orgdet.usorg_id)
         return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getuser/${this.accountService.user.orgdet.usorg_id}`);
     }
 
@@ -146,15 +138,15 @@ export class AssetService {
         return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getvenloc/${vendor}`);
     }
 
-    getbyassetdetails(asset) {
+    getbyassetdetails(asset:any) {
         return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getbyasset/${asset}`);
     }
 
-    getbyassetdetailsMonitor(asset) {
+    getbyassetdetailsMonitor(asset:any) {
         return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getbyassetMonitor/${asset}`);
     }
 
-    getbyassetdetailsAccesory(asset) {
+    getbyassetdetailsAccesory(asset:any) {
         return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getbyassetAccessories/${asset}`);
     }
 
@@ -165,15 +157,18 @@ export class AssetService {
     accessories(): Observable<any>{
         return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getaccessory`);
     }
+    filterStatus(): Observable<any>{
+        return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getasts`);
+    }
 
 
 
-    assetDesktopInsert(asset): Observable<any>  {
+    assetDesktopInsert(asset:any): Observable<any>  {
 
         return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createdesktop`, asset)
         // .pipe(
         //     tap((_) => {
-        //         console.log(_)
+        //        (_)
         //     }),
         //     catchError(this.handleError)
 
@@ -181,23 +176,23 @@ export class AssetService {
 
     }
 
-    assetDesktopUpdate(asset): Observable<any>  {
+    assetDesktopUpdate(asset:any): Observable<any>  {
         return this.http.put<any>(`${environment.apiUrl}/assets/api/v1/updatedesktop`, asset)
     }
 
-    assetMonitorInsert(asset): Observable<any>  {
+    assetMonitorInsert(asset:any): Observable<any>  {
         return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createmonitor`, asset)
     }
 
-    assetMonitorUpdate(asset): Observable<any>  {
+    assetMonitorUpdate(asset:any): Observable<any>  {
         return this.http.put<any>(`${environment.apiUrl}/assets/api/v1/updatemonitor`, asset)
     }
 
-    assetAccessoriesInsert(asset): Observable<any>  {
+    assetAccessoriesInsert(asset:any): Observable<any>  {
         return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createaccessory`, asset)
     }
 
-    handleError(error) {
+    handleError(error:any) {
         let errorMessage ;
         if (error.error instanceof ErrorEvent) {
           // Client-side errors
@@ -254,7 +249,7 @@ serverram(): Observable<any>{
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/serverram`);
 }
 
-serverModel(make) {
+serverModel(make:any) {
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getbyservermodel/${make}`);
 }
 
@@ -266,19 +261,19 @@ serverOSS(os: string) {
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getbyserveros/${os}`);
 }
 
-assetServerInsert(asset): Observable<any>  {
+assetServerInsert(asset:any): Observable<any>  {
 
     return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createserver`, asset)
 
 }
 
-assetServerUpdate(asset): Observable<any>  {
+assetServerUpdate(asset:any): Observable<any>  {
 
     return this.http.put<any>(`${environment.apiUrl}/assets/api/v1/updateserver`, asset)
 
 }
 
-getbyassetserverdetails(asset) {
+getbyassetserverdetails(asset:any) {
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getbyserverdetails/${asset}`);
 }
 
@@ -294,58 +289,58 @@ sortAssetGroup(): Observable<any>{
 
 
 
-reportData(data): Observable<any>{
+reportData(data:any): Observable<any>{
 
      return this.http.post<any>(`${environment.apiUrl}/report/api/v1/assetreport`, data);
  }
 
- newVendor(asset): Observable<any>  {
+ newVendor(asset:any): Observable<any>  {
     return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/addnewvendor`, asset)
 }
 
-newOS(asset): Observable<any>  {
-    console.log(asset);
+newOS(asset:any): Observable<any>  {
+   (asset);
     return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/addnewos`, asset)
 }
 
-newMake(asset): Observable<any>  {
+newMake(asset:any): Observable<any>  {
     return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/addnewmodel`, asset)
 }
 
-newProc(asset): Observable<any>  {
+newProc(asset:any): Observable<any>  {
     return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/addnewpro`, asset)
 }
 
-newram(asset): Observable<any>  {
+newram(asset:any): Observable<any>  {
     return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/addnewram`, asset)
 }
 
-newhdd(asset): Observable<any>  {
+newhdd(asset:any): Observable<any>  {
     return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/addnewhdd`, asset)
 }
 
 
-newgpu(asset): Observable<any>  {
+newgpu(asset:any): Observable<any>  {
     return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/addnewgpu`, asset)
 }
 
 
-validateAssetno(asset) {
+validateAssetno(asset:any) {
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/validateastname/${asset}`);
 }
 
 
-validateSerialNum(group,serialno) {
+validateSerialNum(group:any,serialno:any) {
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/validateserialno/${group}/${serialno}`);
 }
 
 
-getbyassetHistory(astd_id) {
+getbyassetHistory(astd_id:any) {
     return this.http.get<any>(`${environment.apiUrl}/history/api/v1/asthistory/${astd_id}`);
 }
 
 
-getbyuserHistory(empid) {
+getbyuserHistory(empid:any) {
     return this.http.get<any>(`${environment.apiUrl}/history/api/v1/asthistoryempid/${empid}`);
 }
 
@@ -359,17 +354,17 @@ organization(): Observable<any>{
 assettype(): Observable<any>{
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getastt`);
 }
-assetcat(astt_id){
+assetcat(astt_id:any){
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getastc/${astt_id}`);
 }
 
-assetgrp(astc_id){
+assetgrp(astc_id:any){
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getastg/${astc_id}`);
 }
-makee(astg_id): Observable<any>{
+makee(astg_id:any): Observable<any>{
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getassetmake/${astg_id}`);
 }
-model(astupmk_id){
+model(astupmk_id:any){
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getassetmodel/${astupmk_id}`);
 }
 custodian(): Observable<any>{
@@ -399,21 +394,22 @@ family(): Observable<any>{
 }
 
 //Create-asset
-createasset(data): Observable<any>  {
+createasset(data:any): Observable<any>  {
     return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createasset`, data)
 }
  //update-asset-API
- assetupdation(astd_id): Observable<any>  {
+ assetupdation(astd_id:any): Observable<any>  {
     return this.http.put<any>(`${environment.apiUrl}/assets/api/v1/updateasset`,astd_id)
 }
 
-//list-api
+//list-api using token
 assetlist(): Observable<any>{
-    return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getassetlist`);
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'auth-token': JSON.parse(localStorage.getItem('user') || '').token})};
+    return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getassetlist`,httpOptions)
 }
 
 //pdp-detail
-getbyasset(astd_id): Observable<any>{
+getbyasset(astd_id:any): Observable<any>{
     return this.http.get<any>(`${environment.apiUrl}/assets/api/v1/getassetdetail/${astd_id}`);
 }
 
@@ -469,9 +465,7 @@ return this.http.get<any>(`${environment.apiUrl}/dashboard/api/v1/getcountbmsele
 
 }
 devicelist():Observable<any>{
-
   return this.http.get<any>(`${environment.apiUrl}/dashboard/api/v1/getlistitdevices`);
-
 }
 ITracklistser():Observable<any>{
 
@@ -479,77 +473,71 @@ ITracklistser():Observable<any>{
 
 }
 getelectrical():Observable<any>{
-
   return this.http.get<any>(`${environment.apiUrl}/dashboard/api/v1/getlistelectrical`);
-
 }
 getbms():Observable<any>{
-
   return this.http.get<any>(`${environment.apiUrl}/dashboard/api/v1/getlistbms`);
-
 }
 
 
 
 //Master-fields-add-in-asset-api
-masttypeadd(data): Observable<any>{
+masttypeadd(data:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createtype`,data);
 }
 
-mastcateadd(astt_id): Observable<any>{
+mastcateadd(astt_id:any): Observable<any>{
     return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createcategory`,astt_id);
 }
 
-mastgrpadd(astc_id): Observable<any>{
+mastgrpadd(astc_id:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/creategroup`,astc_id);
 }
 
-mastmkadd(astg_id): Observable<any>{
+mastmkadd(astg_id:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createmake`,astg_id);
 }
 
-mastmodeladd(astupmk_id): Observable<any>{
+mastmodeladd(astupmk_id:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createmodel`,astupmk_id);
 }
 
-custodianadd(data): Observable<any>{
+custodianadd(data:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createcustodian`,data);
 }
 
-mastlocadd(data): Observable<any>{
+mastlocadd(data:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createlocation`,data);
 }
 
-masterconfidentadd(data): Observable<any>{
+masterconfidentadd(data:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createconf`,data);
 }
 
-masterintegadd(data): Observable<any>{
+masterintegadd(data:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createinte`,data);
 }
 
-mastavailadd(data): Observable<any>{
+mastavailadd(data:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createavail`,data);
 }
 
-mastfamadd(data): Observable<any>{
+mastfamadd(data:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/assets/api/v1/createfamily`,data);
 }
 
 //mailsend-api
-warrantymail(data): Observable<any>{
+warrantymail(data:any): Observable<any>{
   return this.http.post<any>(`${environment.apiUrl}/warnty/api/v1/getWarrantyMailList`,data);
  }
 
  warrantylist():Observable<any>{
   return this.http.get<any>(`${environment.apiUrl}/warnty/api/v1/emailwarrantylist`);
 }
-warrantyupdatemail(wemail_id): Observable<any>  {
+warrantyupdatemail(wemail_id:any): Observable<any>  {
   return this.http.put<any>(`${environment.apiUrl}/warnty/api/v1/updatewemail`,wemail_id)
 }
-warmaildel(data): Observable<any>  {
-  console.log(data);
-
+warmaildel(data:any): Observable<any>  {
   return this.http.post<any>(`${environment.apiUrl}/warnty/api/v1/deletewemail`,data)
 
 }

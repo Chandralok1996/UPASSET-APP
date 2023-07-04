@@ -10,8 +10,8 @@ export class ErrorInterceptor implements HttpInterceptor {
     constructor(private accountService: AccountService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request).pipe(catchError(err => {
-            let errorMessage = ''; 
+        return next.handle(request).pipe(catchError((err:any) => {
+            var errorMessage:any = ''; 
            
             if ([401, 403].includes(err.status) && this.accountService.user) {
                 errorMessage = `Error: ${err.error}`
@@ -19,8 +19,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.accountService.logout();
             }
             else if ([200,400].includes(err.status) && this.accountService.user){
-                errorMessage = `Error: ${err.error.text}`
-                console.log(err.status)
+                errorMessage = `Error: ${err.error.text}`;
+             
             }
             else{
                 errorMessage = `Error Code: ${err.error}\n ${err.message} `

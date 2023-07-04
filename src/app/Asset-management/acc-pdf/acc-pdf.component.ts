@@ -30,7 +30,7 @@ export class AccPdfComponent implements OnInit {
     this.assetService.getbyassetdetailsAccesory(this.assetService.astd_id)
     .subscribe(details => {
         this.details = details.rows;
-        console.log(this.details)
+       (this.details)
         
     });
   }
@@ -45,7 +45,7 @@ export class AccPdfComponent implements OnInit {
   title = 'html-to-pdf-angular-application';
   public convetToPDF()
   {
-  var data = document.getElementById('contentToConvert');
+  var data:any = document.getElementById('contentToConvert');
   html2canvas(data).then(canvas => {
   // Few necessary setting options
   var imgWidth = 130;

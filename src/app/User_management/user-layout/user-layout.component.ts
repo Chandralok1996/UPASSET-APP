@@ -9,11 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class UserLayoutComponent implements OnInit {
 
   constructor() { 
-    console.log("userlayout")
+   ("userlayout")
   }
 
   ngOnInit(): void {
-    console.log("userlayout")
+   ("userlayout")
   }
 
 }

@@ -1,14 +1,30 @@
 <div class="row container mt-1" style="background-color: white;margin-left: 0px;padding: 15px;">
   <div class="col-md-12">
     <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
 
      <button routerLink="/home/users/dashboardstatus" class="btn btn-primary btn-sm" style="float: left;"><i class="fa fa-backward" aria-hidden="true"></i> Back</button> 
       <h3 style="text-align: center;">DataList:&nbsp;{{catname}}<span>-({{datacount}})</span></h3>
       <!-- <input type="search"  (keyup)="applyFilter($event.target.value)" placeholder="Search Items" [(ngModel)]="term"> -->
     </div>
+    <div class="col-md-2">
+        <div>
+          <select [(ngModel)]="statusFilter" (ngModelChange)="getSelectStatus(statusFilter)"  class="opencases"
+            style="border: 1px solid #e6e7ea;  border-radius: 5px; height: 38px; padding: 4px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-funnel" viewBox="0 0 16 16">
+              <path
+                d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
+            </svg>
+         
+            <option hidden selected>Filter Status</option>
+            <option *ngFor="let case of filterData">{{case.status}}</option>
+          </select>&nbsp;
+     
+      </div>
+
+    </div>
     <div class="col-md-4   text-right">
-   
       <button (click)="download()" class="btn btn-primary"><i class="fa fa-file-excel-o"
         aria-hidden="true"></i> ExportTOExcel</button>
     </div>
@@ -37,10 +53,11 @@
               <th>Warranty_start_date</th>
               <th>Warranty_end_date</th>
               <th>Status</th>
+              <th>Remarks</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of tabledata">
+            <tr *ngFor="let data of tableFilterData">
              <td>{{data.name}}</td>
              <td>{{data.make}}</td>
              <td>{{data.serialno}}</td>       
@@ -55,13 +72,10 @@
            <td>{{data.integrity}}</td>
              <td>{{data.availability}}</td>
              <td>{{data.wsdate|date}}</td>
-
              <td>{{data.wedate|date}}</td>
              <td>{{data.status}}</td>
-
-            </tr>
-           
-           
+             <td>{{data.remark}}</td>
+           </tr>
           </tbody>
         </table>
       </div>
@@ -92,7 +106,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of tabledata">
+            <tr *ngFor="let data of tableFilterData">
               <td>{{data.name}}</td>
               <td>{{data.make}}</td>
               <td>{{data.model}}</td>
@@ -145,7 +159,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of tabledata">
+            <tr *ngFor="let data of tableFilterData">
               <td>{{data.name}}</td>
               <td>{{data.make}}</td>
               <td>{{data.model}}</td>
@@ -195,7 +209,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of tabledata">
+            <tr *ngFor="let data of tableFilterData">
               <td>{{data.name}}</td>
               <td>{{data.make}}</td>
               <td>{{data.model}}</td>

@@ -15,28 +15,28 @@ import { UserAddFieldComponent } from '../user-add-field/user-add-field.componen
   styleUrls: ['./rejoin-form.component.css']
 })
 export class RejoinFormComponent implements OnInit {
-  @ViewChild('exampleModal', { static: true }) exampleModalRef: ElementRef;
-  @ViewChild('closeButton') closeButton;
+  @ViewChild('exampleModal', { static: true }) exampleModalRef!: ElementRef;
+  @ViewChild('closeButton') closeButton:any;
   public buttonName: any = 'Show';
   public sys: boolean = false;
   public contact: boolean = false;
   loading = false;
-  form: FormGroup;
+  form: any;
   submitted = false;
 
 
-  products7;
-  products8 = [];
-  products9 = [];
-  products10 = [];
-  products11 = [];
-  usergrp = [];
-  role = [];
-  designation = [];
-  department = [];
-  floor = [];
-  usertype = [];
-  reportingtoo = [];
+  products7:any;
+  products8 :any = [];
+  products9 :any = [];
+  products10 :any = [];
+  products11 :any = [];
+  usergrp :any = [];
+  role :any = [];
+  designation :any = [];
+  department :any = [];
+  floor :any = [];
+  usertype :any= [];
+  reportingtoo :any = [];
   userType1: any;
   empid1: any;
 
@@ -121,7 +121,7 @@ export class RejoinFormComponent implements OnInit {
 
     this.accountservice.getbyuser(assetid)
     .subscribe(async (details) => {
-         console.log(details)
+        (details)
          if(details){
           let asset = details.rows[0];
           asset.reportingto = asset.reportingto+'/'+asset.repempid;
@@ -201,7 +201,7 @@ export class RejoinFormComponent implements OnInit {
 
   }
 
-  getFloor(building){
+  getFloor(building:any){
 
     this.accountservice.floor(building)
         .subscribe(floor => {
@@ -232,13 +232,13 @@ export class RejoinFormComponent implements OnInit {
   }
 
   createUser() {
-    console.log(this.form);
+   (this.form);
 
     this.accountservice.rejoinUser(this.form.value)
       .subscribe(res => {
         this.form.value.reportingto = this.empid1[0]+'/'+ this.empid1[1];
         //console.log(res[0].Status);
-        console.log(res);
+       (res);
         this.loading = false;
        if(res.Status === 'User Activated !!'){
       
@@ -268,7 +268,7 @@ export class RejoinFormComponent implements OnInit {
   }
 
 
-  addField(item){
+  addField(item:any){
   
     const dialogRef = this.dialog.open(UserAddFieldComponent, {
       width: 'auto',
@@ -306,35 +306,39 @@ export class RejoinFormComponent implements OnInit {
 
 
     
-      console.log('The dialog was closed');
+     ('The dialog was closed');
     });
 
 
   }
 
-  osystem(item){
+  osystem(item:any){
     // this.osys = os;
     if(item === 'ADD NEW Department' ){
-      document.getElementById('exampleModal1').click();
+      (document.getElementById('exampleModal1') as HTMLInputElement).click();
+
     }
     else if(item === 'ADD NEW Designation'){
-      document.getElementById('exampleModal2').click();
+      (document.getElementById('exampleModal2') as HTMLInputElement).click();
+   
     }
     else if(item === 'ADD NEW Building'){
-      document.getElementById('exampleModal3').click();
+      (document.getElementById('exampleModal3') as HTMLInputElement).click();
+     
     }
     else if(item === 'ADD NEW Section Code'){
-      document.getElementById('exampleModal4').click();
+      (document.getElementById('exampleModal4') as HTMLInputElement).click();
+
     }
     else if(item === 'ADD NEW Floor'){
-      document.getElementById('exampleModal5').click();
+      (document.getElementById('exampleModal5') as HTMLInputElement).click();
+  
     }
     else if(item === 'ADD NEW Branch'){
-      document.getElementById('exampleModal6').click();
+      (document.getElementById('exampleModal6') as HTMLInputElement).click();
+ 
     }
-   
-   
-    console.log(item);
+  
   }
 
      
@@ -350,14 +354,14 @@ export class RejoinFormComponent implements OnInit {
 
   
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
- // console.log('div App', e);
+divScroll(e:any) {
+ //('div App', e);
 }
 
 

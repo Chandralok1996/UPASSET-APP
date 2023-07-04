@@ -36,13 +36,13 @@ export class EndUserLandComponent implements OnInit {
 
   filterValue : any;
 
-  loginform: FormGroup;
+  loginform: any;
   display:any;
   
  
   
 
-  searchedKeyword: string;
+  searchedKeyword: any;
   openedby: any;
   myTicketSort: any;
 
@@ -66,7 +66,7 @@ data3:any;
 
 
 myticketData = 'Last 24 hours';
-form: FormGroup;
+form: any;
 loading = false;
 submitted = false;
 currentDate = new Date();
@@ -107,7 +107,7 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
       return;
     }
     this.loading = true;
-    console.log(this.form.value)
+   (this.form.value)
 
 
     if(this.myticketData === 'Select date'){
@@ -125,7 +125,8 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
 
  
 
-  getmyTicket(data){
+  getmyTicket(event:any){
+    const data = event.target ? (event.target as HTMLInputElement).value : event;
     this.myticketData = data;
 
     if(this.myticketData === 'Last 24 hours'){
@@ -135,7 +136,7 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
         this.myTicketSort = data.rows;
           this.myTicket = this.myTicketSort;
           this.myTicketCount = data.rowCount;
-          console.log('my ticket'+this.myTicketCount)
+         ('my ticket'+this.myTicketCount)
       });
 
     }else  if(this.myticketData === 'Last 7 days'){
@@ -145,7 +146,7 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
         this.myTicketSort = data.rows;
           this.myTicket = this.myTicketSort;
           this.myTicketCount = data.rowCount;
-          console.log('my ticket'+this.myTicketCount)
+         ('my ticket'+this.myTicketCount)
       });
 
     }else  if(this.myticketData === 'Last 30 days'){
@@ -155,7 +156,7 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
         this.myTicketSort = data.rows;
           this.myTicket = this.myTicketSort;
           this.myTicketCount = data.rowCount;
-          console.log('my ticket'+this.myTicketCount)
+         ('my ticket'+this.myTicketCount)
       });
 
     }
@@ -164,17 +165,18 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
   
   }
 
-  async applyFilterMyticket(filterValue: string) {
+  async applyFilterMyticket(event: any) {
+    const filterValue = event.target ? (event.target as HTMLInputElement).value : event;
     this.myTicket=this.myTicketSort;
     if(filterValue === ''){
         return this.getmyTicket(this.myticketData);
      }
-     this.myTicket=this.myTicket.filter(filteredData =>
+     this.myTicket=this.myTicket.filter((filteredData:any) =>
       filteredData.openedbyempid.includes(filterValue.toUpperCase().trim()) ||
          filteredData.inid_id.includes(filterValue.toUpperCase().trim()) ||
          filteredData.openedby.toUpperCase().includes(filterValue.toUpperCase().trim()) )
    
-     console.log(this.myTicket);
+    (this.myTicket);
       
   }
 
@@ -182,8 +184,8 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
 
  
 
-  onCitySelect(option:string) {
-   
+  onCitySelect(event:any) {
+    const option = event.target ? (event.target as HTMLInputElement).value : event;
     let htol=[];
     if(option ===  'New'){
      this.myTicket= this.myTicketSort;
@@ -215,7 +217,7 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
           
       
       }
-      console.log(htol)
+     (htol)
       this.myTicket=htol;
       this.myTicketCount = this.myTicket.length;
      
@@ -249,7 +251,7 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
            htol.push(this.myTicket[i])
        }     
       }
-       console.log(htol)
+      (htol)
        this.myTicket=htol;
        this.myTicketCount = this.myTicket.length;
        
@@ -285,7 +287,7 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
 
     // dialogRef.afterClosed().subscribe(result => {
     //   this.getmyTicket();
-    //   console.log('The dialog was closed');
+    //  ('The dialog was closed');
     // //  this.animal = result;
     // });
 
@@ -306,10 +308,10 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
       this.buttonName = "Show";
   }
 
-  getItems(data){
+  getItems(data:any){
 
     this.incidentservice.inid = data.inid_id;
-    console.log(this.incidentservice.inid)
+   (this.incidentservice.inid)
             this.incidentUpdate();
     }
     
@@ -325,7 +327,7 @@ cValue = formatDate(this.currentDate, 'yyyy-MM-dd', 'en-US');
       });
     
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+       ('The dialog was closed');
       //  this.animal = result;
       });
     }
@@ -345,7 +347,7 @@ openDialog1(): void {
   // });
 
   // dialogRef.afterClosed().subscribe(result => {
-  //   console.log('The dialog was closed');
+  //  ('The dialog was closed');
   // //  this.animal = result;
   // });
 
@@ -354,13 +356,13 @@ openDialog1(): void {
 
 
 @HostListener('window:scroll', ['$event'])
-onScroll(e) {
- // console.log('window', e);
+onScroll(e:any) {
+ //('window', e);
 }
 
  
 
-divScroll(e) {
+divScroll(e:any) {
   //console.log('div App', e);
 }
 

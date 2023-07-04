@@ -1,24 +1,12 @@
-<div class="container-fluid" style="    margin: 30px 0 0 0;padding: 0;">
-
-
+<div class="container-fluid mt-2">
     <form class="form-group" [formGroup]="form" (ngSubmit)="onSubmit()" #ff="ngForm" name="form">
-
-
-
-
-        <!-- Customer_Creation_1 -->
-        <div class="col-sm-12 col-md-12">
-            <div class="container">
-
                 <div class="row">
                     <div class="col-md-12 ">
-
-
-                        <div class="col-md-2">
+                        <!-- <div class="col-md-2">
                             <img id="user" src="assets/img/Trial 2.png" /><br>
 
-                            <!-- <a href="" id="Choose"> Add photo </a> -->
-                        </div>
+                            <a href="" id="Choose"> Add photo </a>
+                        </div> -->
 
                         <div class="profile-txt">
                             <p for="" style="font-weight: 600;margin-bottom: 0; font-size: 22px;">
@@ -55,7 +43,7 @@
                     </div>
                 </div>
 
-                <hr class="">
+                <hr>
 
                 <div class="scroll" (scroll)="divScroll($event)">
 
@@ -67,10 +55,6 @@
                                 <a class="clear-all float-right" style="color:rgb(98, 98, 255); cursor: pointer;"
                                     (click)="ff.resetForm()"><u>X Clear all</u></a>
                             </div><br>
-
-
-
-
                             <div class="row">
                                 <div class="col-md-12">
 
@@ -187,13 +171,22 @@
                                            
                                         </div> -->
 
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <label class="lbl">Designation </label><br>
                                             <select class="form-control" formControlName="designation"
                                                 [(ngModel)]="desig">
                                                 <option *ngFor="let com3 of designation" [value]="com3.designationname">
-                                                    {{com3.designationname}} </option>
-
+                                                    {{com3.designationname}} </option> </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="lbl">Group <span
+                                                    class="required-asterisk">*</span></label><br>
+                                            <select class="form-control f-10" formControlName="ussg_id"
+                                                [ngClass]="{ 'is-invalid': submitted && f.group.errors }">
+                                                <option hidden>Select Group</option>
+                                                <option *ngFor="let com3 of usergrp" [value]="com3.ussg_id">{{com3.sgname}}
+                                                </option>
+                                              
                                             </select>
                                            
                                         </div>
@@ -203,14 +196,7 @@
 
                                 </div>
                             </div>
-
-
-                      
                     <br>
-
-
-
-                
                             <div class="">
                                 <h1 class="font-sans f-20">Contact Details </h1>
                               
@@ -309,16 +295,7 @@
                     </div> <br>
 
                 </div>
-
-
-
-
-
-            </div>
-
-
-
-        </div>
+           
     </form>
 
 </div>
